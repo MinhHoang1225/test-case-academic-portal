@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "test-cases": {
+      "source": "cexll/myclaude",
+      "sourceType": "github",
+      "skillPath": "skills/test-cases/SKILL.md",
+      "computedHash": "a1d6bb3b2333a9d7b13160b6ce942f1dcd148acdff52ff657bcc12cc4ad44a09"
+    }
+  }
+}
