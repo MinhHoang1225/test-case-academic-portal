@@ -1,63 +1,579 @@
-NGUYÊN TẮC VIẾT TEST CASE
+# Test Case Writing Guidelines
 
-1. Mục đích
+Version: 1.0
 
-- Định nghĩa rõ ràng mục tiêu kiểm thử.
-- Bảo đảm bước kiểm thử có thể thực hiện được bởi tester và dễ xác nhận kết quả.
-- Dễ dàng so sánh giữa kết quả thực tế và kết quả mong đợi.
+---
 
-2. Định nghĩa một test case
-   Mỗi test case là một kịch bản kiểm thử độc lập, có cấu trúc rõ ràng, gồm:
+# 1. Purpose
 
-- ID duy nhất
-- Module liên quan
-- Tên / tiêu đề ngắn gọn
-- Mục tiêu kiểm thử
-- Tiền điều kiện
-- Dữ liệu kiểm thử
-- Các bước thực hiện
-- Kết quả mong đợi
-- Mức độ ưu tiên
-- Ghi chú bổ sung
+This document defines the standard for writing User Acceptance Test (UAT) test cases for the Student Management System.
 
-3. Trường thông tin bắt buộc
+The objectives are to:
 
-- ID: theo định dạng TC-Mx-yy (ví dụ TC-M1-01)
-- Module: Module 1..9 hoặc End-to-End
-- Tên test case: mô tả chức năng cần kiểm thử
-- Mục tiêu: lý do test case này tồn tại
-- Tiền điều kiện: trạng thái ban đầu cần có
-- Dữ liệu kiểm thử: dữ liệu đầu vào, user, batch, giá trị mẫu
-- Các bước thực hiện: từng bước chi tiết theo thứ tự
-- Kết quả mong đợi: hành vi hoặc thông điệp chính xác
-- Mức độ ưu tiên: Cao / Trung bình / Thấp
-- Trạng thái / Ghi chú: ghi thêm thông tin điều kiện, giả định, lỗi tạm thời
+- Ensure all test cases follow a consistent format.
+- Improve readability and maintainability.
+- Make test execution repeatable by different testers.
+- Reduce ambiguity during testing.
+- Ensure expected results are measurable and verifiable.
+- Support traceability between Functional Requirements and Test Cases.
 
-4. Nguyên tắc viết
+---
 
-- Viết ngắn gọn, rõ ràng, dùng câu mệnh lệnh.
-- Mỗi bước chỉ mô tả một hành động.
-- Kết quả mong đợi phải định lượng được, không chung chung.
-- Tránh dùng từ "kiểm tra" hoặc "xác nhận" trong bước thực thi.
-- Dùng dữ liệu thực tế hoặc dữ liệu mẫu rõ ràng.
+# 2. Scope
 
-5. Quy tắc đặt tên file
-   Các test case cùng module ghi trong cùng một file CSV nằm trong thư mục Tests.
+These guidelines apply to all functional test cases in the project, including:
 
-- Tests/module1_test_cases.csv
-- Tests/module2_test_cases.csv
-- Tests/module3_test_cases.csv
+- Module 01 – Batch & Student Management
+- Module 02 – Observation Tracking
+- Module 03 – Academic Management
+- Module 04 – Council Feedback
+- Module 05 – Internship Management
+- Module 06 – Bi-Weekly Internship Reports
+- Module 07 – Training Materials
+- Module 08 – Profile Photo Management
+- Module 09 – Student Portal
+- End-to-End Test Cases
 
-6. Định dạng CSV
-   File CSV phải có header và mỗi dòng là một test case.
-   Header đề xuất:
-   ID,Module,Title,Objective,Precondition,TestData,Steps,ExpectedResult,Priority,Notes
+---
 
-- Các bước thực hiện (`Steps`) có thể tách bằng `;` hoặc dấu ngắt dòng bên trong ô CSV được đóng trong dấu ngoặc kép.
-- Dữ liệu kiểm thử (`TestData`) có thể viết dưới dạng `key=value` cách nhau bằng `;`.
-- Nếu giá trị chứa dấu phẩy, dùng dấu ngoặc kép để bao toàn bộ ô.
+# 3. Test Case Definition
 
-7. Ví dụ file CSV cho Module 1
-   ID,Module,Title,Objective,Precondition,TestData,Steps,ExpectedResult,Priority,Notes
-   TC-M1-01,Module 1,Tạo khóa học mới với mã batch hợp lệ,Kiểm tra tạo batch mới khi tên batch hợp lệ,Staff đã đăng nhập ở trang Quản lý Khóa học,"Tên khóa học=PNV26A;Trạng thái=Active","1. Nhấn Tạo khóa học mới;2. Nhập PNV26A;3. Chọn Active;4. Nhấn Lưu","Hiển thị thông báo thành công và batch PNV26A xuất hiện trong danh sách",Cao,Tên batch phải theo quy tắc PNVyyX
-   TC-M1-02,Module 1,Không tạo được khóa học khi tên batch sai định dạng,Kiểm tra validate tên batch khi nhập định dạng sai,Staff đã đăng nhập ở trang Quản lý Khóa học,"Tên khóa học=PNV26;Trạng thái=Active","1. Nhấn Tạo khóa học mới;2. Nhập PNV26;3. Chọn Active;4. Nhấn Lưu","Hiển thị thông báo lỗi định dạng tên khóa học",Cao,Định dạng hợp lệ là PNVyyX
+A test case is an independent testing scenario designed to verify one functional requirement or one business rule.
+
+Each test case must include:
+
+- Unique identifier
+- Module
+- Test title
+- Objective
+- Preconditions
+- Test data
+- Test steps
+- Expected result
+- Priority
+- Notes
+
+Every test case should be executable without relying on another test case whenever possible.
+
+---
+
+# 4. Test Case Structure
+
+Each test case must contain the following fields.
+
+| Field | Description |
+|--------|-------------|
+| ID | Unique identifier of the test case |
+| Module | Functional module being tested |
+| Title | Short description of the scenario |
+| Objective | Purpose of the test |
+| Preconditions | Required system state before execution |
+| Test Data | Input values used during testing |
+| Steps | Sequential execution steps |
+| Expected Result | Expected system behavior |
+| Priority | High / Medium / Low |
+| Notes | Additional assumptions or comments |
+
+---
+
+# 5. Test Case ID Convention
+
+The following naming convention must be used.
+
+```
+TC-Mxx-###
+```
+
+Examples
+
+```
+TC-M01-001
+TC-M01-045
+TC-M03-012
+TC-M06-078
+TC-E2E-001
+```
+
+Where
+
+| Part | Meaning |
+|------|---------|
+| TC | Test Case |
+| M01 | Module number |
+| ### | Running number |
+
+For End-to-End testing
+
+```
+TC-E2E-001
+```
+
+---
+
+# 6. Writing Principles
+
+Test cases should follow these principles.
+
+## 6.1 Independent
+
+Each test case should be executable independently whenever possible.
+
+Avoid depending on another test case.
+
+---
+
+## 6.2 One Objective
+
+Each test case should verify only one requirement or one business rule.
+
+Good example
+
+```
+Verify batch name format validation.
+```
+
+Poor example
+
+```
+Verify batch creation, editing, searching and deletion.
+```
+
+---
+
+## 6.3 Clear Steps
+
+Each step should contain only one action.
+
+Good
+
+```
+1. Click Create Batch.
+
+2. Enter "PNV26A".
+
+3. Click Save.
+```
+
+Poor
+
+```
+Create a batch and verify everything works.
+```
+
+---
+
+## 6.4 Measurable Expected Results
+
+Expected results must be observable.
+
+Good
+
+```
+The batch is created successfully.
+
+A success notification appears.
+
+The new batch is displayed in the list.
+```
+
+Poor
+
+```
+System works correctly.
+```
+
+---
+
+## 6.5 Use Realistic Data
+
+Always use meaningful sample data.
+
+Example
+
+```
+Batch Name = PNV26A
+
+Student Code = PNV26001
+
+Email = student01@student.passerellesnumeriques.org
+```
+
+Avoid
+
+```
+ABC
+
+XYZ
+
+Test123
+```
+
+---
+
+## 6.6 Positive and Negative Testing
+
+Every major feature should include both:
+
+Positive scenarios
+
+Example
+
+```
+Create batch with valid name.
+```
+
+Negative scenarios
+
+Example
+
+```
+Create batch with duplicate name.
+```
+
+---
+
+## 6.7 Boundary Value Testing
+
+Whenever applicable, include boundary values.
+
+Examples
+
+```
+Minimum score
+
+Maximum score
+
+Empty value
+
+Maximum length
+
+Minimum length
+
+Invalid characters
+```
+
+---
+
+## 6.8 Business Rule Validation
+
+Every business rule documented in the Functional Requirements should have at least one corresponding test case.
+
+Example
+
+Business Rule
+
+```
+Batch name must follow PNVyyX.
+```
+
+Required tests
+
+- Valid batch name
+- Invalid format
+- Duplicate name
+
+---
+
+# 7. Priority Levels
+
+Each test case must define its execution priority.
+
+| Priority | Description |
+|-----------|-------------|
+| High | Critical business functions |
+| Medium | Important but non-critical functions |
+| Low | Cosmetic or optional features |
+
+Examples
+
+High
+
+- Login
+- Save
+- Submit
+- Delete
+- Permission
+- Validation
+
+Medium
+
+- Search
+- Filter
+- Sorting
+
+Low
+
+- UI layout
+- Tooltip
+- Animation
+
+---
+
+# 8. Preconditions
+
+Preconditions describe the required system state before execution.
+
+Examples
+
+```
+Staff user is logged in.
+
+Batch PNV26A exists.
+
+Student S001 exists.
+
+Internship group is On-going.
+```
+
+Avoid embedding execution steps inside Preconditions.
+
+---
+
+# 9. Test Data
+
+Test data should be written using key-value pairs.
+
+Example
+
+```
+BatchName=PNV26A
+
+Status=Active
+```
+
+or
+
+```
+StudentCode=PNV26001;
+Email=student01@student.passerellesnumeriques.org
+```
+
+CSV files used for import testing should specify:
+
+```
+Valid CSV
+
+Duplicate CSV
+
+Missing Required Column
+
+Invalid Data
+
+Blank Values
+```
+
+---
+
+# 10. Writing Test Steps
+
+Use imperative sentences.
+
+Examples
+
+```
+1. Open Batch Management.
+
+2. Click Create Batch.
+
+3. Enter PNV26A.
+
+4. Click Save.
+```
+
+Avoid
+
+```
+Verify batch creation.
+
+Check whether it works.
+```
+
+---
+
+# 11. Expected Result
+
+Expected results must describe observable outcomes.
+
+Examples
+
+```
+Success notification appears.
+
+Student record is created.
+
+Status changes to Active.
+
+Error message is displayed.
+
+Email is sent.
+
+PDF is downloaded.
+```
+
+Whenever possible, include the exact system message.
+
+Example
+
+```
+Invalid batch name.
+
+Use format PNVyyX.
+```
+
+---
+
+# 12. Notes
+
+Notes may include:
+
+- Related Business Rules
+- Known Issues
+- Temporary limitations
+- Assumptions
+- Related Requirement IDs
+
+Example
+
+```
+Related FR:
+
+M01-F01
+```
+
+---
+
+# 13. CSV Format
+
+Each module stores its test cases in a dedicated CSV file.
+
+Recommended filenames
+
+```
+Tests/module01_test_cases.csv
+
+Tests/module02_test_cases.csv
+
+Tests/module03_test_cases.csv
+
+...
+
+Tests/module09_test_cases.csv
+
+Tests/e2e_test_cases.csv
+```
+
+---
+
+# 14. CSV Header
+
+Each CSV file must use the following header.
+
+```
+ID,
+Module,
+Title,
+Objective,
+Precondition,
+TestData,
+Steps,
+ExpectedResult,
+Priority,
+Notes
+```
+
+---
+
+# 15. CSV Writing Rules
+
+Steps
+
+- Multiple steps may be separated using semicolons (;).
+- Alternatively, line breaks may be used inside quoted cells.
+
+Test Data
+
+- Use key=value pairs.
+- Separate multiple values using semicolons.
+
+Text containing commas
+
+- Enclose the entire cell in double quotation marks.
+
+---
+
+# 16. Traceability
+
+Every Functional Requirement should be covered by one or more test cases.
+
+Example
+
+| Functional Requirement | Test Cases |
+|------------------------|------------|
+| M01-F01 | TC-M01-001 ~ TC-M01-006 |
+| M01-F02 | TC-M01-007 ~ TC-M01-010 |
+| M03-F04 | TC-M03-021 ~ TC-M03-035 |
+
+This ensures complete requirement coverage during UAT.
+
+---
+
+# 17. Recommended Test Design Techniques
+
+The following techniques should be applied whenever appropriate.
+
+- Positive Testing
+- Negative Testing
+- Boundary Value Analysis (BVA)
+- Equivalence Partitioning (EP)
+- Decision Table Testing
+- State Transition Testing
+- Error Guessing
+- Pairwise Testing (for complex combinations)
+
+---
+
+# 18. Test Coverage Checklist
+
+Each functional feature should be evaluated against the following checklist.
+
+| Area | Covered |
+|------|---------|
+| Happy Path | ✓ |
+| Validation | ✓ |
+| Required Fields | ✓ |
+| Invalid Input | ✓ |
+| Boundary Values | ✓ |
+| Business Rules | ✓ |
+| Permission | ✓ |
+| Error Handling | ✓ |
+| Search | ✓ |
+| Filter | ✓ |
+| Sorting | ✓ |
+| Import / Export | ✓ |
+| Concurrent Editing (if applicable) | ✓ |
+| Performance-sensitive scenarios (if applicable) | ✓ |
+
+---
+
+# 19. Example Test Case
+
+| Field | Value |
+|------|------|
+| ID | TC-M01-001 |
+| Module | Module 01 |
+| Title | Create Batch with Valid Name |
+| Objective | Verify that a batch can be created using a valid batch name. |
+| Preconditions | Staff user is logged in. |
+| Test Data | BatchName=PNV26A; Status=Active |
+| Steps | 1. Open Batch Management; 2. Click Create Batch; 3. Enter PNV26A; 4. Select Active; 5. Click Save |
+| Expected Result | Batch is created successfully. Success notification appears. PNV26A is displayed in the batch list. |
+| Priority | High |
+| Notes | Related Requirement: M01-F01 |
+
+---
+
+# 20. Revision History
+
+| Version | Date | Description |
+|---------|------|-------------|
+| 1.0 | Initial Release | First version of the Test Case Writing Guidelines |
