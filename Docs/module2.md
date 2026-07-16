@@ -1,8 +1,9 @@
+
 # Module 02 – Scan Management
 
-> **Module ID:** M02  
-> **Module Name:** Scan Management  
-> **Primary User:** Staff  
+> **Module ID:** M02
+> **Module Name:** Scan Management
+> **Primary User:** Staff
 > **Related Modules:** Module 01 – Batch & Student Management
 
 ---
@@ -49,11 +50,11 @@ A **Scan Record** represents the observation of **one student on one specific da
 
 Each Scan Record contains observations for four subjects.
 
-| Subject | Data Stored |
-|----------|------------|
-| IT | Rating + Notes |
-| PLT | Rating + Notes |
-| English | Rating + Notes |
+| Subject      | Data Stored    |
+| ------------ | -------------- |
+| IT           | Rating + Notes |
+| PLT          | Rating + Notes |
+| English      | Rating + Notes |
 | Digital Arts | Rating + Notes |
 
 Each student should normally have only one observation record per day.
@@ -66,10 +67,10 @@ A **Scan Session** represents all observation records for one batch on one day.
 
 Session status may be:
 
-| Status | Description |
-|---------|-------------|
-| Incomplete | Observation is still in progress. |
-| Complete | Observation session has been closed. |
+| Status     | Description                          |
+| ---------- | ------------------------------------ |
+| Incomplete | Observation is still in progress.    |
+| Complete   | Observation session has been closed. |
 
 Sessions help staff monitor observation completion across an entire batch.
 
@@ -79,12 +80,12 @@ Sessions help staff monitor observation completion across an entire batch.
 
 The system supports four observation ratings.
 
-| Symbol | Meaning | System Value |
-|---------|---------|--------------|
-| G | Excellent | excellent |
-| S | Satisfactory | satisfactory |
-| NI | Needs Improvement | needs-improvement |
-| — | Not Yet Assessed | Empty |
+| Symbol | Meaning           | System Value      |
+| ------ | ----------------- | ----------------- |
+| G      | Excellent         | excellent         |
+| S      | Satisfactory      | satisfactory      |
+| NI     | Needs Improvement | needs-improvement |
+| —     | Not Yet Assessed  | Empty             |
 
 The rating is used for reporting and student performance tracking.
 
@@ -92,19 +93,19 @@ The rating is used for reporting and student performance tracking.
 
 # 5. Functional Features
 
-| Feature ID | Feature | Description |
-|------------|---------|-------------|
-| M02-F01 | Single Observation Entry | Record observations for one student across four subjects. |
-| M02-F02 | Auto Rating Suggestion | Suggest an observation rating approximately 400 milliseconds after notes are entered. |
-| M02-F03 | Batch Entry – All Subjects | Spreadsheet-style entry for all students simultaneously. |
-| M02-F04 | Batch Entry – By Subject | Enter one subject for multiple students. |
-| M02-F05 | Observation Editing | Update ratings and notes while keeping observation date locked. |
-| M02-F06 | Duplicate Detection & Merge | Merge or reject duplicate observation records according to business rules. |
-| M02-F07 | Session Management | Complete an observation session and automatically fill missing observations. |
-| M02-F08 | Session Progress | Display completion statistics and progress indicators. |
-| M02-F09 | Concurrent Edit Handling | Support collaborative editing using three-way merge. |
-| M02-F10 | Search, Filter & Sorting | Search students and organize observation records efficiently. |
-| M02-F11 | Dashboard Overview | Display observation statistics and summary dashboards. |
+| Feature ID | Feature                     | Description                                                                           |
+| ---------- | --------------------------- | ------------------------------------------------------------------------------------- |
+| M02-F01    | Single Observation Entry    | Record observations for one student across four subjects.                             |
+| M02-F02    | Auto Rating Suggestion      | Suggest an observation rating approximately 400 milliseconds after notes are entered. |
+| M02-F03    | Batch Entry – All Subjects | Spreadsheet-style entry for all students simultaneously.                              |
+| M02-F04    | Batch Entry – By Subject   | Enter one subject for multiple students.                                              |
+| M02-F05    | Observation Editing         | Update ratings and notes while keeping observation date locked.                       |
+| M02-F06    | Duplicate Detection & Merge | Merge or reject duplicate observation records according to business rules.            |
+| M02-F07    | Session Management          | Complete an observation session and automatically fill missing observations.          |
+| M02-F08    | Session Progress            | Display completion statistics and progress indicators.                                |
+| M02-F09    | Concurrent Edit Handling    | Support collaborative editing using three-way merge.                                  |
+| M02-F10    | Search, Filter & Sorting    | Search students and organize observation records efficiently.                         |
+| M02-F11    | Dashboard Overview          | Display observation statistics and summary dashboards.                                |
 
 ---
 
@@ -306,10 +307,10 @@ English Comment added
 
 Result
 
-| Field | Final Value |
-|--------|-------------|
-| IT Comment | Excellent performance |
-| English Comment | Saved successfully |
+| Field           | Final Value           |
+| --------------- | --------------------- |
+| IT Comment      | Excellent performance |
+| English Comment | Saved successfully    |
 
 Teacher A receives a warning informing them that another teacher updated the IT Comment.
 
@@ -317,27 +318,27 @@ Teacher A receives a warning informing them that another teacher updated the IT 
 
 # 8. Validation Rules
 
-| Item | Validation |
-|------|------------|
-| Observation Date | Required |
-| Student | Required |
-| Subject | Required |
-| Rating | Must be G, S, NI or Empty |
-| Notes | Optional |
-| Duplicate Record | Checked automatically |
-| Session Status | Must be Incomplete before editing |
+| Item             | Validation                        |
+| ---------------- | --------------------------------- |
+| Observation Date | Required                          |
+| Student          | Required                          |
+| Subject          | Required                          |
+| Rating           | Must be G, S, NI or Empty         |
+| Notes            | Optional                          |
+| Duplicate Record | Checked automatically             |
+| Session Status   | Must be Incomplete before editing |
 
 ---
 
 # 9. Error Messages
 
-| Condition | Message |
-|-----------|---------|
-| Duplicate observation | A feedback record for this date already exists. |
-| Existing session merged | Added to existing session. |
-| Session outdated | Form may be outdated. |
-| Concurrent update | Saved, but some fields were updated by another teacher. |
-| Server busy | Server is busy. Please try again later. |
+| Condition               | Message                                                 |
+| ----------------------- | ------------------------------------------------------- |
+| Duplicate observation   | A feedback record for this date already exists.         |
+| Existing session merged | Added to existing session.                              |
+| Session outdated        | Form may be outdated.                                   |
+| Concurrent update       | Saved, but some fields were updated by another teacher. |
+| Server busy             | Server is busy. Please try again later.                 |
 
 ---
 

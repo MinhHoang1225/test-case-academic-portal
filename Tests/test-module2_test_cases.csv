@@ -1,0 +1,110 @@
+"ID","Module","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
+"TC-M02-001","Module 2 – Scan Management","Ghi nhận quan sát đơn lẻ với thông tin hợp lệ","Kiểm tra chức năng thêm quan sát cho một học viên với cả 4 môn học đều hợp lệ.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở màn hình Quản lý Scan (Scan Management).
+Đã có sẵn học viên ""Nguyễn Văn A"" trong hệ thống.","Tên học viên: ""Nguyễn Văn A""
+Ngày quan sát: Ngày hiện tại
+Môn học: IT, PLT, English, Digital Arts
+Đánh giá: G, S, NI, Trống
+Nhận xét: IT: Good logic; PLT: Active participation; English: Good communication; DA: Creative UI","1. Chọn học viên ""Nguyễn Văn A"" từ danh sách.
+2. Chọn ngày quan sát là ngày hiện tại.
+3. Với môn IT: nhập nhận xét ""Good logic"", hệ thống gợi ý ""G"", chấp nhận đánh giá.
+4. Với môn PLT: nhập nhận xét ""Active participation"", hệ thống gợi ý ""S"", chấp nhận.
+5. Với môn English: nhập nhận xét ""Good communication"", hệ thống gợi ý ""NI"", chấp nhận.
+6. Với môn Digital Arts: nhập nhận xét ""Creative UI"", không chọn đánh giá (để trống).
+7. Nhấn nút ""Lưu quan sát"".","Hệ thống hiển thị thông báo thành công.
+Quan sát mới được lưu vào Google Sheets với đầy đủ thông tin đánh giá và nhận xét cho 4 môn học.
+Trạng thái hoàn thành của học viên được cập nhật.","Cao","Liên quan đến M02-F01"
+"TC-M02-002","Module 2 – Scan Management","Tự động gợi ý đánh giá dựa trên nội dung nhận xét","Kiểm tra tính năng tự động gợi ý đánh giá sau khi nhập nhận xét khoảng 400ms.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện nhập quan sát cho một học viên.","Nhận xét=Excellent performance","1. Chọn môn học IT.
+2. Nhập vào ô nhận xét: ""Excellent performance"".
+3. Dừng gõ và đợi khoảng 400 miligiây.","Hệ thống tự động gợi ý đánh giá tương ứng là ""G"".","Trung bình","Liên quan đến M02-F02"
+"TC-M02-003","Module 2 – Scan Management","Cho phép người dùng ghi đè đánh giá gợi ý tự động","Kiểm tra hệ thống cho phép người dùng thay đổi đánh giá khác sau khi hệ thống tự động gợi ý.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện nhập quan sát cho học viên.","Nhận xét=Excellent performance
+Đánh giá ghi đè=S","1. Chọn môn học IT.
+2. Nhập nhận xét ""Excellent performance"" và đợi hệ thống gợi ý đánh giá ""G"".
+3. Nhấp chọn thủ công sang đánh giá ""S"".","Đánh giá được cập nhật thành ""S"" và không bị tự động thay đổi lại về ""G"".","Trung bình","Liên quan đến M02-F02"
+"TC-M02-004","Module 2 – Scan Management","Nhập hàng loạt quan sát cho tất cả các môn học","Kiểm tra chức năng nhập quan sát dạng bảng cho nhiều học viên cùng lúc.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở màn hình Nhập hàng loạt - Tất cả môn học (Batch Entry - All Subjects).
+Đã có lớp ""PNV26A"" với 20 học viên.","Tên lớp: ""PNV26A""
+Nhập dữ liệu cho 18 học viên; để trống 2 học viên.","1. Chọn lớp ""PNV26A"".
+2. Chọn ngày quan sát.
+3. Điền đánh giá và nhận xét cho 18 học viên trên giao diện dạng bảng.
+4. Để trống hoàn toàn thông tin của 2 học viên còn lại.
+5. Nhấn nút ""Lưu hàng loạt"".","Hệ thống hiển thị thông báo thành công: ""Saved 18 students; Skipped 2 students"".
+Thông tin quan sát của 18 học viên được lưu vào Google Sheets.
+2 học viên để trống không bị ghi nhận dữ liệu.","Cao","Liên quan đến M02-F03"
+"TC-M02-005","Module 2 – Scan Management","Nhập hàng loạt quan sát theo môn học cụ thể","Kiểm tra chức năng nhập quan sát cho một môn học duy nhất cho nhiều học viên cùng lúc.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở màn hình Nhập hàng loạt - Theo môn học (Batch Entry - By Subject).","Tên lớp: ""PNV26A""
+Môn học: English
+Nhập đánh giá và nhận xét môn English cho danh sách học viên.","1. Chọn lớp ""PNV26A"".
+2. Chọn môn học ""English"".
+3. Nhập thông tin đánh giá và nhận xét vào cột English cho các học viên.
+4. Nhấn nút ""Lưu"".","Hệ thống chỉ cập nhật thông tin môn English của các học viên được nhập vào Google Sheets.
+Các môn học khác của học viên giữ nguyên không thay đổi.","Cao","Liên quan đến M02-F04"
+"TC-M02-006","Module 2 – Scan Management","Chỉnh sửa đánh giá và nhận xét của quan sát hiện có","Kiểm tra chức năng cập nhật thông tin quan sát cũ mà không thay đổi ngày quan sát.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại bản ghi quan sát cho học viên ""Nguyễn Văn A"" vào ngày hiện tại.
+Đang mở giao diện chỉnh sửa quan sát.","Đánh giá mới môn IT: NI
+Nhận xét mới môn IT: Needs more focus","1. Chọn học viên ""Nguyễn Văn A"" và ngày quan sát hiện tại.
+2. Kiểm tra xem trường Ngày quan sát có bị khóa hay không.
+3. Thay đổi đánh giá môn IT từ ""G"" sang ""NI"".
+4. Cập nhật nhận xét môn IT thành ""Needs more focus"".
+5. Nhấn nút ""Lưu"" hoặc ""Cập nhật"".","Trường Ngày quan sát bị khóa (read-only) không thể chỉnh sửa.
+Bản ghi được cập nhật thành công với đánh giá và nhận xét mới trong Google Sheets.","Cao","Liên quan đến M02-F05"
+"TC-M02-007","Module 2 – Scan Management","Phát hiện trùng lặp - Gộp bản ghi khi số môn hoàn thành dưới 3","Kiểm tra hệ thống gộp quan sát mới vào bản ghi hiện có khi bản ghi hiện tại mới chỉ hoàn thành dưới 3 môn học.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại bản ghi quan sát của học viên ""Nguyễn Văn A"" vào ngày hiện tại chỉ mới có thông tin của 2 môn (IT và PLT).","Tên học viên: ""Nguyễn Văn A""
+Ngày: Ngày hiện tại
+Môn học mới: English
+Đánh giá: G
+Nhận xét: Good reading skills","1. Nhấn nút thêm quan sát mới cho học viên ""Nguyễn Văn A"" vào cùng ngày hiện tại.
+2. Nhập thông tin môn English với đánh giá ""G"" và nhận xét ""Good reading skills"".
+3. Nhấn nút ""Lưu"".","Hệ thống tự động phát hiện trùng lặp, tiến hành gộp dữ liệu môn English vào bản ghi cũ.
+Hiển thị thông báo thành công: ""Added to existing session."".
+Bản ghi trong Google Sheets có đầy đủ thông tin của cả 3 môn (IT, PLT, English).","Cao","Liên quan đến M02-F06 (Rule 1)"
+"TC-M02-008","Module 2 – Scan Management","Phát hiện trùng lặp - Từ chối lưu bản ghi mới khi số môn hoàn thành từ 3 trở lên","Kiểm tra hệ thống từ chối lưu và báo lỗi khi người dùng cố tạo quan sát mới cho học viên đã hoàn thành từ 3 môn trở lên trong cùng ngày.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại bản ghi quan sát của học viên ""Nguyễn Văn A"" trong ngày hiện tại đã hoàn thành 3 môn (IT, PLT, English).","Tên học viên: ""Nguyễn Văn A""
+Ngày: Ngày hiện tại
+Môn học mới: Digital Arts
+Đánh giá: S
+Nhận xét: Nice color scheme","1. Nhấn nút thêm quan sát mới cho học viên ""Nguyễn Văn A"" vào cùng ngày hiện tại.
+2. Nhập thông tin môn Digital Arts với đánh giá ""S"" và nhận xét ""Nice color scheme"".
+3. Nhấn nút ""Lưu"".","Hệ thống từ chối lưu và hiển thị thông báo lỗi: ""A feedback record for this date already exists."".
+Dữ liệu mới không được lưu vào Google Sheets, người dùng ở lại màn hình để điều chỉnh.","Cao","Liên quan đến M02-F06 (Rule 2)"
+"TC-M02-009","Module 2 – Scan Management","Đóng phiên quan sát và tự động điền N/A cho học viên thiếu nhận xét","Kiểm tra chức năng hoàn thành phiên quan sát (Mark Session Complete), kiểm tự động điền N/A và khóa phiên.","Người dùng đã đăng nhập với quyền Staff.
+Có phiên quan sát của ngày hiện tại đang ở trạng thái Incomplete.
+Có học viên ""Nguyễn Văn B"" chưa được nhập nhận xét nào trong phiên.","Ngày phiên: Ngày hiện tại","1. Truy cập vào trang quản lý phiên quan sát.
+2. Nhấn nút ""Mark Session Complete"" cho phiên của ngày hiện tại.","Trạng thái phiên quan sát chuyển sang Complete.
+Học viên ""Nguyễn Văn B"" tự động nhận đánh giá/nhận xét môn học là ""N/A"".
+Hệ thống khóa phiên và ngăn chặn việc tạo thêm hoặc sửa đổi quan sát thuộc phiên này.","Cao","Liên quan đến M02-F07"
+"TC-M02-010","Module 2 – Scan Management","Hiển thị tiến trình hoàn thành phiên quan sát của lớp học","Kiểm tra hệ thống hiển thị chính xác số liệu thống kê và tiến trình hoàn thành quan sát.","Người dùng đã đăng nhập với quyền Staff.
+Lớp ""PNV26A"" có 20 học viên, đã nhập quan sát cho 10 học viên.","Tên lớp: PNV26A","1. Mở màn hình Tiến trình Phiên quan sát (Session Progress) của lớp ""PNV26A"" cho ngày hiện tại.","Hệ thống hiển thị tiến trình hoàn thành là 50% (10/20 học viên đã được quan sát).
+Các thanh chỉ báo tiến trình hiển thị trực quan và chính xác số liệu.","Trung bình","Liên quan đến M02-F08"
+"TC-M02-011","Module 2 – Scan Management","Xử lý chỉnh sửa đồng thời từ hai giáo viên khác nhau","Kiểm tra hệ thống gộp các thay đổi không xung đột và cảnh báo khi có chỉnh sửa đồng thời.","Hai giáo viên (Staff A và Staff B) đăng nhập bằng hai tài khoản khác nhau.
+Cả hai cùng mở bản ghi quan sát của học viên ""Nguyễn Văn A"" ngày hiện tại.
+Bản ghi ban đầu có nhận xét IT là ""Good performance"".","Staff B sửa IT thành ""Excellent performance""
+Staff A sửa IT thành ""Very good performance"" và thêm nhận xét English là ""English Comment added""","1. Staff B chỉnh sửa nhận xét IT thành ""Excellent performance"" và nhấn Lưu trước.
+2. Staff A chỉnh sửa nhận xét IT thành ""Very good performance"" đồng thời thêm nhận xét English là ""English Comment added"", sau đó nhấn Lưu.","Hệ thống áp dụng Three-Way Merge: lưu thành công nhận xét English mới của Staff A.
+Tuy nhiên, nhận xét IT giữ nguyên giá trị đã lưu trước đó của Staff B (""Excellent performance"").
+Staff A nhận được cảnh báo: ""Saved, but some fields were updated by another teacher.""","Cao","Liên quan đến M02-F09"
+"TC-M02-012","Module 2 – Scan Management","Tìm kiếm, lọc và sắp xếp danh sách quan sát học viên","Kiểm tra tính năng tìm kiếm theo tên, lọc theo trạng thái hoàn thành và sắp xếp danh sách học viên.","Người dùng đã đăng nhập với quyền Staff.
+Danh sách học viên có nhiều tên khác nhau (Nguyễn Văn A, Trần Thị B, Lê Văn C...) với các trạng thái quan sát khác nhau (Đã hoàn thành, Chưa hoàn thành).","Từ khóa tìm kiếm: ""Nguyễn""
+Bộ lọc Trạng thái: Incomplete
+Sắp xếp: Alphabetical (A-Z)","1. Nhập từ khóa ""Nguyễn"" vào ô tìm kiếm.
+2. Chọn bộ lọc Trạng thái là ""Incomplete"".
+3. Chọn sắp xếp theo thứ tự chữ cái A-Z.","Danh sách chỉ hiển thị đúng các học viên có tên chứa chữ ""Nguyễn"", chưa hoàn thành quan sát, và danh sách được sắp xếp theo thứ tự chữ cái từ A đến Z.","Trung bình","Liên quan đến M02-F10"
+"TC-M02-013","Module 2 – Scan Management","Hiển thị và tự động cập nhật thống kê trên màn hình Dashboard","Kiểm tra Dashboard hiển thị đầy đủ các thông số thống kê và tự động cập nhật số liệu khi có thay đổi dữ liệu quan sát.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở màn hình Dashboard Overview.
+Ghi nhận số lượng phiên hoàn thành hiện tại.","N/A","1. Kiểm tra các số liệu hiển thị trên Dashboard (Tổng số lớp, Tổng số học viên, Phiên hoạt động, Phiên đã hoàn thành...).
+2. Đi tới trang quản lý phiên quan sát, đánh dấu hoàn thành (Complete) thêm 1 phiên hoạt động.
+3. Quay lại Dashboard kiểm tra số liệu.","1. Dashboard hiển thị đầy đủ các mục thống kê đúng thực tế.
+2. Số lượng phiên đã hoàn thành tăng lên 1 và Tỷ lệ hoàn thành (Observation Completion Rate) tự động cập nhật tương ứng.","Trung bình","Liên quan đến M02-F11"
+"TC-M02-014","Module 2 – Scan Management","Xác thực trường bắt buộc khi lưu quan sát đơn lẻ","Kiểm tra hệ thống báo lỗi khi để trống các trường bắt buộc (Ngày quan sát, Học viên).","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện thêm quan sát đơn lẻ.","Học viên: Để trống
+Ngày quan sát: Để trống
+Đánh giá môn IT: G","1. Để trống trường Học viên và Ngày quan sát.
+2. Chọn đánh giá IT là ""G"".
+3. Nhấn nút ""Lưu quan sát"".","Hệ thống báo lỗi yêu cầu nhập Học viên và Ngày quan sát.
+Bản ghi không được lưu vào hệ thống.","Cao","Liên quan đến Validation Rules (Mục 8)"
+"TC-M02-015","Module 2 – Scan Management","Ngăn chặn lưu đánh giá không hợp lệ","Kiểm tra hệ thống ngăn chặn việc lưu đánh giá khác các giá trị G, S, NI hoặc trống.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở màn hình thêm quan sát đơn lẻ cho học viên ""Nguyễn Văn A"".","Đánh giá không hợp lệ=A","1. Nhập nhận xét môn IT.
+2. Cố tình gửi hoặc chọn giá trị đánh giá là ""A"" (không thuộc danh sách G, S, NI, trống).
+3. Nhấn nút ""Lưu"".","Hệ thống báo lỗi đánh giá không hợp lệ (ví dụ: ""Rating must be G, S, NI or Empty"") và từ chối lưu dữ liệu.","Cao","Liên quan đến Validation Rules (Mục 8)"

@@ -1,0 +1,112 @@
+"ID","Module","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
+"TC-M02-001","Module 2 – Scan Management","Record single observation with valid information","Verify single observation entry for a student across all 4 subjects with valid inputs.","User is logged in with Staff role.
+Currently on the Scan Management screen.
+Student ""Nguyen Van A"" exists in the system.","Student Name: ""Nguyen Van A""
+Observation Date: Current date
+Subjects: IT, PLT, English, Digital Arts
+Ratings: G, S, NI, Empty
+Notes: IT: Good logic; PLT: Active participation; English: Good communication; DA: Creative UI","1. Select student ""Nguyen Van A"" from the student list.
+2. Select current date as the observation date.
+3. For IT: Enter note ""Good logic"", system suggests ""G"", accept the rating.
+4. For PLT: Enter note ""Active participation"", system suggests ""S"", accept the rating.
+5. For English: Enter note ""Good communication"", system suggests ""NI"", accept the rating.
+6. For Digital Arts: Enter note ""Creative UI"", leave rating unselected (empty).
+7. Click the ""Save Observation"" button.","Success notification is displayed.
+The new observation is successfully saved to Google Sheets with ratings and notes for all 4 subjects.
+The student's completion status is updated on the UI.","High","Related to specification M02-F01"
+"TC-M02-002","Module 2 – Scan Management","Auto rating suggestion based on notes","Verify that the system automatically suggests an appropriate rating approximately 400 milliseconds after notes are entered.","User is logged in with Staff role.
+Currently on the observation entry screen for a student.","Subject: IT
+Notes: Excellent performance","1. Select IT subject.
+2. Enter observation note: ""Excellent performance"" into the notes field.
+3. Stop typing and wait for approximately 400 milliseconds.","The system automatically analyzes the note content and suggests rating ""G"".","Medium","Related to specification M02-F02"
+"TC-M02-003","Module 2 – Scan Management","Allow user to overwrite auto-suggested rating","Verify that the user can manually change the rating after the auto-suggestion has been made.","User is logged in with Staff role.
+Currently on the observation entry screen for a student.","Notes: Excellent performance
+Overwrite rating: S","1. Select IT subject.
+2. Enter observation note ""Excellent performance"" and wait for the system to suggest rating ""G"".
+3. Manually select rating ""S"" from the rating list.","The rating is successfully updated to ""S"" and is not auto-reverted back to ""G"".","Medium","Related to specification M02-F02"
+"TC-M02-004","Module 2 – Scan Management","Batch observation entry for all subjects","Verify bulk observation entry using the spreadsheet-style layout for multiple students simultaneously.","User is logged in with Staff role.
+Currently on the Batch Entry - All Subjects screen.
+An active batch ""PNV26A"" exists with 20 students.","Batch Name: ""PNV26A""
+Enter data for 18 students; leave 2 students completely blank.","1. Select batch ""PNV26A"".
+2. Select observation date.
+3. Enter ratings and notes for 18 students in the spreadsheet-style grid.
+4. Leave all fields empty for the remaining 2 students.
+5. Click ""Save Batch"".","Success notification is displayed: ""Saved 18 students; Skipped 2 students"".
+Observation details for the 18 students are saved to Google Sheets.
+The 2 skipped students have no data written.","High","Related to specification M02-F03"
+"TC-M02-005","Module 2 – Scan Management","Batch observation entry by specific subject","Verify batch observation entry for a single subject for multiple students simultaneously.","User is logged in with Staff role.
+Currently on the Batch Entry - By Subject screen.","Batch Name: ""PNV26A""
+Subject: English
+Enter ratings and notes for the English column for multiple students.","1. Select batch ""PNV26A"".
+2. Select subject ""English"".
+3. Enter ratings and notes under the English column for the students.
+4. Click ""Save"".","Only English observation data for the entered students is updated in Google Sheets.
+Other subjects' observation data for the students remains untouched.","High","Related to specification M02-F04"
+"TC-M02-006","Module 2 – Scan Management","Edit ratings and notes of an existing observation","Verify updating an existing observation's ratings and notes while keeping the observation date locked.","User is logged in with Staff role.
+An observation record already exists for student ""Nguyen Van A"" on the current date.
+Currently on the edit observation screen.","New IT rating: NI
+New IT notes: Needs more focus","1. Select student ""Nguyen Van A"" and the current observation date.
+2. Verify if the Observation Date field is locked (read-only).
+3. Change IT rating from ""G"" to ""NI"".
+4. Update IT note to ""Needs more focus"".
+5. Click ""Save"" or ""Update"".","The Observation Date field is locked (read-only) and cannot be edited.
+The record is successfully updated in Google Sheets with the new rating and note.","High","Related to specification M02-F05"
+"TC-M02-007","Module 2 – Scan Management","Duplicate detection - Merge when <3 subjects are completed","Verify that the system automatically merges a new observation into an existing record when the existing record has less than 3 subjects completed.","User is logged in with Staff role.
+An observation record already exists for student ""Nguyen Van A"" on the current date, with only 2 subjects completed (e.g. IT and PLT).","Student Name: ""Nguyen Van A""
+Date: Current Date
+New Subject: English
+Rating: G
+Notes: Good reading skills","1. Click to add a new observation for student ""Nguyen Van A"" on the current date.
+2. Enter English subject details: rating ""G"" and note ""Good reading skills"".
+3. Click ""Save"".","System automatically detects duplication and performs a merge.
+Success message is shown: ""Added to existing session.""
+The merged record in Google Sheets now has completed data for all 3 subjects (IT, PLT, English).","High","Related to specification M02-F06 (Rule 1)"
+"TC-M02-008","Module 2 – Scan Management","Duplicate detection - Reject when >=3 subjects are completed","Verify that the system rejects a new observation record and displays an error when trying to create a new record for a student with 3 or more subjects already completed on the same day.","User is logged in with Staff role.
+An observation record already exists for student ""Nguyen Van A"" on the current date, with 3 subjects already completed (IT, PLT, English).","Student Name: ""Nguyen Van A""
+Date: Current Date
+New Subject: Digital Arts
+Rating: S
+Notes: Nice color scheme","1. Click to add a new observation for student ""Nguyen Van A"" on the current date.
+2. Enter Digital Arts subject details: rating ""S"" and note ""Nice color scheme"".
+3. Click ""Save"".","System rejects the entry and displays error message: ""A feedback record for this date already exists.""
+The duplicate data is not saved to Google Sheets, and the user remains on the entry screen.","High","Related to specification M02-F06 (Rule 2)"
+"TC-M02-009","Module 2 – Scan Management","Complete observation session and auto-fill N/A for missing observations","Verify marking a session as complete, checking auto-fill of N/A and locking of the session.","User is logged in with Staff role.
+An active observation session for the current date is in ""Incomplete"" status.
+Student ""Nguyen Van B"" has no observation notes recorded in this session.","Session Date: Current Date","1. Navigate to the session management screen.
+2. Click ""Mark Session Complete"" for the current date's session.","The session status changes to ""Complete"".
+Student ""Nguyen Van B"" automatically receives ""N/A"" for their ratings/notes.
+The system locks the session, preventing any further observation creation or edits.","High","Related to specification M02-F07"
+"TC-M02-010","Module 2 – Scan Management","Display session progress indicators for a batch","Verify that the system accurately calculates and displays observation completion statistics and progress.","User is logged in with Staff role.
+Batch ""PNV26A"" has 20 students, and observations have been saved for 10 students.","Batch Name: ""PNV26A""","1. Open the Session Progress screen for batch ""PNV26A"" on the current date.","The system displays a completion progress of 50% (10/20 students observed).
+Progress indicators and statistical counts are correct and dynamically updated.","Medium","Related to specification M02-F08"
+"TC-M02-011","Module 2 – Scan Management","Concurrent editing resolution from two teachers (Three-Way Merge)","Verify that non-conflicting concurrent edits are merged and a warning is generated for conflicting fields.","Two staff members (Staff A and Staff B) are logged in using different accounts.
+Both open the observation record of student ""Nguyen Van A"" for the current date.
+The initial record has IT notes set to ""Good performance"".","Staff B changes IT note to ""Excellent performance""
+Staff A changes IT note to ""Very good performance"" and adds English note ""English Comment added""","1. Staff B edits the IT note to ""Excellent performance"" and clicks Save first.
+2. Staff A edits the IT note to ""Very good performance"" and adds English note ""English Comment added"", then clicks Save.","System applies Three-Way Merge: Staff A's new English note is successfully saved.
+However, the IT note retains Staff B's value (""Excellent performance"").
+Staff A receives a warning: ""Saved, but some fields were updated by another teacher.""","High","Related to specification M02-F09"
+"TC-M02-012","Module 2 – Scan Management","Search, filter, and sort student observation list","Verify searching by name, filtering by completion status, and sorting the list of student records.","User is logged in with Staff role.
+The student list contains diverse names (e.g. Nguyen Van A, Tran Thi B, Le Van C...) with mixed observation statuses (Completed, Incomplete).","Search keyword: ""Nguyen""
+Status filter: Incomplete
+Sorting: Alphabetical (A-Z)","1. Enter ""Nguyen"" in the search box.
+2. Set the status filter to ""Incomplete"".
+3. Set the sorting selection to alphabetical A-Z.","The list displays only students whose name contains ""Nguyen"" and who are in ""Incomplete"" observation status.
+The list is correctly sorted from A to Z.","Medium","Related to specification M02-F10"
+"TC-M02-013","Module 2 – Scan Management","Dashboard metrics and automatic refresh","Verify that the dashboard displays complete stats and updates in real-time when observation data changes.","User is logged in with Staff role.
+Currently on the Dashboard Overview screen.
+Observe the initial completed sessions count.","N/A","1. Check all displayed metrics on the dashboard (Total Batches, Total Students, Active Sessions, Completed Sessions, etc.).
+2. Go to the Session Management screen and complete 1 active session.
+3. Return to the Dashboard Overview screen and verify the metrics.","1. All metrics display accurate statistics.
+2. Completed Sessions count increases by 1, and the Observation Completion Rate is updated accordingly.","Medium","Related to specification M02-F11"
+"TC-M02-014","Module 2 – Scan Management","Required fields validation for single observation","Verify system validation error when trying to save with missing required fields (Date, Student).","User is logged in with Staff role.
+Currently on the single observation entry screen.","Student: Empty
+Observation Date: Empty
+IT rating: G","1. Leave Student and Observation Date fields empty.
+2. Select IT rating ""G"".
+3. Click ""Save Observation"".","System displays a validation error message prompting to enter Student and Observation Date.
+The record is not saved to the system.","High","Related to Validation Rules (Section 8)"
+"TC-M02-015","Module 2 – Scan Management","Invalid rating value validation","Verify that the system prevents saving rating values other than G, S, NI, or empty.","User is logged in with Staff role.
+Currently on the single observation entry screen for student ""Nguyen Van A"".","Invalid rating value: A","1. Enter observation note for IT.
+2. Forcefully enter/send rating value ""A"" (which is outside the allowed list: G, S, NI, empty).
+3. Click ""Save"".","System displays a validation error (e.g. ""Rating must be G, S, NI or Empty"") and rejects the save operation.","High","Related to Validation Rules (Section 8)"
