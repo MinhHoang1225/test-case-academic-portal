@@ -1,0 +1,194 @@
+"ID","Module","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
+"TC-M05-001","Module 5 – Internship Management","Tạo nhóm thực tập mới với thông tin hợp lệ","Kiểm tra chức năng tạo nhóm thực tập mới khi nhập đầy đủ các thông tin bắt buộc và hợp lệ.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Thực tập.
+Các lớp học ""PNV26A"" và ""PNV26B"" đã tồn tại trong hệ thống và chưa được gán vào bất kỳ nhóm thực tập nào trong cùng năm học.","GroupName=""Nhóm Thực tập 2026 - Năm 2""; InternshipYear=""Second Year""; Batches=""PNV26A"", ""PNV26B""; StartDate=""2026-08-01""","1. Nhấn nút ""Tạo nhóm thực tập mới"".
+2. Nhập Tên nhóm là ""Nhóm Thực tập 2026 - Năm 2"".
+3. Chọn Năm thực tập là ""Second Year"".
+4. Tích chọn các lớp học ""PNV26A"" và ""PNV26B"".
+5. Chọn Ngày bắt đầu là ""2026-08-01"".
+6. Nhấn nút ""Lưu"".","Hệ thống hiển thị thông báo tạo nhóm thành công.
+Nhóm thực tập mới xuất hiện trong danh sách hiển thị với trạng thái là ""On-going"".
+Các lớp học đã chọn được liên kết chính xác với nhóm này.","Cao","Liên quan đến M05-F01, Rule 6.1"
+"TC-M05-002","Module 5 – Internship Management","Tạo nhóm thực tập thất bại do để trống tên nhóm","Kiểm tra hệ thống báo lỗi và ngăn chặn tạo nhóm thực tập nếu để trống tên nhóm.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Tạo nhóm thực tập mới.
+Lớp học ""PNV26A"" chưa được gán cho nhóm thực tập nào trong năm học.","GroupName=""""; InternshipYear=""Second Year""; Batches=""PNV26A""; StartDate=""2026-08-01""","1. Để trống trường Tên nhóm.
+2. Chọn Năm thực tập là ""Second Year"".
+3. Tích chọn lớp học ""PNV26A"".
+4. Chọn Ngày bắt đầu là ""2026-08-01"".
+5. Nhấn nút ""Lưu"".","Hệ thống hiển thị thông báo lỗi yêu cầu nhập Tên nhóm (ví dụ: ""Group Name is required."").
+Nhóm thực tập mới không được lưu vào hệ thống.","Cao","Liên quan đến Validation Rules (Mục 7), Error Handling (Mục 8)"
+"TC-M05-003","Module 5 – Internship Management","Tạo nhóm thực tập thất bại do không tích chọn lớp học","Kiểm tra hệ thống báo lỗi và ngăn chặn tạo nhóm thực tập nếu không chọn bất kỳ lớp học nào.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Tạo nhóm thực tập mới.","GroupName=""Nhóm Thực tập 2026""; InternshipYear=""Second Year""; Batches=None; StartDate=""2026-08-01""","1. Nhập Tên nhóm là ""Nhóm Thực tập 2026"".
+2. Chọn Năm thực tập là ""Second Year"".
+3. Không chọn bất kỳ lớp học nào trong danh sách.
+4. Chọn Ngày bắt đầu là ""2026-08-01"".
+5. Nhấn nút ""Lưu"".","Hệ thống hiển thị thông báo lỗi yêu cầu chọn ít nhất một lớp học (ví dụ: ""At least one batch is required."").
+Nhóm thực tập mới không được lưu vào hệ thống.","Cao","Liên quan đến Validation Rules (Mục 7), Error Handling (Mục 8)"
+"TC-M05-004","Module 5 – Internship Management","Tạo nhóm thực tập thất bại do để trống ngày bắt đầu","Kiểm tra hệ thống báo lỗi và ngăn chặn tạo nhóm thực tập nếu để trống ngày bắt đầu.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Tạo nhóm thực tập mới.","GroupName=""Nhóm Thực tập 2026""; InternshipYear=""Second Year""; Batches=""PNV26A""; StartDate=""""","1. Nhập Tên nhóm là ""Nhóm Thực tập 2026"".
+2. Chọn Năm thực tập là ""Second Year"".
+3. Tích chọn lớp học ""PNV26A"".
+4. Để trống trường Ngày bắt đầu.
+5. Nhấn nút ""Lưu"".","Hệ thống hiển thị thông báo lỗi yêu cầu chọn Ngày bắt đầu (ví dụ: ""Start Date is required."").
+Nhóm thực tập mới không được lưu vào hệ thống.","Cao","Liên quan đến Validation Rules (Mục 7), Error Handling (Mục 8)"
+"TC-M05-005","Module 5 – Internship Management","Tạo nhóm thực tập thất bại do để trống năm thực tập","Kiểm tra hệ thống báo lỗi và ngăn chặn tạo nhóm thực tập nếu năm thực tập không được chọn.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Tạo nhóm thực tập mới.","GroupName=""Nhóm Thực tập 2026""; InternshipYear=""""; Batches=""PNV26A""; StartDate=""2026-08-01""","1. Nhập Tên nhóm là ""Nhóm Thực tập 2026"".
+2. Không chọn Năm thực tập (để trống).
+3. Tích chọn lớp học ""PNV26A"".
+4. Chọn Ngày bắt đầu là ""2026-08-01"".
+5. Nhấn nút ""Lưu"".","Hệ thống hiển thị thông báo lỗi yêu cầu chọn Năm thực tập (ví dụ: ""Internship Year is required."").
+Nhóm thực tập mới không được lưu vào hệ thống.","Cao","Liên quan đến Validation Rules (Mục 7)"
+"TC-M05-006","Module 5 – Internship Management","Tạo nhóm thực tập thất bại do chọn lớp học đã được gán vào nhóm thực tập khác trong cùng năm học","Kiểm tra hệ thống từ chối tạo nhóm thực tập mới chứa lớp học đã được gán cho nhóm thực tập khác trong cùng năm học.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại nhóm thực tập ""Nhóm A"" cho năm học ""Second Year"" chứa lớp ""PNV26A"".","GroupName=""Nhóm B""; InternshipYear=""Second Year""; Batches=""PNV26A""; StartDate=""2026-08-01""","1. Nhấn nút ""Tạo nhóm thực tập mới"".
+2. Nhập Tên nhóm là ""Nhóm B"".
+3. Chọn Năm thực tập là ""Second Year"".
+4. Chọn lớp học là ""PNV26A"".
+5. Chọn Ngày bắt đầu là ""2026-08-01"".
+6. Nhấn nút ""Lưu"".","Hệ thống từ chối lưu và hiển thị thông báo lỗi (ví dụ: lớp PNV26A đã được gán cho một nhóm thực tập khác trong năm học này - ""Batch already assigned"").
+Nhóm thực tập ""Nhóm B"" không được tạo.","Cao","Liên quan đến Batch Assignment Rule (Rule 6.2), Error Handling (Mục 8)"
+"TC-M05-007","Module 5 – Internship Management","Tạo nhóm thực tập thành công khi gán cùng lớp học vào nhóm thực tập ở các năm học khác nhau","Kiểm tra hệ thống cho phép gán cùng một lớp học vào nhóm thực tập ở các năm khác nhau (ví dụ: năm 2 và năm 3).","Người dùng đã đăng nhập với quyền Staff.
+Lớp ""PNV26A"" đã được gán vào nhóm thực tập ""Nhóm Năm 2"" thuộc năm thực tập ""Second Year"".","GroupName=""Nhóm Năm 3""; InternshipYear=""Third Year""; Batches=""PNV26A""; StartDate=""2027-08-01""","1. Nhấn nút ""Tạo nhóm thực tập mới"".
+2. Nhập Tên nhóm là ""Nhóm Năm 3"".
+3. Chọn Năm thực tập là ""Third Year"".
+4. Chọn lớp học là ""PNV26A"".
+5. Chọn Ngày bắt đầu là ""2027-08-01"".
+6. Nhấn nút ""Lưu"".","Hệ thống lưu thành công nhóm thực tập mới.
+Lớp PNV26A được gán vào nhóm ""Nhóm Năm 3"" mà không có lỗi.","Cao","Liên quan đến Batch Assignment Rule (Rule 6.2)"
+"TC-M05-008","Module 5 – Internship Management","Lưu trữ nhóm thực tập đang hoạt động","Kiểm tra chức năng Lưu trữ (Archive) một nhóm thực tập đang ở trạng thái On-going.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại nhóm thực tập ""Nhóm Thực tập 2026"" ở trạng thái On-going.","GroupName=""Nhóm Thực tập 2026""","1. Tìm nhóm thực tập ""Nhóm Thực tập 2026"" trên giao diện danh sách.
+2. Nhấn vào biểu tượng/nút ""Lưu trữ"" (Archive) của nhóm này.
+3. Xác nhận lưu trữ ở hộp thoại xác nhận.","Hệ thống hiển thị thông báo lưu trữ thành công.
+Trạng thái của nhóm thực tập chuyển sang ""Archived"".
+Nhóm thực tập này bị ẩn khỏi danh sách hoạt động bình thường.","Cao","Liên quan đến M05-F02, Rule 6.12"
+"TC-M05-009","Module 5 – Internship Management","Kích hoạt lại nhóm thực tập đã lưu trữ","Kiểm tra chức năng khôi phục/kích hoạt lại (Reactivate) một nhóm thực tập đã bị lưu trữ.","Người dùng đã đăng nhập với quyền Staff.
+Đã có nhóm thực tập ""Nhóm Thực tập 2026"" ở trạng thái Archived.","GroupName=""Nhóm Thực tập 2026""","1. Truy cập vào danh sách các nhóm thực tập đã lưu trữ (Archived Groups).
+2. Tìm nhóm ""Nhóm Thực tập 2026"".
+3. Nhấn vào nút ""Khôi phục"" hoặc ""Kích hoạt lại"" (Reactivate).
+4. Xác nhận ở hộp thoại.","Hệ thống hiển thị thông báo kích hoạt lại thành công.
+Trạng thái của nhóm chuyển từ ""Archived"" về ""On-going"".
+Nhóm thực tập xuất hiện trở lại trong danh sách nhóm đang hoạt động.","Cao","Liên quan đến M05-F02, Rule 6.12"
+"TC-M05-010","Module 5 – Internship Management","Thêm công ty đối tác mới với tên hợp lệ","Kiểm tra chức năng thêm mới công ty đối tác với tên hợp lệ và chưa tồn tại.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Công ty (Company Management).","CompanyName=""TechCorp""","1. Nhấn nút ""Thêm công ty mới"".
+2. Nhập vào trường Tên công ty: ""TechCorp"".
+3. Nhấn nút ""Lưu"".","Hệ thống hiển thị thông báo thêm công ty thành công.
+Công ty ""TechCorp"" xuất hiện trong danh sách các công ty đối tác.","Cao","Liên quan đến M05-F03, Rule 6.3"
+"TC-M05-011","Module 5 – Internship Management","Thêm công ty thất bại do để trống tên công ty","Kiểm tra hệ thống hiển thị thông báo lỗi và ngăn chặn thêm công ty nếu để trống tên công ty.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Công ty.","CompanyName=""""","1. Nhấn nút ""Thêm công ty mới"".
+2. Để trống trường Tên công ty.
+3. Nhấn nút ""Lưu"".","Hệ thống hiển thị thông báo lỗi yêu cầu nhập tên công ty (ví dụ: ""Company Name is required."").
+Công ty mới không được thêm vào danh sách.","Cao","Liên quan đến Validation Rules (Mục 7), Error Handling (Mục 8)"
+"TC-M05-012","Module 5 – Internship Management","Thêm công ty thất bại do trùng tên (phân biệt hoa thường)","Kiểm tra hệ thống từ chối và báo lỗi khi thêm công ty có tên viết hoa/thường trùng với công ty đã tồn tại.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại công ty ""TechCorp"" trong hệ thống.
+Đang ở giao diện Quản lý Công ty.","CompanyName=""techcorp""","1. Nhấn nút ""Thêm công ty mới"".
+2. Nhập vào trường Tên công ty: ""techcorp"" (viết thường hoàn toàn).
+3. Nhấn nút ""Lưu"".","Hệ thống từ chối lưu và hiển thị thông báo lỗi trùng tên công ty (ví dụ: ""Company name already exists."").
+Công ty trùng lặp không được tạo thêm.","Cao","Liên quan đến M05-F03, Rule 6.3, Error Handling (Mục 8)"
+"TC-M05-013","Module 5 – Internship Management","Thêm công ty thất bại do trùng tên khi có khoảng trắng đầu/cuối","Kiểm tra hệ thống tự động loại bỏ khoảng trắng đầu/cuối và từ chối nếu tên công ty trùng lặp.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại công ty ""TechCorp"" trong hệ thống.
+Đang ở giao diện Quản lý Công ty.","CompanyName=""  TechCorp  ""","1. Nhấn nút ""Thêm công ty mới"".
+2. Nhập vào trường Tên công ty: ""  TechCorp  "" (có khoảng trắng ở đầu và cuối).
+3. Nhấn nút ""Lưu"".","Hệ thống cắt bỏ các khoảng trắng đầu/cuối, phát hiện trùng lặp với ""TechCorp"", từ chối lưu và hiển thị thông báo lỗi trùng tên.","Cao","Liên quan đến M05-F03, Rule 6.3, Error Handling (Mục 8)"
+"TC-M05-014","Module 5 – Internship Management","Phân công thực tập cho học viên đơn lẻ","Kiểm tra chức năng phân công một học viên vào một công ty đối tác.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện danh sách học viên của nhóm thực tập ""Nhóm Thực tập 2026"" (trạng thái On-going).
+Học viên ""Nguyễn Văn A"" đang ở trạng thái chưa được phân công (Unassigned).
+Công ty ""TechCorp"" đang ở trạng thái hoạt động (không bị ẩn).","StudentName=""Nguyễn Văn A""; AssignedCompany=""TechCorp""","1. Tìm học viên ""Nguyễn Văn A"" trong bảng phân công học viên.
+2. Nhấp vào ô chọn công ty của học viên ""Nguyễn Văn A"".
+3. Chọn công ty ""TechCorp"" từ danh sách gợi ý.
+4. Nhấn nút ""Lưu thay đổi"".","Hệ thống hiển thị thông báo phân công thành công.
+Học viên ""Nguyễn Văn A"" hiển thị công ty đã gán là ""TechCorp"".
+Số lượng học viên chưa phân công trên nhãn cảnh báo (Warning Badge) tự động giảm đi 1.","Cao","Liên quan đến M05-F04, M05-F06, Rule 6.4, Rule 6.11"
+"TC-M05-015","Module 5 – Internship Management","Phân công thực tập hàng loạt cho nhiều học viên cùng lúc","Kiểm tra chức năng chọn nhiều học viên và phân công vào cùng một công ty cùng lúc.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện danh sách học viên của nhóm thực tập.
+Có ít nhất 3 học viên đang ở trạng thái chưa phân công (ví dụ: Nguyễn Văn B, Trần Thị C, Lê Văn D).
+Công ty ""TechCorp"" đang hoạt động.","SelectedStudents=""Nguyễn Văn B"", ""Trần Thị C"", ""Lê Văn D""; AssignedCompany=""TechCorp""","1. Tích chọn các ô vuông (checkbox) đầu dòng của học viên ""Nguyễn Văn B"", ""Trần Thị C"" và ""Lê Văn D"".
+2. Nhấn nút ""Phân công hàng loạt"" (Bulk Assign).
+3. Chọn công ty ""TechCorp"" trong hộp thoại hiện ra.
+4. Nhấn nút ""Áp dụng"" hoặc ""Lưu"".","Hệ thống hiển thị thông báo phân công hàng loạt thành công.
+Cả 3 học viên trên đều hiển thị công ty được phân công là ""TechCorp"".
+Số lượng trên nhãn cảnh báo học viên chưa phân công tự động giảm đi 3.","Cao","Liên quan đến M05-F04, M05-F06, Rule 6.4, Rule 6.11"
+"TC-M05-016","Module 5 – Internship Management","Thay đổi công ty đã phân công của học viên","Kiểm tra chức năng gán công ty mới cho học viên đã được phân công trước đó, đảm bảo công ty cũ bị ghi đè.","Người dùng đã đăng nhập với quyền Staff.
+Học viên ""Nguyễn Văn A"" đang được phân công ở công ty ""TechCorp"".
+Công ty ""PNV Software"" đang hoạt động trong hệ thống.","StudentName=""Nguyễn Văn A""; NewCompany=""PNV Software""","1. Tìm học viên ""Nguyễn Văn A"" trong danh sách.
+2. Mở danh sách chọn công ty của học viên này và đổi từ ""TechCorp"" sang ""PNV Software"".
+3. Nhấn nút ""Lưu thay đổi"".","Hệ thống cập nhật thành công.
+Công ty phân công mới của học viên ""Nguyễn Văn A"" hiển thị là ""PNV Software"".
+Phân công cũ tại ""TechCorp"" bị thay thế hoàn toàn.
+Nhãn cảnh báo học viên chưa phân công không thay đổi số lượng.","Cao","Liên quan đến M05-F04, Rule 6.4"
+"TC-M05-017","Module 5 – Internship Management","Hủy bỏ phân công công ty của học viên bằng cách chọn No Company","Kiểm tra chức năng đưa học viên đã phân công về lại trạng thái chưa phân công (Unassigned) bằng cách chọn ""(No Company)"".","Người dùng đã đăng nhập với quyền Staff.
+Học viên ""Nguyễn Văn A"" đang được phân công tại công ty ""PNV Software"".","StudentName=""Nguyễn Văn A""; Selection=""(No Company)""","1. Tìm học viên ""Nguyễn Văn A"" trong danh sách.
+2. Nhấp vào ô chọn công ty, chọn giá trị ""(No Company)"".
+3. Nhấn nút ""Lưu"".","Hệ thống lưu thành công.
+Học viên ""Nguyễn Văn A"" hiển thị trạng thái là chưa được phân công.
+Số lượng trên nhãn cảnh báo học viên chưa phân công (Warning Badge) tự động tăng lên 1.","Cao","Liên quan đến M05-F05, M05-F06, Rule 6.5, Rule 6.11, Error Handling (Mục 8)"
+"TC-M05-018","Module 5 – Internship Management","Ẩn công ty và kiểm tra xem công ty đó có bị loại khỏi danh sách chọn phân công mới hay không","Kiểm tra quy tắc công ty bị ẩn (Hidden) không xuất hiện trong dropdown phân công thực tập mới.","Người dùng đã đăng nhập với quyền Staff.
+Đã tồn tại công ty ""ABC Technology"" trong hệ thống.","CompanyToHide=""ABC Technology""","1. Vào trang Quản lý Công ty (Company Management).
+2. Tìm công ty ""ABC Technology"" và chọn thiết lập ""Ẩn"" (Hidden) cho công ty này.
+3. Nhấn nút ""Lưu trạng thái công ty"".
+4. Quay lại trang danh sách học viên của nhóm thực tập và mở dropdown phân công công ty của một học viên bất kỳ chưa được phân công.","Trạng thái ẩn được lưu thành công.
+Công ty ""ABC Technology"" không xuất hiện trong danh sách dropdown để chọn phân công mới.","Cao","Liên quan đến Rule 6.6, Error Handling (Mục 8)"
+"TC-M05-019","Module 5 – Internship Management","Đảm bảo phân công hiện tại của học viên không bị ảnh hưởng khi công ty đó bị ẩn","Kiểm tra quy tắc các phân công hiện tại vẫn hiển thị chính xác tên công ty sau khi công ty đó bị chuyển sang ẩn.","Người dùng đã đăng nhập với quyền Staff.
+Học viên ""Trần Thị B"" đã được phân công tại công ty ""ABC Technology"".","CompanyToHide=""ABC Technology""","1. Vào trang Quản lý Công ty, chuyển trạng thái của ""ABC Technology"" sang ""Ẩn"" (Hidden) và lưu lại.
+2. Đi tới trang danh sách học viên của nhóm thực tập.
+3. Quan sát bản ghi phân công của học viên ""Trần Thị B"".","Phân công của học viên ""Trần Thị B"" vẫn được hiển thị là ""ABC Technology"" một cách bình thường trên giao diện.
+Không có thông báo lỗi hay tự động xóa phân công.","Cao","Liên quan đến Rule 6.6"
+"TC-M05-020","Module 5 – Internship Management","Ghi nhận nhận xét thực tập thành công cho một học viên với team Training","Kiểm tra chức năng ghi nhận nhận xét thực tập cho học viên thuộc đội ngũ Training.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện danh sách học viên nhóm thực tập.
+Học viên ""Nguyễn Văn A"" đã được phân công thực tập.","StudentName=""Nguyễn Văn A""; FeedbackTeam=""Training""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Tiến bộ tốt, chủ động trong công việc.""","1. Tìm học viên ""Nguyễn Văn A"" trong danh sách.
+2. Nhấp vào nút ""Thêm nhận xét"" (Add Feedback) của học viên này.
+3. Chọn Team nhận xét là ""Training"".
+4. Nhập Ngày nhận xét là ""2026-08-15"".
+5. Nhập Nội dung nhận xét là ""Tiến bộ tốt, chủ động trong công việc."".
+6. Nhấn nút ""Lưu nhận xét"".","Nhận xét được lưu thành công.
+Thông tin nhận xét mới xuất hiện dưới tên học viên với đúng Team ""Training"", ngày và nội dung nhận xét tương ứng.","Cao","Liên quan đến M05-F07, Rule 6.7"
+"TC-M05-021","Module 5 – Internship Management","Ghi nhận nhận xét thực tập thành công cho một học viên với team ERO","Kiểm tra chức năng ghi nhận nhận xét thực tập cho học viên thuộc đội ngũ ERO.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện danh sách học viên nhóm thực tập.
+Học viên ""Nguyễn Văn A"" đã được phân công thực tập.","StudentName=""Nguyễn Văn A""; FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Kỹ năng kỹ thuật tốt, thái độ chuyên nghiệp.""","1. Tìm học viên ""Nguyễn Văn A"" trong danh sách.
+2. Nhấp vào nút ""Thêm nhận xét"" (Add Feedback) của học viên này.
+3. Chọn Team nhận xét là ""ERO"".
+4. Nhập Ngày nhận xét là ""2026-08-15"".
+5. Nhập Nội dung nhận xét là ""Kỹ năng kỹ thuật tốt, thái độ chuyên nghiệp."".
+6. Nhấn nút ""Lưu nhận xét"".","Nhận xét được lưu thành công.
+Thông tin nhận xét mới xuất hiện dưới tên học viên với đúng Team ""ERO"", ngày và nội dung nhận xét tương ứng.","Cao","Liên quan đến M05-F07, Rule 6.7"
+"TC-M05-022","Module 5 – Internship Management","Ghi nhận nhận xét thực tập thành công cho một học viên với team Educators","Kiểm tra chức năng ghi nhận nhận xét thực tập cho học viên thuộc đội ngũ Educators.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện danh sách học viên nhóm thực tập.
+Học viên ""Nguyễn Văn A"" đã được phân công thực tập.","StudentName=""Nguyễn Văn A""; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Năng nổ đóng góp ý kiến xây dựng nhóm.""","1. Tìm học viên ""Nguyễn Văn A"" trong danh sách.
+2. Nhấp vào nút ""Thêm nhận xét"" (Add Feedback) của học viên này.
+3. Chọn Team nhận xét là ""Educators"".
+4. Nhập Ngày nhận xét là ""2026-08-15"".
+5. Nhập Nội dung nhận xét là ""Năng nổ đóng góp ý kiến xây dựng nhóm."".
+6. Nhấn nút ""Lưu nhận xét"".","Nhận xét được lưu thành công.
+Thông tin nhận xét mới xuất hiện dưới tên học viên với đúng Team ""Educators"", ngày và nội dung nhận xét tương ứng.","Cao","Liên quan đến M05-F07, Rule 6.7"
+"TC-M05-023","Module 5 – Internship Management","Bỏ qua các dòng nhận xét trống không lưu vào hệ thống","Kiểm tra hệ thống bỏ qua và không lưu các dòng nhận xét không chứa nội dung (trống).","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Thêm nhận xét cho học viên.","FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""""","1. Mở giao diện nhập nhận xét của học viên.
+2. Chọn Team là ""ERO"" và chọn ngày nhận xét.
+3. Bỏ trống trường Nội dung nhận xét (Notes).
+4. Nhấn nút ""Lưu"".","Hệ thống bỏ qua dòng nhận xét này, không tạo bản ghi mới trong cơ sở dữ liệu (Google Sheets).
+Không hiển thị thông báo lỗi nhưng cũng không hiển thị bản ghi nhận xét trống này trên UI.","Trung bình","Liên quan đến Rule 6.8, Error Handling (Mục 8)"
+"TC-M05-024","Module 5 – Internship Management","Ghi nhận nhận xét giống nhau cho nhiều học viên cùng lúc (Same for All)","Kiểm tra tính năng ghi nhận nhận xét hàng loạt và áp dụng nội dung giống nhau cho các học viên được chọn.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện danh sách học viên của nhóm thực tập.
+Có ít nhất 2 học viên được chọn (ví dụ: Nguyễn Văn A, Trần Thị B).","SelectedStudents=""Nguyễn Văn A"", ""Trần Thị B""; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Kỹ năng giao tiếp xuất sắc.""","1. Tích chọn checkbox của học viên ""Nguyễn Văn A"" và ""Trần Thị B"".
+2. Nhấn nút ""Nhận xét hàng loạt"" (Batch Feedback / Same for All).
+3. Chọn Team là ""Educators"", chọn Ngày nhận xét là ""2026-08-15"", nhập Nội dung nhận xét chung là ""Kỹ năng giao tiếp xuất sắc."".
+4. Nhấn nút ""Áp dụng và Lưu"".","Hệ thống lưu thành công nhận xét cho cả hai học viên.
+Cả học viên ""Nguyễn Văn A"" và ""Trần Thị B"" đều hiển thị bản ghi nhận xét của Educators với cùng nội dung ""Kỹ năng giao tiếp xuất sắc."" vào ngày 2026-08-15.","Cao","Liên quan đến M05-F08, Rule 6.9"
+"TC-M05-025","Module 5 – Internship Management","Chỉnh sửa nhận xét thực tập đã lưu (thay đổi nội dung nhận xét)","Kiểm tra chức năng chỉnh sửa và lưu đè nội dung nhận xét đã tồn tại.","Người dùng đã đăng nhập với quyền Staff.
+Học viên ""Nguyễn Văn A"" đã có nhận xét: Team = ""Training"", nội dung = ""Tiến bộ tốt"", ngày = ""2026-08-15"".","StudentName=""Nguyễn Văn A""; NewFeedbackNotes=""Tiến bộ vượt bậc và làm việc nhóm tốt.""","1. Tìm học viên ""Nguyễn Văn A"" và mở danh sách nhận xét của học viên.
+2. Chọn nhận xét có nội dung ""Tiến bộ tốt"" và nhấn nút ""Chỉnh sửa"" (Edit).
+3. Cập nhật nội dung nhận xét thành ""Tiến bộ vượt bậc và làm việc nhóm tốt."".
+4. Nhấn nút ""Lưu"".","Nhận xét được cập nhật thành công.
+Nội dung mới ghi đè lên nội dung cũ và hiển thị chính xác trên UI: ""Tiến bộ vượt bậc và làm việc nhóm tốt."".","Cao","Liên quan đến M05-F09, Rule 6.10"
+"TC-M05-026","Module 5 – Internship Management","Chỉnh sửa nhận xét thực tập đã lưu (thay đổi team nhận xét và ngày nhận xét)","Kiểm tra chức năng chỉnh sửa và lưu đè thông tin team và ngày nhận xét đã tồn tại.","Người dùng đã đăng nhập với quyền Staff.
+Học viên ""Nguyễn Văn A"" đã có nhận xét: Team = ""Training"", nội dung = ""Tiến bộ tốt"", ngày = ""2026-08-15"".","StudentName=""Nguyễn Văn A""; NewFeedbackTeam=""ERO""; NewFeedbackDate=""2026-08-20""","1. Tìm học viên ""Nguyễn Văn A"" và mở danh sách nhận xét của học viên.
+2. Chọn nhận xét có nội dung ""Tiến bộ tốt"" và nhấn nút ""Chỉnh sửa"" (Edit).
+3. Thay đổi Team nhận xét thành ""ERO"".
+4. Thay đổi Ngày nhận xét thành ""2026-08-20"".
+5. Nhấn nút ""Lưu"".","Nhận xét được cập nhật thành công.
+Dữ liệu nhận xét được thay đổi với Team mới là ""ERO"" và ngày mới là ""2026-08-20"" trên giao diện.","Cao","Liên quan đến M05-F09, Rule 6.10"
+"TC-M05-027","Module 5 – Internship Management","Mở rộng/thu gọn danh sách học viên và hiển thị nhãn cảnh báo trong danh sách nhóm thực tập","Kiểm tra chức năng mở rộng/thu gọn (expand/collapse) của từng nhóm thực tập, điều hướng và hiển thị chính xác nhãn cảnh báo (Warning Badge).","Người dùng đã đăng nhập với quyền Staff.
+Đang ở màn hình danh sách nhóm thực tập.
+Có nhóm thực tập ""Nhóm Thực tập 2026"" chứa 2 học viên chưa gán công ty.","GroupName=""Nhóm Thực tập 2026""","1. Quan sát dòng hiển thị của nhóm thực tập ""Nhóm Thực tập 2026"".
+2. Kiểm tra xem có hiển thị nhãn cảnh báo học viên chưa gán hay không (ví dụ: ""2 học viên chưa phân công"" hoặc ""2 Unassigned"").
+3. Nhấp vào nút/biểu tượng mũi tên mở rộng (Expand) của nhóm thực tập này.
+4. Nhấp lại vào nút/biểu tượng thu gọn (Collapse) của nhóm thực tập.","Nhãn cảnh báo hiển thị chính xác số lượng học viên chưa gán (ví dụ: ""⚠ 2 Unassigned"" hoặc tương tự).
+Khi nhấn Mở rộng, danh sách học viên chi tiết của nhóm hiển thị ngay bên dưới.
+Khi nhấn Thu gọn, danh sách chi tiết được ẩn đi.","Trung bình","Liên quan đến M05-F10, Rule 6.11"
