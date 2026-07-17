@@ -1,0 +1,89 @@
+"ID","Module","Title","Objective","Precondition","TestData","Steps","ExpectedResult","Priority","Notes"
+"TC-M04-001","Module 04","Record Council Feedback Successful","Verify that staff can successfully record a Class Council record with comments from all departments.","Staff user is logged in. Student ST001 and Semester 1 exist. No council record exists for ST001 in Semester 1.","Student=ST001; Semester=Semester 1; GeneralComment=Strong learning attitude; ITComment=Excellent coding skills; EnglishComment=Fluent communicator; PLTComment=Highly cooperative; EducatorComment=Good behavior","1. Navigate to Class Council Management;
+2. Click Create Council Record;
+3. Select Student ST001 and Semester 'Semester 1';
+4. Enter General Comment 'Strong learning attitude';
+5. Enter IT Comment 'Excellent coding skills';
+6. Enter English Comment 'Fluent communicator';
+7. Enter PLT Comment 'Highly cooperative';
+8. Enter Educator Comment 'Good behavior';
+9. Click Save","The record is saved successfully. A success message appears. The student's record is displayed in the list with all comments.","High","Related Requirement: M04-F01"
+"TC-M04-002","Module 04","Record Council Feedback with Empty Optional Fields","Verify that saving a completely empty council feedback record is allowed without validation errors.","Staff user is logged in. Student ST002 and Semester 1 exist. No record exists for ST002 in Semester 1.","Student=ST002; Semester=Semester 1; AllComments=Empty; Warning=False; WarningReason=Empty","1. Navigate to Class Council Management;
+2. Click Create Council Record;
+3. Select Student ST002 and Semester 'Semester 1';
+4. Leave all comment fields empty;
+5. Ensure Warning is unchecked and Warning Reason is blank;
+6. Click Save","The record is saved successfully. No validation errors occur. No badges appear on the list for student ST002.","High","Related Requirement: M04-F01, Optional Fields 6.2"
+"TC-M04-003","Module 04","Set Academic Warning Flag and Warning Reason","Verify that staff can set an academic warning flag and input a warning reason.","Staff user is logged in. Student ST001 and Semester 1 exist.","Student=ST001; Semester=Semester 1; Warning=True; WarningReason=Attendance below required level","1. Open the council record for ST001 in Semester 1;
+2. Check the 'Academic Warning' checkbox;
+3. Enter Warning Reason: 'Attendance below required level';
+4. Click Save","The record is saved successfully. The warning badge (⚠) appears next to the student's name in the list.","High","Related Requirement: M04-F02, Academic Warning 6.3"
+"TC-M04-004","Module 04","Set Academic Warning Flag with Empty Warning Reason","Verify that warning reason is optional and saving warning flag without a reason is allowed.","Staff user is logged in.","Student=ST001; Semester=Semester 1; Warning=True; WarningReason=Empty","1. Open the council record for ST001 in Semester 1;
+2. Check the 'Academic Warning' checkbox;
+3. Leave 'Warning Reason' empty;
+4. Click Save","The record is saved successfully. No validation errors occur. The warning badge (⚠) is displayed on the student list.","High","Related Requirement: M04-F02, Optional Fields 6.2, Validation Rules 7"
+"TC-M04-005","Module 04","Block Duplicate Council Record for Same Student and Semester","Verify that the system blocks creating a second Class Council record for the same student in the same semester.","Staff user is logged in. A Class Council record already exists for ST001 in Semester 1.","Student=ST001; Semester=Semester 1","1. Open Create Council Record;
+2. Select Student ST001 and Semester 'Semester 1';
+3. Enter any comment and click Save","The system rejects saving and displays error: 'Duplicate record error'. No duplicate record is created.","High","Related Requirement: M04-F03, One Record per Student per Semester 6.1"
+"TC-M04-006","Module 04","Verify Automatic Draft Saving in Browser Local Storage","Verify that the system automatically saves typed comments into local storage in the background.","Staff user is logged in. Bi-directional sync/save has not been initiated.","Student=ST003; Semester=Semester 1; ITComment=Draft comment for IT department","1. Open the council record for ST003 in Semester 1;
+2. Type IT Comment 'Draft comment for IT department';
+3. Do NOT click Save;
+4. Open Developer Tools -> Application -> Local Storage","The text 'Draft comment for IT department' is saved automatically to browser Local Storage under a key representing ST003/Semester 1 as typing occurs.","High","Related Requirement: M04-F04, Automatic Draft Saving 6.5"
+"TC-M04-007","Module 04","Recover Unsaved Draft after Unexpected Browser Closure","Verify that the system detects unsaved local drafts and displays a prompt to restore them.","Unsaved draft for ST003 with ITComment='Draft comment for IT department' exists in Local Storage. Sheets database does not have this comment.","Student=ST003; Semester=Semester 1","1. Close browser and reopen it (simulating crash);
+2. Navigate back to the council record for ST003 in Semester 1;
+3. Verify prompt;
+4. Select 'Continue editing'","An 'Unsaved Draft' warning/prompt is shown. Selecting 'Continue editing' restores the draft text 'Draft comment for IT department' to the IT Comment text box.","High","Related Requirement: M04-F05, Draft Recovery 6.6"
+"TC-M04-008","Module 04","Discard Unsaved Draft to Restore Last Saved Data","Verify that choosing to discard an unsaved draft removes it and restores the last saved data from database.","Official database record for ST003 has ITComment='Good student'. Unsaved draft in Local Storage has ITComment='Draft edit'.","Student=ST003; Semester=Semester 1","1. Open council record for ST003 in Semester 1;
+2. When 'Unsaved Draft' prompt appears, select 'Discard draft';
+3. Check the IT Comment text box","Local Storage draft is cleared. The IT Comment reverts to the database value 'Good student'. Draft edits are discarded.","High","Related Requirement: M04-F05, Draft Recovery 6.6"
+"TC-M04-009","Module 04","Batch Feedback Entry by Comment Type","Verify that staff can enter the same feedback type for multiple students simultaneously in batch mode.","Staff user is logged in. Students ST001, ST002, and ST003 exist in Batch PNV26A.","Batch=PNV26A; Semester=Semester 1; FeedbackType=IT Comment; Comments='Active performance in programming project' for ST001, ST002, and ST003","1. Open Batch Feedback page;
+2. Select Batch PNV26A, Semester 'Semester 1', and Feedback Type 'IT Comment';
+3. In the grid, type 'Active performance in programming project' for ST001, ST002, and ST003;
+4. Click Save All","All three records are saved successfully. Success message 'Saved 3 students' is shown. Selected students have the new IT comment.","High","Related Requirement: M04-F06, Batch Feedback 6.7"
+"TC-M04-010","Module 04","Batch Feedback Entry Does Not Overwrite Other Comment Fields","Verify that entering batch feedback for one field does not erase other existing comment fields for that student.","Student ST001 has existing ITComment='Excellent coding' and EnglishComment='Good speaking'.","FeedbackType=English Comment; NewEnglishComment='Excellent communication'","1. Open Batch Feedback page;
+2. Select Feedback Type 'English Comment';
+3. Input 'Excellent communication' for ST001 and click Save;
+4. Navigate to ST001's council record details","English Comment is updated to 'Excellent communication'. The existing IT Comment is preserved as 'Excellent coding' (not cleared).","High","Related Requirement: M04-F06, Batch Feedback 6.7"
+"TC-M04-011","Module 04","Three-Way Merge for Non-conflicting Concurrent Edits","Verify that concurrent edits on different fields of the same record are merged successfully using 3-way merge.","Teacher A and Teacher B are logged in. The database record for ST001 has GeneralComment='Good student', other fields are empty.","ST001 record in Semester 1; Teacher B saves ITComment='Excellent'; Teacher A saves EnglishComment='Fluent'","1. Teacher A opens ST001 council edit form;
+2. Teacher B opens ST001 council edit form;
+3. Teacher B updates IT Comment to 'Excellent' and clicks Save first;
+4. Teacher A updates English Comment to 'Fluent' (IT Comment remains empty on their screen) and clicks Save","Save succeeds. The final record on Sheets is merged: GeneralComment='Good student', ITComment='Excellent', and EnglishComment='Fluent'. Teacher A receives notification of updates by another teacher.","High","Related Requirement: M04-F07, Concurrent Editing 6.8"
+"TC-M04-012","Module 04","Flag Conflict on Concurrent Edits of Same Field","Verify that concurrent edits on the same field block the second user from overwriting first user's saved data and flag a conflict.","Teacher A and Teacher B are logged in. ST001 has ITComment='Good'.","ST001 record in Semester 1; Teacher B saves ITComment='Excellent'; Teacher A saves ITComment='Very Good'","1. Teacher A opens ST001 edit form;
+2. Teacher B opens ST001 edit form;
+3. Teacher B changes IT Comment to 'Excellent' and clicks Save;
+4. Teacher A changes IT Comment to 'Very Good' and clicks Save after Teacher B","Teacher A's save is blocked or triggers a conflict. An error 'Saved, but these fields were updated by another teacher: IT Comment' is shown. Teacher B's value 'Excellent' is preserved in database.","High","Related Requirement: M04-F07, Concurrent Editing 6.8"
+"TC-M04-013","Module 04","Export Class Council Report to PDF","Verify that staff can generate and download a PDF report containing student info, semester, comments, and warnings.","Student ST001 has a complete council record in Semester 1.","Student=ST001; Semester=Semester 1","1. Open ST001's council record details page;
+2. Click Export PDF;
+3. Open the downloaded PDF file","The PDF report downloads successfully. It contains student details, Semester 1, all teacher comments, and warning details formatted correctly.","High","Related Requirement: M04-F08, PDF Export 6.9"
+"TC-M04-014","Module 04","Trend Chart Hidden for Semester 1","Verify that the trend chart is hidden on the report when viewing/exporting Semester 1 results.","Student ST001 has a council record in Semester 1.","Student=ST001; Semester=Semester 1","1. Open or export PDF report for ST001 in Semester 1;
+2. Check the Trend Chart section","No trend chart is displayed on the UI or PDF report for Semester 1 (since no prior semester history exists).","Medium","Related Requirement: Business Rules, Trend Chart 6.10"
+"TC-M04-015","Module 04","Trend Chart Displayed for Semester 2 or Later","Verify that the trend chart is shown when viewing/exporting results for Semester 2 or later.","Student ST001 has council records and grade history in both Semester 1 and Semester 2.","Student=ST001; Semester=Semester 2","1. Open or export PDF report for ST001 in Semester 2;
+2. Check the Trend Chart section","The trend chart is displayed successfully in the UI and PDF, depicting ST001's performance trend from Semester 1 to Semester 2.","Medium","Related Requirement: Business Rules, Trend Chart 6.10"
+"TC-M04-016","Module 04","Badge Display Activation on Content Entry","Verify that saving comments activates their corresponding badges (G, IT, EN, PLT, ED) on the student list.","Staff user is logged in. ST001 has no comments in Semester 1.","Student=ST001; Semester=Semester 1; ITComment='Good'; EducatorComment='Active'","1. Create council record for ST001 in Semester 1;
+2. Input IT Comment 'Good' and Educator Comment 'Active' (others left empty);
+3. Click Save;
+4. Go to student list and observe ST001 row","Only 'IT' and 'ED' badges are activated/displayed next to ST001's name. Other badges (G, EN, PLT, ⚠) are hidden.","Medium","Related Requirement: Business Rules, Badge Display 6.4"
+"TC-M04-017","Module 04","Badge Display Deactivation on Content Removal","Verify that removing comment content deactivates the corresponding badge on save.","Student ST001 has an IT comment and the 'IT' badge is active.","Student=ST001; Semester=Semester 1; ITComment=''","1. Open ST001's Semester 1 council record;
+2. Clear the IT Comment field completely;
+3. Click Save;
+4. Go to student list and observe badges","The record is updated. The 'IT' badge disappears from ST001's name on the list since its comment was removed.","Medium","Related Requirement: Business Rules, Badge Display 6.4"
+"TC-M04-018","Module 04","Record Saving Fails with Missing Student Selection","Verify that the system blocks saving if the student selection is missing.","Staff user is logged in.","Student=Empty; Semester=Semester 1; GeneralComment=Good","1. Navigate to Create Council Record;
+2. Leave Student selection empty;
+3. Select Semester 'Semester 1';
+4. Enter General Comment 'Good' and click Save","Saving is blocked. Validation error message requires student selection. The student field is highlighted in red.","High","Related Requirement: Validation Rules 7"
+"TC-M04-019","Module 04","Record Saving Fails with Missing Semester Selection","Verify that the system blocks saving if the semester selection is missing.","Staff user is logged in.","Student=ST001; Semester=Empty; GeneralComment=Good","1. Navigate to Create Council Record;
+2. Select Student ST001;
+3. Leave Semester selection empty;
+4. Enter General Comment 'Good' and click Save","Saving is blocked. Validation error message requires semester selection. The semester field is highlighted in red.","High","Related Requirement: Validation Rules 7"
+"TC-M04-020","Module 04","Block Student Access to Class Council Management","Verify that a user logged in with a Student email domain cannot access Class Council Management.","User logged in with student email student01@student.passerellesnumeriques.org.","Email=student01@student.passerellesnumeriques.org","1. Log in with student account;
+2. Attempt direct URL navigation to Class Council Management page;
+3. Observe UI","Access is denied. An 'Access Denied' message is shown, or user is redirected to student home page. Management menu is hidden.","High","Related Requirement: General Rules, User Roles"
+"TC-M04-021","Module 04","Block Unknown Email Domain Access","Verify that users with unauthorized email domains (non-PNV/non-student) are completely blocked.","User is authenticated with email testuser@gmail.com.","Email=testuser@gmail.com","1. Enter application URL;
+2. Sign in via Google OAuth with testuser@gmail.com","Login fails or 'Access Denied' message displays. User is blocked from accessing any management features.","High","Related Requirement: General Rules, User Roles"
+"TC-M04-022","Module 04","Verify Draft Storage Device Specificity","Verify that local drafts are device-specific and not synchronized to other computers.","Staff user logged in on Computer X and Computer Y.","Computer X: input IT Comment 'Draft text on Computer X' for ST003.","1. On Computer X, open ST003 council form and type IT comment 'Draft text on Computer X' (wait for auto-save, do NOT click Save);
+2. On Computer Y, log in to same account and open ST003 Semester 1 council form;
+3. Verify if draft warning appears","No 'Unsaved Draft' warning appears on Computer Y, and the IT comment field is empty (or displays the saved Sheets value). Draft is device-specific.","Medium","Related Requirement: M04-F04, Automatic Draft Saving 6.5, Out of Scope 12"
+"TC-M04-023","Module 04","Batch Feedback Entry with Empty Student List","Verify that batch feedback entry behaves gracefully when the selected batch has no active students.","Batch PNV26B is active but has no active students.","Batch=PNV26B; Semester=Semester 1; FeedbackType=IT Comment","1. Open Batch Feedback page;
+2. Select Batch PNV26B, Semester 'Semester 1', and Feedback Type 'IT Comment';
+3. Verify student list;
+4. Click Save All","The student grid is empty or shows 'No students in this batch'. Clicking Save All shows 'Saved 0 students' successfully with no crashes or errors.","Medium","Related Requirement: M04-F06"
