@@ -501,7 +501,38 @@ Text containing commas
 
 ---
 
-# 16. Traceability
+# 16. Excel-Compatible CSV Requirements
+When generating CSV files, the following rules must be followed to ensure compatibility with Microsoft Excel and the RFC 4180 CSV standard.
+
+## CSV Generation Rules
+
+- Generate an Excel-compatible RFC 4180 CSV.
+- Every test case must occupy exactly one CSV record (one row).
+- Quote every field using double quotation marks ("), even if quoting is optional.
+- Escape embedded double quotation marks by doubling them ("").
+- Preserve multiline text inside quoted fields without breaking the CSV structure.
+- Separate fields using commas (,).
+- Do not add extra spaces before or after delimiters.
+- Use UTF-8 encoding.
+- The CSV header must exactly match the project standard.
+- Do not insert blank rows between records.
+- Do not break a single test case across multiple CSV records or physical lines. Each test case must remain a single logical CSV row.
+
+## AI Output Requirements
+
+When an AI assistant generates test cases in CSV format, it must:
+
+- Output only valid RFC 4180 CSV.
+- Ensure one test case = one CSV row.
+- Quote every field.
+- Escape embedded quotes correctly.
+- Keep all cell content within its corresponding quoted field.
+- Generate UTF-8 encoded text.
+- Never split a test case into multiple records.
+- Ensure the generated CSV can be opened directly in Microsoft Excel without requiring manual correction.
+
+---
+# 17. Traceability
 
 Every Functional Requirement should be covered by one or more test cases.
 
@@ -517,7 +548,7 @@ This ensures complete requirement coverage during UAT.
 
 ---
 
-# 17. Recommended Test Design Techniques
+# 18. Recommended Test Design Techniques
 
 The following techniques should be applied whenever appropriate.
 
@@ -532,7 +563,7 @@ The following techniques should be applied whenever appropriate.
 
 ---
 
-# 18. Test Coverage Checklist
+# 19. Test Coverage Checklist
 
 Each functional feature should be evaluated against the following checklist.
 
@@ -555,7 +586,7 @@ Each functional feature should be evaluated against the following checklist.
 
 ---
 
-# 19. Example Test Case
+# 20. Example Test Case
 
 | Field | Value |
 |------|------|
@@ -572,7 +603,7 @@ Each functional feature should be evaluated against the following checklist.
 
 ---
 
-# 20. Revision History
+# 21. Revision History
 
 | Version | Date | Description |
 |---------|------|-------------|

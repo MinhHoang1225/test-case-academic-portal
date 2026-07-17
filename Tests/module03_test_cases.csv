@@ -1,0 +1,82 @@
+"ID","Module","Title","Objective","Precondition","TestData","Steps","ExpectedResult","Priority","Notes"
+"TC-M03-001","Module 03","Create New Subject Manually","Verify that staff can create a new subject manually by choosing a batch and semester.","Staff user is logged in. Batch PNV26A and Semester 1 exist.","SubjectName=Programming; Batch=PNV26A; Semester=Semester 1","1. Navigate to Academic Management;
+2. Click Create Subject;
+3. Enter subject name 'Programming';
+4. Select Batch 'PNV26A' and Semester 'Semester 1';
+5. Click Save","Subject is created successfully. Success notification appears. 'Programming' belongs to PNV26A, Semester 1 in subject list.","High","Related Requirement: M03-F01"
+"TC-M03-002","Module 03","Bulk Subject Creation via Valid CSV","Verify that staff can create multiple subjects simultaneously by importing a valid CSV file.","Staff user is logged in. Batch PNV26A and Semester 1 exist.","CSV containing: SubjectName, Batch, Semester columns with 'Programming,PNV26A,Semester 1' and 'English,PNV26A,Semester 1'","1. Navigate to Academic Management;
+2. Click Import Subjects via CSV;
+3. Select valid CSV file;
+4. Click Import","Subjects are imported successfully. Message displays 'Imported 2 subjects'. Programming and English appear in subject list.","High","Related Requirement: M03-F01"
+"TC-M03-003","Module 03","Create Subject Fails due to Empty Subject Name","Verify that the system blocks subject creation and warns if the subject name is empty.","Staff user is logged in.","SubjectName=Empty; Batch=PNV26A; Semester=Semester 1","1. Navigate to Academic Management;
+2. Click Create Subject;
+3. Leave Subject Name blank;
+4. Select Batch PNV26A and Semester 1;
+5. Click Save","Saving is blocked. Error message 'Subject Name is required' displays. Name field is highlighted in red.","High","Related Requirement: M03-F01, Validation Rules"
+"TC-M03-004","Module 03","Single Student Grade Entry","Verify that staff can input periodic and regular test grades for a specific student in a subject.","Programming subject of batch PNV26A exists. Student ST001 belongs to batch PNV26A.","StudentID=ST001; Subject=Programming; KT_TX=7.5; DK1=8.0","1. Open Academic Management and select subject 'Programming';
+2. Find student ST001 in grade list;
+3. Click KT TX cell and enter '7.5';
+4. Click DK1 cell and enter '8.0';
+5. Click Save","Grades are saved successfully. Success message displays. '7.5' and '8.0' appear on ST001's grade row.","High","Related Requirement: M03-F02"
+"TC-M03-005","Module 03","Auto TBKT Calculation and Exam Eligibility (TBKT >= 5.0)","Verify that the system automatically calculates average grade (TBKT) based on weighted formula and grants exam eligibility (Eligible = YES) if TBKT >= 5.0.","Programming subject has 1 periodic test weight. Student ST001 has grades.","KT_TX=7.0; DK1=8.0","1. Select subject 'Programming';
+2. Input KT_TX=7.0 and DK1=8.0 for ST001;
+3. Click Save;
+4. Observe TBKT column and Eligible status for ST001","TBKT is calculated as 7.67 (formula: (7.0*1 + 8.0*2)/3 = 7.67). Exam eligibility displays 'YES'.","High","Related Requirement: M03-F03"
+"TC-M03-006","Module 03","Auto TBKT Calculation and Exam Ineligibility (TBKT < 5.0)","Verify that the system automatically calculates TBKT and blocks exam eligibility (Eligible = NO) if TBKT < 5.0.","Programming subject has 1 periodic test weight. Student ST002 has grades.","KT_TX=3.0; DK1=5.0","1. Select subject 'Programming';
+2. Input KT_TX=3.0 and DK1=5.0 for ST002;
+3. Click Save;
+4. Observe TBKT column and Eligible status for ST002","TBKT is calculated as 4.33 (formula: (3.0*1 + 5.0*2)/3 = 4.33). Exam eligibility displays 'NO'.","High","Related Requirement: M03-F03"
+"TC-M03-007","Module 03","Block Final Exam Grade Entry When Ineligible (TBKT < 5.0)","Verify that final exam grade input is disabled and blocked for students with status Eligible = NO.","Student ST002 has TBKT = 4.33 (Eligible = NO) in Programming.","TCK=6.0","1. Open Programming grade list;
+2. Locate final exam grade (TCK) cell for ST002;
+3. Try clicking or typing '6.0' in the TCK cell;
+4. Observe the UI","The TCK cell for ST002 is disabled (read-only). Hovering displays 'Not eligible for final exam'. Any backend save attempt returns validation error.","High","Related Requirement: M03-F03, Business Rules 7.4"
+"TC-M03-008","Module 03","Allow Final Exam Grade Entry When Eligible (TBKT >= 5.0)","Verify that final exam grade input is enabled and saved successfully for students with status Eligible = YES.","Student ST001 has TBKT = 7.67 (Eligible = YES) in Programming.","TCK=8.5","1. Open Programming grade list;
+2. Locate final exam grade (TCK) cell for ST001;
+3. Click the cell and enter '8.5';
+4. Click Save","Grade input behaves normally. Final exam grade '8.5' is saved successfully in database and displayed in UI.","High","Related Requirement: M03-F03, Business Rules 7.4"
+"TC-M03-009","Module 03","Input Retake Exam Grade for Student","Verify that staff can enter a retake exam grade (TLCK) manually and optionally for a student.","Student ST001 has a final exam grade (TCK) recorded.","TLCK=7.0","1. Open Programming grade list;
+2. Click the retake exam grade (TLCK) cell for ST001;
+3. Enter '7.0' and click Save","Retake grade is recorded successfully and displayed in student's grade row. Other grades remain intact.","High","Related Requirement: M03-F03, Business Rules 7.2"
+"TC-M03-010","Module 03","Bulk Grade Upload via CSV (Overwrite Mode)","Verify that CSV grade import overwrites all existing grades of students in the subject with the new values.","Subject English has existing grades for ST001 (KT_TX=5.0) and ST002 (KT_TX=6.0).","CSV containing: StudentID, KT_TX, DK1. Rows: 'ST001,8.0,9.0' and 'ST002,7.5,8.0'","1. Select subject 'English';
+2. Click Upload Grades via CSV;
+3. Select new CSV file and confirm upload;
+4. Observe grade list","Upload succeeds. Grades for ST001 update to KT_TX=8.0, DK1=9.0 (TBKT=8.67), and ST002 update to KT_TX=7.5, DK1=8.0 (TBKT=7.83). Old grades are overwritten.","High","Related Requirement: M03-F04, Business Rules 7.5"
+"TC-M03-011","Module 03","CSV Grade Upload with Blank Cells Clears Existing Grades","Verify that blank cells in CSV file are interpreted as NULL/Empty and clear corresponding old grades.","Student ST001 has grades (KT_TX=8.0, DK1=9.0).","CSV row: ST001,,9.0 (empty KT_TX value between commas)","1. Select subject, click Upload Grades via CSV;
+2. Select CSV containing empty KT_TX for ST001;
+3. Confirm import","Grade list is updated. Regular test grade (KT_TX) for ST001 (previously 8.0) is cleared/empty. DK1 remains 9.0.","High","Related Requirement: M03-F04, CSV Import Rules 8"
+"TC-M03-012","Module 03","CSV Grade Upload Fails due to Missing StudentID Column","Verify that CSV grade import rejects files missing the StudentID column and does not modify any data.","Staff user is logged in.","CSV with KT_TX, DK1, TCK columns (no StudentID column)","1. Select subject, click Upload Grades via CSV;
+2. Select CSV missing StudentID column and upload;
+3. Observe error message","System rejects the CSV file and displays error: 'Missing required column StudentID'. No grades are modified.","High","Related Requirement: M03-F04, Error Handling 10"
+"TC-M03-013","Module 03","CSV Grade Upload Fails due to Decimal Comma Format (8,5)","Verify that decimal grades formatted with commas (e.g. 8,5) instead of dots (8.5) trigger error.","Staff user is logged in.","CSV row: ST001,8,5,9.0 (or double quoted ST001,\"8,5\",9.0)","1. Click Upload Grades via CSV;
+2. Select CSV containing '8,5' for ST001;
+3. Observe response","System blocks import or warns of invalid decimal format requiring dot '.'. Grade is not saved incorrectly.","High","Related Requirement: M03-F04, CSV Import Rules 8"
+"TC-M03-014","Module 03","CSV Grade Upload Fails due to Out of Range Grades (0-10)","Verify that grades outside the 0-10 scale in CSV are rejected.","Staff user is logged in.","CSV row: ST001,11.0,8.0 (KT_TX = 11.0)","1. Click Upload Grades via CSV;
+2. Select CSV with invalid grade '11.0';
+3. Observe error message","System blocks import and displays validation error: 'Grade must be between 0 and 10.' at the corresponding row. No grades are saved.","High","Related Requirement: M03-F04, Validation Rules 9"
+"TC-M03-015","Module 03","Manually Upload Semester GPA and Letter Grade via CSV","Verify that final score, GPA, and letter grades can be manually imported from CSV and preserved without automatic recalculation.","Student ST001 has semester grade record.","CSV with StudentID, FinalScore, GPA, LetterGrade. Row: ST001,8.5,3.6,A","1. Navigate to GPA & Letter Grade CSV import;
+2. Select CSV containing GPA=3.6 and LetterGrade=A for ST001;
+3. View ST001 semester transcript details","GPA=3.6 and LetterGrade=A are saved and displayed exactly. No auto-recalculations are performed on these fields.","High","Related Requirement: M03-F07, Business Rules 7.7"
+"TC-M03-016","Module 03","Subject Deletion Confirmation and Grade Cleanup","Verify that subject deletion requires confirmation and permanently purges all associated grades.","English subject exists with grades entered for students.","None","1. Navigate to subject list;
+2. Click Delete icon next to English;
+3. Click Cancel on confirmation popup; verify subject exists;
+4. Click Delete again, click Confirm/Delete; verify list and DB","Cancel keeps subject and grades intact. Confirm deletes English from subject list. All associated student grades for English are permanently purged from database.","High","Related Requirement: M03-F05, Subject Deletion 7.8"
+"TC-M03-017","Module 03","Export Single Student PDF Transcript","Verify that staff can generate and download a formal PDF transcript containing academic info for a specific student.","Student ST001 has grades, GPA, and letter grades entered.","StudentID=ST001","1. Open Student list or Export Transcripts page;
+2. Find student ST001;
+3. Click Export PDF Transcript for ST001;
+4. Open the downloaded PDF file","PDF downloaded successfully. Content displays ST001 info, list of subjects, grades, TBKT, GPA, and Letter Grade.","High","Related Requirement: M03-F06"
+"TC-M03-018","Module 03","Bulk Export PDF Transcripts for Multiple Students","Verify that staff can export transcripts in batch for selected students.","Multiple students in batch PNV26A have grades.","Batch=PNV26A; Selected: ST001, ST002, ST003","1. Open Export Transcripts page;
+2. Select Batch PNV26A;
+3. Check checkboxes for ST001, ST002, and ST003;
+4. Click Export Selected transcripts to PDF","Export succeeds. A combined PDF file or ZIP file containing individual PDFs is downloaded.","High","Related Requirement: M03-F06"
+"TC-M03-019","Module 03","Verify Grade Color Rules on Reports (Green, Orange, Red)","Verify that final grades (/10) are colored dynamically on reports according to specified ranges.","ST001 final grade is 8.5; ST002 is 7.0; ST003 is 4.5.","None","1. Open Batch Transcript report;
+2. Locate final grades for ST001, ST002, and ST003;
+3. Observe color of grades","ST001 final grade (8.5) is Green (🟢) (grade >= 8.0). ST002 final grade (7.0) is Orange (🟡) (grade 5.5 - 7.9). ST003 final grade (4.5) is Red (🔴) (grade < 5.5).","Medium","Related Requirement: Grade Color Rules 5"
+"TC-M03-020","Module 03","Verify GPA Color Rules on Reports (Green, Orange, Red)","Verify that GPA scores (/4) are colored dynamically on reports according to specified ranges.","ST001 GPA is 3.6; ST002 GPA is 3.0; ST003 GPA is 1.8.","None","1. Open Batch Transcript report;
+2. Locate GPA scores for ST001, ST002, and ST003;
+3. Observe color of GPA","ST001 GPA (3.6) is Green (🟢) (GPA >= 3.5). ST002 GPA (3.0) is Orange (🟡) (GPA 2.0 - 3.4). ST003 GPA (1.8) is Red (🔴) (GPA < 2.0).","Medium","Related Requirement: Grade Color Rules 5"
+"TC-M03-021","Module 03","Block Student Access to Academic Management","Verify that a student user cannot access Academic Management features.","User logged in with student email student01@student.passerellesnumeriques.org.","Email=student01@student.passerellesnumeriques.org","1. Sign in via Google OAuth with student account;
+2. Attempt direct URL navigation to Academic Management page;
+3. Observe result","Access is blocked. 'Access Denied' message displays or user is redirected to student home page. Academic Management menu is hidden.","High","Related Requirement: User Roles"
+"TC-M03-022","Module 03","TBKT Calculation Independence with Varying Periodic Test Counts (n)","Verify that TBKT formula calculates correctly for subjects with different numbers of periodic tests (n from 1 to 6).","Subject A has 1 periodic test (DK1); Subject B has 3 periodic tests (DK1, DK2, DK3).","Subject A: KT_TX=6.0; DK1=7.0. Subject B: KT_TX=6.0; DK1=7.0; DK2=8.0; DK3=9.0.","1. Under Subject A, enter KT_TX=6.0 and DK1=7.0 for ST001, save;
+2. Under Subject B, enter KT_TX=6.0, DK1=7.0, DK2=8.0, DK3=9.0 for ST001, save;
+3. Compare TBKT scores for ST001","Subject A TBKT is 6.67 (formula: (6.0*1 + 7.0*2)/3 = 6.67). Subject B TBKT is 7.71 (formula: (6.0*1 + 7.0*2 + 8.0*2 + 9.0*2)/7 = 7.71). Both are calculated independently and correctly.","High","Related Requirement: TBKT Calculation Formula"
