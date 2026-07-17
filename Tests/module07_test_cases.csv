@@ -1,0 +1,205 @@
+﻿"ID","Module","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
+"TC-M07-001","Module 07 – Training Materials","Đổi tên Category với tên hợp lệ","Kiểm tra chức năng đổi tên danh mục (Category) khi nhập tên mới hợp lệ.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Tài liệu học tập (Training Materials).","CategoryOldName=""IT""; CategoryNewName=""Information Technology""","1. Nhấp chọn danh mục ""IT"".
+2. Nhấp nút ""Đổi tên"" (Rename).
+3. Nhập tên mới là ""Information Technology"".
+4. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo cập nhật thành công.
+Tên danh mục được thay đổi thành ""Information Technology"" trên giao diện.
+Các khóa học bên trong danh mục vẫn giữ nguyên.","Cao","Liên quan đến M07-F02, Rule 5.1"
+"TC-M07-002","Module 07 – Training Materials","Đổi tên Category thất bại do để trống tên","Kiểm tra hệ thống báo lỗi và ngăn chặn việc đổi tên danh mục thành rỗng.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Đổi tên Category.","CategoryNewName=""""","1. Xóa toàn bộ nội dung trong ô nhập tên danh mục.
+2. Nhấp nút ""Lưu"" (Save).","Hệ thống hiển thị thông báo lỗi yêu cầu nhập tên danh mục (ví dụ: ""Category Name is required."").
+Tên danh mục cũ không bị thay đổi.","Cao","Liên quan đến Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-003","Module 07 – Training Materials","Kiểm tra không hỗ trợ chức năng Lưu trữ và Xóa đối với Category","Xác minh hệ thống không hiển thị các chức năng Lưu trữ (Archive) và Xóa (Delete) đối với danh mục.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Tài liệu học tập.","CategoryName=""English""","1. Nhấp chọn danh mục ""English"".
+2. Quan sát các nút chức năng và menu ngữ cảnh liên quan đến danh mục.","Không hiển thị nút hoặc tùy chọn ""Xóa"" (Delete) hoặc ""Lưu trữ"" (Archive) đối với danh mục.","Trung bình","Liên quan đến M07-F02, Rule 5.1, Out of Scope (Mục 13)"
+"TC-M07-004","Module 07 – Training Materials","Xác minh các Category mặc định tồn tại trong hệ thống","Kiểm tra 5 danh mục mặc định được tạo sẵn khi hệ thống hoạt động.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Tài liệu học tập.","None","1. Quan sát danh sách các danh mục hiển thị trên màn hình.","Hệ thống hiển thị đầy đủ 5 danh mục mặc định: ""IT"", ""English"", ""PLT"", ""DA"", và ""Workshops"".","Cao","Liên quan đến M07-F01, Mục 3 (Default Categories)"
+"TC-M07-005","Module 07 – Training Materials","Tạo khóa học (Course) mới với thông tin hợp lệ","Kiểm tra chức năng tạo khóa học mới dưới một danh mục khi nhập đầy đủ thông tin hợp lệ.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Tài liệu học tập.","Category=""IT""; CourseName=""Java Programming""","1. Chọn danh mục ""IT"".
+2. Nhấp nút ""Tạo khóa học"" (Create Course).
+3. Nhập tên khóa học là ""Java Programming"".
+4. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo tạo thành công.
+Khóa học ""Java Programming"" hiển thị dưới danh mục ""IT"".","Cao","Liên quan đến M07-F01, Rule 5.2"
+"TC-M07-006","Module 07 – Training Materials","Tạo khóa học mới thất bại do để trống tên","Kiểm tra hệ thống báo lỗi và ngăn chặn tạo khóa học nếu tên khóa học trống.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Tạo khóa học mới.","Category=""IT""; CourseName=""""","1. Để trống trường Tên khóa học.
+2. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị lỗi yêu cầu nhập tên khóa học (ví dụ: ""Course Name is required."").
+Khóa học mới không được tạo.","Cao","Liên quan đến Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-007","Module 07 – Training Materials","Chỉnh sửa tên khóa học với thông tin hợp lệ","Kiểm tra chức năng chỉnh sửa tên khóa học thành công.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Tài liệu học tập. Khóa học ""Java Programming"" đã tồn tại.","CourseOldName=""Java Programming""; CourseNewName=""Advanced Java Programming""","1. Chọn khóa học ""Java Programming"".
+2. Nhấp chọn ""Chỉnh sửa"" (Edit).
+3. Thay đổi tên khóa học thành ""Advanced Java Programming"".
+4. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo lưu thành công.
+Tên khóa học cập nhật thành ""Advanced Java Programming"" trên màn hình.","Cao","Liên quan đến M07-F01, Rule 5.2"
+"TC-M07-008","Module 07 – Training Materials","Lưu trữ khóa học (Archive Course)","Kiểm tra chức năng lưu trữ khóa học.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" đang ở trạng thái Hoạt động (Active) và có các bài học/bài kiểm tra bên dưới.","CourseName=""Java Programming""","1. Nhấp chọn khóa học ""Java Programming"".
+2. Nhấp chọn nút ""Lưu trữ"" (Archive).
+3. Xác nhận lưu trữ nếu hệ thống yêu cầu.","Hệ thống hiển thị thông báo lưu trữ thành công.
+Khóa học thay đổi trạng thái sang đã lưu trữ (Archived) và bị ẩn đi hoặc hiển thị dưới dạng lưu trữ trên màn hình quản lý.","Cao","Liên quan đến M07-F03, Rule 5.2, Rule 5.3"
+"TC-M07-009","Module 07 – Training Materials","Khôi phục khóa học đã lưu trữ (Restore Course)","Kiểm tra chức năng khôi phục một khóa học đã bị lưu trữ.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" đang ở trạng thái Lưu trữ (Archived).","CourseName=""Java Programming""","1. Tìm và chọn khóa học ""Java Programming"" trong danh sách lưu trữ.
+2. Nhấp chọn nút ""Khôi phục"" (Restore).
+3. Xác nhận khôi phục nếu hệ thống yêu cầu.","Hệ thống hiển thị thông báo khôi phục thành công.
+Khóa học trở lại trạng thái hoạt động bình thường.","Cao","Liên quan đến M07-F03, Rule 5.2, Rule 5.3"
+"TC-M07-010","Module 07 – Training Materials","Kiểm tra không hỗ trợ xóa vĩnh viễn khóa học","Xác minh hệ thống không cho phép xóa vĩnh viễn khóa học khỏi cơ sở dữ liệu.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Tài liệu học tập.","CourseName=""Java Programming""","1. Chọn khóa học ""Java Programming"".
+2. Kiểm tra các nút chức năng và menu hành động liên quan đến khóa học.","Không có tùy chọn ""Xóa vĩnh viễn"" hoặc ""Delete"" cho khóa học, chỉ có tùy chọn ""Lưu trữ"" (Archive).","Trung bình","Liên quan đến Rule 5.2 (Permanent deletion is not allowed), Out of Scope (Mục 13)"
+"TC-M07-011","Module 07 – Training Materials","Tạo bài học (Session) mới với thông tin hợp lệ","Kiểm tra chức năng tạo bài học mới dưới một khóa học hoạt động.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" đang hoạt động.","CourseName=""Java Programming""; SessionName=""Session 01: OOP Basics""; LessonNumber=1; Description=""Giới thiệu về lập trình hướng đối tượng""","1. Chọn khóa học ""Java Programming"".
+2. Nhấp nút ""Thêm bài học"" (Add Session).
+3. Nhập Tên bài học là ""Session 01: OOP Basics"", số bài học là ""1"", mô tả là ""Giới thiệu về lập trình hướng đối tượng"".
+4. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo tạo thành công.
+Session mới hiển thị dưới khóa học ""Java Programming"".","Cao","Liên quan đến M07-F01, Rule 5.4"
+"TC-M07-012","Module 07 – Training Materials","Tạo bài học mới thất bại do để trống tên bài học","Kiểm tra hệ thống báo lỗi và ngăn chặn tạo bài học nếu tên bài học trống.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Thêm bài học mới.","CourseName=""Java Programming""; SessionName=""""; LessonNumber=1","1. Để trống trường Tên bài học.
+2. Nhập các trường thông tin khác hợp lệ.
+3. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo lỗi yêu cầu nhập Tên bài học (ví dụ: ""Session Name is required."").
+Bài học mới không được tạo.","Cao","Liên quan đến Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-013","Module 07 – Training Materials","Chỉnh sửa chi tiết bài học (Edit Session)","Kiểm tra chức năng sửa thông tin bài học thành công.","Người dùng đã đăng nhập với quyền Staff.
+Bài học ""Session 01: OOP Basics"" đã tồn tại dưới khóa học ""Java Programming"".","SessionOldName=""Session 01: OOP Basics""; SessionNewName=""Session 01: Advanced OOP Basics""; LessonNumber=2; Description=""Mô tả mới""","1. Chọn bài học ""Session 01: OOP Basics"".
+2. Nhấp chọn ""Chỉnh sửa"" (Edit).
+3. Sửa Tên bài học thành ""Session 01: Advanced OOP Basics"", Lesson Number thành ""2"", Description thành ""Mô tả mới"".
+4. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo lưu thành công.
+Thông tin bài học hiển thị thay đổi mới tương ứng trên giao diện.","Cao","Liên quan đến M07-F01, Rule 5.4"
+"TC-M07-014","Module 07 – Training Materials","Xóa vĩnh viễn bài học (Delete Session)","Kiểm tra chức năng xóa vĩnh viễn một bài học và các tài liệu đính kèm bên dưới nó.","Người dùng đã đăng nhập với quyền Staff.
+Bài học ""Session 01: OOP Basics"" đang tồn tại và có tài liệu đính kèm.","SessionName=""Session 01: OOP Basics""","1. Chọn bài học ""Session 01: OOP Basics"".
+2. Nhấp chọn nút ""Xóa"" (Delete).
+3. Hệ thống hiển thị hộp thoại yêu cầu xác nhận xóa vĩnh viễn.
+4. Nhấp ""Đồng ý"" (Confirm).","Hệ thống hiển thị thông báo xóa thành công.
+Bài học và các tài liệu đính kèm bị xóa vĩnh viễn khỏi hệ thống.
+Hành động không thể hoàn tác.","Cao","Liên quan đến M07-F04, Rule 5.4, Error Handling (Mục 9)"
+"TC-M07-015","Module 07 – Training Materials","Hủy bỏ thao tác xóa bài học","Kiểm tra xem khi hủy xác nhận xóa, bài học vẫn được giữ lại.","Người dùng đã đăng nhập với quyền Staff.
+Bài học ""Session 01: OOP Basics"" đang tồn tại.","SessionName=""Session 01: OOP Basics""","1. Chọn bài học ""Session 01: OOP Basics"".
+2. Nhấp chọn nút ""Xóa"" (Delete).
+3. Hệ thống hiển thị hộp thoại xác nhận.
+4. Nhấp chọn ""Hủy"" (Cancel).","Hộp thoại xác nhận đóng lại.
+Bài học ""Session 01: OOP Basics"" vẫn tồn tại trong danh sách và không bị xóa.","Trung bình","Liên quan đến Rule 5.4, Error Handling (Mục 9)"
+"TC-M07-016","Module 07 – Training Materials","Kiểm tra không hỗ trợ lưu trữ bài học","Xác minh hệ thống không cho phép lưu trữ bài học, chỉ có thể xóa vĩnh viễn.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Bài học.","SessionName=""Session 01: OOP Basics""","1. Chọn bài học ""Session 01: OOP Basics"".
+2. Kiểm tra các nút chức năng hành động trên bài học.","Không xuất hiện tùy chọn ""Lưu trữ"" (Archive) đối với bài học. Chỉ hỗ trợ tạo, sửa và xóa vĩnh viễn.","Trung bình","Liên quan đến Rule 5.4, Out of Scope (Mục 13)"
+"TC-M07-017","Module 07 – Training Materials","Tạo bài kiểm tra (Exam) mới với thông tin hợp lệ","Kiểm tra chức năng tạo bài kiểm tra mới dưới một khóa học đang hoạt động.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" đang hoạt động.","CourseName=""Java Programming""; ExamName=""Midterm Exam""","1. Chọn khóa học ""Java Programming"".
+2. Nhấp nút ""Thêm bài kiểm tra"" (Add Exam).
+3. Nhập Tên bài kiểm tra là ""Midterm Exam"".
+4. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo tạo thành công.
+Bài kiểm tra ""Midterm Exam"" hiển thị dưới khóa học ""Java Programming"".","Cao","Liên quan đến M07-F01, Rule 5.5"
+"TC-M07-018","Module 07 – Training Materials","Tạo bài kiểm tra mới thất bại do để trống tên","Kiểm tra hệ thống ngăn chặn và báo lỗi nếu tên bài kiểm tra trống.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Thêm bài kiểm tra mới.","CourseName=""Java Programming""; ExamName=""""","1. Để trống trường Tên bài kiểm tra.
+2. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo lỗi yêu cầu nhập Tên bài kiểm tra (ví dụ: ""Exam Name is required."").
+Bài kiểm tra không được tạo.","Cao","Liên quan đến Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-019","Module 07 – Training Materials","Chỉnh sửa chi tiết bài kiểm tra (Edit Exam)","Kiểm tra chức năng thay đổi tên bài kiểm tra thành công.","Người dùng đã đăng nhập với quyền Staff.
+Bài kiểm tra ""Midterm Exam"" đã tồn tại dưới khóa học ""Java Programming"".","ExamOldName=""Midterm Exam""; ExamNewName=""Midterm Practical Exam""","1. Chọn bài kiểm tra ""Midterm Exam"".
+2. Nhấp chọn ""Chỉnh sửa"" (Edit).
+3. Thay đổi tên thành ""Midterm Practical Exam"".
+4. Nhấp ""Lưu"" (Save).","Hệ thống hiển thị thông báo lưu thành công.
+Tên bài kiểm tra được cập nhật thành ""Midterm Practical Exam"" trên giao diện.","Cao","Liên quan đến M07-F01, Rule 5.5"
+"TC-M07-020","Module 07 – Training Materials","Xóa vĩnh viễn bài kiểm tra (Delete Exam)","Kiểm tra chức năng xóa vĩnh viễn một bài kiểm tra và các tài liệu đính kèm bên dưới nó.","Người dùng đã đăng nhập với quyền Staff.
+Bài kiểm tra ""Midterm Exam"" đang tồn tại và có tài liệu đính kèm.","ExamName=""Midterm Exam""","1. Chọn bài kiểm tra ""Midterm Exam"".
+2. Nhấp nút ""Xóa"" (Delete).
+3. Xác nhận trên hộp thoại hiển thị bằng cách chọn ""Đồng ý"" (Confirm).","Hệ thống hiển thị thông báo xóa thành công.
+Bài kiểm tra và các tài liệu đính kèm bị xóa vĩnh viễn khỏi hệ thống.
+Hành động không thể hoàn tác.","Cao","Liên quan đến M07-F05, Rule 5.5, Error Handling (Mục 9)"
+"TC-M07-021","Module 07 – Training Materials","Hủy bỏ thao tác xóa bài kiểm tra","Kiểm tra xem bài kiểm tra không bị xóa khi hủy xác nhận.","Người dùng đã đăng nhập với quyền Staff.
+Bài kiểm tra ""Midterm Exam"" đang tồn tại.","ExamName=""Midterm Exam""","1. Chọn bài kiểm tra ""Midterm Exam"".
+2. Nhấp nút ""Xóa"" (Delete).
+3. Trên hộp thoại xác nhận, chọn ""Hủy"" (Cancel).","Hộp thoại đóng lại.
+Bài kiểm tra ""Midterm Exam"" vẫn tồn tại bình thường.","Trung bình","Liên quan đến Rule 5.5, Error Handling (Mục 9)"
+"TC-M07-022","Module 07 – Training Materials","Kiểm tra không hỗ trợ lưu trữ bài kiểm tra","Xác minh hệ thống không cho phép lưu trữ bài kiểm tra, chỉ có thể xóa vĩnh viễn.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Quản lý Bài kiểm tra.","ExamName=""Midterm Exam""","1. Chọn bài kiểm tra ""Midterm Exam"".
+2. Kiểm tra các nút hành động trên bài kiểm tra.","Không xuất hiện tùy chọn ""Lưu trữ"" (Archive) đối với bài kiểm tra.","Trung bình","Liên quan đến Rule 5.5, Out of Scope (Mục 13)"
+"TC-M07-023","Module 07 – Training Materials","Đính kèm một tài liệu hợp lệ vào Session/Exam","Kiểm tra chức năng đính kèm tài liệu thành công khi nhập đủ nhãn và link Google Drive đúng định dạng.","Người dùng đã đăng nhập với quyền Staff.
+Đang tạo hoặc sửa một Session hoặc Exam.","Label=""Slides""; URL=""https://drive.google.com/file/d/1A2B3C4D5E/view""","1. Ở phần đính kèm tài liệu (Material Attachments), nhập Nhãn (Label) là ""Slides"".
+2. Nhập URL là ""https://drive.google.com/file/d/1A2B3C4D5E/view"".
+3. Nhấn ""Lưu"" (Save).","Tài liệu được lưu thành công.
+Thông tin đính kèm hiển thị chính xác dưới Session/Exam.","Cao","Liên quan đến M07-F06, Mục 6 (Material Attachments)"
+"TC-M07-024","Module 07 – Training Materials","Đính kèm nhiều tài liệu hợp lệ vào Session/Exam","Kiểm tra việc đính kèm đồng thời nhiều tài liệu hợp lệ vào cùng một bài học hoặc bài kiểm tra.","Người dùng đã đăng nhập với quyền Staff.
+Đang tạo hoặc sửa một Session hoặc Exam.","Attachment1: Label=""Slides"", URL=""https://drive.google.com/file/d/111/view""; Attachment2: Label=""Homework"", URL=""https://drive.google.com/file/d/222/view""","1. Ở dòng tài liệu thứ nhất, nhập Nhãn ""Slides"" and URL ""https://drive.google.com/file/d/111/view"".
+2. Nhấp thêm dòng mới.
+3. Ở dòng tài liệu thứ hai, nhập Nhãn ""Homework"" and URL ""https://drive.google.com/file/d/222/view"".
+4. Nhấn ""Lưu"" (Save).","Cả hai tài liệu đính kèm đều được lưu thành công và hiển thị đầy đủ trên giao diện.","Cao","Liên quan đến M07-F06, Mục 6"
+"TC-M07-025","Module 07 – Training Materials","Đính kèm tài liệu với dòng hoàn toàn trống (bỏ qua dòng)","Kiểm tra xem hệ thống tự động bỏ qua và không báo lỗi khi có dòng tài liệu trống (cả Label và URL đều rỗng).","Người dùng đã đăng nhập với quyền Staff.
+Đang chỉnh sửa hoặc tạo mới Session/Exam.","Label=""""; URL=""""","1. Thêm một dòng đính kèm tài liệu mới.
+2. Để trống cả hai trường Nhãn (Label) và URL.
+3. Nhấn ""Lưu"" (Save).","Hệ thống lưu trữ thành công các thông tin khác.
+Dòng trống tự động bị bỏ qua (skipped) mà không hiển thị bất kỳ thông báo lỗi nào.","Trung bình","Liên quan đến M07-F06, Rule 6 (Empty Attachment Rows), Error Handling (Mục 9)"
+"TC-M07-026","Module 07 – Training Materials","Đính kèm thất bại do có Nhãn (Label) nhưng để trống URL","Kiểm tra hệ thống ngăn chặn lưu và báo lỗi khi nhập nhãn tài liệu nhưng không có link.","Người dùng đã đăng nhập với quyền Staff.
+Đang chỉnh sửa hoặc tạo mới Session/Exam.","Label=""Sách tham khảo""; URL=""""","1. Nhập Nhãn (Label) là ""Sách tham khảo"".
+2. Để trống trường URL.
+3. Nhấn ""Lưu"" (Save).","Hệ thống báo lỗi yêu cầu nhập URL cho tài liệu (ví dụ: ""URL is required when Label is provided."").
+Tài liệu không được lưu.","Cao","Liên quan đến M07-F06, Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-027","Module 07 – Training Materials","Đính kèm thất bại do có URL nhưng để trống Nhãn (Label)","Kiểm tra hệ thống ngăn chặn lưu và báo lỗi khi nhập link tài liệu nhưng để trống nhãn.","Người dùng đã đăng nhập với quyền Staff.
+Đang chỉnh sửa hoặc tạo mới Session/Exam.","Label=""""; URL=""https://drive.google.com/file/d/1A2B3/view""","1. Để trống trường Nhãn (Label).
+2. Nhập URL là ""https://drive.google.com/file/d/1A2B3/view"".
+3. Nhấn ""Lưu"" (Save).","Hệ thống báo lỗi yêu cầu nhập Nhãn cho tài liệu (ví dụ: ""Label is required when URL is provided."").
+Tài liệu không được lưu.","Cao","Liên quan đến M07-F06, Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-028","Module 07 – Training Materials","Đính kèm thất bại do link không phải Google Drive","Kiểm tra hệ thống ngăn chặn lưu và báo lỗi định dạng khi nhập link từ dịch vụ lưu trữ khác.","Người dùng đã đăng nhập với quyền Staff.
+Đang chỉnh sửa hoặc tạo mới Session/Exam.","Label=""Tài liệu""; URL=""https://dropbox.com/s/abcdef""","1. Nhập Nhãn ""Tài liệu"".
+2. Nhập URL là ""https://dropbox.com/s/abcdef"".
+3. Nhấn ""Lưu"" (Save).","Hệ thống hiển thị lỗi kiểm tra định dạng URL (ví dụ: ""Must start with https://drive.google.com/"").
+Tài liệu không được lưu.","Cao","Liên quan đến M07-F06, Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-029","Module 07 – Training Materials","Xuất danh sách Session ra file CSV (Export CSV)","Kiểm tra chức năng tải file CSV chứa thông tin các bài học của khóa học hiện tại.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện danh sách Session của khóa học ""Java Programming"" chứa các bài học và tài liệu.","None","1. Nhấp nút ""Xuất CSV"" (Export CSV).","Hệ thống tải về một file CSV thành công.
+File CSV có các cột: Session ID, Session Name, Lesson Number, Description.
+Thông tin các bài học khớp với danh sách hiển thị trên hệ thống.
+Tài liệu đính kèm (Google Drive link) KHÔNG được xuất hiện trong file.","Cao","Liên quan đến M07-F07, Rule 7 (Export)"
+"TC-M07-030","Module 07 – Training Materials","Nhập CSV - Cập nhật thông tin Session đã tồn tại","Kiểm tra hệ thống cập nhật chính xác tên, số bài và mô tả của session khi Session ID trong file CSV trùng khớp với session có sẵn.","Người dùng đã đăng nhập với quyền Staff.
+Bài học với ID ""S001"" đã tồn tại dưới khóa học ""Java Programming"" có tên cũ là ""OOP Intro"".","File CSV chứa dòng: Session ID=""S001""; Session Name=""OOP Basics""; Lesson Number=""1""; Description=""Giới thiệu hướng đối tượng""","1. Chọn khóa học ""Java Programming"".
+2. Nhấp chọn ""Nhập CSV"" (Import CSV).
+3. Tải lên file CSV chứa dữ liệu cập nhật cho ID ""S001"".
+4. Nhấp ""Xác nhận"".","Hệ thống hiển thị thông báo nhập dữ liệu thành công.
+Bài học có ID ""S001"" được cập nhật thành công với tên ""OOP Basics"", số bài ""1"", mô tả ""Giới thiệu hướng đối tượng"".
+Các tài liệu đính kèm trước đó của bài học này vẫn được giữ nguyên.","Cao","Liên quan đến M07-F07, Rule 7.1 (Existing Session)"
+"TC-M07-031","Module 07 – Training Materials","Nhập CSV - Tạo bài học mới khi để trống Session ID","Kiểm tra hệ thống tự động tạo mới một bài học nếu cột Session ID trong dòng CSV bị bỏ trống.","Người dùng đã đăng nhập với quyền Staff.
+Đang chọn khóa học ""Java Programming"".","File CSV chứa dòng: Session ID=""""; Session Name=""OOP Polymorphism""; Lesson Number=""3""; Description=""Tính đa hình""","1. Chọn khóa học ""Java Programming"".
+2. Nhấp chọn ""Nhập CSV"" (Import CSV).
+3. Tải lên file CSV có cột ID để trống.
+4. Nhấp ""Xác nhận"".","Hệ thống hiển thị thông báo nhập dữ liệu thành công.
+Một bài học mới được tạo ra dưới khóa học ""Java Programming"" với tên ""OOP Polymorphism"", số bài học ""3"" và mô tả ""Tính đa hình"".
+Hệ thống tự động cấp phát một ID mới cho session này.","Cao","Liên quan đến M07-F07, Rule 7.2 (New Session)"
+"TC-M07-032","Module 07 – Training Materials","Nhập CSV - Tạo bài học mới khi Session ID không tồn tại trên hệ thống","Kiểm tra hệ thống tự động tạo mới bài học nếu Session ID trong CSV không trùng khớp với bất kỳ bài học hiện có nào.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" không có bài học nào mang ID ""S999"".","File CSV chứa dòng: Session ID=""S999""; Session Name=""Exception Handling""; Lesson Number=""4""; Description=""Xử lý ngoại lệ""","1. Chọn khóa học ""Java Programming"".
+2. Nhấp chọn ""Nhập CSV"" (Import CSV).
+3. Tải lên file CSV chứa dòng có ID là ""S999"".
+4. Nhấp ""Xác nhận"".","Hệ thống hiển thị thông báo nhập dữ liệu thành công.
+Một bài học mới được tạo ra với ID mới được tạo hoặc cập nhật theo hệ thống, tên ""Exception Handling"" được gán dưới khóa học.","Cao","Liên quan đến M07-F07, Rule 7.2 (New Session)"
+"TC-M07-033","Module 07 – Training Materials","Nhập CSV - Các bài học hiện tại không có trong CSV sẽ giữ nguyên","Kiểm tra xem hệ thống có bảo toàn các bài học sẵn có của khóa học nếu chúng không được liệt kê trong file CSV tải lên.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" đang có 2 bài học sẵn có: ""S001"" và ""S002"".","File CSV chỉ chứa thông tin cập nhật cho bài học ""S001"". Bài học ""S002"" hoàn toàn không có trong file.","1. Nhấp chọn ""Nhập CSV"" (Import CSV).
+2. Tải lên file CSV chỉ có thông tin cho bài học ""S001"".
+3. Nhấp ""Xác nhận"".","Hệ thống thông báo nhập thành công.
+Bài học ""S001"" được cập nhật.
+Bài học ""S002"" vẫn tồn tại nguyên vẹn dưới khóa học ""Java Programming"" mà không bị xóa đi.","Cao","Liên quan đến M07-F07, Rule 7.3 (Missing Sessions)"
+"TC-M07-034","Module 07 – Training Materials","Nhập CSV - Bỏ qua cột Materials trong file CSV tải lên","Kiểm tra xem hệ thống có bỏ qua cột Materials và không ghi đè hoặc gây lỗi nếu file CSV chứa cột này.","Người dùng đã đăng nhập với quyền Staff.
+Bài học ""S001"" đang có sẵn một tài liệu đính kèm là ""Slides"".","File CSV chứa các cột: Session ID, Session Name, Lesson Number, Description, Materials. Dòng dữ liệu: S001, OOP Basics, 1, Giới thiệu hướng đối tượng, https://drive.google.com/some-link-to-ignore","1. Chọn khóa học.
+2. Nhấp chọn ""Nhập CSV"" (Import CSV).
+3. Tải lên file CSV có chứa cột Materials với giá trị link bất kỳ.
+4. Nhấp ""Xác nhận"".","Hệ thống hiển thị thông báo nhập thành công.
+Thông tin Session được cập nhật.
+Tài liệu đính kèm ""Slides"" ban đầu của Session ""S001"" vẫn được giữ nguyên. Link trong cột Materials của file CSV hoàn toàn bị bỏ qua.","Cao","Liên quan đến M07-F07, Rule 7.4 (Materials Column)"
+"TC-M07-035","Module 07 – Training Materials","Nhập CSV thất bại do chọn sai định dạng tệp (không phải CSV)","Kiểm tra hệ thống từ chối tải lên và thông báo lỗi khi người dùng chọn tệp không phải đuôi .csv.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở giao diện Nhập CSV của khóa học.","Tệp tin: document.docx hoặc image.png","1. Nhấp chọn nút ""Nhập CSV"".
+2. Chọn tải lên tệp tin ""document.docx"".
+3. Nhấp nút ""Xác nhận"" hoặc hệ thống chặn ngay khi chọn tệp.","Hệ thống từ chối tệp tin và hiển thị thông báo lỗi định dạng tệp không hợp lệ (ví dụ: ""Invalid file format. Please upload a CSV file."").
+Không có hành động nhập dữ liệu nào được thực hiện.","Cao","Liên quan đến Error Handling (Mục 9)"
+"TC-M07-036","Module 07 – Training Materials","Nhập CSV thất bại đối với dòng thiếu thông tin Tên bài học","Kiểm tra hệ thống ngăn chặn việc tạo session mới qua CSV nếu dòng đó thiếu Tên bài học.","Người dùng đã đăng nhập với quyền Staff.
+Đang chọn khóa học ""Java Programming"".","File CSV chứa dòng: Session ID=""""; Session Name=""""; Lesson Number=""5""; Description=""Bài học thiếu tên""","1. Nhấp chọn ""Nhập CSV"" (Import CSV).
+2. Tải lên file CSV chứa dòng dữ liệu lỗi nói trên.
+3. Nhấn ""Xác nhận"".","Hệ thống báo lỗi kiểm tra dữ liệu ở dòng tương ứng (ví dụ: ""Row X: Session Name is required."").
+Dòng lỗi đó không được import vào hệ thống.","Cao","Liên quan đến Validation Rules (Mục 8), Error Handling (Mục 9)"
+"TC-M07-037","Module 07 – Training Materials","Quyền truy cập - Staff truy cập và thao tác đầy đủ tính năng","Xác minh tài khoản có email domain @passerellesnumeriques.org được cấp toàn quyền quản trị module.","Người dùng đã đăng nhập bằng Google OAuth với tài khoản staff@passerellesnumeriques.org.","Role=""Staff""","1. Truy cập vào trang Quản lý Tài liệu học tập.
+2. Thực hiện các thao tác: Đổi tên Category, Thêm khóa học, Xóa bài học, Nhập/Xuất CSV.","Người dùng truy cập thành công.
+Tất cả các nút chức năng hoạt động bình thường mà không bị chặn quyền.","Cao","Liên quan đến Docs/docs.md Mục 4 (User Roles)"
+"TC-M07-038","Module 07 – Training Materials","Quyền truy cập - Học viên (Student) bị hạn chế các quyền quản lý","Xác minh tài khoản học viên có email domain @student.passerellesnumeriques.org không thể thực hiện các thao tác quản lý (Thêm/Sửa/Xóa/Archive/Import/Export) trên module.","Người dùng đã đăng nhập bằng Google OAuth với tài khoản student@student.passerellesnumeriques.org.","Role=""Student""","1. Cố gắng truy cập trực tiếp vào đường dẫn Quản lý Tài liệu học tập (nếu có), hoặc kiểm tra giao diện Student Portal.
+2. Quan sát sự tồn tại của các nút chức năng đổi tên, thêm khóa học, xóa bài học, import CSV.","Học viên không có quyền truy cập vào trang quản trị Staff.
+Không hiển thị các nút chức năng quản lý tài liệu học tập trên màn hình dành cho học viên.
+Hệ thống hiển thị thông báo lỗi hoặc từ chối truy cập (Access Denied) nếu cố truy cập qua URL trực tiếp.","Cao","Liên quan đến Docs/docs.md Mục 4 (User Roles)"
+"TC-M07-039","Module 07 – Training Materials","Quyền truy cập - Domain lạ bị từ chối truy cập hệ thống","Kiểm tra hệ thống từ chối truy cập ngay lập tức đối với email không thuộc 2 domain được cấu hình.","Người dùng đã đăng nhập bằng Google OAuth với tài khoản user@gmail.com.","Role=""Unknown""","1. Cố gắng truy cập vào hệ thống Academic Portal.","Hệ thống hiển thị trang từ chối truy cập (Access Denied).
+Không hiển thị bất kỳ thông tin nào về các danh mục tài liệu hoặc khóa học.","Cao","Liên quan đến Docs/docs.md Mục 4 & Mục 6 (Authentication Flow)"
+"TC-M07-040","Module 07 – Training Materials","Kiểm tra ẩn tự động tất cả Session/Exam con khi Lưu trữ khóa học","Xác minh rằng khi lưu trữ một khóa học, tất cả các bài học (session) và bài kiểm tra (exam) thuộc khóa học đó tự động biến mất khỏi giao diện chung của người dùng, nhưng dữ liệu vẫn tồn tại trong cơ sở dữ liệu.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" đang hoạt động và có bài học ""Session 01"" cùng bài kiểm tra ""Midterm Exam"" đang hiển thị.","CourseName=""Java Programming""","1. Thực hiện lưu trữ khóa học ""Java Programming"".
+2. Truy cập hoặc kiểm tra danh sách bài học và bài kiểm tra trên giao diện hiển thị tài liệu chung.","Khóa học chuyển sang trạng thái đã lưu trữ.
+Bài học ""Session 01"" và bài kiểm tra ""Midterm Exam"" không còn xuất hiện trên giao diện hiển thị tài liệu học tập chung.
+Kiểm tra cơ sở dữ liệu để đảm bảo các bản ghi này vẫn tồn tại.","Cao","Liên quan đến M07-F03, Rule 5.3"
+"TC-M07-041","Module 07 – Training Materials","Kiểm tra khôi phục hiển thị tất cả Session/Exam con khi Khôi phục khóa học","Xác minh rằng khi khôi phục một khóa học đã lưu trữ, tất cả các bài học (session) và bài kiểm tra (exam) thuộc khóa học đó tự động hiển thị trở lại trên giao diện.","Người dùng đã đăng nhập với quyền Staff.
+Khóa học ""Java Programming"" đang ở trạng thái Lưu trữ (Archived), các bài học và bài kiểm tra con đang bị ẩn hiển thị.","CourseName=""Java Programming""","1. Thực hiện khôi phục khóa học ""Java Programming"".
+2. Truy cập vào giao diện hiển thị bài học và bài kiểm tra của khóa học này.","Khóa học chuyển sang trạng thái Hoạt động (Active).
+Bài học ""Session 01"" và bài kiểm tra ""Midterm Exam"" tự động xuất hiện trở lại trên giao diện hiển thị và có thể xem/chỉnh sửa bình thường.","Cao","Liên quan đến M07-F03, Rule 5.3"

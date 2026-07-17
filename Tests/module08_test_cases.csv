@@ -1,0 +1,118 @@
+﻿"ID","Module","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
+"TC-M08-001","Module 08 – Profile Photo Management","Tải lên ảnh đại diện hợp lệ định dạng JPG","Kiểm tra chức năng tải lên ảnh đại diện định dạng JPG thành công và cập nhật vào thông tin học sinh.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở trang Chi tiết Học sinh (Student Detail) của một học sinh chưa có ảnh đại diện (đang hiển thị ảnh mặc định).","StudentCode=PNV26001; ImageFile=student_avatar.jpg (kích thước < 2MB)","1. Chọn học sinh PNV26001 và mở trang Chi tiết Học sinh.
+2. Nhấp chọn biểu tượng tải ảnh đại diện.
+3. Chọn file student_avatar.jpg từ thiết bị.
+4. Quan sát ảnh xem trước hiển thị trên màn hình.
+5. Nhấn nút ""Lưu"" (Save).","Hệ thống hiển thị thông báo tải lên thành công.
+Ảnh xem trước hiển thị tức thì trên giao diện trước khi lưu.
+Sau khi lưu, thông tin học sinh được cập nhật: ảnh đại diện hiển thị kiểu hình tròn tại Sidebar chi tiết (200x200 px) và danh sách học sinh (52x52 px).
+File ảnh được lưu trên Google Drive dưới tên ""Nguyen_Van_A_{Timestamp}.jpg"" với quyền xem ""Anyone with the link"".","Cao","Liên quan đến M08-F01, Rule 5.2, Google Drive Integration (Mục 7)"
+"TC-M08-002","Module 08 – Profile Photo Management","Tải lên ảnh đại diện hợp lệ định dạng PNG","Kiểm tra chức năng tải lên ảnh đại diện định dạng PNG thành công và cập nhật vào thông tin học sinh.","Người dùng đã đăng nhập với quyền Staff.
+Đang ở trang Chi tiết Học sinh (Student Detail) của một học sinh chưa có ảnh đại diện.","StudentCode=PNV26002; ImageFile=student_avatar2.png","1. Chọn học sinh PNV26002 và mở trang Chi tiết Học sinh.
+2. Nhấp chọn biểu tượng tải ảnh đại diện.
+3. Chọn file student_avatar2.png.
+4. Nhấn nút ""Lưu"" (Save).","Hệ thống hiển thị thông báo tải lên thành công.
+Ảnh đại diện PNG hiển thị chính xác kiểu hình tròn ở tất cả các vị trí.
+File ảnh được tải lên Google Drive và được đặt tên theo định dạng {StudentName}_{Timestamp}.jpg.","Cao","Liên quan đến M08-F01, Rule 5.2"
+"TC-M08-003","Module 08 – Profile Photo Management","Thay thế ảnh đại diện hiện tại","Xác minh khi tải lên ảnh đại diện mới, hệ thống tự động cập nhật thông tin học sinh và xóa file ảnh cũ trên Google Drive.","Người dùng đã đăng nhập với quyền Staff.
+Học sinh PNV26001 đã có sẵn ảnh đại diện cũ trên hệ thống và Google Drive.","StudentCode=PNV26001; ImageFile=new_avatar.jpg","1. Chọn học sinh PNV26001 và mở trang Chi tiết Học sinh.
+2. Nhấp chọn tải ảnh đại diện mới.
+3. Chọn file new_avatar.jpg.
+4. Nhấn nút ""Lưu"" (Save).
+5. Kiểm tra thư mục lưu trữ trên Google Drive.","Hệ thống hiển thị thông báo thay thế thành công.
+Ảnh đại diện mới hiển thị trên hệ thống.
+File ảnh cũ của học sinh PNV26001 trên Google Drive bị xóa hoàn toàn khỏi thư mục lưu trữ (không giữ lại file cũ).
+Chỉ còn lại file ảnh mới trên Google Drive.","Cao","Liên quan đến M08-F02, Rule 5.3"
+"TC-M08-004","Module 08 – Profile Photo Management","Xóa ảnh đại diện hiện tại (Soft Delete)","Kiểm tra chức năng xóa ảnh đại diện của học sinh, chuyển file cũ vào Google Drive Trash và hiển thị avatar mặc định.","Người dùng đã đăng nhập với quyền Staff.
+Học sinh PNV26001 đã có sẵn ảnh đại diện trên hệ thống.","StudentCode=PNV26001","1. Chọn học sinh PNV26001 và mở trang Chi tiết Học sinh.
+2. Nhấp chọn nút ""Xóa ảnh"" (Remove Photo).
+3. Xác nhận xóa khi hệ thống hiển thị hộp thoại xác nhận.
+4. Nhấn nút ""Lưu"" (Save).
+5. Kiểm tra Google Drive Trash.","Ảnh đại diện cũ của học sinh bị xóa khỏi giao diện.
+Hệ thống hiển thị ảnh đại diện mặc định (chữ cái viết tắt tên học sinh).
+Trên Google Drive, file ảnh cũ của học sinh được di chuyển vào thùng rác (Drive Trash) chứ không bị xóa vĩnh viễn ngay lập tức.","Cao","Liên quan đến M08-F03, Rule 5.4"
+"TC-M08-005","Module 08 – Profile Photo Management","Hiển thị avatar mặc định khi học sinh chưa có ảnh đại diện","Xác minh hệ thống hiển thị ảnh đại diện mặc định là 2 chữ cái đầu của tên học sinh khi không có ảnh.","Người dùng đã đăng nhập với quyền Staff.
+Học sinh ""Nguyen Van A"" chưa tải ảnh đại diện lên hệ thống.","StudentName=""Nguyen Van A""","1. Vào danh sách học sinh.
+2. Tìm học sinh ""Nguyen Van A"".
+3. Quan sát ảnh đại diện hiển thị bên cạnh tên học sinh.
+4. Kiểm tra tại trang Chi tiết học sinh và màn hình Home Dashboard.","Hệ thống tự động hiển thị ảnh đại diện dạng hình tròn chứa 2 chữ cái viết tắt là ""NA"" (chữ cái đầu của Tên và Họ).
+Ảnh mặc định này hiển thị đồng bộ ở cả danh sách học sinh và chi tiết học sinh.","Cao","Liên quan đến M08-F04, Rule 5.6"
+"TC-M08-006","Module 08 – Profile Photo Management","Kiểm tra kích thước hiển thị ảnh đại diện ở các vị trí khác nhau","Xác minh ảnh đại diện hiển thị đúng kích thước cấu hình và đúng định dạng hình tròn ở mọi màn hình.","Người dùng đã đăng nhập với quyền Staff.
+Học sinh PNV26001 đã có ảnh đại diện hợp lệ.","StudentCode=PNV26001","1. Xem ảnh học sinh tại danh sách học sinh.
+2. Nhấp xem chi tiết học sinh PNV26001 và quan sát Sidebar.
+3. Mở Dialog chỉnh sửa thông tin học sinh.
+4. Về màn hình Home Dashboard và tìm ảnh đại diện học sinh đó.","Ảnh đại diện hiển thị dưới dạng hình tròn với kích thước chuẩn:
+- Danh sách học sinh: 52 x 52 px
+- Dialog chỉnh sửa học sinh: 120 x 120 px
+- Sidebar chi tiết học sinh: 200 x 200 px
+- Home Dashboard: 52 x 52 px","Trung bình","Liên quan đến Display Locations (Mục 6)"
+"TC-M08-007","Module 08 – Profile Photo Management","Nhấn Lưu ảnh đại diện khi chưa chọn file ảnh","Kiểm tra hệ thống báo lỗi khi người dùng cố tình lưu ảnh mà chưa chọn tệp tin nào.","Người dùng đăng nhập quyền Staff.
+Đang mở trang Chi tiết Học sinh của một học sinh chưa có ảnh.","StudentCode=PNV26001","1. Chọn học sinh PNV26001.
+2. Kích hoạt chế độ tải ảnh đại diện.
+3. Không chọn bất kỳ file nào từ thiết bị.
+4. Nhấn nút ""Lưu"" (Save) hoặc nút xác nhận tải lên.","Hệ thống hiển thị cảnh báo lỗi yêu cầu chọn tệp tin hình ảnh (ví dụ: ""Image file is required"" hoặc tương đương).
+Không có bất kỳ thay đổi nào được thực hiện.","Cao","Liên quan đến Validation Rules (Mục 8)"
+"TC-M08-008","Module 08 – Profile Photo Management","Tải lên file không phải định dạng hình ảnh","Xác minh hệ thống chặn tải lên các tệp tin có định dạng không phải là ảnh (như .pdf, .docx, .txt).","Người dùng đã đăng nhập với quyền Staff.
+Đang mở trang Chi tiết Học sinh.","StudentCode=PNV26001; FilePath=document.pdf","1. Chọn học sinh PNV26001.
+2. Nhấp tải ảnh đại diện và chọn file document.pdf.
+3. Nhấn nút ""Lưu"" (Save) hoặc nút xác nhận tải lên.","Hệ thống không chấp nhận file PDF.
+Hiển thị thông báo lỗi yêu cầu tệp tin hình ảnh hợp lệ (ví dụ: ""Invalid file format. Please upload JPG or PNG image"").
+Không cho phép lưu tệp tin này làm ảnh đại diện.","Cao","Liên quan đến Validation Rules (Mục 8)"
+"TC-M08-009","Module 08 – Profile Photo Management","Xác minh cấu trúc tên file lưu trên Google Drive","Đảm bảo file ảnh tải lên được đổi tên theo đúng định dạng {StudentName}_{Timestamp}.jpg.","Người dùng đăng nhập quyền Staff.
+Học sinh tên ""John Smith"" chưa có ảnh.","StudentName=""John Smith""; ImageFile=avatar.jpg","1. Chọn học sinh ""John Smith"" và tải lên ảnh avatar.jpg.
+2. Nhấn ""Lưu"" (Save).
+3. Đăng nhập vào tài khoản Google Drive quản trị, mở thư mục lưu trữ cấu hình.
+4. Tìm kiếm file ảnh mới tải lên và kiểm tra tên file.","File ảnh được lưu trữ trên Google Drive có tên chính xác là ""John_Smith_YYYYMMDDHHMMSS.jpg"" (trong đó YYYYMMDDHHMMSS là thời gian lúc tải lên).
+Định dạng file được chuẩn hóa thành đuôi mở rộng .jpg.","Cao","Liên quan đến Storage Information (Mục 3), Google Drive Integration (Mục 7)"
+"TC-M08-010","Module 08 – Profile Photo Management","Tải lên ảnh cho học sinh có tên chứa ký tự tiếng Việt có dấu","Kiểm tra xem tên file trên Google Drive có được xử lý chuẩn hóa ký tự tiếng Việt có dấu và khoảng trắng hay không.","Người dùng đăng nhập quyền Staff.
+Có học sinh tên ""Nguyễn Hoàng Nam"".","StudentName=""Nguyễn Hoàng Nam""; ImageFile=avatar.jpg","1. Mở trang chi tiết học sinh ""Nguyễn Hoàng Nam"" và tải lên ảnh đại diện.
+2. Nhấn ""Lưu"".
+3. Mở Google Drive kiểm tra tên file ảnh vừa tạo.","File ảnh được tải lên thành công.
+Tên file trên Google Drive được chuẩn hóa (ví dụ chuyển thành ""Nguyen_Hoang_Nam_{Timestamp}.jpg"" hoặc giữ nguyên ký tự tiếng Việt có dấu nhưng khoảng trắng thay bằng gạch dưới và không bị lỗi hiển thị/mã hóa ký tự).","Trung bình","Liên quan đến Storage Information (Mục 3), Google Drive Integration (Mục 7)"
+"TC-M08-011","Module 08 – Profile Photo Management","Xác minh quyền truy cập tệp tin (File Permission) trên Google Drive","Đảm bảo tệp tin ảnh tải lên được cấu hình quyền chia sẻ công khai ở chế độ chỉ xem để hệ thống hiển thị được.","Người dùng đăng nhập quyền Staff.
+Tải ảnh lên cho học sinh PNV26001 thành công.","StudentCode=PNV26001","1. Mở tài khoản Google Drive quản trị, tìm file ảnh của học sinh PNV26001 vừa tải lên.
+2. Nhấp chuột phải chọn ""Chia sẻ"" (Share) -> ""Nhận liên kết"" (Get link).
+3. Kiểm tra cài đặt quyền truy cập chung.","Quyền truy cập chung của file được thiết lập là ""Bất kỳ ai có liên kết này"" (Anyone with the link) và vai trò được gán là ""Người xem"" (Viewer / View only).","Cao","Liên quan đến Storage Information (Mục 3), Google Drive Integration (Mục 7)"
+"TC-M08-012","Module 08 – Profile Photo Management","Tải lên ảnh có dung lượng lớn","Kiểm tra phản hồi của hệ thống khi cố gắng tải lên một hình ảnh có kích thước tệp tin lớn.","Người dùng đăng nhập quyền Staff.
+Đang mở giao diện tải ảnh đại diện.","StudentCode=PNV26001; ImageFile=large_photo.jpg (dung lượng 15MB)","1. Tải lên tệp tin large_photo.jpg dung lượng 15MB.
+2. Nhấn nút ""Lưu"" (Save).","Hệ thống tải lên thành công nếu không cấu hình giới hạn kích thước, HOẶC nếu hệ thống có giới hạn dung lượng: hiển thị thông báo lỗi yêu cầu ảnh nhỏ hơn mức quy định (ví dụ: ""File size exceeds limit"") và ngăn không cho tải lên.","Trung bình","Liên quan đến Test Data Preparation (Mục 11 - Large image)"
+"TC-M08-013","Module 08 – Profile Photo Management","Tải lên hình ảnh có phần mở rộng viết hoa (.JPG / .PNG)","Xác minh hệ thống nhận diện và chấp nhận các đuôi mở rộng viết hoa như .JPG, .PNG mà không báo lỗi định dạng.","Người dùng đăng nhập quyền Staff.
+Đang mở giao diện tải ảnh đại diện.","StudentCode=PNV26001; ImageFile=avatar.JPG","1. Tải lên tệp tin avatar.JPG (đuôi JPG viết hoa).
+2. Nhấn nút ""Lưu"" (Save).","Hệ thống nhận diện .JPG là định dạng hình ảnh hợp lệ.
+Tải ảnh thành công, cập nhật thông tin học sinh bình thường.","Trung bình","Liên quan đến Validation Rules (Mục 8 - Image File)"
+"TC-M08-014","Module 08 – Profile Photo Management","Tải lên thất bại do lỗi kết nối Google Drive","Xác minh hệ thống không lưu link ảnh lỗi và giữ nguyên thông tin học sinh nếu quá trình tải lên Google Drive thất bại.","Người dùng đã đăng nhập với quyền Staff.
+Học sinh PNV26003 chưa có ảnh đại diện.
+Đường truyền Google Drive bị ngắt kết nối hoặc lỗi dịch vụ trong lúc tải.","StudentCode=PNV26003; ImageFile=student_avatar3.jpg","1. Chọn học sinh PNV26003 và mở trang Chi tiết Học sinh.
+2. Chọn tải lên file student_avatar3.jpg.
+3. Nhấn ""Lưu"" (Save).
+4. Quan sát thông báo lỗi và kiểm tra thông tin học sinh.","Hệ thống hiển thị thông báo lỗi tải lên (ví dụ: ""Upload failed"" hoặc ""Google Drive unavailable"").
+Thông tin học sinh không bị thay đổi, không lưu đường dẫn hỏng (broken link) vào hồ sơ.
+Học sinh vẫn tiếp tục hiển thị avatar mặc định.","Cao","Liên quan đến Rule 5.5, Error Handling (Mục 9)"
+"TC-M08-015","Module 08 – Profile Photo Management","Tải lên thất bại do thư mục Google Drive chưa cấu hình","Kiểm tra hành vi của hệ thống khi cố gắng tải ảnh lên trong khi thư mục Google Drive chưa được thiết lập.","Người dùng đăng nhập quyền Staff.
+Thư mục lưu trữ Google Drive chưa được cấu hình trong hệ thống.","StudentCode=PNV26001; ImageFile=student_avatar.jpg","1. Mở trang Chi tiết Học sinh PNV26001.
+2. Chọn tải lên file student_avatar.jpg.
+3. Nhấn nút ""Lưu"" (Save).","Hệ thống hiển thị thông báo lỗi cấu hình (ví dụ: ""Google Drive folder not configured or unavailable"" hoặc ""Upload error"").
+Quá trình tải lên bị hủy bỏ, thông tin học sinh không bị thay đổi.","Trung bình","Liên quan đến Error Handling (Mục 9)"
+"TC-M08-016","Module 08 – Profile Photo Management","Hiển thị avatar mặc định khi URL ảnh bị lỗi (HTTP 404)","Xác minh hệ thống tự động phát hiện URL ảnh bị hỏng và chuyển sang hiển thị avatar mặc định.","Học sinh ""Le Thi B"" có URL ảnh trong hồ sơ học sinh, nhưng file gốc trên Google Drive đã bị xóa hoặc không truy cập được (lỗi 404).","StudentName=""Le Thi B""","1. Đăng nhập hệ thống bằng quyền Staff.
+2. Truy cập danh sách học sinh hoặc chi tiết học sinh ""Le Thi B"".
+3. Quan sát ảnh đại diện hiển thị.","Hệ thống phát hiện không tải được ảnh từ URL cũ, tự động hiển thị avatar mặc định dạng hình tròn chứa hai chữ cái viết tắt là ""LB"" mà không cần bất kỳ can thiệp thủ công nào từ người dùng.","Cao","Liên quan đến M08-F04, Rule 5.6, Error Handling (Mục 9)"
+"TC-M08-017","Module 08 – Profile Photo Management","Kiểm tra quyền hạn của Student đối với ảnh đại diện","Xác minh tài khoản Student chỉ có quyền xem ảnh đại diện của mình và không có quyền tải lên, chỉnh sửa hoặc xóa ảnh.","Người dùng đăng nhập với quyền Student (email domain @student.passerellesnumeriques.org).","StudentAccount=student01@student.passerellesnumeriques.org","1. Đăng nhập vào Student Portal.
+2. Truy cập trang thông tin cá nhân.
+3. Kiểm tra sự tồn tại của các nút ""Tải ảnh lên"" (Upload), ""Thay thế"" (Replace) hoặc ""Xóa ảnh"" (Remove).
+4. Thử tìm cách tương tác chỉnh sửa ảnh đại diện.","Học sinh có thể nhìn thấy ảnh đại diện của mình hiển thị ở góc màn hình hoặc trang thông tin.
+Không có nút hoặc tùy chọn nào để tải lên, thay thế hoặc xóa ảnh trên giao diện.
+Trạng thái truy cập hoàn toàn là Chỉ xem (Read-only).","Cao","Liên quan đến M08-F05, Rule 5.1"
+"TC-M08-018","Module 08 – Profile Photo Management","Kiểm tra chặn gọi trực tiếp API upload từ tài khoản Student","Xác minh cơ chế bảo mật phía backend từ chối yêu cầu upload/thay thế/xóa ảnh đại diện gửi từ tài khoản Student.","Người dùng đăng nhập quyền Student.
+Sử dụng DevTools hoặc công cụ bên thứ ba gửi request trực tiếp đến hàm upload/replace/remove photo của backend.","StudentAccount=student01@student.passerellesnumeriques.org","1. Thực hiện gửi request trực tiếp đến API upload/replace/remove photo sử dụng token/session của Student.
+2. Quan sát phản hồi trả về từ backend.","Backend từ chối yêu cầu, trả về mã lỗi từ chối quyền truy cập (Access Denied / Unauthorized).
+Thông tin ảnh đại diện học sinh không bị ảnh hưởng.","Cao","Liên quan đến Rule 5.1, Error Handling (Mục 9)"
+"TC-M08-019","Module 08 – Profile Photo Management","Từ chối truy cập đối với tài khoản ngoài tổ chức","Đảm bảo người dùng với email không thuộc tổ chức (ví dụ: @gmail.com) không thể truy cập hệ thống và xem ảnh đại diện.","Người dùng sử dụng tài khoản email cá nhân không phải domain @passerellesnumeriques.org hay @student.passerellesnumeriques.org.","UserEmail=guest_user@gmail.com","1. Mở trình duyệt ẩn danh.
+2. Truy cập URL của hệ thống.
+3. Đăng nhập bằng tài khoản guest_user@gmail.com.","Hệ thống từ chối đăng nhập và chuyển hướng người dùng đến trang ""Access Denied"" (Từ chối truy cập).
+Không xem được bất cứ thông tin học sinh nào bao gồm cả ảnh đại diện.","Cao","Liên quan đến Docs - Mục 4 (User Roles) & Mục 6 (Authentication Flow)"
+"TC-M08-020","Module 08 – Profile Photo Management","Kiểm tra không tích hợp tính năng chỉnh sửa/cắt ảnh","Xác minh hệ thống không tích hợp các chức năng chỉnh sửa ảnh, cắt ảnh hoặc xem lịch sử các ảnh đại diện cũ.","Người dùng đăng nhập quyền Staff.
+Đang trong tiến trình chọn và chuẩn bị tải ảnh lên.","StudentCode=PNV26001; ImageFile=avatar.jpg","1. Chọn tải lên file avatar.jpg.
+2. Quan sát các nút và tùy chọn thao tác hiển thị trên giao diện xem trước ảnh.
+3. Kiểm tra xem có chức năng xoay, cắt (crop) hoặc xem danh sách ảnh cũ đã tải lên không.","Giao diện chỉ hiển thị ảnh xem trước đơn giản để người dùng kiểm tra trực quan.
+Không có công cụ chỉnh sửa, cắt ghép hoặc xem lại phiên bản ảnh cũ nào trên hệ thống.","Thấp","Liên quan đến Out of Scope (Mục 13)"
