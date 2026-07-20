@@ -37,17 +37,20 @@ PRIORITY_STYLES = {
     }
 }
 
-COLUMN_WIDTHS = {
-    1: 15,  # ID
-    2: 14,  # Module
-    3: 32,  # Title
-    4: 38,  # Objective
-    5: 32,  # Preconditions
-    6: 30,  # TestData
-    7: 50,  # Steps
-    8: 50,  # ExpectedResult
-    9: 14,  # Priority
-    10: 32  # Notes
+# Column widths for 12 columns
+COLUMN_WIDTH_MAP = {
+    "ID": 15,
+    "Module": 14,
+    "Feature ID": 14,
+    "Feature Name": 28,
+    "Title": 32,
+    "Objective": 36,
+    "Preconditions": 30,
+    "TestData": 28,
+    "Steps": 48,
+    "ExpectedResult": 48,
+    "Priority": 14,
+    "Notes": 32
 }
 
 def clean_cell_text(val):
@@ -64,7 +67,6 @@ def normalize_priority(val):
 def format_worksheet(ws, headers, rows):
     ws.views.sheetView[0].showGridLines = True
 
-    # Font definitions
     header_font = Font(name="Segoe UI", size=11, bold=True, color=HEADER_FG)
     header_fill = PatternFill(start_color=HEADER_BG, end_color=HEADER_BG, fill_type="solid")
     header_align = Alignment(horizontal="center", vertical="center", wrap_text=True)
@@ -82,11 +84,10 @@ def format_worksheet(ws, headers, rows):
         cell.alignment = header_align
         cell.border = cell_border
 
-    # Set Column Widths
-    for col_idx, width in COLUMN_WIDTHS.items():
-        if col_idx <= len(headers):
-            col_letter = get_column_letter(col_idx)
-            ws.column_dimensions[col_letter].width = width
+        # Width
+        width = COLUMN_WIDTH_MAP.get(h_name, 25)
+        col_letter = get_column_letter(col_num)
+        ws.column_dimensions[col_letter].width = width
 
     # Write Rows
     for row_idx, row_data in enumerate(rows, start=2):
@@ -98,25 +99,29 @@ def format_worksheet(ws, headers, rows):
         for col_idx, cell_value in enumerate(row_data, start=1):
             if col_idx > len(headers):
                 break
+            h_name = headers[col_idx-1]
             text = clean_cell_text(cell_value)
             cell = ws.cell(row=row_idx, column=col_idx, value=text)
             
             cell.font = body_font
             cell.border = cell_border
 
-            # Horizontal alignment logic
+            # Alignment logic
             h_align = "left"
-            if headers[col_idx-1] in ["ID", "Module", "Priority"]:
+            if h_name in ["ID", "Module", "Feature ID", "Priority"]:
                 h_align = "center"
 
             cell.alignment = Alignment(horizontal=h_align, vertical="top", wrap_text=True)
 
-            # Priority column styling
-            if headers[col_idx-1] == "Priority":
+            if h_name == "Priority":
                 p_norm = normalize_priority(text)
                 if p_norm in PRIORITY_STYLES:
                     cell.fill = PRIORITY_STYLES[p_norm]["fill"]
                     cell.font = PRIORITY_STYLES[p_norm]["font"]
+            elif h_name == "Feature ID":
+                cell.font = Font(name="Segoe UI", size=10, bold=True, color="1F4E78")
+                if not is_even:
+                    cell.fill = row_fill
             else:
                 if not is_even:
                     cell.fill = row_fill
@@ -152,8 +157,8 @@ def create_summary_sheet(wb, module_data):
     ws.views.sheetView[0].showGridLines = True
 
     # Title Banner
-    ws.merge_cells("A1:E1")
-    title_cell = ws.cell(row=1, column=1, value="Academic Portal - Comprehensive Test Case Suite Summary")
+    ws.merge_cells("A1:F1")
+    title_cell = ws.cell(row=1, column=1, value="Academic Portal - Comprehensive Test Suite & Feature Breakdown")
     title_cell.font = Font(name="Segoe UI", size=16, bold=True, color="FFFFFF")
     title_cell.fill = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
     title_cell.alignment = Alignment(horizontal="center", vertical="center")
@@ -164,28 +169,41 @@ def create_summary_sheet(wb, module_data):
     total_medium = 0
     total_low = 0
     module_summary_rows = []
+    feature_summary_rows = []
 
     for mod_num, (mod_title, headers, rows) in enumerate(module_data, start=1):
         mod_tc_count = len(rows)
-        p_col_idx = -1
-        for idx, h in enumerate(headers):
-            if h.lower() == "priority":
-                p_col_idx = idx
-                break
-        
+        p_col_idx = headers.index("Priority") if "Priority" in headers else -1
+        fid_col_idx = headers.index("Feature ID") if "Feature ID" in headers else -1
+        fname_col_idx = headers.index("Feature Name") if "Feature Name" in headers else -1
+
         high_cnt = 0
         med_cnt = 0
         low_cnt = 0
-        if p_col_idx != -1:
-            for r in rows:
-                if p_col_idx < len(r):
-                    p_norm = normalize_priority(r[p_col_idx])
-                    if p_norm == "HIGH":
-                        high_cnt += 1
-                    elif p_norm == "MEDIUM":
-                        med_cnt += 1
-                    elif p_norm == "LOW":
-                        low_cnt += 1
+        feature_stats = {}
+
+        for r in rows:
+            p_norm = normalize_priority(r[p_col_idx]) if p_col_idx != -1 and p_col_idx < len(r) else None
+            if p_norm == "HIGH":
+                high_cnt += 1
+            elif p_norm == "MEDIUM":
+                med_cnt += 1
+            elif p_norm == "LOW":
+                low_cnt += 1
+
+            if fid_col_idx != -1 and fname_col_idx != -1 and fid_col_idx < len(r) and fname_col_idx < len(r):
+                fid_val = r[fid_col_idx]
+                fname_val = r[fname_col_idx]
+                fkey = (mod_title, fid_val, fname_val)
+                if fkey not in feature_stats:
+                    feature_stats[fkey] = {"count": 0, "high": 0, "medium": 0, "low": 0}
+                feature_stats[fkey]["count"] += 1
+                if p_norm == "HIGH":
+                    feature_stats[fkey]["high"] += 1
+                elif p_norm == "MEDIUM":
+                    feature_stats[fkey]["medium"] += 1
+                elif p_norm == "LOW":
+                    feature_stats[fkey]["low"] += 1
 
         total_test_cases += mod_tc_count
         total_high += high_cnt
@@ -193,14 +211,16 @@ def create_summary_sheet(wb, module_data):
         total_low += low_cnt
 
         module_summary_rows.append((mod_title, mod_tc_count, high_cnt, med_cnt, low_cnt))
+        for (mname, fid, fname), fstat in sorted(feature_stats.items(), key=lambda x: x[0][1]):
+            feature_summary_rows.append((mname, fid, fname, fstat["count"], fstat["high"], fstat["medium"], fstat["low"]))
 
     # Metric Cards Row
     metrics = [
         ("Total Modules", len(module_data), "1E293B", "F1F5F9"),
+        ("Total Features", len(feature_summary_rows), "1F4E78", "E2E8F0"),
         ("Total Test Cases", total_test_cases, "1F4E78", "E2E8F0"),
         ("High Priority", total_high, "A50E0E", "FCE8E6"),
         ("Medium Priority", total_medium, "B06000", "FEF7E0"),
-        ("Low Priority", total_low, "137333", "E6F4EA"),
     ]
 
     for idx, (label, val, fg_color, bg_color) in enumerate(metrics):
@@ -218,24 +238,23 @@ def create_summary_sheet(wb, module_data):
     ws.row_dimensions[3].height = 20
     ws.row_dimensions[4].height = 35
 
-    # Table Header for Module Breakdown (row 6)
+    # Section 1: Module Level Breakdown (row 6)
+    ws.cell(row=6, column=1, value="1. Module Summary Overview").font = Font(name="Segoe UI", size=13, bold=True, color="1F4E78")
     table_headers = ["Module Name", "Total Test Cases", "High Priority", "Medium Priority", "Low Priority"]
-    ws.row_dimensions[6].height = 26
+    ws.row_dimensions[7].height = 26
     for col_idx, th_name in enumerate(table_headers, start=1):
-        cell = ws.cell(row=6, column=col_idx, value=th_name)
+        cell = ws.cell(row=7, column=col_idx, value=th_name)
         cell.font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
         cell.fill = PatternFill(start_color="2B3E50", end_color="2B3E50", fill_type="solid")
         cell.alignment = Alignment(horizontal="center" if col_idx > 1 else "left", vertical="center")
-        thin_side = Side(border_style="thin", color="1E293B")
-        cell.border = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
+        cell.border = Border(left=Side(style="thin", color="1E293B"), right=Side(style="thin", color="1E293B"), top=Side(style="thin", color="1E293B"), bottom=Side(style="thin", color="1E293B"))
 
-    # Table Data Rows
     thin_border = Border(left=Side(style="thin", color="CBD5E1"),
                          right=Side(style="thin", color="CBD5E1"),
                          top=Side(style="thin", color="CBD5E1"),
                          bottom=Side(style="thin", color="CBD5E1"))
 
-    for row_offset, (m_name, count, h_cnt, m_cnt, l_cnt) in enumerate(module_summary_rows, start=7):
+    for row_offset, (m_name, count, h_cnt, m_cnt, l_cnt) in enumerate(module_summary_rows, start=8):
         ws.row_dimensions[row_offset].height = 22
         vals = [m_name, count, h_cnt, m_cnt, l_cnt]
         is_even = (row_offset % 2 == 0)
@@ -249,8 +268,7 @@ def create_summary_sheet(wb, module_data):
             cell.fill = fill
             cell.border = thin_border
 
-    # Total row at bottom
-    tot_row_idx = 7 + len(module_summary_rows)
+    tot_row_idx = 8 + len(module_summary_rows)
     ws.row_dimensions[tot_row_idx].height = 24
     tot_vals = ["Total", total_test_cases, total_high, total_medium, total_low]
     tot_fill = PatternFill(start_color="E2E8F0", end_color="E2E8F0", fill_type="solid")
@@ -263,11 +281,44 @@ def create_summary_sheet(wb, module_data):
         cell.fill = tot_fill
         cell.border = Border(top=Side(style="medium", color="1E293B"), bottom=Side(style="double", color="1E293B"), left=Side(style="thin", color="CBD5E1"), right=Side(style="thin", color="CBD5E1"))
 
-    ws.column_dimensions["A"].width = 36
-    ws.column_dimensions["B"].width = 20
-    ws.column_dimensions["C"].width = 18
-    ws.column_dimensions["D"].width = 18
-    ws.column_dimensions["E"].width = 18
+    # Section 2: Feature Categorization Breakdown (row tot_row_idx + 3)
+    feat_sec_start = tot_row_idx + 3
+    ws.cell(row=feat_sec_start, column=1, value="2. Feature Categorization Breakdown").font = Font(name="Segoe UI", size=13, bold=True, color="1F4E78")
+    
+    f_headers = ["Module", "Feature ID", "Feature Name", "Test Cases", "High Priority", "Medium Priority", "Low Priority"]
+    f_header_row = feat_sec_start + 1
+    ws.row_dimensions[f_header_row].height = 26
+    
+    for col_idx, th_name in enumerate(f_headers, start=1):
+        cell = ws.cell(row=f_header_row, column=col_idx, value=th_name)
+        cell.font = Font(name="Segoe UI", size=11, bold=True, color="FFFFFF")
+        cell.fill = PatternFill(start_color="1F4E78", end_color="1F4E78", fill_type="solid")
+        cell.alignment = Alignment(horizontal="center" if col_idx in [2,4,5,6,7] else "left", vertical="center")
+        cell.border = Border(left=Side(style="thin", color="1E293B"), right=Side(style="thin", color="1E293B"), top=Side(style="thin", color="1E293B"), bottom=Side(style="thin", color="1E293B"))
+
+    for row_offset, (mname, fid, fname, fcnt, fh, fm, fl) in enumerate(feature_summary_rows, start=f_header_row+1):
+        ws.row_dimensions[row_offset].height = 22
+        vals = [mname, fid, fname, fcnt, fh, fm, fl]
+        is_even = (row_offset % 2 == 0)
+        bg = "F8FAFC" if not is_even else "FFFFFF"
+        fill = PatternFill(start_color=bg, end_color=bg, fill_type="solid")
+
+        for col_idx, val in enumerate(vals, start=1):
+            cell = ws.cell(row=row_offset, column=col_idx, value=val)
+            cell.font = Font(name="Segoe UI", size=10)
+            if col_idx == 2:
+                cell.font = Font(name="Segoe UI", size=10, bold=True, color="1F4E78")
+            cell.alignment = Alignment(horizontal="center" if col_idx in [2,4,5,6,7] else "left", vertical="center")
+            cell.fill = fill
+            cell.border = thin_border
+
+    ws.column_dimensions["A"].width = 24
+    ws.column_dimensions["B"].width = 16
+    ws.column_dimensions["C"].width = 36
+    ws.column_dimensions["D"].width = 16
+    ws.column_dimensions["E"].width = 16
+    ws.column_dimensions["F"].width = 18
+    ws.column_dimensions["G"].width = 16
 
 def process_csv_files(tests_dir):
     csv_files = sorted(glob.glob(os.path.join(tests_dir, "*.csv")))
