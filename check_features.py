@@ -5,7 +5,8 @@ import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-for f in sorted(glob.glob('Tests/*.csv')):
+csv_files = sorted(glob.glob('tests/csv/*.csv') + glob.glob('Tests/*.csv'))
+for f in csv_files:
     rows = list(csv.reader(open(f, encoding='utf-8-sig')))
     headers = [h.strip().strip('"').replace('\ufeff','') for h in rows[0]]
     notes_idx = headers.index('Notes') if 'Notes' in headers else -1

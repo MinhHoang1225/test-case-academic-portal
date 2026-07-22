@@ -98,7 +98,8 @@ def get_exact_feature(tc_id, title, notes, mod_key):
 
 # Run mapping report
 unmapped_total = 0
-for f in sorted(glob.glob('Tests/*.csv')):
+csv_files = sorted(glob.glob('tests/csv/*.csv') + glob.glob('Tests/*.csv'))
+for f in csv_files:
     mod_num = re.search(r'module(\d+)_', os.path.basename(f)).group(1)
     mod_key = f"M{int(mod_num):02d}"
     rows = list(csv.reader(open(f, encoding='utf-8-sig')))
