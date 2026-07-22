@@ -1,97 +1,97 @@
 ﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
-"TC-M09-001","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Đăng nhập bằng tài khoản Student hợp lệ","Xác minh học sinh có email thuộc domain @student.passerellesnumeriques.org đăng nhập thành công vào Student Portal qua Google OAuth.","Người dùng chưa đăng nhập hệ thống. Trình duyệt đã kết nối internet và hỗ trợ Google OAuth.","UserEmail=student01@student.passerellesnumeriques.org; Role=Student","1. Truy cập URL của hệ thống.
-2. Tại màn hình đăng nhập Google OAuth, nhập tài khoản student01@student.passerellesnumeriques.org.
-3. Nhập mật khẩu hợp lệ và đồng ý cấp quyền nếu có.
-4. Quan sát trang web sau khi chuyển hướng.","Đăng nhập thành công. Giao diện tự động chuyển hướng đến Student Portal (mặc định mở tab Academic).
-Thông tin của học sinh hiển thị chính xác bao gồm Họ tên, Mã học sinh ở góc màn hình.
-Dữ liệu điểm học tập của chính học sinh này được tải lên thành công.","Cao","Liên quan đến M09-F01, M09-F07, Rule 7.1, Rule 7.9"
-"TC-M09-002","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Đăng nhập bằng tài khoản Staff của tổ chức","Xác minh tài khoản Staff khi đăng nhập qua Google OAuth sẽ được tự động nhận diện domain và chuyển hướng đến Staff Portal thay vì Student Portal.","Người dùng chưa đăng nhập hệ thống.","UserEmail=staff_user@passerellesnumeriques.org; Role=Staff","1. Truy cập URL của hệ thống.
-2. Thực hiện đăng nhập qua Google OAuth bằng tài khoản staff_user@passerellesnumeriques.org.
-3. Quan sát giao diện sau khi đăng nhập thành công.","Đăng nhập thành công.
-Hệ thống tự động nhận diện email thuộc domain @passerellesnumeriques.org.
-Chuyển hướng người dùng sang Staff Portal với đầy đủ tính năng quản trị. Không hiển thị giao diện Student Portal.","Cao","Liên quan đến M09-F01, Rule 7.1, Docs - Mục 6"
-"TC-M09-003","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Đăng nhập bằng tài khoản cá nhân ngoài tổ chức","Xác minh tài khoản email không thuộc các domain của tổ chức (ví dụ @gmail.com) bị hệ thống chặn truy cập.","Người dùng chưa đăng nhập hệ thống.","UserEmail=guest_user@gmail.com; Role=Guest","1. Truy cập URL của hệ thống.
-2. Thực hiện đăng nhập qua Google OAuth bằng tài khoản guest_user@gmail.com.
-3. Quan sát phản hồi của hệ thống.","Đăng nhập thất bại.
-Hệ thống từ chối quyền truy cập của email domain @gmail.com.
-Chuyển hướng người dùng sang trang báo lỗi ""Access Denied"" (Từ chối truy cập). Không tải bất kỳ dữ liệu nào của hệ thống.","Cao","Liên quan đến M09-F01, Rule 7.1, Error Handling (Mục 9)"
-"TC-M09-004","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Đăng nhập bằng email student hợp lệ nhưng không có dữ liệu trong hệ thống","Xác minh hệ thống không bị lỗi crash và hiển thị thông điệp phù hợp khi email student thuộc domain hợp lệ nhưng không nằm trong danh sách dữ liệu học sinh.","Người dùng chưa đăng nhập hệ thống. Tài khoản Google student tồn tại nhưng email này chưa được cấu hình trong Sheet danh sách học sinh.","UserEmail=new_student@student.passerellesnumeriques.org","1. Truy cập URL của hệ thống.
-2. Thực hiện đăng nhập qua Google OAuth bằng tài khoản new_student@student.passerellesnumeriques.org.
-3. Quan sát giao diện sau khi chuyển hướng thành công.","Đăng nhập thành công vào Student Portal.
-Hệ thống không bị lỗi crash/trắng màn hình.
-Hiển thị thông báo rõ ràng cho người dùng: ""No academic records found."" (Không tìm thấy dữ liệu học tập).","Cao","Liên quan đến M09-F01, M09-F07, Error Handling (Mục 9)"
-"TC-M09-005","Module 09 – Student Portal","M09-F02","Read-only Academic View","Chuyển đổi giữa các học kỳ (Semester Selector)","Xác minh tính năng chuyển đổi học kỳ hiển thị đúng dữ liệu điểm của học kỳ được chọn.","Học sinh đã đăng nhập thành công vào Student Portal.
-Học sinh này đã có dữ liệu điểm ở nhiều học kỳ (ví dụ: Học kỳ 1 và Học kỳ 2).","StudentCode=PNV26001; TargetSemester=Semester 2","1. Tại giao diện Student Portal, định vị bộ chọn học kỳ (Semester Selector).
-2. Nhấp vào danh sách thả xuống và chọn ""Semester 2"" (Học kỳ 2).
-3. Quan sát danh sách môn học và điểm số hiển thị.
-4. Nhấp chọn lại ""Semester 1"" (Học kỳ 1).
-5. Quan sát danh sách môn học và điểm số hiển thị.","Bảng điểm cập nhật nhanh chóng và chính xác theo học kỳ được chọn.
-Khi chọn ""Semester 2"", hệ thống chỉ tải các môn học và điểm số thuộc Học kỳ 2.
-Khi chọn ""Semester 1"", hệ thống chỉ tải các môn học và điểm số thuộc Học kỳ 1.","Cao","Liên quan đến M09-F02, Rule 7.2"
-"TC-M09-006","Module 09 – Student Portal","M09-F02","Read-only Academic View","Kiểm tra phân nhóm môn học theo danh mục (Subject Categories)","Xác minh các môn học trong học kỳ hiển thị đúng phân nhóm theo 4 danh mục đào tạo.","Học sinh đã đăng nhập thành công vào Student Portal.
-Học kỳ hiện tại có chứa các môn học thuộc cả 4 danh mục.","StudentCode=PNV26001; SelectedSemester=Semester 1","1. Chọn Học kỳ 1.
-2. Quan sát bố cục hiển thị của danh sách môn học.
-3. Kiểm tra xem các môn học có được xếp dưới các tiêu đề nhóm tương ứng hay không: Fundamental, IT, English, Soft Skills.
-4. Đối chiếu môn học cụ thể (ví dụ môn Math phải thuộc Fundamental, Java thuộc IT).","Các môn học được phân nhóm chính xác và hiển thị dưới các tiêu đề danh mục: Fundamental, IT, English, Soft Skills.
-Bố cục phân nhóm rõ ràng, dễ đọc, không có môn học nào bị xếp sai nhóm hoặc không có nhóm.","Trung bình","Liên quan đến M09-F02, Rule 7.3"
-"TC-M09-007","Module 09 – Student Portal","M09-F02","Read-only Academic View","Kiểm tra tính năng Chỉ đọc (Read-only) của Student Portal","Xác minh học sinh hoàn toàn không có quyền chỉnh sửa điểm số hay thực hiện các tác vụ thay đổi dữ liệu trên giao diện.","Học sinh đã đăng nhập thành công vào Student Portal và đang ở màn hình hiển thị điểm.","StudentCode=PNV26001","1. Quan sát toàn bộ giao diện màn hình Academic.
-2. Kiểm tra sự xuất hiện của các nút: Chỉnh sửa (Edit), Lưu (Save), Xóa (Delete), Nhập điểm (Import), Tải lên (Upload).
-3. Thử nhấp chuột vào các ô điểm số (KT TX, ĐK1-ĐK6, TCK, TLCK, Final Score, GPA).
-4. Thử gõ bàn phím để thay đổi giá trị điểm.","Giao diện không hiển thị bất kỳ nút hoặc công cụ nào cho phép chỉnh sửa, lưu, xóa hoặc nhập dữ liệu.
-Tất cả điểm số hiển thị dưới dạng văn bản tĩnh (read-only), không thể nhấp vào để chỉnh sửa hay nhập liệu từ bàn phím.","Cao","Liên quan đến M09-F02, Rule 7.4"
-"TC-M09-008","Module 09 – Student Portal","M09-F03","Empty Grade Display","Hiển thị điểm số chưa được nhập (Empty Grades)","Xác minh các ô điểm số chưa có dữ liệu sẽ hiển thị ký tự ""—"" để tránh gây hiểu lầm cho học sinh.","Học sinh đã đăng nhập. Học sinh này có một số cột điểm chưa được giáo viên nhập (ví dụ điểm thi lại TLCK hoặc điểm định kỳ ĐK3 đang trống trên Sheets).","StudentCode=PNV26001; Subject=Java Programming; EmptyColumn=TLCK","1. Truy cập bảng điểm của học kỳ chứa môn Java Programming.
-2. Quan sát hiển thị tại cột thi lại ""TLCK"" và các ô điểm trống khác của môn học này.","Hệ thống hiển thị ký tự ""—"" (gạch quang) tại các ô điểm chưa được nhập.
-Không hiển thị số ""0"" hoặc ""0.0"" hoặc để khoảng trống gây hiểu lầm, không xảy ra lỗi hiển thị hoặc lỗi hệ thống.","Cao","Liên quan đến M09-F03, Rule 7.5, Error Handling (Mục 9)"
-"TC-M09-009","Module 09 – Student Portal","M09-F04","Score Color Coding","Mã màu điểm tổng kết (/10) đạt loại Giỏi (>= 8.0)","Xác minh điểm tổng kết lớn hơn hoặc bằng 8.0 hiển thị màu Xanh lá (Green).","Học sinh đã đăng nhập và đang xem bảng điểm học kỳ. Môn Math có điểm tổng kết là 8.0, môn IT Basics có điểm tổng kết là 9.2.","StudentCode=PNV26001; Subject1=Math; FinalScore1=8.0; Subject2=IT Basics; FinalScore2=9.2","1. Tìm đến các môn Math và IT Basics trên bảng điểm.
-2. Quan sát màu sắc của điểm số hiển thị tại cột điểm tổng kết ""/10"".","Điểm số ""8.0"" và ""9.2"" hiển thị với màu xanh lá cây (Green) rõ ràng.","Trung bình","Liên quan đến M09-F04, Rule 5.5, Rule 7.6"
-"TC-M09-010","Module 09 – Student Portal","M09-F04","Score Color Coding","Mã màu điểm tổng kết (/10) đạt loại Khá/Trung bình (5.5 – 7.9)","Xác minh điểm tổng kết từ 5.5 đến 7.9 hiển thị màu Cam (Orange).","Học sinh đã đăng nhập và đang xem bảng điểm học kỳ. Môn English có điểm tổng kết là 5.5, môn Soft Skills có điểm tổng kết là 7.9.","StudentCode=PNV26001; Subject1=English; FinalScore1=5.5; Subject2=Soft Skills; FinalScore2=7.9","1. Tìm môn English và Soft Skills trên bảng điểm.
-2. Quan sát màu sắc hiển thị của điểm số tại cột điểm tổng kết ""/10"".","Điểm số ""5.5"" và ""7.9"" hiển thị với màu cam (Orange) rõ ràng.","Trung bình","Liên quan đến M09-F04, Rule 5.5, Rule 7.6"
-"TC-M09-011","Module 09 – Student Portal","M09-F04","Score Color Coding","Mã màu điểm tổng kết (/10) loại Yếu (< 5.5)","Xác minh điểm tổng kết nhỏ hơn 5.5 hiển thị màu Đỏ (Red).","Học sinh đã đăng nhập và đang xem bảng điểm. Môn Web Development có điểm tổng kết là 5.4, môn Algorithms có điểm tổng kết là 4.0.","StudentCode=PNV26001; Subject1=Web Development; FinalScore1=5.4; Subject2=Algorithms; FinalScore2=4.0","1. Tìm môn Web Development và Algorithms trên bảng điểm.
-2. Quan sát màu sắc hiển thị của điểm số tại cột điểm tổng kết ""/10"".","Điểm số ""5.4"" và ""4.0"" hiển thị với màu đỏ (Red) rõ ràng.","Trung bình","Liên quan đến M09-F04, Rule 5.5, Rule 7.6"
-"TC-M09-012","Module 09 – Student Portal","M09-F04","Score Color Coding","Mã màu điểm GPA (/4) đạt loại Giỏi/Xuất sắc (>= 3.5)","Xác minh điểm trung bình tích lũy học kỳ GPA lớn hơn hoặc bằng 3.5 hiển thị màu Xanh lá (Green).","Học sinh đã đăng nhập. Học kỳ hiện tại học sinh đạt điểm trung bình GPA là 3.5 hoặc 3.8.","StudentCode=PNV26001; GPA=3.5; GPA2=3.8","1. Quan sát vùng hiển thị điểm trung bình GPA học kỳ hiện tại trên giao diện.
-2. Kiểm tra màu sắc hiển thị của điểm GPA.","Điểm số GPA ""3.5"" và ""3.8"" hiển thị với màu xanh lá cây (Green).","Trung bình","Liên quan đến M09-F04, Rule 5.5, Rule 7.6"
-"TC-M09-013","Module 09 – Student Portal","M09-F04","Score Color Coding","Mã màu điểm GPA (/4) đạt loại Trung bình/Khá (2.0 – 3.4)","Xác minh điểm trung bình tích lũy học kỳ GPA từ 2.0 đến 3.4 hiển thị màu Cam (Orange).","Học sinh đã đăng nhập. Học kỳ hiện tại học sinh đạt GPA là 2.0 hoặc 3.1.","StudentCode=PNV26001; GPA=2.0; GPA2=3.1","1. Quan sát khu vực hiển thị điểm trung bình GPA trên màn hình.
-2. Kiểm tra màu sắc hiển thị của điểm GPA.","Điểm GPA ""2.0"" và ""3.1"" hiển thị với màu cam (Orange).","Trung bình","Liên quan đến M09-F04, Rule 5.5, Rule 7.6"
-"TC-M09-014","Module 09 – Student Portal","M09-F04","Score Color Coding","Mã màu điểm GPA (/4) loại Yếu (< 2.0)","Xác minh điểm trung bình tích lũy học kỳ GPA nhỏ hơn 2.0 hiển thị màu Đỏ (Red).","Học sinh đã đăng nhập. Học kỳ hiện tại học sinh đạt GPA là 1.9 hoặc 1.2.","StudentCode=PNV26001; GPA=1.9; GPA2=1.2","1. Quan sát khu vực hiển thị điểm trung bình GPA trên màn hình.
-2. Kiểm tra màu sắc hiển thị của điểm GPA.","Điểm GPA ""1.9"" và ""1.2"" hiển thị với màu đỏ (Red).","Trung bình","Liên quan đến M09-F04, Rule 5.5, Rule 7.6"
-"TC-M09-015","Module 09 – Student Portal","M09-F05","Re-study Flag Display","Hiển thị nhãn Học lại (Re-study) cho môn học bị đánh dấu học lại","Xác minh môn học bị đánh dấu học lại trên hệ thống (Re-study = True) sẽ hiển thị nhãn cảnh báo màu đỏ.","Học sinh đã đăng nhập. Môn Database Management của học sinh này bị đánh dấu Re-study = True trên Sheets database. Môn Java Basics có Re-study = False.","StudentCode=PNV26001; Subject1=Database Management; ReStudy1=True; Subject2=Java Basics; ReStudy2=False","1. Truy cập bảng điểm học kỳ chứa môn Database Management và Java Basics.
-2. Kiểm tra cột ""Re-study"" hoặc phần nhãn bên cạnh tên mỗi môn học.","Môn Database Management hiển thị một nhãn hoặc huy hiệu ""Re-study"" màu đỏ nổi bật.
-Môn Java Basics không hiển thị bất kỳ nhãn cảnh báo học lại nào.","Cao","Liên quan đến M09-F05, Rule 7.7"
-"TC-M09-016","Module 09 – Student Portal","M09-F06","Quick Access to Bi-Weekly Reports","Hiển thị shortcut Báo cáo thực tập khi nhóm thực tập đang hoạt động (On-going)","Xác minh shortcut dẫn đến Báo cáo thực tập hiển thị khi học sinh thuộc nhóm thực tập ở trạng thái On-going.","Học sinh PNV26001 được phân bổ vào nhóm thực tập ""Internship Group 2026"". Trạng thái của nhóm thực tập này trong Sheet là ""On-going"".","StudentCode=PNV26001; InternshipGroup=Internship Group 2026; Status=On-going","1. Đăng nhập tài khoản học sinh PNV26001.
-2. Quan sát giao diện Student Portal (khu vực thanh điều hướng hoặc bảng điều khiển).
-3. Xác minh sự xuất hiện của shortcut/nút ""Bi-Weekly Internship Reports"" (Báo cáo thực tập định kỳ).","Shortcut ""Bi-Weekly Internship Reports"" xuất hiện rõ ràng trên giao diện.
-Học sinh có thể nhấp vào để mở giao diện báo cáo thực tập.","Cao","Liên quan đến M09-F06, Rule 7.8"
-"TC-M09-017","Module 09 – Student Portal","M09-F06","Quick Access to Bi-Weekly Reports","Ẩn shortcut Báo cáo thực tập khi nhóm thực tập ở trạng thái khác On-going","Xác minh shortcut dẫn đến Báo cáo thực tập bị ẩn khi nhóm thực tập của học sinh ở trạng thái Planned hoặc Completed.","Học sinh PNV26002 thuộc nhóm thực tập ""Internship Group 2025"" đã hoàn thành (trạng thái ""Completed"" trên hệ thống).","StudentCode=PNV26002; InternshipGroup=Internship Group 2025; Status=Completed","1. Đăng nhập tài khoản học sinh PNV26002.
-2. Quan sát giao diện Student Portal.
-3. Kiểm tra sự xuất hiện của nút/shortcut ""Bi-Weekly Internship Reports"".","Shortcut/nút liên kết đến Báo cáo thực tập hoàn toàn ẩn khỏi giao diện.
-Học sinh không thể nhìn thấy hay nhấp vào nút này.","Cao","Liên quan đến M09-F06, Rule 7.8"
-"TC-M09-018","Module 09 – Student Portal","M09-F06","Quick Access to Bi-Weekly Reports","Ẩn shortcut Báo cáo thực tập khi học sinh chưa được phân bổ thực tập","Xác minh shortcut Báo cáo thực tập bị ẩn khi học sinh không thuộc bất kỳ nhóm thực tập nào.","Học sinh PNV26003 chưa được gán vào bất kỳ nhóm thực tập nào trên Sheets cơ sở dữ liệu.","StudentCode=PNV26003; InternshipGroup=None","1. Đăng nhập tài khoản học sinh PNV26003.
-2. Quan sát giao diện Student Portal.
-3. Kiểm tra sự xuất hiện của nút/shortcut ""Bi-Weekly Internship Reports"".","Shortcut/nút liên kết đến Báo cáo thực tập ẩn hoàn toàn, không hiển thị trên giao diện của học sinh.","Cao","Liên quan đến M09-F06, Rule 7.8"
-"TC-M09-019","Module 09 – Student Portal","M09-F07","Data Isolation","Xác minh cách ly dữ liệu giữa các học sinh (Data Isolation)","Xác minh cơ chế bảo mật phía server đảm bảo học sinh chỉ xem được điểm của chính mình và bị từ chối truy cập dữ liệu của học sinh khác.","Học sinh PNV26001 và học sinh PNV26002 đều tồn tại trong hệ thống. Đã đăng nhập bằng tài khoản học sinh PNV26001.","AuthEmail=student01@student.passerellesnumeriques.org; TargetStudentCode=PNV26002","1. Đăng nhập bằng tài khoản student01@student.passerellesnumeriques.org.
-2. Tại giao diện bảng điểm, thử thay đổi tham số trên URL (ví dụ từ `?studentCode=PNV26001` thành `?studentCode=PNV26002`) hoặc dùng DevTools sửa mã request gửi về API backend để yêu cầu dữ liệu điểm của học sinh PNV26002.
-3. Quan sát kết quả hiển thị và phản hồi từ hệ thống.","Hệ thống từ chối yêu cầu truy cập dữ liệu điểm của học sinh B.
-Màn hình không hiển thị điểm của học sinh B.
-Backend trả về thông báo lỗi phân quyền (ví dụ: ""Unauthorized access"" hoặc Access Denied).
-Bảng điểm hiển thị trên giao diện vẫn giữ nguyên của học sinh PNV26001 (hoặc hiển thị trang thông báo lỗi bảo mật).","Cao","Liên quan đến M09-F07, Rule 7.9, Error Handling (Mục 9)"
-"TC-M09-020","Module 09 – Student Portal","M09-F07","Data Isolation","Chặn gọi API lấy điểm từ bên ngoài khi chưa xác thực","Xác minh các yêu cầu gọi API lấy điểm của học sinh gửi trực tiếp từ bên ngoài mà chưa qua đăng nhập Google OAuth đều bị từ chối.","Người dùng chưa đăng nhập tài khoản. Trình duyệt ở chế độ ẩn danh hoặc sử dụng công cụ kiểm thử API (như Postman).","TargetApiUrl=https://script.google.com/macros/s/.../exec?action=getGrades&studentCode=PNV26001","1. Mở cửa sổ ẩn danh hoặc công cụ kiểm thử API.
-2. Gửi request trực tiếp (HTTP GET/POST) đến URL API của hệ thống để lấy dữ liệu điểm của học sinh PNV26001.
-3. Quan sát phản hồi trả về từ hệ thống.","Yêu cầu bị từ chối.
-Hệ thống phản hồi mã lỗi 401 Unauthorized (hoặc tương đương) hoặc chuyển hướng request về giao diện đăng nhập Google OAuth.
-Không có dữ liệu điểm nào được trả về.","Cao","Liên quan đến M09-F07, Rule 7.9"
-"TC-M09-021","Module 09 – Student Portal","M09-UI","User Interface & Responsiveness","Kiểm tra hiển thị giao diện trên thiết bị di động (Responsive UI)","Xác minh giao diện Student Portal hiển thị tốt trên các thiết bị di động mà không bị vỡ khung hoặc mất thông tin điểm số.","Học sinh đã đăng nhập thành công.","ViewportSize=375x812 (iPhone X)","1. Đăng nhập Student Portal.
-2. Mở DevTools (F12) và kích hoạt chế độ Responsive Viewport giả lập màn hình iPhone X (375x812 px).
-3. Quan sát bộ chọn học kỳ, các danh mục và bảng điểm.
-4. Thao tác vuốt cuộn ngang bảng điểm để xem đầy đủ các cột điểm (KT TX, ĐK1-ĐK6, TCK, TLCK...).","Giao diện tự động co giãn tương thích.
-Các tiêu đề danh mục và chữ hiển thị rõ ràng, không đè lên nhau.
-Bảng điểm hiển thị thanh cuộn ngang mượt mà cho phép xem hết các cột điểm mà không phá vỡ bố cục tổng thể của trang.","Trung bình","Liên quan đến Testing Environment (Mục 9)"
-"TC-M09-022","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Kiểm tra hành vi khi hết hạn phiên làm việc Google (Google Sign-Out)","Đảm bảo hệ thống phát hiện phiên đăng nhập Google đã kết thúc và ngăn học sinh tiếp tục truy cập dữ liệu.","Học sinh đang đăng nhập và mở tab Student Portal.","Action=Google Sign-Out","1. Mở một tab trình duyệt khác, truy cập accounts.google.com và đăng xuất tài khoản Google hiện tại.
-2. Quay lại tab Student Portal.
-3. Thực hiện chuyển đổi học kỳ trên bộ chọn Semester Selector hoặc nhấn F5 để tải lại trang.
-4. Quan sát phản hồi của hệ thống.","Hệ thống phát hiện phiên làm việc đã kết thúc.
-Các thao tác yêu cầu dữ liệu học kỳ mới bị dừng lại.
-Người dùng được chuyển hướng về trang đăng nhập Google OAuth hoặc hiển thị thông điệp yêu cầu đăng nhập lại để tiếp tục.","Cao","Liên quan đến Rule 7.1"
-"TC-M09-023","Module 09 – Student Portal","M09-F02","Read-only Academic View","Kiểm tra xác thực tham số học kỳ không hợp lệ (Semester Validation)","Xác minh hệ thống không bị lỗi crash và tự động xử lý an toàn khi tham số học kỳ được truyền vào không hợp lệ hoặc không tồn tại.","Học sinh đã đăng nhập thành công.","InvalidSemester=Semester 7; InvalidSemester2=abc","1. Cố ý thay đổi tham số học kỳ trên đường dẫn URL thành giá trị không hợp lệ (ví dụ: `?semester=7` or `?semester=abc`).
-2. Tải lại trang hoặc cố tình gửi request với tham số không hợp lệ đó.
-3. Quan sát phản hồi của giao diện.","Hệ thống không bị lỗi crash/trắng trang.
-Tự động quay về hiển thị dữ liệu của học kỳ mặc định (ví dụ: Học kỳ 1 hoặc học kỳ hiện tại hoạt động gần nhất), hoặc hiển thị thông báo lỗi ""Học kỳ không hợp lệ"".","Trung bình","Liên quan đến Validation Rules (Mục 8 - Semester)"
+"TC-M09-001","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Log in with a valid Student account","Verify student co email thuoc domain @student.passerellesnumeriques.org log in successfully vao Student Portal qua Google OAuth.","Nguoi dung chua log in system. Trinh duyet da ket noi internet va ho tro Google OAuth.","UserEmail=student01@student.passerellesnumeriques.org; Role=Student","1. Truy cap URL cua system.
+2. Tai man hinh log in Google OAuth, enter account student01@student.passerellesnumeriques.org.
+3. Enter mat khau hop le va dong y cap quyen neu co.
+4. Observe trang web sau khi redirect.","Log in successfully. Interface tu dong redirect den Student Portal (mac dinh mo tab Academic).
+Thong tin cua student display chinh xac bao gom Ho ten, Ma student o goc man hinh.
+Du lieu grade hoc tap cua chinh student nay duoc tai len successfully.","High","Related to M09-F01, M09-F07, Rule 7.1, Rule 7.9"
+"TC-M09-002","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Log in with an organization Staff account","Verify account Staff khi log in qua Google OAuth se duoc tu dong nhan dien domain va redirect den Staff Portal thay vi Student Portal.","Nguoi dung chua log in system.","UserEmail=staff_user@passerellesnumeriques.org; Role=Staff","1. Truy cap URL cua system.
+2. Thuc hien log in qua Google OAuth bang account staff_user@passerellesnumeriques.org.
+3. Observe interface sau khi log in successfully.","Log in successfully.
+System tu dong nhan dien email thuoc domain @passerellesnumeriques.org.
+Chuyen huong user sang Staff Portal voi day du tinh nang quan tri. Khong display interface Student Portal.","High","Related to M09-F01, Rule 7.1, Docs - Section 6"
+"TC-M09-003","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Log in with an external personal account","Verify account email khong thuoc cac domain cua organization (e.g. @gmail.com) bi system chan access.","Nguoi dung chua log in system.","UserEmail=guest_user@gmail.com; Role=Guest","1. Truy cap URL cua system.
+2. Thuc hien log in qua Google OAuth bang account guest_user@gmail.com.
+3. Observe phan hoi cua system.","Log in failed.
+System denies quyen access cua email domain @gmail.com.
+Chuyen huong user sang trang bao error ""Access Denied"" (Tu choi access). Khong tai bat ky du lieu nao cua system.","High","Related to M09-F01, Rule 7.1, Error Handling (Section 9)"
+"TC-M09-004","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Log in with valid student email but without academic records in system","Verify system khong bi error crash va display thong diep phu hop khi email student thuoc domain hop le nhung khong nam trong danh sach du lieu student.","Nguoi dung chua log in system. Tai khoan Google student ton tai nhung email nay chua duoc cau hinh trong Sheet danh sach student.","UserEmail=new_student@student.passerellesnumeriques.org","1. Truy cap URL cua system.
+2. Thuc hien log in qua Google OAuth bang account new_student@student.passerellesnumeriques.org.
+3. Observe interface sau khi redirect successfully.","Log in successfully vao Student Portal.
+System khong bi error crash/trang man hinh.
+Hien thi notification ro rang cho user: ""No academic records found."" (Khong tim thay du lieu hoc tap).","High","Related to M09-F01, M09-F07, Error Handling (Section 9)"
+"TC-M09-005","Module 09 – Student Portal","M09-F02","Read-only Academic View","Switching between semesters (Semester Selector)","Verify tinh nang switching semester display dung du lieu grade cua semester duoc select.","Hoc sinh da log in successfully vao Student Portal.
+Hoc sinh nay da co du lieu grade o nhieu semester (e.g.: Semester 1 va Semester 2).","StudentCode=PNV26001; TargetSemester=Semester 2","1. Tai interface Student Portal, dinh vi bo select semester (Semester Selector).
+2. Nhap vao danh sach tha xuong va select ""Semester 2"" (Semester 2).
+3. Observe danh sach course va grades display.
+4. Nhap select lai ""Semester 1"" (Semester 1).
+5. Observe danh sach course va grades display.","Bang grade cap nhat nhanh chong va chinh xac theo semester duoc select.
+Khi select ""Semester 2"", system chi tai cac course va grades thuoc Semester 2.
+Khi select ""Semester 1"", system chi tai cac course va grades thuoc Semester 1.","High","Related to M09-F02, Rule 7.2"
+"TC-M09-006","Module 09 – Student Portal","M09-F02","Read-only Academic View","Verify categorization course theo category (Subject Categories)","Verify cac course trong semester display dung categorization theo 4 category dao create.","Hoc sinh da log in successfully vao Student Portal.
+Semester hien tai co chua cac course thuoc ca 4 category.","StudentCode=PNV26001; SelectedSemester=Semester 1","1. Select Semester 1.
+2. Observe bo cuc display cua danh sach course.
+3. Verify whether cac course co duoc xep duoi cac tieu de group tuong ung hay khong: Fundamental, IT, English, Soft Skills.
+4. Doi chieu course cu the (e.g. mon Math phai thuoc Fundamental, Java thuoc IT).","Cac course duoc categorization chinh xac va display duoi cac tieu de category: Fundamental, IT, English, Soft Skills.
+Bo cuc categorization ro rang, de doc, khong co course nao bi xep sai group hoac khong co group.","Medium","Related to M09-F02, Rule 7.3"
+"TC-M09-007","Module 09 – Student Portal","M09-F02","Read-only Academic View","Verify tinh nang Read-only (Read-only) cua Student Portal","Verify student hoan toan khong co quyen edit grades hay thuc hien cac tac vu thay doi du lieu tren interface.","Hoc sinh da log in successfully vao Student Portal va dang o man hinh display grade.","StudentCode=PNV26001","1. Observe toan bo interface man hinh Academic.
+2. Verify su xuat hien cua cac nut: Edit (Edit), Save (Save), Delete (Delete), Enter grade (Import), Upload (Upload).
+3. Thu click chuot vao cac o grades (KT TX, DK1-DK6, TCK, TLCK, Final Score, GPA).
+4. Thu go ban phim de thay doi gia tri grade.","Interface not displayed bat ky nut hoac cong cu nao allows edit, save, delete hoac enter du lieu.
+Tat ca grades display as van ban tinh (read-only), cannot click vao de edit hay enter lieu tu ban phim.","High","Related to M09-F02, Rule 7.4"
+"TC-M09-008","Module 09 – Student Portal","M09-F03","Empty Grade Display","Hien thi grades chua duoc enter (Empty Grades)","Verify cac o grades chua co du lieu se display ky tu ""—"" de tranh gay hieu lam cho student.","Hoc sinh da log in. Hoc sinh nay co mot so cot grade chua duoc giao vien enter (e.g. grade thi lai TLCK hoac grade dinh ky DK3 dang trong tren Sheets).","StudentCode=PNV26001; Subject=Java Programming; EmptyColumn=TLCK","1. Truy cap transcript cua semester chua mon Java Programming.
+2. Observe display tai cot thi lai ""TLCK"" va cac o grade trong khac cua course nay.","System display ky tu ""—"" (gach quang) tai cac o grade chua duoc enter.
+Khong display so ""0"" hoac ""0.0"" hoac de khoang trong gay hieu lam, khong xay ra error display hoac error system.","High","Related to M09-F03, Rule 7.5, Error Handling (Section 9)"
+"TC-M09-009","Module 09 – Student Portal","M09-F04","Score Color Coding","Ma mau grade tong ket (/10) dat loai Gioi (>= 8.0)","Verify grade tong ket lon hon hoac bang 8.0 display mau Xanh la (Green).","Hoc sinh da log in va dang xem transcript semester. Mon Math co grade tong ket la 8.0, mon IT Basics co grade tong ket la 9.2.","StudentCode=PNV26001; Subject1=Math; FinalScore1=8.0; Subject2=IT Basics; FinalScore2=9.2","1. Tim den cac mon Math va IT Basics tren transcript.
+2. Observe mau sac cua grades display tai cot grade tong ket ""/10"".","Diem so ""8.0"" va ""9.2"" display voi mau xanh la cay (Green) ro rang.","Medium","Related to M09-F04, Rule 5.5, Rule 7.6"
+"TC-M09-010","Module 09 – Student Portal","M09-F04","Score Color Coding","Ma mau grade tong ket (/10) dat loai Kha/Trung binh (5.5 – 7.9)","Verify grade tong ket tu 5.5 den 7.9 display mau Cam (Orange).","Hoc sinh da log in va dang xem transcript semester. Mon English co grade tong ket la 5.5, mon Soft Skills co grade tong ket la 7.9.","StudentCode=PNV26001; Subject1=English; FinalScore1=5.5; Subject2=Soft Skills; FinalScore2=7.9","1. Tim mon English va Soft Skills tren transcript.
+2. Observe mau sac display cua grades tai cot grade tong ket ""/10"".","Diem so ""5.5"" va ""7.9"" display voi mau cam (Orange) ro rang.","Medium","Related to M09-F04, Rule 5.5, Rule 7.6"
+"TC-M09-011","Module 09 – Student Portal","M09-F04","Score Color Coding","Ma mau grade tong ket (/10) loai Yeu (< 5.5)","Verify grade tong ket nho hon 5.5 display mau Do (Red).","Hoc sinh da log in va dang xem transcript. Mon Web Development co grade tong ket la 5.4, mon Algorithms co grade tong ket la 4.0.","StudentCode=PNV26001; Subject1=Web Development; FinalScore1=5.4; Subject2=Algorithms; FinalScore2=4.0","1. Tim mon Web Development va Algorithms tren transcript.
+2. Observe mau sac display cua grades tai cot grade tong ket ""/10"".","Diem so ""5.4"" va ""4.0"" display voi mau do (Red) ro rang.","Medium","Related to M09-F04, Rule 5.5, Rule 7.6"
+"TC-M09-012","Module 09 – Student Portal","M09-F04","Score Color Coding","Ma mau grade GPA (/4) dat loai Gioi/Xuat sac (>= 3.5)","Verify grade trung binh tich luy semester GPA lon hon hoac bang 3.5 display mau Xanh la (Green).","Hoc sinh da log in. Semester hien tai student dat grade trung binh GPA la 3.5 hoac 3.8.","StudentCode=PNV26001; GPA=3.5; GPA2=3.8","1. Observe vung display grade trung binh GPA semester hien tai tren interface.
+2. Verify mau sac display cua grade GPA.","Diem so GPA ""3.5"" va ""3.8"" display voi mau xanh la cay (Green).","Medium","Related to M09-F04, Rule 5.5, Rule 7.6"
+"TC-M09-013","Module 09 – Student Portal","M09-F04","Score Color Coding","Ma mau grade GPA (/4) dat loai Trung binh/Kha (2.0 – 3.4)","Verify grade trung binh tich luy semester GPA tu 2.0 den 3.4 display mau Cam (Orange).","Hoc sinh da log in. Semester hien tai student dat GPA la 2.0 hoac 3.1.","StudentCode=PNV26001; GPA=2.0; GPA2=3.1","1. Observe khu vuc display grade trung binh GPA tren man hinh.
+2. Verify mau sac display cua grade GPA.","Diem GPA ""2.0"" va ""3.1"" display voi mau cam (Orange).","Medium","Related to M09-F04, Rule 5.5, Rule 7.6"
+"TC-M09-014","Module 09 – Student Portal","M09-F04","Score Color Coding","Ma mau grade GPA (/4) loai Yeu (< 2.0)","Verify grade trung binh tich luy semester GPA nho hon 2.0 display mau Do (Red).","Hoc sinh da log in. Semester hien tai student dat GPA la 1.9 hoac 1.2.","StudentCode=PNV26001; GPA=1.9; GPA2=1.2","1. Observe khu vuc display grade trung binh GPA tren man hinh.
+2. Verify mau sac display cua grade GPA.","Diem GPA ""1.9"" va ""1.2"" display voi mau do (Red).","Medium","Related to M09-F04, Rule 5.5, Rule 7.6"
+"TC-M09-015","Module 09 – Student Portal","M09-F05","Re-study Flag Display","Hien thi nhan Hoc lai (Re-study) cho course bi danh dau hoc lai","Verify course bi danh dau hoc lai tren system (Re-study = True) se display nhan cphoto bao mau do.","Hoc sinh da log in. Mon Database Management cua student nay bi danh dau Re-study = True tren Sheets database. Mon Java Basics co Re-study = False.","StudentCode=PNV26001; Subject1=Database Management; ReStudy1=True; Subject2=Java Basics; ReStudy2=False","1. Truy cap transcript semester chua mon Database Management va Java Basics.
+2. Verify cot ""Re-study"" hoac phan nhan ben canh ten moi course.","Mon Database Management display mot nhan hoac huy hieu ""Re-study"" mau do noi bat.
+Mon Java Basics not displayed bat ky nhan cphoto bao hoc lai nao.","High","Related to M09-F05, Rule 7.7"
+"TC-M09-016","Module 09 – Student Portal","M09-F06","Quick Access to Bi-Weekly Reports","Hien thi shortcut Bao cao internship khi internship group dang hoat dong (On-going)","Verify shortcut dan den Bao cao internship display khi student thuoc internship group o status On-going.","Hoc sinh PNV26001 duoc phan bo vao internship group ""Internship Group 2026"". Status cua internship group nay trong Sheet la ""On-going"".","StudentCode=PNV26001; InternshipGroup=Internship Group 2026; Status=On-going","1. Log in account student PNV26001.
+2. Observe interface Student Portal (khu vuc thanh dieu huong hoac bang dieu khien).
+3. Verify su xuat hien cua shortcut/nut ""Bi-Weekly Internship Reports"" (Bao cao internship dinh ky).","Shortcut ""Bi-Weekly Internship Reports"" xuat hien ro rang tren interface.
+Hoc sinh can click vao de mo interface internship report.","High","Related to M09-F06, Rule 7.8"
+"TC-M09-017","Module 09 – Student Portal","M09-F06","Quick Access to Bi-Weekly Reports","An shortcut Bao cao internship khi internship group o status khac On-going","Verify shortcut dan den Bao cao internship bi an khi internship group cua student o status Planned hoac Completed.","Hoc sinh PNV26002 thuoc internship group ""Internship Group 2025"" da hoan thanh (status ""Completed"" tren system).","StudentCode=PNV26002; InternshipGroup=Internship Group 2025; Status=Completed","1. Log in account student PNV26002.
+2. Observe interface Student Portal.
+3. Verify su xuat hien cua nut/shortcut ""Bi-Weekly Internship Reports"".","Shortcut/nut lien ket den Bao cao internship hoan toan an khoi interface.
+Hoc sinh cannot nhin thay hay click button nay.","High","Related to M09-F06, Rule 7.8"
+"TC-M09-018","Module 09 – Student Portal","M09-F06","Quick Access to Bi-Weekly Reports","An shortcut Bao cao internship khi student chua duoc phan bo internship","Verify shortcut Bao cao internship bi an khi student khong thuoc bat ky internship group nao.","Hoc sinh PNV26003 chua duoc gan vao bat ky internship group nao tren Sheets co so du lieu.","StudentCode=PNV26003; InternshipGroup=None","1. Log in account student PNV26003.
+2. Observe interface Student Portal.
+3. Verify su xuat hien cua nut/shortcut ""Bi-Weekly Internship Reports"".","Shortcut/nut lien ket den Bao cao internship an hoan toan, not displayed tren interface cua student.","High","Related to M09-F06, Rule 7.8"
+"TC-M09-019","Module 09 – Student Portal","M09-F07","Data Isolation","Verify cach ly du lieu giua cac student (Data Isolation)","Verify co che bao mat phia server dam bao student chi xem duoc grade cua chinh minh va bi denies access du lieu cua student khac.","Hoc sinh PNV26001 va student PNV26002 deu exist in system. Da log in bang account student PNV26001.","AuthEmail=student01@student.passerellesnumeriques.org; TargetStudentCode=PNV26002","1. Log in bang account student01@student.passerellesnumeriques.org.
+2. Tai interface transcript, thu thay doi tham so tren URL (e.g. tu `?studentCode=PNV26001` thanh `?studentCode=PNV26002`) hoac dung DevTools sua ma request gui ve API backend de requires du lieu grade cua student PNV26002.
+3. Observe ket qua display va phan hoi tu system.","System denies requires access du lieu grade cua student B.
+Man hinh not displayed grade cua student B.
+Backend tra ve notification error phan quyen (e.g.: ""Unauthorized access"" hoac Access Denied).
+Bang grade display tren interface van giu nguyen cua student PNV26001 (hoac display trang notification error bao mat).","High","Related to M09-F07, Rule 7.9, Error Handling (Section 9)"
+"TC-M09-020","Module 09 – Student Portal","M09-F07","Data Isolation","Chan goi API lay grade tu ben external khi chua xac thuc","Verify cac requires goi API lay grade cua student gui truc tiep tu ben external ma chua qua log in Google OAuth deu bi denies.","Nguoi dung chua log in account. Trinh duyet o che do an danh hoac su dung cong cu kiem thu API (nhu Postman).","TargetApiUrl=https://script.google.com/macros/s/.../exec?action=getGrades&studentCode=PNV26001","1. Mo cua so an danh hoac cong cu kiem thu API.
+2. Gui request truc tiep (HTTP GET/POST) den URL API cua system de lay du lieu grade cua student PNV26001.
+3. Observe phan hoi tra ve tu system.","Yeu cau bi denies.
+System phan hoi ma error 401 Unauthorized (hoac tuong duong) hoac redirect request ve interface log in Google OAuth.
+Khong co du lieu grade nao duoc tra ve.","High","Related to M09-F07, Rule 7.9"
+"TC-M09-021","Module 09 – Student Portal","M09-UI","User Interface & Responsiveness","Verify display interface tren thiet bi di dong (Responsive UI)","Verify interface Student Portal display tot tren cac thiet bi di dong ma khong bi vo khung hoac mat thong tin grades.","Hoc sinh da log in successfully.","ViewportSize=375x812 (iPhone X)","1. Log in Student Portal.
+2. Mo DevTools (F12) va kich hoat che do Responsive Viewport gia lap man hinh iPhone X (375x812 px).
+3. Observe bo select semester, cac category va transcript.
+4. Thao tac vuot cuon ngang transcript de xem day du cac cot grade (KT TX, DK1-DK6, TCK, TLCK...).","Interface tu dong co gian tuong thich.
+Cac tieu de category va chu display ro rang, khong de len nhau.
+Bang grade display thanh cuon ngang muot ma allows xem het cac cot grade ma khong pha vo bo cuc tong the cua trang.","Medium","Related to Testing Environment (Section 9)"
+"TC-M09-022","Module 09 – Student Portal","M09-F01","Role-based Auto-login","Verify hanh vi khi het han phien lam viec Google (Google Sign-Out)","Dam bao system phat hien phien log in Google da ket thuc va ngan student tiep tuc access du lieu.","Hoc sinh dang log in va mo tab Student Portal.","Action=Google Sign-Out","1. Mo mot tab trinh duyet khac, access accounts.google.com va dang xuat account Google hien tai.
+2. Quay lai tab Student Portal.
+3. Thuc hien switching semester tren bo select Semester Selector hoac click F5 de tai lai trang.
+4. Observe phan hoi cua system.","System phat hien phien lam viec da ket thuc.
+Cac thao tac requires du lieu semester moi bi dung lai.
+Nguoi dung duoc redirect ve trang log in Google OAuth hoac display thong diep requires log in lai de tiep tuc.","High","Related to Rule 7.1"
+"TC-M09-023","Module 09 – Student Portal","M09-F02","Read-only Academic View","Verify xac thuc tham so semester khong hop le (Semester Validation)","Verify system khong bi error crash va tu dong xu ly an toan khi tham so semester duoc truyen vao khong hop le hoac khong ton tai.","Hoc sinh da log in successfully.","InvalidSemester=Semester 7; InvalidSemester2=abc","1. Co y thay doi tham so semester tren duong dan URL thanh gia tri khong hop le (e.g.: `?semester=7` or `?semester=abc`).
+2. Tai lai trang hoac co tinh gui request voi tham so khong hop le do.
+3. Observe phan hoi cua interface.","System khong bi error crash/trang trang.
+Tu dong quay ve display du lieu cua semester mac dinh (e.g.: Semester 1 hoac semester hien tai hoat dong gan nhat), hoac display notification error ""Semester khong hop le"".","Medium","Related to Validation Rules (Section 8 - Semester)"

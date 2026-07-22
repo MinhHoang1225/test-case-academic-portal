@@ -1,27 +1,27 @@
 # Test Case Template
 
-## Thông tin chung
+## General Information
 - ID: 
 - Module: 
 - Title: 
-- Mục tiêu: 
+- Objective: 
 - Priority: 
-- Người kiểm thử: 
-- Ngày kiểm thử: 
+- Tester: 
+- Test Date: 
 
-## Tiền điều kiện
+## Preconditions
 - 
 
-## Dữ liệu kiểm thử
+## Test Data
 - 
 
-## Các bước thực hiện
+## Execution Steps
 1. 
 2. 
 3. 
 
-## Kết quả mong đợi
+## Expected Result
 - 
 
-## Ghi chú
+## Notes
 - 

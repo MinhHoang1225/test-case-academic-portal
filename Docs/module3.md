@@ -40,7 +40,7 @@ Each subject contains several grading components.
 | Grade Component | Score Range | Description |
 |-----------------|------------|-------------|
 | KT TX (Regular Test) | 0 – 10 | Weight = 1 |
-| ĐK1 – ĐK6 (Periodic Tests) | 0 – 10 | Weight = 2 each |
+| DK1 – DK6 (Periodic Tests) | 0 – 10 | Weight = 2 each |
 | TCK (Final Exam) | 0 – 10 | Available only when TBKT ≥ 5.0 |
 | TLCK (Retake Exam) | 0 – 10 | Optional retake examination |
 | Final Score (/10) | 0 – 10 | Entered manually |
@@ -55,7 +55,7 @@ TBKT (Continuous Assessment Average) is calculated using the weighted average fo
 
 ```
 TBKT =
-(KT_TX × 1 + ĐK1 × 2 + ĐK2 × 2 + ... + ĐKn × 2)
+(KT_TX × 1 + DK1 × 2 + DK2 × 2 + ... + DKn × 2)
 /
 (1 + 2 × Number of Periodic Tests)
 ```
@@ -66,7 +66,7 @@ TBKT =
 
 ```
 KT TX = 7.0
-ĐK1 = 8.0
+DK1 = 8.0
 ```
 
 Calculation
@@ -90,9 +90,9 @@ YES
 
 ```
 KT TX = 6.0
-ĐK1 = 7.0
-ĐK2 = 8.0
-ĐK3 = 9.0
+DK1 = 7.0
+DK2 = 8.0
+DK3 = 9.0
 ```
 
 Calculation
@@ -118,7 +118,7 @@ YES
 
 ```
 KT TX = 3.0
-ĐK1 = 5.0
+DK1 = 5.0
 ```
 
 Calculation
@@ -449,7 +449,7 @@ Example 1
 
 ```
 KT TX = 7
-ĐK1 = 8
+DK1 = 8
 ```
 
 Expected
@@ -465,7 +465,7 @@ Example 2
 
 ```
 KT TX = 3
-ĐK1 = 5
+DK1 = 5
 ```
 
 Expected

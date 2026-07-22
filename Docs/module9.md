@@ -70,7 +70,7 @@ Each subject displays detailed grading information.
 | Column | Description |
 |----------|-------------|
 | KT TX | Regular Test |
-| ĐK1 – ĐK6 | Periodic Tests |
+| DK1 – DK6 | Periodic Tests |
 | TCK | Final Examination |
 | TLCK | Retake Examination |
 | /10 | Final Score |
