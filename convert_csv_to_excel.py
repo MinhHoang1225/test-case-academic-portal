@@ -4,6 +4,7 @@ import csv
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.datavalidation import DataValidation
 
 # Colors
 HEADER_BG = "1F4E78"        # Navy blue
@@ -12,32 +13,32 @@ ZEBRA_BG  = "F8FAFC"        # Light slate/blue tint
 BORDER_COLOR = "CBD5E1"     # Light gray border
 
 PRIORITY_MAP = {
-    "HIGH": "HIGH",
-    "CAO": "HIGH",
-    "MEDIUM": "MEDIUM",
-    "TRUNG BÌNH": "MEDIUM",
-    "TRUNG BINH": "MEDIUM",
-    "LOW": "LOW",
-    "THẤP": "LOW",
-    "THAP": "LOW"
+    "HIGH": "High",
+    "CAO": "High",
+    "MEDIUM": "Medium",
+    "TRUNG BÌNH": "Medium",
+    "TRUNG BINH": "Medium",
+    "LOW": "Low",
+    "THẤP": "Low",
+    "THAP": "Low"
 }
 
 PRIORITY_STYLES = {
-    "HIGH": {
+    "High": {
         "fill": PatternFill(start_color="FCE8E6", end_color="FCE8E6", fill_type="solid"),
         "font": Font(name="Segoe UI", size=10, bold=True, color="A50E0E")
     },
-    "MEDIUM": {
+    "Medium": {
         "fill": PatternFill(start_color="FEF7E0", end_color="FEF7E0", fill_type="solid"),
         "font": Font(name="Segoe UI", size=10, bold=True, color="B06000")
     },
-    "LOW": {
+    "Low": {
         "fill": PatternFill(start_color="E6F4EA", end_color="E6F4EA", fill_type="solid"),
         "font": Font(name="Segoe UI", size=10, bold=True, color="137333")
     }
 }
 
-# Column widths for 12 columns
+# Column widths
 COLUMN_WIDTH_MAP = {
     "ID": 15,
     "Module": 14,
@@ -49,6 +50,8 @@ COLUMN_WIDTH_MAP = {
     "TestData": 28,
     "Steps": 48,
     "ExpectedResult": 48,
+    "Actual Result": 36,
+    "Status": 16,
     "Priority": 14,
     "Notes": 32
 }
@@ -62,7 +65,7 @@ def clean_cell_text(val):
 
 def normalize_priority(val):
     v = str(val).strip().upper()
-    return PRIORITY_MAP.get(v, None)
+    return PRIORITY_MAP.get(v, str(val).strip().capitalize())
 
 def format_worksheet(ws, headers, rows):
     ws.views.sheetView[0].showGridLines = True
@@ -84,7 +87,6 @@ def format_worksheet(ws, headers, rows):
         cell.alignment = header_align
         cell.border = cell_border
 
-        # Width
         width = COLUMN_WIDTH_MAP.get(h_name, 25)
         col_letter = get_column_letter(col_num)
         ws.column_dimensions[col_letter].width = width
@@ -106,9 +108,8 @@ def format_worksheet(ws, headers, rows):
             cell.font = body_font
             cell.border = cell_border
 
-            # Alignment logic
             h_align = "left"
-            if h_name in ["ID", "Module", "Feature ID", "Priority"]:
+            if h_name in ["ID", "Module", "Feature ID", "Priority", "Status"]:
                 h_align = "center"
 
             cell.alignment = Alignment(horizontal=h_align, vertical="top", wrap_text=True)
@@ -118,6 +119,21 @@ def format_worksheet(ws, headers, rows):
                 if p_norm in PRIORITY_STYLES:
                     cell.fill = PRIORITY_STYLES[p_norm]["fill"]
                     cell.font = PRIORITY_STYLES[p_norm]["font"]
+                    cell.value = p_norm
+            elif h_name == "Status":
+                s_lower = text.lower()
+                if s_lower in ["passed", "pass"]:
+                    cell.fill = PatternFill(start_color="E6F4EA", end_color="E6F4EA", fill_type="solid")
+                    cell.font = Font(name="Segoe UI", size=10, bold=True, color="137333")
+                    cell.value = "Passed"
+                elif s_lower in ["failed", "fail"]:
+                    cell.fill = PatternFill(start_color="FCE8E6", end_color="FCE8E6", fill_type="solid")
+                    cell.font = Font(name="Segoe UI", size=10, bold=True, color="A50E0E")
+                    cell.value = "Failed"
+                else:
+                    cell.fill = PatternFill(start_color="F1F5F9", end_color="F1F5F9", fill_type="solid")
+                    cell.font = Font(name="Segoe UI", size=10, bold=True, color="64748B")
+                    cell.value = "Not Run"
             elif h_name == "Feature ID":
                 cell.font = Font(name="Segoe UI", size=10, bold=True, color="1F4E78")
                 if not is_even:
@@ -135,6 +151,24 @@ def format_worksheet(ws, headers, rows):
         calc_height = max(22, min(180, max_lines * 15))
         ws.row_dimensions[row_idx].height = calc_height
 
+    # Add Data Validation Dropdowns for Status and Priority (Title Case)
+    max_row_idx = len(rows) + 1
+    if "Status" in headers and max_row_idx >= 2:
+        status_col_letter = get_column_letter(headers.index("Status") + 1)
+        dv_status = DataValidation(type="list", formula1='"Passed,Failed,Not Run"', allow_blank=True)
+        dv_status.error = 'Please select a valid state: Passed, Failed, or Not Run'
+        dv_status.errorTitle = 'Invalid Status'
+        ws.add_data_validation(dv_status)
+        dv_status.add(f"{status_col_letter}2:{status_col_letter}{max_row_idx+100}")
+
+    if "Priority" in headers and max_row_idx >= 2:
+        priority_col_letter = get_column_letter(headers.index("Priority") + 1)
+        dv_priority = DataValidation(type="list", formula1='"High,Medium,Low"', allow_blank=True)
+        dv_priority.error = 'Please select a valid priority: High, Medium, or Low'
+        dv_priority.errorTitle = 'Invalid Priority'
+        ws.add_data_validation(dv_priority)
+        dv_priority.add(f"{priority_col_letter}2:{priority_col_letter}{max_row_idx+100}")
+
     ws.auto_filter.ref = ws.dimensions
 
 def read_csv_file(csv_path):
@@ -150,6 +184,35 @@ def read_csv_file(csv_path):
                 headers = ["Preconditions" if h == "Precondition" else h for h in headers]
             else:
                 rows.append(row)
+
+    # Ensure Actual Result and Status fields are added to headers if missing
+    if "Actual Result" not in headers or "Status" not in headers:
+        new_headers = []
+        for h in headers:
+            new_headers.append(h)
+            if h == "ExpectedResult":
+                if "Actual Result" not in headers:
+                    new_headers.append("Actual Result")
+                if "Status" not in headers:
+                    new_headers.append("Status")
+
+        exp_idx = headers.index("ExpectedResult") if "ExpectedResult" in headers else -1
+        
+        new_rows = []
+        for r in rows:
+            r_new = list(r)
+            if exp_idx != -1 and exp_idx < len(r_new):
+                insert_idx = exp_idx + 1
+                if "Actual Result" not in headers:
+                    r_new.insert(insert_idx, "")
+                    insert_idx += 1
+                if "Status" not in headers:
+                    r_new.insert(insert_idx, "Not Run")
+            new_rows.append(r_new)
+
+        headers = new_headers
+        rows = new_rows
+
     return headers, rows
 
 def create_summary_sheet(wb, module_data):
@@ -184,11 +247,11 @@ def create_summary_sheet(wb, module_data):
 
         for r in rows:
             p_norm = normalize_priority(r[p_col_idx]) if p_col_idx != -1 and p_col_idx < len(r) else None
-            if p_norm == "HIGH":
+            if p_norm == "High":
                 high_cnt += 1
-            elif p_norm == "MEDIUM":
+            elif p_norm == "Medium":
                 med_cnt += 1
-            elif p_norm == "LOW":
+            elif p_norm == "Low":
                 low_cnt += 1
 
             if fid_col_idx != -1 and fname_col_idx != -1 and fid_col_idx < len(r) and fname_col_idx < len(r):
@@ -198,11 +261,11 @@ def create_summary_sheet(wb, module_data):
                 if fkey not in feature_stats:
                     feature_stats[fkey] = {"count": 0, "high": 0, "medium": 0, "low": 0}
                 feature_stats[fkey]["count"] += 1
-                if p_norm == "HIGH":
+                if p_norm == "High":
                     feature_stats[fkey]["high"] += 1
-                elif p_norm == "MEDIUM":
+                elif p_norm == "Medium":
                     feature_stats[fkey]["medium"] += 1
-                elif p_norm == "LOW":
+                elif p_norm == "Low":
                     feature_stats[fkey]["low"] += 1
 
         total_test_cases += mod_tc_count
@@ -321,8 +384,13 @@ def create_summary_sheet(wb, module_data):
     ws.column_dimensions["G"].width = 16
 
 def process_csv_files(tests_dir):
-    csv_files = sorted(glob.glob(os.path.join(tests_dir, "*.csv")))
-    print(f"Found {len(csv_files)} CSV files in {tests_dir}:")
+    csv_dir = os.path.join(tests_dir, "csv") if os.path.isdir(os.path.join(tests_dir, "csv")) else tests_dir
+    excel_dir = os.path.join(tests_dir, "excel") if os.path.isdir(os.path.join(tests_dir, "excel")) else tests_dir
+
+    os.makedirs(excel_dir, exist_ok=True)
+
+    csv_files = sorted(glob.glob(os.path.join(csv_dir, "*.csv")))
+    print(f"Found {len(csv_files)} CSV files in {csv_dir}:")
 
     master_wb = openpyxl.Workbook()
     master_wb.remove(master_wb.active)
@@ -332,10 +400,10 @@ def process_csv_files(tests_dir):
     for csv_path in csv_files:
         base_name = os.path.basename(csv_path)
         name_without_ext = os.path.splitext(base_name)[0]
-        xlsx_path = os.path.join(tests_dir, f"{name_without_ext}.xlsx")
+        xlsx_path = os.path.join(excel_dir, f"{name_without_ext}.xlsx")
 
         headers, rows = read_csv_file(csv_path)
-        print(f"  - Converting {base_name} ({len(rows)} test cases) -> {os.path.basename(xlsx_path)}")
+        print(f"  - Converting {base_name} ({len(rows)} test cases) -> {os.path.join('tests/excel', os.path.basename(xlsx_path))}")
 
         indiv_wb = openpyxl.Workbook()
         indiv_ws = indiv_wb.active
@@ -362,10 +430,14 @@ def process_csv_files(tests_dir):
 
     create_summary_sheet(master_wb, module_data)
 
-    master_xlsx_path = os.path.join(tests_dir, "academic_portal_all_test_cases.xlsx")
+    master_xlsx_path = os.path.join(excel_dir, "academic_portal_all_test_cases.xlsx")
     master_wb.save(master_xlsx_path)
     print(f"\nCreated consolidated Master Workbook: {master_xlsx_path}")
 
+    # Generate Report sheet and Bar Chart
+    import create_report
+    create_report.main()
+
 if __name__ == "__main__":
-    tests_directory = os.path.join(os.getcwd(), "Tests")
+    tests_directory = os.path.join(os.getcwd(), "tests")
     process_csv_files(tests_directory)
