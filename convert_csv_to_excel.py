@@ -171,7 +171,7 @@ def format_worksheet(ws, headers, rows):
 
     ws.auto_filter.ref = ws.dimensions
 
-def read_csv_file(csv_path):
+def read_csv_file(csv_path, xlsx_path=None):
     rows = []
     headers = []
     with open(csv_path, 'r', encoding='utf-8-sig') as f:
@@ -185,6 +185,31 @@ def read_csv_file(csv_path):
             else:
                 rows.append(row)
 
+    # Load existing Excel data if available to preserve Actual Result & Status
+    existing_data = {}
+    if xlsx_path and os.path.exists(xlsx_path):
+        try:
+            with open(xlsx_path, 'rb') as f_ex:
+                wb_ex = openpyxl.load_workbook(f_ex, data_only=True)
+                for sheetname in wb_ex.sheetnames:
+                    if sheetname.lower() != "report":
+                        ws_ex = wb_ex[sheetname]
+                        ex_headers = [str(cell.value).strip() if cell.value is not None else "" for cell in ws_ex[1]]
+                        id_i = ex_headers.index("ID") if "ID" in ex_headers else 0
+                        act_i = ex_headers.index("Actual Result") if "Actual Result" in ex_headers else -1
+                        st_i = ex_headers.index("Status") if "Status" in ex_headers else -1
+
+                        for r_cells in ws_ex.iter_rows(min_row=2, values_only=True):
+                            if r_cells and r_cells[id_i]:
+                                t_id = str(r_cells[id_i]).strip()
+                                act_val = r_cells[act_i] if act_i != -1 and act_i < len(r_cells) else None
+                                st_val = r_cells[st_i] if st_i != -1 and st_i < len(r_cells) else None
+                                existing_data[t_id] = (act_val, st_val)
+                        break
+                wb_ex.close()
+        except Exception as e:
+            print(f"  Note: Could not read existing excel {xlsx_path}: {e}")
+
     # Ensure Actual Result and Status fields are added to headers if missing
     if "Actual Result" not in headers or "Status" not in headers:
         new_headers = []
@@ -197,17 +222,23 @@ def read_csv_file(csv_path):
                     new_headers.append("Status")
 
         exp_idx = headers.index("ExpectedResult") if "ExpectedResult" in headers else -1
-        
+        id_idx = headers.index("ID") if "ID" in headers else 0
+
         new_rows = []
         for r in rows:
             r_new = list(r)
+            tc_id = r[id_idx].strip() if id_idx < len(r) and r[id_idx] else ""
+            ex_act, ex_st = existing_data.get(tc_id, (None, None))
+
             if exp_idx != -1 and exp_idx < len(r_new):
                 insert_idx = exp_idx + 1
                 if "Actual Result" not in headers:
-                    r_new.insert(insert_idx, "")
+                    act_to_insert = ex_act if ex_act is not None else ""
+                    r_new.insert(insert_idx, act_to_insert)
                     insert_idx += 1
                 if "Status" not in headers:
-                    r_new.insert(insert_idx, "Not Run")
+                    st_to_insert = ex_st if ex_st is not None else "Not Run"
+                    r_new.insert(insert_idx, st_to_insert)
             new_rows.append(r_new)
 
         headers = new_headers
@@ -402,7 +433,7 @@ def process_csv_files(tests_dir):
         name_without_ext = os.path.splitext(base_name)[0]
         xlsx_path = os.path.join(excel_dir, f"{name_without_ext}.xlsx")
 
-        headers, rows = read_csv_file(csv_path)
+        headers, rows = read_csv_file(csv_path, xlsx_path)
         print(f"  - Converting {base_name} ({len(rows)} test cases) -> {os.path.join('tests/excel', os.path.basename(xlsx_path))}")
 
         indiv_wb = openpyxl.Workbook()
