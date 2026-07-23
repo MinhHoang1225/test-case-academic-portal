@@ -1,77 +1,77 @@
-﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
+﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Actual Result","Status","Priority","Notes"
 "TC-M06-001","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Create New Report by Student in Active Internship Group","Verify button visibility and interface opening for creating a new report when student belongs to an active (On-going) internship group.","User is logged in as Student.
 Student belongs to an internship group with status ""On-going"".
 Currently on Student Portal interface.","StudentEmail=""student1@student.passerellesnumeriques.org""; GroupStatus=""On-going""","1. Access Student Portal;
 2. Click Create Internship Report button;
 3. Observe interface.","Create Internship Report button is displayed and clickable.
-System opens report submission interface with auto-filled student profile info.","High","Related Requirement: M06-F01, Business Rules 6.1"
+System opens report submission interface with auto-filled student profile info.","Create Internship Report button was displayed. System opened report submission interface with auto-filled student profile info as expected.","Passed","High","Related Requirement: M06-F01, Business Rules 6.1"
 "TC-M06-002","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent Creating New Report for Student in Completed Internship Group","Verify system hides Create Internship Report button if student belongs to a completed internship group.","User is logged in as Student.
 Student belongs to an internship group with status ""Completed"".
 Currently on Student Portal interface.","StudentEmail=""student2@student.passerellesnumeriques.org""; GroupStatus=""Completed""","1. Access Student Portal;
 2. Observe interface.","Create Internship Report button is hidden or disabled.
-Student cannot open report creation interface.","High","Related Requirement: M06-F01, Business Rules 6.1"
+Student cannot open report creation interface.","Create Internship Report button was hidden for student in completed group. Student could not open creation interface.","Passed","High","Related Requirement: M06-F01, Business Rules 6.1"
 "TC-M06-003","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent Creating New Report for Student in Archived Internship Group","Verify system hides Create Internship Report button if student belongs to an archived internship group.","User is logged in as Student.
 Student belongs to an internship group with status ""Archived"".
 Currently on Student Portal interface.","StudentEmail=""student3@student.passerellesnumeriques.org""; GroupStatus=""Archived""","1. Access Student Portal;
 2. Observe interface.","Create Internship Report button is hidden or disabled.
-Student cannot open report creation interface.","High","Related Requirement: M06-F01, Business Rules 6.1"
+Student cannot open report creation interface.","Create Internship Report button was hidden for student in archived group. Student could not open creation interface.","Passed","High","Related Requirement: M06-F01, Business Rules 6.1"
 "TC-M06-004","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent Creating New Report from Staff Account","Verify system hides report creation feature from Staff role.","User is logged in as Staff.
 Currently on Internship Management interface.","StaffEmail=""staff@passerellesnumeriques.org""","1. Access Internship Management interface;
-2. Check for report submission options.","Create Internship Report button is not present for Staff account.","High","Related Requirement: M06-F01, Business Rules 6.1"
+2. Check for report submission options.","Create Internship Report button is not present for Staff account.","Create Internship Report button was not present when logged in with Staff account.","Passed","High","Related Requirement: M06-F01, Business Rules 6.1"
 "TC-M06-005","Module 06 - Bi-Weekly Internship Reports","M06-F02","Draft Saving & Editing","Save Temporary Report as Draft","Verify functionality for saving unfinished report as a draft.","User is logged in as Student.
 Currently on report creation interface.","StartDate=""2026-08-03""; Task1=""Research documentation""","1. Enter Start Date as ""2026-08-03"";
 2. Enter task details;
 3. Click Save Draft button.","Report is saved with status Draft.
 Success message ""Draft saved successfully"" appears.
-Data is saved to database without triggering submit validation.","High","Related Requirement: M06-F02, Business Rules 6.2"
+Data is saved to database without triggering submit validation.","Report was saved with status Draft. Success message ""Draft saved successfully"" appeared and data was saved without triggering submit validation.","Passed","High","Related Requirement: M06-F02, Business Rules 6.2"
 "TC-M06-006","Module 06 - Bi-Weekly Internship Reports","M06-F02","Draft Saving & Editing","Edit Draft Report Unlimited Number of Times","Verify student can reopen and edit draft report multiple times before submitting.","User is logged in as Student.
 Existing report with status Draft.","UpdatedTask=""Updated task documentation""","1. Open draft report;
 2. Update task details;
 3. Click Save Draft button;
 4. Repeat process multiple times.","Draft report updates successfully every time without restriction.
-Report status remains Draft.","High","Related Requirement: M06-F02, Business Rules 6.2"
+Report status remains Draft.","Draft report updated successfully upon multiple edits without restriction. Report status remained Draft.","Passed","High","Related Requirement: M06-F02, Business Rules 6.2"
 "TC-M06-007","Module 06 - Bi-Weekly Internship Reports","M06-F02","Draft Saving & Editing","Draft Report Does Not Send Emails and Is Hidden from Staff","Verify saving a draft does not send email notifications and draft is not visible to Staff.","User is logged in as Student.
 Draft report saved.","ReportStatus=""Draft""","1. Save report as Draft;
 2. Log in as Staff and check student report list;
 3. Check email inbox of PNV and Company supervisors.","No email notification is sent.
-Draft report is hidden from Staff view.","High","Related Requirement: M06-F02, Business Rules 6.2"
+Draft report is hidden from Staff view.","No email notifications were sent upon saving draft, and draft report remained hidden from Staff view.","Passed","High","Related Requirement: M06-F02, Business Rules 6.2"
 "TC-M06-008","Module 06 - Bi-Weekly Internship Reports","M06-F03","Automatic Date Calculation","Auto-calculate End Date When Valid Start Date Is Entered","Verify system automatically calculates End Date as Sunday 13 days after Start Date (Monday).","User is logged in as Student.
 Currently on report creation interface.","StartDate=""2026-08-03"" (Monday)","1. Select Start Date as ""2026-08-03"";
 2. Observe End Date field.","End Date field automatically fills with ""2026-08-16"" (Sunday, +13 days).
-End Date field is read-only.","High","Related Requirement: M06-F03, Business Rules 6.3"
+End Date field is read-only.","End Date field automatically filled with ""2026-08-16"" (Sunday, +13 days) and remained read-only.","Passed","High","Related Requirement: M06-F03, Business Rules 6.3"
 "TC-M06-009","Module 06 - Bi-Weekly Internship Reports","M06-F03","Automatic Date Calculation","Prevent Submitting Report if Start Date Is Not a Monday","Verify system displays error if selected Start Date is not a Monday.","User is logged in as Student.
 Currently on report creation interface.","StartDate=""2026-08-04"" (Tuesday)","1. Select Start Date as ""2026-08-04"";
 2. Attempt to save or submit report.","System displays error: ""Start Date must be a Monday.""
-Action is blocked.","High","Related Requirement: M06-F03, Business Rules 6.3, Validation Rules (Section 8)"
+Action is blocked.","System displayed validation error ""Start Date must be a Monday."" and blocked action.","Passed","High","Related Requirement: M06-F03, Business Rules 6.3, Validation Rules (Section 8)"
 "TC-M06-010","Module 06 - Bi-Weekly Internship Reports","M06-F03","Automatic Date Calculation","Prevent Submitting Report if Start Date Is Outside Internship Period","Verify system displays error if Start Date is outside group start/end dates.","User is logged in as Student.
 Group internship period is 2026-06-01 to 2026-08-31.","StartDate=""2026-05-25"" (Monday before group start)","1. Select Start Date as ""2026-05-25"";
 2. Attempt to save or submit report.","System displays error: ""Start Date must fall within the internship group period.""
-Action is blocked.","High","Related Requirement: M06-F03, Business Rules 6.3, Validation Rules (Section 8)"
+Action is blocked.","System displayed validation error ""Start Date must fall within the internship group period."" and blocked action.","Passed","High","Related Requirement: M06-F03, Business Rules 6.3, Validation Rules (Section 8)"
 "TC-M06-011","Module 06 - Bi-Weekly Internship Reports","M06-F04","Dynamic Task Table Management","Add and Remove Task Rows in Dynamic Task Table","Verify functionality for adding new task rows and removing task rows in the report form.","User is logged in as Student.
 Currently on report creation interface.","Task1=""Frontend UI""; Task2=""Backend API""","1. Click Add Task Row button;
 2. Enter task details in row 2;
 3. Click Remove icon on row 2.","Clicking Add Task Row appends a new empty task row.
-Clicking Remove deletes row 2 cleanly.","High","Related Requirement: M06-F04, UI Standards"
+Clicking Remove deletes row 2 cleanly.","Clicking Add Task Row appended a new empty task row. Clicking Remove deleted row cleanly.","Passed","High","Related Requirement: M06-F04, UI Standards"
 "TC-M06-012","Module 06 - Bi-Weekly Internship Reports","M06-F04","Dynamic Task Table Management","Prevent Submitting Report when Task List Is Empty","Verify system blocks submission when report has 0 task rows.","User is logged in as Student.
 Report has all task rows removed.","Tasks=[]","1. Remove all task rows;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""At least one task is required.""","High","Related Requirement: M06-F04, Validation Rules (Section 8)"
+Validation error message appears: ""At least one task is required.""","System blocked submission and displayed validation error ""At least one task is required.""","Passed","High","Related Requirement: M06-F04, Validation Rules (Section 8)"
 "TC-M06-013","Module 06 - Bi-Weekly Internship Reports","M06-F04","Dynamic Task Table Management","Prevent Submitting Report when Task Row Has Incomplete Details","Verify system blocks submission if any task row has empty mandatory fields (Task Description, Hours, etc.).","User is logged in as Student.
 Task row added with blank Task Description.","TaskDescription=""""; Hours=8","1. Add task row;
 2. Enter hours but leave description empty;
 3. Click Submit Report button.","System blocks submission.
-Validation error message appears highlighting required fields in task table.","High","Related Requirement: M06-F04, Validation Rules (Section 8)"
+Validation error message appears highlighting required fields in task table.","System blocked submission and highlighted incomplete task fields in task table.","Passed","High","Related Requirement: M06-F04, Validation Rules (Section 8)"
 "TC-M06-014","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Auto-calculate Daily Working Hours and Total Working Hours","Verify system automatically calculates daily working hours and total bi-weekly hours.","User is logged in as Student.
 Currently on report task table.","Week1Hours=[8,8,8,8,8,0,0]; Week2Hours=[8,8,8,8,8,0,0]","1. Enter 8 hours per day for Monday to Friday in both weeks;
 2. Observe Total Hours summary.","Daily totals sum correctly.
-Total Bi-Weekly Hours automatically calculates to 80 hours.","High","Related Requirement: M06-F05, Business Rules 6.4"
+Total Bi-Weekly Hours automatically calculates to 80 hours.","Daily totals summed correctly and Total Bi-Weekly Hours automatically calculated to 80 hours.","Passed","High","Related Requirement: M06-F05, Business Rules 6.4"
 "TC-M06-015","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Prevent Entering Negative Working Hours","Verify system blocks negative numbers in working hours inputs.","User is logged in as Student.","Hours=-5","1. Enter -5 into working hours field;
 2. Click Submit or blur field.","System blocks negative value.
-Error appears: ""Working hours cannot be negative.""","High","Related Requirement: M06-F05, Validation Rules (Section 8)"
+Error appears: ""Working hours cannot be negative.""","System allowed entering negative working hours (< 0), allowed submitting the report, and sent email notifications without triggering validation errors.","Failed","High","Related Requirement: M06-F05, Validation Rules (Section 8)"
 "TC-M06-016","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Prevent Entering Working Hours Exceeding 24 Hours a Day","Verify system blocks daily working hours greater than 24.","User is logged in as Student.","Hours=25","1. Enter 25 into working hours field for a single day;
 2. Click Submit or blur field.","System blocks input.
-Error appears: ""Daily working hours cannot exceed 24 hours.""","High","Related Requirement: M06-F05, Validation Rules (Section 8)"
-"TC-M06-017","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Prevent Entering Non-numeric Characters into Working Hours Field","Verify system restricts working hours inputs to valid numeric values.","User is logged in as Student.","Hours=""abc""","1. Attempt to type non-numeric text ""abc"" into working hours field.","Non-numeric input is prevented or validation error appears: ""Please enter a valid number.""","Medium","Related Requirement: M06-F05, Validation Rules (Section 8)"
+Error appears: ""Daily working hours cannot exceed 24 hours.""","System allowed entering working hours exceeding 24 hours a day (> 24), allowed submitting the report, and sent email notifications without triggering validation errors.","Failed","High","Related Requirement: M06-F05, Validation Rules (Section 8)"
+"TC-M06-017","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Prevent Entering Non-numeric Characters into Working Hours Field","Verify system restricts working hours inputs to valid numeric values.","User is logged in as Student.","Hours=""abc""","1. Attempt to type non-numeric text ""abc"" into working hours field.","Non-numeric input is prevented or validation error appears: ""Please enter a valid number.""","Non-numeric characters were blocked from being typed into working hours field.","Passed","Medium","Related Requirement: M06-F05, Validation Rules (Section 8)"
 "TC-M06-018","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Successfully with Complete Valid Data","Verify functionality for submitting a bi-weekly internship report with complete valid information.","User is logged in as Student.
 Currently on report creation form.","StartDate=""2026-08-03""; CompanySupervisorName=""John Doe""; CompanySupervisorEmail=""john@company.com""; PnvSupervisorEmail=""mentor@passerellesnumeriques.org""; Challenges=""None""; SupportNeeded=""None""","1. Enter valid Start Date ""2026-08-03"";
 2. Complete task table details;
@@ -81,49 +81,49 @@ Currently on report creation form.","StartDate=""2026-08-03""; CompanySupervisor
 6. Click Submit Report button;
 7. Confirm submission in popup dialog.","Report is submitted successfully.
 Report status changes to Submitted.
-Success notification appears and page transitions to View mode.","High","Related Requirement: M06-F06, Business Rules 6.5"
+Success notification appears and page transitions to View mode.","Report was submitted successfully, status updated to Submitted, success message appeared, and form switched to View mode.","Passed","High","Related Requirement: M06-F06, Business Rules 6.5"
 "TC-M06-019","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Empty Company Supervisor Name","Verify system blocks report submission when Company Supervisor Name is empty.","User is logged in as Student.","CompanySupervisorName=""""","1. Fill report details but leave Company Supervisor Name blank;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""Company Supervisor Name is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+Validation error message appears: ""Company Supervisor Name is required.""","System blocked submission and displayed validation error ""Company Supervisor Name is required.""","Passed","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
 "TC-M06-020","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank PNV Supervisor Email","Verify system blocks report submission when PNV Supervisor Email is empty.","User is logged in as Student.","PnvSupervisorEmail=""""","1. Fill report details but leave PNV Supervisor Email blank;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""PNV Supervisor Email is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+Validation error message appears: ""PNV Supervisor Email is required.""","System blocked submission and displayed validation error ""PNV Supervisor Email is required.""","Passed","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
 "TC-M06-021","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Invalid PNV Supervisor Email Format","Verify system blocks submission when PNV Supervisor Email has invalid format.","User is logged in as Student.","PnvSupervisorEmail=""invalid-email""","1. Enter invalid email format ""invalid-email"" for PNV Supervisor Email;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""Invalid email address format.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+Validation error message appears: ""Invalid email address format.""","System blocked submission and displayed validation error ""Invalid email address format.""","Passed","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
 "TC-M06-022","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank Company Supervisor Email","Verify system blocks report submission when Company Supervisor Email is empty.","User is logged in as Student.","CompanySupervisorEmail=""""","1. Fill report details but leave Company Supervisor Email blank;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""Company Supervisor Email is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+Validation error message appears: ""Company Supervisor Email is required.""","System blocked submission and displayed validation error ""Company Supervisor Email is required.""","Passed","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
 "TC-M06-023","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Invalid Company Supervisor Email Format","Verify system blocks submission when Company Supervisor Email has invalid format.","User is logged in as Student.","CompanySupervisorEmail=""invalid-email""","1. Enter invalid email format ""invalid-email"" for Company Supervisor Email;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""Invalid email address format.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+Validation error message appears: ""Invalid email address format.""","System blocked submission and displayed validation error ""Invalid email address format.""","Passed","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
 "TC-M06-024","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank Challenges Section","Verify system blocks report submission when Challenges field is empty.","User is logged in as Student.","Challenges=""""","1. Leave Challenges field blank;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""Challenges field is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+Validation error message appears: ""Challenges field is required.""","System blocked submission and displayed validation error ""Challenges field is required.""","Passed","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
 "TC-M06-025","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank Support Needed Section","Verify system blocks report submission when Support Needed field is empty.","User is logged in as Student.","SupportNeeded=""""","1. Leave Support Needed field blank;
 2. Click Submit Report button.","System blocks submission.
-Validation error message appears: ""Support Needed field is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+Validation error message appears: ""Support Needed field is required.""","System blocked submission and displayed validation error ""Support Needed field is required.""","Passed","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
 "TC-M06-026","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Cancel Report Submission Confirmation","Verify clicking Cancel in submission confirmation popup returns to edit form without submitting.","User is logged in as Student.
 Form filled with complete valid data.","Action=""Cancel Confirmation""","1. Click Submit Report button;
 2. When confirmation popup appears, click Cancel button.","Confirmation popup closes.
-Report is not submitted and remains in edit form.","Medium","Related Requirement: M06-F06, UI Standards"
+Report is not submitted and remains in edit form.","Confirmation popup closed upon clicking Cancel, report was not submitted, and form remained in edit mode.","Passed","Medium","Related Requirement: M06-F06, UI Standards"
 "TC-M06-027","Module 06 - Bi-Weekly Internship Reports","M06-F07","Read-only Submitted Reports","Submitted Report Permanently Switches to Read-Only Status","Verify student cannot edit or resubmit a report once it has been submitted.","User is logged in as Student.
 Report status is Submitted.","ReportStatus=""Submitted""","1. Open submitted report;
 2. Observe UI for edit/save buttons.","Report displays in Read-Only mode.
 Edit and Save buttons are hidden or disabled.
-Student cannot modify content.","High","Related Requirement: M06-F07, Business Rules 6.6"
+Student cannot modify content.","Submitted report displayed in Read-Only mode with edit and save controls disabled.","Passed","High","Related Requirement: M06-F07, Business Rules 6.6"
 "TC-M06-028","Module 06 - Bi-Weekly Internship Reports","M06-F08","Automated Email Notifications","Send Automatic Email Notification Upon Successful Report Submission","Verify system triggers email notifications to PNV supervisor and Company supervisor after successful submission.","User is logged in as Student.
 Email notification service enabled.","PnvSupervisorEmail=""mentor@passerellesnumeriques.org""; CompanySupervisorEmail=""john@company.com""","1. Submit bi-weekly internship report successfully;
-2. Check email inbox of PNV supervisor and Company supervisor.","Automated email notification is delivered to both supervisor email addresses containing report summary.","High","Related Requirement: M06-F08, Business Rules 6.7"
+2. Check email inbox of PNV supervisor and Company supervisor.","Automated email notification is delivered to both supervisor email addresses containing report summary.","Automated email notifications containing report summary were delivered to both PNV and Company supervisors upon submission.","Passed","High","Related Requirement: M06-F08, Business Rules 6.7"
 "TC-M06-029","Module 06 - Bi-Weekly Internship Reports","M06-F08","Automated Email Notifications","Handle Error When Email Notification Sending Fails","Verify report submission still succeeds and logs error gracefully if email service fails.","User is logged in as Student.
 Email notification service is temporarily unavailable.","EmailServiceStatus=""Offline""","1. Submit report when email service is offline;
 2. Observe system response.","Report submission succeeds and saves to database.
-Warning message appears notifying student that email delivery failed, and error is logged.","Medium","Related Requirement: M06-F08, Error Handling (Section 8)"
+Warning message appears notifying student that email delivery failed, and error is logged.","Report saved successfully to database, warning notification displayed regarding email failure, and error was logged.","Passed","Medium","Related Requirement: M06-F08, Error Handling (Section 8)"
 "TC-M06-030","Module 06 - Bi-Weekly Internship Reports","M06-F09","Staff Report Viewing","Staff View Student Internship Report","Verify Staff can view submitted bi-weekly internship reports of students.","User is logged in as Staff.
 Student has submitted a bi-weekly report.","StaffEmail=""staff@passerellesnumeriques.org""","1. Access Internship Management interface;
 2. Select student report list;
-3. Click View on student's submitted report.","Staff can view complete report content (tasks, hours, challenges, supervisor info) in Read-Only mode.","High","Related Requirement: M06-F09, Business Rules 6.8"
+3. Click View on student's submitted report.","Staff can view complete report content (tasks, hours, challenges, supervisor info) in Read-Only mode.","Staff accessed student report list and viewed complete report content in Read-Only mode.","Passed","High","Related Requirement: M06-F09, Business Rules 6.8"
 "TC-M06-031","Module 06 - Bi-Weekly Internship Reports","M06-F09","Staff Report Viewing","Staff Cannot Edit or Delete Student Report","Verify Staff users cannot modify or delete submitted student reports.","User is logged in as Staff.
 Viewing submitted student report.","StaffEmail=""staff@passerellesnumeriques.org""","1. Open student submitted report;
 2. Check for edit/delete controls.","No edit or delete buttons are available for Staff.
-Report content is strictly Read-Only.","High","Related Requirement: M06-F09, Business Rules 6.8"
+Report content is strictly Read-Only.","Edit and delete controls were hidden for Staff role; report content remained strictly Read-Only.","Passed","High","Related Requirement: M06-F09, Business Rules 6.8"
