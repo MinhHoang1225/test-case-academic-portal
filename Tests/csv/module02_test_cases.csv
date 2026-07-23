@@ -28,7 +28,7 @@
 "TC-M02-006","Module 02","M02-F03","Batch Entry – All Subjects","Batch Entry for All Subjects simultaneously","Verify that staff can record observations for multiple students across all subjects simultaneously using spreadsheet-style entry.","Staff user is logged in. Batch PNV26A contains multiple active students (ST001, ST002).","Grid of ratings and notes for ST001 and ST002.","1. Open Scan Management and choose Batch Entry - All Subjects;
 2. Select Batch PNV26A and Date: 17/07/2026;
 3. On the grid, enter ratings and notes for ST001 (IT=G, PLT=S, English=S, DA=S) and ST002 (IT=S, PLT=NI, English=S, DA=S);
-4. Click Save All","System save successfully toan bo du lieu nhan xet cung mot luc. Hien thi notification save successfully (e.g.: ""Saved 2 students""). Du lieu display chinh xac trong danh sach.","High","Related Requirement: M02-F03, Scenario: SC-03"
+4. Click Save All","System saves all observation data simultaneously. Success notification appears (e.g.: ""Saved 2 students""). Data is displayed accurately in the list.","High","Related Requirement: M02-F03, Scenario: SC-03"
 "TC-M02-007","Module 02","M02-F04","Batch Entry – By Subject","Batch Entry by Subject","Verify that teachers can enter observations for a single subject for multiple students in batch mode.","Staff user is logged in.","Subject=English; Ratings and notes for ST001, ST002, ST003.","1. Open Scan Management and choose Batch Entry - By Subject;
 2. Select Batch PNV26A, Date: 17/07/2026, and Subject: English;
 3. Fill ratings and notes for English for ST001, ST002, and ST003;

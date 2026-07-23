@@ -1,194 +1,182 @@
 ﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
-"TC-M05-001","Module 5 – Internship Management","M05-F01","Internship Group Creation","Create new internship group voi thong tin hop le","Verify functionality for create new internship group khi enter day du cac thong tin bat buoc va hop le.","User is logged in as Staff.
+"TC-M05-001","Module 05 - Internship Management","M05-F01","Internship Group Creation","Create New Internship Group with Valid Information","Verify functionality for creating a new internship group when entering all required and valid information.","User is logged in as Staff.
 Currently on Internship Management interface.
-Cac lop hoc ""PNV26A"" va ""PNV26B"" da exist in system va chua duoc gan vao bat ky internship group nao trong cung nam hoc.","GroupName=""Nhom Thuc tap 2026 - Nam 2""; InternshipYear=""Second Year""; Batches=""PNV26A"", ""PNV26B""; StartDate=""2026-08-01""","1. Nhan nut ""Create new internship group"".
-2. Enter Ten group la ""Nhom Thuc tap 2026 - Nam 2"".
-3. Select Nam internship la ""Second Year"".
-4. Tich select cac lop hoc ""PNV26A"" va ""PNV26B"".
-5. Select Start Date la ""2026-08-01"".
-6. Nhan nut ""Save"".","System display notification create group successfully.
-Nhom internship moi xuat hien trong danh sach display voi status la ""On-going"".
-Cac lop hoc da select duoc lien ket chinh xac voi group nay.","High","Related to M05-F01, Rule 6.1"
-"TC-M05-002","Module 5 – Internship Management","M05-F01","Internship Group Creation","Internship group creation fails due to empty group name","Verify system bao error va ngan chan create internship group neu blank ten group.","User is logged in as Staff.
+Classes ""PNV26A"" and ""PNV26B"" exist in system and are not assigned to any internship group in the same academic year.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=""PNV26A, PNV26B""; StartDate=""2026-06-01""","1. Click Create New Internship Group button;
+2. Enter Group Name as ""Internship Group 2026"";
+3. Select Academic Year as ""2026"";
+4. Select classes ""PNV26A"" and ""PNV26B"";
+5. Select Start Date as ""2026-06-01"";
+6. Click Save button.","Internship group is created successfully.
+Success notification appears and ""Internship Group 2026"" is displayed in the active internship group list with 2 assigned classes.","High","Related Requirement: M05-F01, Rule 6.1"
+"TC-M05-002","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Empty Group Name","Verify system displays error and prevents creating internship group when group name is blank.","User is logged in as Staff.
 Currently on Create New Internship Group interface.
-Lop hoc ""PNV26A"" chua duoc gan cho internship group nao trong nam hoc.","GroupName=""""; InternshipYear=""Second Year""; Batches=""PNV26A""; StartDate=""2026-08-01""","1. De trong truong Ten group.
-2. Select Nam internship la ""Second Year"".
-3. Tich select lop hoc ""PNV26A"".
-4. Select Start Date la ""2026-08-01"".
-5. Nhan nut ""Save"".","System display notification error requires enter Ten group (e.g.: ""Group Name is required."").
-Nhom internship moi khong duoc save vao system.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M05-003","Module 5 – Internship Management","M05-F01","Internship Group Creation","Create internship group failed do khong tich select lop hoc","Verify system bao error va ngan chan create internship group neu khong select bat ky lop hoc nao.","User is logged in as Staff.
-Currently on Create New Internship Group interface.","GroupName=""Nhom Thuc tap 2026""; InternshipYear=""Second Year""; Batches=None; StartDate=""2026-08-01""","1. Enter Ten group la ""Nhom Thuc tap 2026"".
-2. Select Nam internship la ""Second Year"".
-3. Khong select bat ky lop hoc nao trong danh sach.
-4. Select Start Date la ""2026-08-01"".
-5. Nhan nut ""Save"".","System display notification error requires select it nhat mot lop hoc (e.g.: ""At least one batch is required."").
-Nhom internship moi khong duoc save vao system.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M05-004","Module 5 – Internship Management","M05-F01","Internship Group Creation","Create internship group failed do blank start date","Verify system bao error va ngan chan create internship group neu blank start date.","User is logged in as Staff.
-Currently on Create New Internship Group interface.","GroupName=""Nhom Thuc tap 2026""; InternshipYear=""Second Year""; Batches=""PNV26A""; StartDate=""""","1. Enter Ten group la ""Nhom Thuc tap 2026"".
-2. Select Nam internship la ""Second Year"".
-3. Tich select lop hoc ""PNV26A"".
-4. De trong truong Start Date.
-5. Nhan nut ""Save"".","System display notification error requires select Start Date (e.g.: ""Start Date is required."").
-Nhom internship moi khong duoc save vao system.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M05-005","Module 5 – Internship Management","M05-F01","Internship Group Creation","Create internship group failed do blank nam internship","Verify system bao error va ngan chan create internship group neu nam internship khong duoc select.","User is logged in as Staff.
-Currently on Create New Internship Group interface.","GroupName=""Nhom Thuc tap 2026""; InternshipYear=""""; Batches=""PNV26A""; StartDate=""2026-08-01""","1. Enter Ten group la ""Nhom Thuc tap 2026"".
-2. Khong select Nam internship (blank).
-3. Tich select lop hoc ""PNV26A"".
-4. Select Start Date la ""2026-08-01"".
-5. Nhan nut ""Save"".","System display notification error requires select Nam internship (e.g.: ""Internship Year is required."").
-Nhom internship moi khong duoc save vao system.","High","Related to Validation Rules (Section 7)"
-"TC-M05-006","Module 5 – Internship Management","M05-F01","Internship Group Creation","Create internship group failed do select lop hoc da duoc gan vao internship group khac trong cung nam hoc","Verify system denies create new internship group chua lop hoc da duoc gan cho internship group khac trong cung nam hoc.","User is logged in as Staff.
-Da ton tai internship group ""Nhom A"" cho nam hoc ""Second Year"" chua lop ""PNV26A"".","GroupName=""Nhom B""; InternshipYear=""Second Year""; Batches=""PNV26A""; StartDate=""2026-08-01""","1. Nhan nut ""Create new internship group"".
-2. Enter Ten group la ""Nhom B"".
-3. Select Nam internship la ""Second Year"".
-4. Select lop hoc la ""PNV26A"".
-5. Select Start Date la ""2026-08-01"".
-6. Nhan nut ""Save"".","System denies save va display notification error (e.g.: lop PNV26A da duoc gan cho mot internship group khac trong nam hoc nay - ""Batch already assigned"").
-Nhom internship ""Nhom B"" khong duoc create.","High","Related to Batch Assignment Rule (Rule 6.2), Error Handling (Section 8)"
-"TC-M05-007","Module 5 – Internship Management","M05-F01","Internship Group Creation","Create internship group successfully khi gan cung lop hoc vao internship group o cac nam hoc khac nhau","Verify system allows gan cung mot lop hoc vao internship group o cac nam khac nhau (e.g.: nam 2 va nam 3).","User is logged in as Staff.
-Lop ""PNV26A"" da duoc gan vao internship group ""Nhom Nam 2"" thuoc nam internship ""Second Year"".","GroupName=""Nhom Nam 3""; InternshipYear=""Third Year""; Batches=""PNV26A""; StartDate=""2027-08-01""","1. Nhan nut ""Create new internship group"".
-2. Enter Ten group la ""Nhom Nam 3"".
-3. Select Nam internship la ""Third Year"".
-4. Select lop hoc la ""PNV26A"".
-5. Select Start Date la ""2027-08-01"".
-6. Nhan nut ""Save"".","System save successfully new internship group.
-Lop PNV26A duoc gan vao group ""Nhom Nam 3"" ma khong co error.","High","Related to Batch Assignment Rule (Rule 6.2)"
-"TC-M05-008","Module 5 – Internship Management","M05-F02","Group Archiving / Reactivation","Archive internship group dang hoat dong","Verify functionality for Archive (Archive) mot internship group dang o status On-going.","User is logged in as Staff.
-Da ton tai internship group ""Nhom Thuc tap 2026"" o status On-going.","GroupName=""Nhom Thuc tap 2026""","1. Tim internship group ""Nhom Thuc tap 2026"" tren interface danh sach.
-2. Nhan vao bieu tuong/nut ""Archive"" (Archive) cua group nay.
-3. Xac nhan archive o hop thoai xac nhan.","System display notification archive successfully.
-Status cua internship group chuyen sang ""Archived"".
-Nhom internship nay bi an khoi danh sach hoat dong binh thuong.","High","Related to M05-F02, Rule 6.12"
-"TC-M05-009","Module 5 – Internship Management","M05-F02","Group Archiving / Reactivation","Kich hoat lai internship group da archive","Verify functionality for khoi phuc/kich hoat lai (Reactivate) mot internship group da bi archive.","User is logged in as Staff.
-Da co internship group ""Nhom Thuc tap 2026"" o status Archived.","GroupName=""Nhom Thuc tap 2026""","1. Truy cap vao danh sach cac internship group da archive (Archived Groups).
-2. Tim group ""Nhom Thuc tap 2026"".
-3. Nhan vao nut ""Khoi phuc"" hoac ""Kich hoat lai"" (Reactivate).
-4. Xac nhan o hop thoai.","System display notification kich hoat lai successfully.
-Status cua group chuyen tu ""Archived"" ve ""On-going"".
-Nhom internship xuat hien tro lai trong danh sach group dang hoat dong.","High","Related to M05-F02, Rule 6.12"
-"TC-M05-010","Module 5 – Internship Management","M05-F03","Company Management","Add company doi tac moi with a valid name","Verify functionality for add moi company doi tac with a valid name va chua ton tai.","User is logged in as Staff.
-Dang o interface Quan ly Cong ty (Company Management).","CompanyName=""TechCorp""","1. Nhan nut ""Add company moi"".
-2. Enter vao truong Ten company: ""TechCorp"".
-3. Nhan nut ""Save"".","System display notification add company successfully.
-Cong ty ""TechCorp"" xuat hien trong danh sach cac company doi tac.","High","Related to M05-F03, Rule 6.3"
-"TC-M05-011","Module 5 – Internship Management","M05-F03","Company Management","Add company failed due to empty name company","Verify system display notification error va ngan chan add company neu blank ten company.","User is logged in as Staff.
-Dang o interface Quan ly Cong ty.","CompanyName=""""","1. Nhan nut ""Add company moi"".
-2. De trong truong Ten company.
-3. Nhan nut ""Save"".","System display notification error requires enter ten company (e.g.: ""Company Name is required."").
-Cong ty moi khong duoc add vao danh sach.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M05-012","Module 5 – Internship Management","M05-F03","Company Management","Add company failed do trung ten (phan biet hoa thuong)","Verify system denies va bao error khi add company co ten viet hoa/thuong trung voi company da ton tai.","User is logged in as Staff.
-Da ton tai company ""TechCorp"" trong system.
-Dang o interface Quan ly Cong ty.","CompanyName=""techcorp""","1. Nhan nut ""Add company moi"".
-2. Enter vao truong Ten company: ""techcorp"" (viet thuong hoan toan).
-3. Nhan nut ""Save"".","System denies save va display notification error trung ten company (e.g.: ""Company name already exists."").
-Cong ty trung lap khong duoc create add.","High","Related to M05-F03, Rule 6.3, Error Handling (Section 8)"
-"TC-M05-013","Module 5 – Internship Management","M05-F03","Company Management","Add company failed do trung ten khi co khoang trang dau/cuoi","Verify system tu dong loai bo khoang trang dau/cuoi va denies neu ten company trung lap.","User is logged in as Staff.
-Da ton tai company ""TechCorp"" trong system.
-Dang o interface Quan ly Cong ty.","CompanyName="" TechCorp ""","1. Nhan nut ""Add company moi"".
-2. Enter vao truong Ten company: "" TechCorp "" (co khoang trang o dau va cuoi).
-3. Nhan nut ""Save"".","System cat bo cac khoang trang dau/cuoi, phat hien trung lap voi ""TechCorp"", denies save va display notification error trung ten.","High","Related to M05-F03, Rule 6.3, Error Handling (Section 8)"
-"TC-M05-014","Module 5 – Internship Management","M05-F04","Student-to-Company Assignment","Phan cong internship cho student don le","Verify functionality for phan cong mot student vao mot company doi tac.","User is logged in as Staff.
-Dang o interface danh sach student cua internship group ""Nhom Thuc tap 2026"" (status On-going).
-Hoc vien ""Nguyen Van A"" dang o status chua duoc phan cong (Unassigned).
-Cong ty ""TechCorp"" dang o status hoat dong (khong bi an).","StudentName=""Nguyen Van A""; AssignedCompany=""TechCorp""","1. Tim student ""Nguyen Van A"" trong bang phan cong student.
-2. Nhap vao o select company cua student ""Nguyen Van A"".
-3. Select company ""TechCorp"" tu danh sach goi y.
-4. Nhan nut ""Save thay doi"".","System display notification phan cong successfully.
-Hoc vien ""Nguyen Van A"" display company da gan la ""TechCorp"".
-So luong student chua phan cong tren nhan cphoto bao (Warning Badge) tu dong giam di 1.","High","Related to M05-F04, M05-F06, Rule 6.4, Rule 6.11"
-"TC-M05-015","Module 5 – Internship Management","M05-F04","Student-to-Company Assignment","Phan cong internship hang loat cho nhieu student cung luc","Verify functionality for select nhieu student va phan cong vao cung mot company cung luc.","User is logged in as Staff.
-Dang o interface danh sach student cua internship group.
-Co it nhat 3 student dang o status chua phan cong (e.g.: Nguyen Van B, Tran Thi C, Le Van D).
-Cong ty ""TechCorp"" dang hoat dong.","SelectedStudents=""Nguyen Van B"", ""Tran Thi C"", ""Le Van D""; AssignedCompany=""TechCorp""","1. Tich select cac o vuong (checkbox) dau dong cua student ""Nguyen Van B"", ""Tran Thi C"" va ""Le Van D"".
-2. Nhan nut ""Phan cong hang loat"" (Bulk Assign).
-3. Select company ""TechCorp"" trong hop thoai hien ra.
-4. Nhan nut ""Ap dung"" hoac ""Save"".","System display notification phan cong hang loat successfully.
-Ca 3 student tren deu display company duoc phan cong la ""TechCorp"".
-So luong tren nhan cphoto bao student chua phan cong tu dong giam di 3.","High","Related to M05-F04, M05-F06, Rule 6.4, Rule 6.11"
-"TC-M05-016","Module 5 – Internship Management","M05-F04","Student-to-Company Assignment","Thay doi company da phan cong cua student","Verify functionality for gan company moi cho student da duoc phan cong truoc do, dam bao company cu bi ghi de.","User is logged in as Staff.
-Hoc vien ""Nguyen Van A"" dang duoc phan cong o company ""TechCorp"".
-Cong ty ""PNV Software"" dang hoat dong trong system.","StudentName=""Nguyen Van A""; NewCompany=""PNV Software""","1. Tim student ""Nguyen Van A"" trong danh sach.
-2. Mo danh sach select company cua student nay va doi tu ""TechCorp"" sang ""PNV Software"".
-3. Nhan nut ""Save thay doi"".","System cap nhat successfully.
-Cong ty phan cong moi cua student ""Nguyen Van A"" display la ""PNV Software"".
-Phan cong cu tai ""TechCorp"" bi replace hoan toan.
-Nhan cphoto bao student chua phan cong khong thay doi so luong.","High","Related to M05-F04, Rule 6.4"
-"TC-M05-017","Module 5 – Internship Management","M05-F05","Remove Assignment","Huy bo phan cong company cua student bang cach select No Company","Verify functionality for dua student da phan cong ve lai status chua phan cong (Unassigned) bang cach select ""(No Company)"".","User is logged in as Staff.
-Hoc vien ""Nguyen Van A"" dang duoc phan cong tai company ""PNV Software"".","StudentName=""Nguyen Van A""; Selection=""(No Company)""","1. Tim student ""Nguyen Van A"" trong danh sach.
-2. Nhap vao o select company, select gia tri ""(No Company)"".
-3. Nhan nut ""Save"".","System save successfully.
-Hoc vien ""Nguyen Van A"" display status la chua duoc phan cong.
-So luong tren nhan cphoto bao student chua phan cong (Warning Badge) tu dong tang len 1.","High","Related to M05-F05, M05-F06, Rule 6.5, Rule 6.11, Error Handling (Section 8)"
-"TC-M05-018","Module 5 – Internship Management","M05-F04","Student-to-Company Assignment","An company va kiem tra xem company do co bi loai khoi danh sach select phan cong moi hay khong","Verify quy tac company bi an (Hidden) khong xuat hien trong dropdown phan cong internship moi.","User is logged in as Staff.
-Da ton tai company ""ABC Technology"" trong system.","CompanyToHide=""ABC Technology""","1. Vao trang Quan ly Cong ty (Company Management).
-2. Tim company ""ABC Technology"" va select thiet lap ""An"" (Hidden) cho company nay.
-3. Nhan nut ""Save status company"".
-4. Quay lai trang danh sach student cua internship group va mo dropdown phan cong company cua mot student bat ky chua duoc phan cong.","Status an duoc save successfully.
-Cong ty ""ABC Technology"" khong xuat hien trong danh sach dropdown de select phan cong moi.","High","Related to Rule 6.6, Error Handling (Section 8)"
-"TC-M05-019","Module 5 – Internship Management","M05-F04","Student-to-Company Assignment","Dam bao phan cong hien tai cua student khong bi photo huong khi company do bi an","Verify quy tac cac phan cong hien tai van display chinh xac ten company sau khi company do bi chuyen sang an.","User is logged in as Staff.
-Hoc vien ""Tran Thi B"" da duoc phan cong tai company ""ABC Technology"".","CompanyToHide=""ABC Technology""","1. Vao trang Quan ly Cong ty, chuyen status cua ""ABC Technology"" sang ""An"" (Hidden) va save lai.
-2. Di toi trang danh sach student cua internship group.
-3. Observe ban ghi phan cong cua student ""Tran Thi B"".","Phan cong cua student ""Tran Thi B"" van duoc display la ""ABC Technology"" mot cach binh thuong tren interface.
-Khong co notification error hay tu dong delete phan cong.","High","Related to Rule 6.6"
-"TC-M05-020","Module 5 – Internship Management","M05-F07","Feedback Recording by Team","Ghi nhan nhan xet internship successfully cho mot student voi team Training","Verify functionality for ghi nhan nhan xet internship cho student thuoc doi ngu Training.","User is logged in as Staff.
-Dang o interface danh sach student internship group.
-Hoc vien ""Nguyen Van A"" da duoc phan cong internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""Training""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Tien bo tot, chu dong trong task.""","1. Tim student ""Nguyen Van A"" trong danh sach.
-2. Nhap vao nut ""Add nhan xet"" (Add Feedback) cua student nay.
-3. Select Team nhan xet la ""Training"".
-4. Enter Ngay nhan xet la ""2026-08-15"".
-5. Enter Noi dung nhan xet la ""Tien bo tot, chu dong trong task."".
-6. Nhan nut ""Save nhan xet"".","Nhan xet duoc save successfully.
-Thong tin nhan xet moi xuat hien duoi ten student voi dung Team ""Training"", ngay va noi dung nhan xet tuong ung.","High","Related to M05-F07, Rule 6.7"
-"TC-M05-021","Module 5 – Internship Management","M05-F07","Feedback Recording by Team","Ghi nhan nhan xet internship successfully cho mot student voi team ERO","Verify functionality for ghi nhan nhan xet internship cho student thuoc doi ngu ERO.","User is logged in as Staff.
-Dang o interface danh sach student internship group.
-Hoc vien ""Nguyen Van A"" da duoc phan cong internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Ky nang ky thuat tot, thai do chuyen nghiep.""","1. Tim student ""Nguyen Van A"" trong danh sach.
-2. Nhap vao nut ""Add nhan xet"" (Add Feedback) cua student nay.
-3. Select Team nhan xet la ""ERO"".
-4. Enter Ngay nhan xet la ""2026-08-15"".
-5. Enter Noi dung nhan xet la ""Ky nang ky thuat tot, thai do chuyen nghiep."".
-6. Nhan nut ""Save nhan xet"".","Nhan xet duoc save successfully.
-Thong tin nhan xet moi xuat hien duoi ten student voi dung Team ""ERO"", ngay va noi dung nhan xet tuong ung.","High","Related to M05-F07, Rule 6.7"
-"TC-M05-022","Module 5 – Internship Management","M05-F07","Feedback Recording by Team","Ghi nhan nhan xet internship successfully cho mot student voi team Educators","Verify functionality for ghi nhan nhan xet internship cho student thuoc doi ngu Educators.","User is logged in as Staff.
-Dang o interface danh sach student internship group.
-Hoc vien ""Nguyen Van A"" da duoc phan cong internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Nang no dong gop y kien xay dung group.""","1. Tim student ""Nguyen Van A"" trong danh sach.
-2. Nhap vao nut ""Add nhan xet"" (Add Feedback) cua student nay.
-3. Select Team nhan xet la ""Educators"".
-4. Enter Ngay nhan xet la ""2026-08-15"".
-5. Enter Noi dung nhan xet la ""Nang no dong gop y kien xay dung group."".
-6. Nhan nut ""Save nhan xet"".","Nhan xet duoc save successfully.
-Thong tin nhan xet moi xuat hien duoi ten student voi dung Team ""Educators"", ngay va noi dung nhan xet tuong ung.","High","Related to M05-F07, Rule 6.7"
-"TC-M05-023","Module 5 – Internship Management","M05-F07","Feedback Recording by Team","Bo qua cac dong nhan xet trong khong save vao system","Verify system bo qua va khong save cac dong nhan xet khong chua noi dung (trong).","User is logged in as Staff.
-Dang o interface Add nhan xet cho student.","FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""""","1. Mo interface enter nhan xet cua student.
-2. Select Team la ""ERO"" va select ngay nhan xet.
-3. Bo trong truong Noi dung nhan xet (Notes).
-4. Nhan nut ""Save"".","System bo qua dong nhan xet nay, khong create ban ghi moi trong co so du lieu (Google Sheets).
-Khong display notification error nhung cung not displayed ban ghi nhan xet trong nay tren UI.","Medium","Related to Rule 6.8, Error Handling (Section 8)"
-"TC-M05-024","Module 5 – Internship Management","M05-F08","Same for All Feedback","Ghi nhan nhan xet giong nhau cho nhieu student cung luc (Same for All)","Verify tinh nang ghi nhan nhan xet hang loat va ap dung noi dung giong nhau cho cac student duoc select.","User is logged in as Staff.
-Dang o interface danh sach student cua internship group.
-Co it nhat 2 student duoc select (e.g.: Nguyen Van A, Tran Thi B).","SelectedStudents=""Nguyen Van A"", ""Tran Thi B""; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Ky nang giao tiep xuat sac.""","1. Tich select checkbox cua student ""Nguyen Van A"" va ""Tran Thi B"".
-2. Nhan nut ""Nhan xet hang loat"" (Batch Feedback / Same for All).
-3. Select Team la ""Educators"", select Ngay nhan xet la ""2026-08-15"", enter Noi dung nhan xet chung la ""Ky nang giao tiep xuat sac."".
-4. Nhan nut ""Ap dung va Save"".","System save successfully nhan xet cho ca hai student.
-Ca student ""Nguyen Van A"" va ""Tran Thi B"" deu display ban ghi nhan xet cua Educators voi cung noi dung ""Ky nang giao tiep xuat sac."" vao ngay 2026-08-15.","High","Related to M05-F08, Rule 6.9"
-"TC-M05-025","Module 5 – Internship Management","M05-F09","Feedback Editing","Edit nhan xet internship da save (thay doi noi dung nhan xet)","Verify functionality for edit va save de noi dung nhan xet da ton tai.","User is logged in as Staff.
-Hoc vien ""Nguyen Van A"" da co nhan xet: Team = ""Training"", noi dung = ""Tien bo tot"", ngay = ""2026-08-15"".","StudentName=""Nguyen Van A""; NewFeedbackNotes=""Tien bo vuot bac va lam viec group tot.""","1. Tim student ""Nguyen Van A"" va mo danh sach nhan xet cua student.
-2. Select nhan xet co noi dung ""Tien bo tot"" va click button ""Edit"" (Edit).
-3. Cap nhat noi dung nhan xet thanh ""Tien bo vuot bac va lam viec group tot."".
-4. Nhan nut ""Save"".","Nhan xet duoc cap nhat successfully.
-Noi dung moi ghi de len noi dung cu va display chinh xac tren UI: ""Tien bo vuot bac va lam viec group tot."".","High","Related to M05-F09, Rule 6.10"
-"TC-M05-026","Module 5 – Internship Management","M05-F09","Feedback Editing","Edit nhan xet internship da save (thay doi team nhan xet va ngay nhan xet)","Verify functionality for edit va save de thong tin team va ngay nhan xet da ton tai.","User is logged in as Staff.
-Hoc vien ""Nguyen Van A"" da co nhan xet: Team = ""Training"", noi dung = ""Tien bo tot"", ngay = ""2026-08-15"".","StudentName=""Nguyen Van A""; NewFeedbackTeam=""ERO""; NewFeedbackDate=""2026-08-20""","1. Tim student ""Nguyen Van A"" va mo danh sach nhan xet cua student.
-2. Select nhan xet co noi dung ""Tien bo tot"" va click button ""Edit"" (Edit).
-3. Thay doi Team nhan xet thanh ""ERO"".
-4. Thay doi Ngay nhan xet thanh ""2026-08-20"".
-5. Nhan nut ""Save"".","Nhan xet duoc cap nhat successfully.
-Du lieu nhan xet duoc thay doi voi Team moi la ""ERO"" va ngay moi la ""2026-08-20"" tren interface.","High","Related to M05-F09, Rule 6.10"
-"TC-M05-027","Module 5 – Internship Management","M05-F10","Group List Display","Mo rong/thu gon danh sach student va display nhan cphoto bao trong danh sach internship group","Verify functionality for mo rong/thu gon (expand/collapse) cua tung internship group, dieu huong va display chinh xac nhan cphoto bao (Warning Badge).","User is logged in as Staff.
-Dang o man hinh danh sach internship group.
-Co internship group ""Nhom Thuc tap 2026"" chua 2 student chua gan company.","GroupName=""Nhom Thuc tap 2026""","1. Observe dong display cua internship group ""Nhom Thuc tap 2026"".
-2. Verify whether co display nhan cphoto bao student chua gan hay khong (e.g.: ""2 student chua phan cong"" hoac ""2 Unassigned"").
-3. Nhap vao nut/bieu tuong mui ten mo rong (Expand) cua internship group nay.
-4. Nhap lai vao nut/bieu tuong thu gon (Collapse) cua internship group.","Nhan cphoto bao display chinh xac so luong student chua gan (e.g.: ""⚠ 2 Unassigned"" hoac tuong tu).
-Khi click Mo rong, danh sach student chi tiet cua group display ngay ben duoi.
-Khi click Thu gon, danh sach chi tiet duoc an di.","Medium","Related to M05-F10, Rule 6.11"
+Class ""PNV26A"" is not assigned to any internship group in the academic year.","GroupName=""""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Leave Group Name blank;
+2. Select Academic Year as ""2026"";
+3. Select class ""PNV26A"";
+4. Select Start Date as ""2026-06-01"";
+5. Click Save button.","System blocks creation.
+Validation error message appears: ""Group Name is required.""
+Form remains open and no new record is created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+"TC-M05-003","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Unselected Classes","Verify system displays error and prevents creating internship group when no classes are selected.","User is logged in as Staff.
+Currently on Create New Internship Group interface.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=None; StartDate=""2026-06-01""","1. Enter Group Name as ""Internship Group 2026"";
+2. Select Academic Year as ""2026"";
+3. Do not select any class checkbox;
+4. Select Start Date as ""2026-06-01"";
+5. Click Save button.","System blocks creation.
+Validation error message appears: ""At least one class must be selected.""
+Group is not created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+"TC-M05-004","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Missing Start Date","Verify system displays error and prevents creating internship group when Start Date is empty.","User is logged in as Staff.
+Currently on Create New Internship Group interface.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""""","1. Enter Group Name as ""Internship Group 2026"";
+2. Select Academic Year as ""2026"";
+3. Select class ""PNV26A"";
+4. Leave Start Date blank;
+5. Click Save button.","System blocks creation.
+Validation error message appears: ""Start Date is required.""
+Group is not created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+"TC-M05-005","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Missing Academic Year","Verify system displays error and prevents creating internship group when Academic Year is empty.","User is logged in as Staff.
+Currently on Create New Internship Group interface.","GroupName=""Internship Group 2026""; AcademicYear=""""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Enter Group Name as ""Internship Group 2026"";
+2. Leave Academic Year dropdown unselected/empty;
+3. Select class ""PNV26A"";
+4. Select Start Date as ""2026-06-01"";
+5. Click Save button.","System blocks creation.
+Validation error message appears: ""Academic Year is required.""
+Group is not created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+"TC-M05-006","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Class Already Assigned in Same Year","Verify system prevents selecting or saving a class that is already assigned to another active internship group in the same academic year.","User is logged in as Staff.
+Class ""PNV26A"" has been assigned to group ""Group 1"" in academic year 2026.
+Currently on Create New Internship Group interface.","GroupName=""Group 2""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Enter Group Name as ""Group 2"";
+2. Select Academic Year as ""2026"";
+3. Attempt to select class ""PNV26A"";
+4. Click Save button.","Class ""PNV26A"" is either disabled in the dropdown/list or system displays error upon saving: ""Class PNV26A is already assigned to another internship group in academic year 2026.""
+Creation fails.","High","Related Requirement: M05-F01, Rule 6.1"
+"TC-M05-007","Module 05 - Internship Management","M05-F01","Internship Group Creation","Create Internship Group Successfully When Assigning Same Class across Different Academic Years","Verify system allows assigning the same class to another internship group if the academic years are different.","User is logged in as Staff.
+Class ""PNV26A"" was assigned to an internship group in academic year 2025.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Create new group with Academic Year ""2026"";
+2. Select class ""PNV26A"";
+3. Click Save button.","System allows creation successfully without duplicate class error because academic years differ (2025 vs 2026).","Medium","Related Requirement: M05-F01, Rule 6.1"
+"TC-M05-008","Module 05 - Internship Management","M05-F02","Internship Group Archiving & Reactivation","Archive Active Internship Group","Verify functionality for archiving an active internship group.","User is logged in as Staff.
+Internship group ""Internship Group 2025"" is in Active status.","GroupName=""Internship Group 2025""","1. Navigate to Internship Group list;
+2. Locate group ""Internship Group 2025"";
+3. Click Action menu and select Archive;
+4. Confirm archiving in confirmation dialog.","Status of ""Internship Group 2025"" changes from Active to Archived.
+Group is moved to Archived tab or hidden from Active list.","High","Related Requirement: M05-F02, Rule 6.2"
+"TC-M05-009","Module 05 - Internship Management","M05-F02","Internship Group Archiving & Reactivation","Reactivate Archived Internship Group","Verify functionality for reactivating a previously archived internship group.","User is logged in as Staff.
+Internship group ""Internship Group 2025"" is in Archived status.","GroupName=""Internship Group 2025""","1. Navigate to Archived Internship Groups tab;
+2. Locate group ""Internship Group 2025"";
+3. Click Action menu and select Reactivate;
+4. Confirm reactivation in confirmation dialog.","Status of ""Internship Group 2025"" changes back to Active.
+Group reappears in the Active internship group list.","High","Related Requirement: M05-F02, Rule 6.2"
+"TC-M05-010","Module 05 - Internship Management","M05-F03","Partner Company Management","Add New Partner Company with Valid Name","Verify functionality for adding a new partner company with a valid name.","User is logged in as Staff.
+Currently on Company Management interface.
+Company ""ABC Technology"" does not exist in system.","CompanyName=""ABC Technology""","1. Click Add Company button;
+2. Enter Company Name as ""ABC Technology"";
+3. Click Save button.","Company is added successfully.
+Success notification appears and ""ABC Technology"" is displayed in company list with status Active.","High","Related Requirement: M05-F03, Rule 6.3"
+"TC-M05-011","Module 05 - Internship Management","M05-F03","Partner Company Management","Add Company Fails Due to Empty Company Name","Verify system displays error and prevents adding company when company name is empty.","User is logged in as Staff.
+Currently on Add Company dialog.","CompanyName=""""","1. Leave Company Name field empty;
+2. Click Save button.","System blocks action.
+Validation error message appears: ""Company Name is required.""
+No new company is saved.","High","Related Requirement: M05-F03, Rule 6.3, Validation Rules (Section 8)"
+"TC-M05-012","Module 05 - Internship Management","M05-F03","Partner Company Management","Add Company Fails Due to Duplicate Name (Case Insensitive)","Verify system detects duplicate company names regardless of uppercase/lowercase letters.","User is logged in as Staff.
+Company ""ABC Technology"" already exists in system.","CompanyName=""abc technology""","1. Click Add Company button;
+2. Enter Company Name as ""abc technology"";
+3. Click Save button.","System blocks action.
+Error message appears: ""Company name already exists.""
+Duplicate company is not created.","High","Related Requirement: M05-F03, Rule 6.3"
+"TC-M05-013","Module 05 - Internship Management","M05-F03","Partner Company Management","Add Company Fails Due to Duplicate Name with Leading/Trailing Whitespace","Verify system trims leading and trailing spaces before checking for duplicate company names.","User is logged in as Staff.
+Company ""ABC Technology"" already exists in system.","CompanyName=""  ABC Technology  ""","1. Click Add Company button;
+2. Enter Company Name as ""  ABC Technology  "";
+3. Click Save button.","System trims spaces, detects duplicate ""ABC Technology"", and displays error: ""Company name already exists.""
+Save is rejected.","Medium","Related Requirement: M05-F03, Rule 6.3"
+"TC-M05-014","Module 05 - Internship Management","M05-F04","Single Student Internship Assignment","Assign Internship to Individual Student","Verify functionality for assigning an internship company to a single student.","User is logged in as Staff.
+Currently on Student List in Internship Group.
+Student ""Nguyen Van A"" has no assigned company.
+Company ""ABC Technology"" exists in system.","StudentName=""Nguyen Van A""; AssignedCompany=""ABC Technology""","1. Find student ""Nguyen Van A"" in list;
+2. Click Company assignment dropdown for this student;
+3. Select company ""ABC Technology"";
+4. Click Save button.","Assignment saved successfully.
+Student ""Nguyen Van A"" displays company ""ABC Technology"" in the table list.","High","Related Requirement: M05-F04, Rule 6.4"
+"TC-M05-015","Module 05 - Internship Management","M05-F05","Batch Student Internship Assignment","Batch Assign Internship to Multiple Students","Verify functionality for assigning an internship company to multiple selected students simultaneously.","User is logged in as Staff.
+Currently on Student List in Internship Group.
+Students ""Nguyen Van A"" and ""Tran Thi B"" have no assigned company.","SelectedStudents=[""Nguyen Van A"", ""Tran Thi B""]; AssignedCompany=""ABC Technology""","1. Check selection boxes for ""Nguyen Van A"" and ""Tran Thi B"";
+2. Click Batch Assign Company button;
+3. Select company ""ABC Technology"" in modal dialog;
+4. Click Apply and Save.","Batch assignment saved successfully.
+Both students ""Nguyen Van A"" and ""Tran Thi B"" display company ""ABC Technology"" in the list.","High","Related Requirement: M05-F05, Rule 6.4"
+"TC-M05-016","Module 05 - Internship Management","M05-F04","Single Student Internship Assignment","Change Student Assigned Company","Verify functionality for updating the assigned internship company for a student.","User is logged in as Staff.
+Student ""Nguyen Van A"" is currently assigned to ""ABC Technology"".","StudentName=""Nguyen Van A""; NewCompany=""XYZ Global""","1. Locate student ""Nguyen Van A"";
+2. Change company dropdown selection from ""ABC Technology"" to ""XYZ Global"";
+3. Click Save button.","Assignment updated successfully.
+Student ""Nguyen Van A"" displays new company ""XYZ Global"".","High","Related Requirement: M05-F04, Rule 6.4"
+"TC-M05-017","Module 05 - Internship Management","M05-F04","Single Student Internship Assignment","Unassign Company from Student by Selecting No Company","Verify functionality for removing an assigned company from a student by selecting ""No Company"".","User is logged in as Staff.
+Student ""Nguyen Van A"" is currently assigned to ""ABC Technology"".","StudentName=""Nguyen Van A""; AssignedCompany=""No Company""","1. Locate student ""Nguyen Van A"";
+2. Select ""No Company"" (or empty option) in company dropdown;
+3. Click Save button.","Company assignment cleared successfully.
+Student ""Nguyen Van A"" displays ""Unassigned"" or ""No Company"" in student list.","Medium","Related Requirement: M05-F04, Rule 6.4"
+"TC-M05-018","Module 05 - Internship Management","M05-F06","Company Hiding & Deletion Safety","Hide Company and Verify Exclusion from New Assignment Options","Verify system hides company from assignment dropdowns when company status is set to Hidden/Inactive.","User is logged in as Staff.
+Company ""Defunct Corp"" exists in system.","CompanyName=""Defunct Corp""","1. Go to Company Management;
+2. Change status of ""Defunct Corp"" to Hidden/Inactive;
+3. Go to Student List assignment dropdown.","Company ""Defunct Corp"" no longer appears in dropdown list for new student assignments.","High","Related Requirement: M05-F06, Rule 6.6"
+"TC-M05-019","Module 05 - Internship Management","M05-F06","Company Hiding & Deletion Safety","Ensure Existing Student Assignment Remains Unaffected When Company Is Hidden","Verify hiding a company does not remove or distort historical/existing student assignments associated with that company.","User is logged in as Staff.
+Student ""Tran Thi B"" is assigned to company ""ABC Technology"".","CompanyName=""ABC Technology""; StudentName=""Tran Thi B""","1. Change status of company ""ABC Technology"" to Hidden in Company Management;
+2. View Student List in Internship Group.","Assignment of student ""Tran Thi B"" still displays ""ABC Technology"" normally in student list.
+No error notification appears and existing assignment is preserved.","High","Related Requirement: M05-F06, Rule 6.6"
+"TC-M05-020","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Record Internship Feedback Successfully for Student by Training Team","Verify functionality for recording internship feedback for a student by Training team.","User is logged in as Staff.
+Currently on Student List in Internship Group.
+Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""Training""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Good progress, proactive in assigned tasks.""","1. Locate student ""Nguyen Van A"" in list;
+2. Click Add Feedback button for this student;
+3. Select Feedback Team as ""Training"";
+4. Enter Feedback Date as ""2026-08-15"";
+5. Enter Feedback Notes as ""Good progress, proactive in assigned tasks."";
+6. Click Save Feedback button.","Feedback saved successfully.
+New feedback entry appears under student name with Team ""Training"", date, and entered notes.","High","Related Requirement: M05-F07, Rule 6.7"
+"TC-M05-021","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Record Internship Feedback Successfully for Student by ERO Team","Verify functionality for recording internship feedback for a student by ERO team.","User is logged in as Staff.
+Currently on Student List in Internship Group.
+Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Strong technical skills and professional attitude.""","1. Locate student ""Nguyen Van A"" in list;
+2. Click Add Feedback button for this student;
+3. Select Feedback Team as ""ERO"";
+4. Enter Feedback Date as ""2026-08-15"";
+5. Enter Feedback Notes as ""Strong technical skills and professional attitude."";
+6. Click Save Feedback button.","Feedback saved successfully.
+New feedback entry appears under student name with Team ""ERO"", date, and entered notes.","High","Related Requirement: M05-F07, Rule 6.7"
+"TC-M05-022","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Record Internship Feedback Successfully for Student by Educators Team","Verify functionality for recording internship feedback for a student by Educators team.","User is logged in as Staff.
+Currently on Student List in Internship Group.
+Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Actively contributes constructive ideas to group.""","1. Locate student ""Nguyen Van A"" in list;
+2. Click Add Feedback button for this student;
+3. Select Feedback Team as ""Educators"";
+4. Enter Feedback Date as ""2026-08-15"";
+5. Enter Feedback Notes as ""Actively contributes constructive ideas to group."";
+6. Click Save Feedback button.","Feedback saved successfully.
+New feedback entry appears under student name with Team ""Educators"", date, and entered notes.","High","Related Requirement: M05-F07, Rule 6.7"
+"TC-M05-023","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Ignore Blank Feedback Entries Without Saving","Verify system ignores and does not save feedback entries when feedback notes field is empty.","User is logged in as Staff.
+Currently on Add Feedback dialog for student.","FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""""","1. Open Add Feedback dialog;
+2. Select Team as ""ERO"" and select date;
+3. Leave Feedback Notes empty;
+4. Click Save button.","System ignores blank feedback entry without saving new database record.
+No error appears and no empty feedback row is displayed on UI.","Medium","Related Requirement: Rule 6.8, Error Handling (Section 8)"
+"TC-M05-024","Module 05 - Internship Management","M05-F08","Same for All Feedback","Record Batch Feedback for Multiple Students Simultaneously (Same for All)","Verify batch feedback feature applies identical feedback content to multiple selected students.","User is logged in as Staff.
+Currently on Student List in Internship Group.
+At least 2 students selected (e.g., Nguyen Van A, Tran Thi B).","SelectedStudents=[""Nguyen Van A"", ""Tran Thi B""]; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Excellent communication skills.""","1. Select checkboxes for students ""Nguyen Van A"" and ""Tran Thi B"";
+2. Click Batch Feedback (Same for All) button;
+3. Select Team as ""Educators"", Feedback Date as ""2026-08-15"", enter Notes as ""Excellent communication skills."";
+4. Click Apply and Save button.","Feedback saved successfully for both students.
+Both ""Nguyen Van A"" and ""Tran Thi B"" display Educators feedback entry with content ""Excellent communication skills."" dated 2026-08-15.","High","Related Requirement: M05-F08, Rule 6.9"
+"TC-M05-025","Module 05 - Internship Management","M05-F09","Feedback Editing","Edit Saved Internship Feedback Content","Verify functionality for editing and saving existing feedback content.","User is logged in as Staff.
+Student ""Nguyen Van A"" has feedback: Team = ""Training"", content = ""Good progress"", date = ""2026-08-15"".","StudentName=""Nguyen Van A""; NewFeedbackNotes=""Outstanding progress and excellent teamwork.""","1. Locate student ""Nguyen Van A"" and expand feedback list;
+2. Select feedback entry ""Good progress"" and click Edit button;
+3. Update feedback notes to ""Outstanding progress and excellent teamwork."";
+4. Click Save button.","Feedback updated successfully.
+New content overwrites previous notes and displays correctly on UI: ""Outstanding progress and excellent teamwork."".","High","Related Requirement: M05-F09, Rule 6.10"
+"TC-M05-026","Module 05 - Internship Management","M05-F09","Feedback Editing","Edit Saved Internship Feedback Team and Date","Verify functionality for editing and saving existing feedback team and date.","User is logged in as Staff.
+Student ""Nguyen Van A"" has feedback: Team = ""Training"", content = ""Good progress"", date = ""2026-08-15"".","StudentName=""Nguyen Van A""; NewFeedbackTeam=""ERO""; NewFeedbackDate=""2026-08-20""","1. Locate student ""Nguyen Van A"" and expand feedback list;
+2. Select feedback entry ""Good progress"" and click Edit button;
+3. Change Feedback Team to ""ERO"";
+4. Change Feedback Date to ""2026-08-20"";
+5. Click Save button.","Feedback updated successfully.
+Feedback details update on UI to display new Team ""ERO"" and new date ""2026-08-20"".","High","Related Requirement: M05-F09, Rule 6.10"
+"TC-M05-027","Module 05 - Internship Management","M05-F10","Group List Display","Expand/Collapse Student List and Display Warning Badges in Internship Group List","Verify functionality for expanding/collapsing each internship group and correctly displaying warning badges for unassigned students.","User is logged in as Staff.
+Currently on Internship Group List page.
+Group ""Internship Group 2026"" contains 2 students without assigned company.","GroupName=""Internship Group 2026""","1. Observe group row for ""Internship Group 2026"";
+2. Verify warning badge for unassigned students (e.g., ""2 Unassigned"");
+3. Click Expand arrow icon on group row;
+4. Click Collapse arrow icon on group row.","Warning badge ""2 Unassigned"" displays accurately on group row.
+Clicking Expand expands student list cleanly.
+Clicking Collapse hides student list cleanly.","Medium","Related Requirement: M05-F10, UI Standards"

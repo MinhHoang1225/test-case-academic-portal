@@ -1,158 +1,129 @@
 ﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
-"TC-M06-001","Module 06 – Bi-Weekly Internship Reports","M06-F01","Report Creation","Create new report boi student thuoc internship group dang hoat dong","Verify functionality for display nut va mo interface create new report cho student thuoc internship group dang hoat dong (On-going).","User is logged in as Student.
-Hoc vien thuoc internship group co status ""On-going"".
-Currently on Student Portal interface.","BatchName=""PNV26A""; GroupStatus=""On-going""","1. Truy cap vao Student Portal.
-2. Verify su xuat hien cua nut ""+ New Report"".
-3. Nhap vao nut ""+ New Report"".","Nut ""+ New Report"" display ro rang va can click duoc.
-Interface create new internship report mo ra successfully.","High","Related to M06-F01, Rule 6.1"
-"TC-M06-002","Module 06 – Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent create new report for student thuoc internship group da hoan thanh","Verify system an nut create new report neu student thuoc internship group da hoan thanh (Completed).","User is logged in as Student.
-Hoc vien thuoc internship group co status ""Completed"".
-Currently on Student Portal interface.","BatchName=""PNV26A""; GroupStatus=""Completed""","1. Truy cap vao Student Portal.
-2. Observe su xuat hien cua nut ""+ New Report"".","Nut ""+ New Report"" not displayed tren interface.
-Hoc vien cannot create new internship report.","High","Related to M06-F01, Rule 6.1"
-"TC-M06-003","Module 06 – Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent create new report for student thuoc internship group da archive","Verify system an nut create new report neu student thuoc internship group da archive (Archived).","User is logged in as Student.
-Hoc vien thuoc internship group co status ""Archived"".
-Currently on Student Portal interface.","BatchName=""PNV26A""; GroupStatus=""Archived""","1. Truy cap vao Student Portal.
-2. Observe su xuat hien cua nut ""+ New Report"".","Nut ""+ New Report"" not displayed tren interface.
-Hoc vien cannot create new internship report.","High","Related to M06-F01, Rule 6.1"
-"TC-M06-004","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Prevent creating new report from Staff account","Verify whether account Staff co bi gioi han quyen khong duoc create new internship report hay khong.","User is logged in as Staff.
-Currently on Student Management or Internship Management interface.","Role=""Staff""","1. Truy cap interface report cua student bat ky hoac kiem tra cac nut chuc nang tren trang report.","Khong xuat hien nut ""+ New Report"" hoac bat ky tuy select nao allows Staff create internship report.","Medium","Related to User Roles (Section 4), Staff Access (Rule 6.12)"
-"TC-M06-005","Module 06 – Bi-Weekly Internship Reports","M06-F02","Draft Saving","Save temporary report as Draft","Verify functionality for save as draft report voi thong tin chua day du de edit sau.","User is logged in as Student.
-Currently on new internship report creation interface.","CompanySupervisorName=""Nguyen Van B""; StartDate=""2026-07-20""; Status=""Draft""","1. Enter Ten supervisor cua company la ""Nguyen Van B"".
-2. Select Start Date la ""2026-07-20"" (Monday).
-3. De trong cac truong bat buoc khac.
-4. Nhap nut ""Save as Draft"" (Save as draft).","System display notification save as draft successfully.
-Bao cao duoc save vao danh sach voi status ""Draft"".
-Hoc vien can mo lai de tiep tuc edit.","High","Related to M06-F02, Rule 6.2"
-"TC-M06-006","Module 06 – Bi-Weekly Internship Reports","M06-F02","Draft Saving","Edit draft report unlimited number of times","Verify whether student can edit va save lai draft report nhieu lan truoc khi submit chinh thuc.","User is logged in as Student.
-Da co san mot report o status ""Draft"" trong danh sach.","ReportId=""REP001""; InitialStatus=""Draft""; NewSupervisorName=""Tran Thi C""; Tasks=[{""TaskName"": ""Design Database"", ""Description"": ""Create ERD"", ""Result"": ""Completed""}]","1. Select draft report ""REP001"" tu danh sach va click ""Edit"" (Edit).
-2. Thay doi Ten supervisor thanh ""Tran Thi C"".
-3. Add mot task vao task table.
-4. Nhap nut ""Save as Draft"".
-5. Mo lai report do lan nua, sua doi thong tin va click ""Save as Draft"" tiep.","System allows edit va save successfully tat ca cac thay doi ma without limit times.
-Status report van giu nguyen la ""Draft"" sau moi lan save as draft.","High","Related to M06-F02, Rule 6.2"
-"TC-M06-007","Module 06 – Bi-Weekly Internship Reports","M06-F02","Draft Saving","Draft report does not send emails and is hidden from Staff","Dam bao draft report khong kich hoat tinh nang gui email va cannot nhin thay boi account Staff.","Hoc vien vua thuc hien save as draft mot new report.","Status=""Draft""; StudentEmail=""student01@student.passerellesnumeriques.org""; PnvSupervisorEmail=""pnv.sup@passerellesnumeriques.org""","1. Verify hom thu cua PNV Supervisor va Company Supervisor xem co email notification nao duoc gui di khong.
-2. Log in system bang account Staff, access trang chi tiet student (Student Detail) cua student nay va kiem tra danh sach report.","1. Khong co email nao duoc gui tu system.
-2. Tai khoan Staff khong nhin thay draft report nay trong danh sach report cua student.","High","Related to M06-F02, Rule 6.2, Rule 6.12"
-"TC-M06-008","Module 06 – Bi-Weekly Internship Reports","M06-F04","Auto-calculated End Date","Auto-calculate End Date when valid Start Date is entered","Verify functionality for auto-calculate End Date (End Date) dua tren cong thuc Start Date (Start Date) + 13 ngay.","User is logged in as Student.
-Currently on new report creation interface.","StartDate=""2026-07-20"" (Monday)","1. Nhap select truong Start Date va enter/select ngay ""2026-07-20"".
-2. Verify gia tri display o truong End Date.
-3. Thu click dup hoac go vao truong End Date de edit.","Truong End Date tu dong display ngay ""2026-08-02"".
-Truong End Date bi vo hieu hoa (disabled/read-only) va user cannot edit thu cong.","High","Related to M06-F04, Rule 6.5"
-"TC-M06-009","Module 06 – Bi-Weekly Internship Reports","M06-F04","Auto-calculated End Date","Prevent submitting report if Start Date is not a Monday","Verify system bao error khi Start Date duoc select khong roi vao thu Hai.","User is logged in as Student.
-Currently on new report creation interface.","StartDate=""2026-07-21"" (Tuesday, not thu Hai); Other required fields valid","1. Enter day du thong tin hop le vao cac truong bat buoc.
-2. Thay doi Start Date thanh ""2026-07-21"" (Tuesday).
-3. Nhap nut ""Submit"" (Submit report).
-4. Xac nhan submit trong hop thoai xac nhan.","System display error cphoto bao Start Date phai la thu Hai (e.g.: ""Start Date must be a Monday"").
-Bao cao khong duoc submit va status khong doi.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-010","Module 06 – Bi-Weekly Internship Reports","M06-F04","Auto-calculated End Date","Prevent submitting report if Start Date is outside internship period","Verify system bao error khi student select Start Date outside pham vi period internship da cau hinh.","User is logged in as Student.
-Thoi gian internship cua student duoc cau hinh tu ""2026-07-01"" den ""2026-09-30"".
-Currently on new report creation interface.","StartDate=""2026-06-22"" (Monday, truoc period internship); Other required fields valid","1. Enter day du thong tin hop le vao cac truong bat buoc.
-2. Select Start Date la ""2026-06-22"".
-3. Nhap nut ""Submit"" va xac nhan.","System display notification error requires Start Date phai nam trong period internship (e.g.: ""Start Date must be within the internship period"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-011","Module 06 – Bi-Weekly Internship Reports","M06-F05","Dynamic Task Table","Add and remove task rows in dynamic task table","Verify functionality for add moi task row va delete bot task row hien tai trong task table.","User is logged in as Student.
-Currently on report creation or edit interface.","Khong co du lieu dac biet","1. Nhap nut ""Add Task"" (Add task).
-2. Enter thong tin vao task row vua create.
-3. Nhap nut ""Add Task"" mot lan nua de create dong thu 2.
-4. Enter thong tin cho dong thu 2.
-5. Nhap nut ""Remove"" (Delete) tai task row thu nhat.","1. Mot dong moi xuat hien voi cac o enter: Ten task, Mo ta, Ket qua.
-2. Enter lieu binh thuong.
-3. Dong thu 2 duoc create add.
-4. Enter lieu binh thuong cho dong thu 2.
-5. Dong thu nhat bi delete khoi bang, chi con lai dong thu 2.","High","Related to M06-F05, Rule 6.6"
-"TC-M06-012","Module 06 – Bi-Weekly Internship Reports","M06-F05","Dynamic Task Table","Prevent submit report khi danh sach task trong","Dam bao system bat buoc report phai co it nhat mot task moi allows submit.","User is logged in as Student.
-Dang o interface create new report, cac truong thong tin chung da dien day du.","TaskList=Empty; Other required fields valid","1. Delete tat ca cac task row trong task table (hoac khong add dong nao).
-2. Nhap nut ""Submit"" va xac nhan.","System display notification error requires phai enter it nhat mot task (e.g.: ""At least one task is required"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-013","Module 06 – Bi-Weekly Internship Reports","M06-F05","Dynamic Task Table","Prevent submit report khi co task row chua hoan thanh thong tin","Verify system bao error neu ton tai bat ky task row nao bi bo trong Ten, Mo ta hoac Ket qua khi submit.","User is logged in as Student.
-Currently on new report creation interface.","TaskName=""Code FE""; Description=""""; Result=""Done"" (De trong phan Mo ta)","1. Enter day du thong tin chung hop le.
-2. Add mot task row, enter Ten task la ""Code FE"", Ket qua la ""Done"", bo trong Mo ta.
-3. Nhap nut ""Submit"" va xac nhan.","System bao error task row khong hop le (e.g.: ""Task fields cannot be left blank"").
-Bao cao khong duoc submit.","High","Related to Rule 6.6, Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-014","Module 06 – Bi-Weekly Internship Reports","M06-F06","Auto-calculated Total Hours","Auto-calculate so gio lam viec hang ngay va tong so gio lam viec","Verify functionality for tu dong tinh tong so gio lam viec theo tuan va tong ca ky report khi user enter so gio lam viec hang ngay.","User is logged in as Student.
-Currently on report creation or edit interface.","Week1Hours=[8, 8, 8, 8, 8, 0, 0]; Week2Hours=[8, 8, 8, 8, 8, 4, 0]","1. Enter so gio lam viec cho Tuan 1 tu thu Hai den Sunday lan luot la: 8, 8, 8, 8, 8, 0, 0.
-2. Enter so gio lam viec cho Tuan 2 lan luot la: 8, 8, 8, 8, 8, 4, 0.
-3. Observe tong so gio cua Tuan 1, Tuan 2 va Tong so gio lam viec display tren interface.
-4. Thay doi so gio ngay thu Bay Tuan 2 tu 4 thanh 8.","Tong so gio Tuan 1 tu dong display 40.
-Tong so gio Tuan 2 tu dong display 44.
-Tong so gio lam viec ca ky report tu dong display 84.
-Khi thay doi ngay thu Bay Tuan 2 thanh 8, tong Tuan 2 lap tuc cap nhat thanh 48 va Tong so gio lam viec cap nhat thanh 88.","High","Related to M06-F06, Rule 6.7"
-"TC-M06-015","Module 06 – Bi-Weekly Internship Reports","M06-F06","Auto-calculated Total Hours","Prevent enter so gio lam viec la so am","Dam bao system khong chap nhan gia tri so gio lam viec nho hon 0.","User is logged in as Student.
-Currently on report creation or edit interface.","HourInput=-2","1. Enter gia tri -2 vao o enter gio lam viec cua ngay bat ky.
-2. Nhan nut ""Save as Draft"" hoac ""Submit"".","System bao error so gio khong hop le hoac tu dong khoi phuc ve 0/ngan khong cho enter so am.
-Bao cao khong duoc save/submit voi gia tri am.","High","Related to Boundary Value Testing (Section 6.7)"
-"TC-M06-016","Module 06 – Bi-Weekly Internship Reports","M06-F06","Auto-calculated Total Hours","Prevent enter so gio lam viec exceeding 24 gio mot ngay","Dam bao system khong chap nhan gia tri so gio lam viec lon hon 24 gio cho mot ngay.","User is logged in as Student.
-Currently on report creation or edit interface.","HourInput=25","1. Enter gia tri 25 vao o enter gio lam viec cua ngay bat ky.
-2. Nhan nut ""Save as Draft"" hoac ""Submit"".","System bao error so gio cannot exceeding 24 gio mot ngay.
-Gia tri khong duoc chap nhan va report khong duoc save/submit.","High","Related to Boundary Value Testing (Section 6.7)"
-"TC-M06-017","Module 06 – Bi-Weekly Internship Reports","M06-F06","Auto-calculated Total Hours","Prevent enter ky tu not so vao o so gio lam viec","Dam bao system chi chap nhan du lieu so trong o enter so gio lam viec.","User is logged in as Student.
-Currently on report creation or edit interface.","HourInput=""abc""","1. Enter ky tu ""abc"" vao o enter gio lam viec cua ngay bat ky.
-2. Verify gia tri trong o enter.","System tu dong loai bo ky tu chu hoac display error va khong allows enter ky tu phi so.","High","Related to Boundary Value Testing (Section 6.7)"
-"TC-M06-018","Module 06 – Bi-Weekly Internship Reports","M06-F07","Report Submission","Submit report successfully voi day du thong tin hop le","Verify luong submit report successfully khi dien day du va dung format tat ca cac thong tin bat buoc.","User is logged in as Student.
-Dang o interface create internship report.","CompanySupervisorName=""Nguyen Van B""; StartDate=""2026-07-20""; PnvSupervisorEmail=""pnv.sup@passerellesnumeriques.org""; CompanySupervisorEmail=""company.sup@example.com""; TaskName=""Implement Login API""; TaskDesc=""Develop authentication feature""; TaskResult=""Completed successfully""; Week1Hours=[8,8,8,8,8,0,0]; Week2Hours=[8,8,8,8,8,0,0]; Challenges=""Gap kho khan khi tich hop OAuth""; SupportNeeded=""Can mentor ho tro review code""","1. Dien day du thong tin nhu trong Test Data.
-2. Nhan nut ""Submit"" (Submit report).
-3. Tai hop thoai xac nhan ""Submit Report"", click button ""Confirm"" (Xac nhan).","System display notification submit report successfully.
-Status cua report chuyen sang ""Submitted"".
-Bao cao chuyen sang che do chi doc.","High","Related to M06-F07, Rule 6.3"
-"TC-M06-019","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Submit report failed due to empty name nguoi supervisor company","Verify system bao error khi blank truong Ten supervisor cua company.","User is logged in as Student.
-Currently on new report creation interface.","CompanySupervisorName=""""; Cac truong khac deu hop le","1. Dien day du thong tin hop le tru truong Ten supervisor company blank.
-2. Nhap nut ""Submit"" va xac nhan.","System bao error requires enter Ten supervisor company (e.g.: ""Company Supervisor Name is required"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-020","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Submit report failed do blank email nguoi supervisor PNV","Verify system bao error khi blank truong Email supervisor PNV.","User is logged in as Student.
-Currently on new report creation interface.","PnvSupervisorEmail=""""; Cac truong khac deu hop le","1. Dien day du thong tin hop le tru truong Email supervisor PNV blank.
-2. Nhap nut ""Submit"" va xac nhan.","System bao error requires enter Email supervisor PNV (e.g.: ""PNV Supervisor Email is required"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-021","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Submit report failed do email nguoi supervisor PNV sai format","Verify system bao error khi enter email supervisor PNV khong dung format.","User is logged in as Student.
-Currently on new report creation interface.","PnvSupervisorEmail=""pnv.sup""; Cac truong khac deu hop le","1. Dien day du thong tin hop le tru truong Email supervisor PNV enter la ""pnv.sup"".
-2. Nhap nut ""Submit"" va xac nhan.","System bao error format Email supervisor PNV khong hop le (e.g.: ""Invalid PNV Supervisor Email format"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-022","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Submit report failed do blank email nguoi supervisor company","Verify system bao error khi blank truong Email supervisor company.","User is logged in as Student.
-Currently on new report creation interface.","CompanySupervisorEmail=""""; Cac truong khac deu hop le","1. Dien day du thong tin hop le tru truong Email supervisor company blank.
-2. Nhap nut ""Submit"" va xac nhan.","System bao error requires co it nhat mot email supervisor company (e.g.: ""Company Supervisor Email is required"").
-Bao cao khong duoc submit.","High","TRUNG LAP. Test case nay trung lap voi requires ""At least one valid email address"" da duoc kiem tra. Nen duoc loai bo."
-"TC-M06-023","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Submit report failed do email nguoi supervisor company sai format","Verify system bao error khi enter email supervisor company khong dung format email.","User is logged in as Student.
-Currently on new report creation interface.","CompanySupervisorEmail=""company.sup@""; Cac truong khac deu hop le","1. Dien day du thong tin hop le tru truong Email supervisor company enter la ""company.sup@"".
-2. Nhap nut ""Submit"" va xac nhan.","System bao error format Email supervisor company khong hop le (e.g.: ""Invalid Company Supervisor Email format"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-024","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Submit report failed do blank phan mo ta kho khan (Challenges)","Verify system bao error khi truong Kho khan gap phai (Challenges) bi bo trong khi submit.","User is logged in as Student.
-Currently on new report creation interface.","Challenges=""""; Cac truong khac deu hop le","1. Dien day du thong tin hop le tru truong Kho khan blank.
-2. Nhap nut ""Submit"" va xac nhan.","System bao error requires enter Kho khan gap phai (e.g.: ""Challenges field is required"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-025","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Submit report failed do blank phan ho tro can thiet (Support Needed)","Verify system bao error khi truong Ho tro can thiet (Support Needed) bi bo trong khi submit.","User is logged in as Student.
-Currently on new report creation interface.","SupportNeeded=""""; Cac truong khac deu hop le","1. Dien day du thong tin hop le tru truong Ho tro can thiet blank.
-2. Nhap nut ""Submit"" va xac nhan.","System bao error requires enter Ho tro can thiet (e.g.: ""Support Needed field is required"").
-Bao cao khong duoc submit.","High","Related to Validation Rules (Section 7), Error Handling (Section 8)"
-"TC-M06-026","Module 06 – Bi-Weekly Internship Reports","M06-F03","Submission Validation","Huy xac nhan submit report","Dam bao system khong submit report neu user click button Huy (Cancel) tren hop thoai xac nhan submit.","User is logged in as Student.
-Dang o interface create report va da enter day du thong tin hop le.","Cac thong tin hop le","1. Nhap nut ""Submit"".
-2. Khi hop thoai xac nhan ""Submit Report"" hien len, click button ""Cancel"" (Huy) hoac nut dong hop thoai.","Hop thoai dong lai.
-Bao cao khong duoc submit va status van la draft hoac chua save.
-Nguoi dung van can tiep tuc edit report.","Medium","Related to Rule 6.3, Workflow"
-"TC-M06-027","Module 06 – Bi-Weekly Internship Reports","M06-F07","Report Submission","Bao cao da submit chuyen sang status chi doc mai mai","Dam bao report sau khi submit (Submitted) se bi khoa, cannot edit hay delete boi student.","User is logged in as Student.
-Co mot report trong danh sach da o status ""Submitted"".","ReportStatus=""Submitted""","1. Mo xem chi tiet report da submit.
-2. Verify su xuat hien cua nut ""Edit"" (Edit), ""Save"" (Save), hoac ""Delete"" (Delete).
-3. Thu click dup hoac thay doi noi dung cac truong thong tin.","Nut ""Edit"" va ""Save as Draft"" not displayed.
-Tat ca cac truong thong tin deu o status chi doc (disabled/read-only).
-Hoc vien cannot sua doi bat ky du lieu nao.","High","Related to M06-F07, Rule 6.3, Rule 6.11"
-"TC-M06-028","Module 06 – Bi-Weekly Internship Reports","M06-F08","Automatic Email Notification","Gui email notification tu dong khi submit report successfully","Verify whether system co tu dong gui email voi dung format va dung doi tuong sau khi submit report hay khong.","Nguoi dung da log in voi quyen Student ten ""Nguyen Van A"", lop ""PNV26A"", lam viec tai company ""TechCorp"".
-System ket noi email hoat dong binh thuong.","StudentName=""Nguyen Van A""; BatchName=""PNV26A""; Company=""TechCorp""; PnvSupervisorEmail=""pnv.sup@passerellesnumeriques.org""; CompanySupervisorEmail=""company.sup@example.com""; StudentEmail=""student01@student.passerellesnumeriques.org""; StartDate=""2026-07-20""; EndDate=""2026-08-02""","1. Dien day du thong tin report cua student ""Nguyen Van A"" lam viec tai ""TechCorp"" tu ngay ""2026-07-20"" den ""2026-08-02"".
-2. Nhap nut ""Submit"" va xac nhan submit report.
-3. Verify email nhan duoc tu account PNV Supervisor, Company Supervisor va student.","1. Bao cao submit successfully.
-2. Email duoc tu dong gui den dia chi ""pnv.sup@passerellesnumeriques.org"" va ""company.sup@example.com"".
-3. Email duoc gui CC cho ""student01@student.passerellesnumeriques.org"" va ""ero.vietnam@passerellesnumeriques.org"".
-4. Tieu de email co format chinh xac: ""[PNV26A] [Bi-Weekly Internship Report] Nguyen Van A - TechCorp (Period: 20/07 – 02/08)""","High","Related to M06-F08, Rule 6.10"
-"TC-M06-029","Module 06 – Bi-Weekly Internship Reports","M06-F08","Automatic Email Notification","Xu ly error khi gui email notification failed","Dam bao system van ghi nhan submit report successfully va display cphoto bao neu qua trinh gui email tu dong bi error.","User is logged in as Student.
-System email bi error ket noi hoac account gui bi chan.","Cac thong tin hop le","1. Dien day du thong tin report hop le.
-2. Nhap nut ""Submit"" va xac nhan submit report.","System display cphoto bao error gui email (e.g.: ""Email notification failed: [Reason]"").
-Bao cao van duoc submit successfully va status chuyen sang ""Submitted"" binh thuong.
-Du lieu report bi khoa thanh chi doc.","High","Related to Rule 6.11, Error Handling (Section 8)"
-"TC-M06-030","Module 06 – Bi-Weekly Internship Reports","M06-F09","Staff View of Student Reports","Staff xem internship report cua student","Verify whether account Staff can xem duoc noi dung chi tiet report da submit cua student hay khong.","User is logged in as Staff.
-Hoc vien ""Nguyen Van A"" da submit internship report.","StudentName=""Nguyen Van A""; ReportStatus=""Submitted""","1. Log in voi quyen Staff.
-2. Truy cap vao trang chi tiet student ""Nguyen Van A"".
-3. Tim phan Bao cao internship cua student.
-4. Nhap vao xem chi tiet report da submit.","Staff can xem day du noi dung chi tiet cua report student da submit.
-Bao cao display chinh xac cac thong tin student da dien.","High","Related to M06-F09, Rule 6.12"
-"TC-M06-031","Module 06 – Bi-Weekly Internship Reports","M06-F09","Staff View of Student Reports","Staff cannot sua hoac delete report cua student","Dam bao Staff chi co quyen xem (Read-only) va cannot thay doi thong tin hoac delete report cua student.","User is logged in as Staff.
-Dang o man hinh xem chi tiet report cua student ""Nguyen Van A"".","StudentName=""Nguyen Van A""","1. Verify su xuat hien cua cac nut edit (Edit), save (Save), hoac delete (Delete) report.
-2. Thu thay doi gia tri trong cac truong thong tin cua report student.","Khong co bat ky nut hoac tuy select edit/delete nao display voi account Staff.
-Tat ca cac truong thong tin deu bi khoa, cannot tuong tac thay doi gia tri.","High","Related to Staff Access (Rule 6.12)"
+"TC-M06-001","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Create New Report by Student in Active Internship Group","Verify button visibility and interface opening for creating a new report when student belongs to an active (On-going) internship group.","User is logged in as Student.
+Student belongs to an internship group with status ""On-going"".
+Currently on Student Portal interface.","StudentEmail=""student1@student.passerellesnumeriques.org""; GroupStatus=""On-going""","1. Access Student Portal;
+2. Click Create Internship Report button;
+3. Observe interface.","Create Internship Report button is displayed and clickable.
+System opens report submission interface with auto-filled student profile info.","High","Related Requirement: M06-F01, Business Rules 6.1"
+"TC-M06-002","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent Creating New Report for Student in Completed Internship Group","Verify system hides Create Internship Report button if student belongs to a completed internship group.","User is logged in as Student.
+Student belongs to an internship group with status ""Completed"".
+Currently on Student Portal interface.","StudentEmail=""student2@student.passerellesnumeriques.org""; GroupStatus=""Completed""","1. Access Student Portal;
+2. Observe interface.","Create Internship Report button is hidden or disabled.
+Student cannot open report creation interface.","High","Related Requirement: M06-F01, Business Rules 6.1"
+"TC-M06-003","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent Creating New Report for Student in Archived Internship Group","Verify system hides Create Internship Report button if student belongs to an archived internship group.","User is logged in as Student.
+Student belongs to an internship group with status ""Archived"".
+Currently on Student Portal interface.","StudentEmail=""student3@student.passerellesnumeriques.org""; GroupStatus=""Archived""","1. Access Student Portal;
+2. Observe interface.","Create Internship Report button is hidden or disabled.
+Student cannot open report creation interface.","High","Related Requirement: M06-F01, Business Rules 6.1"
+"TC-M06-004","Module 06 - Bi-Weekly Internship Reports","M06-F01","Report Creation","Prevent Creating New Report from Staff Account","Verify system hides report creation feature from Staff role.","User is logged in as Staff.
+Currently on Internship Management interface.","StaffEmail=""staff@passerellesnumeriques.org""","1. Access Internship Management interface;
+2. Check for report submission options.","Create Internship Report button is not present for Staff account.","High","Related Requirement: M06-F01, Business Rules 6.1"
+"TC-M06-005","Module 06 - Bi-Weekly Internship Reports","M06-F02","Draft Saving & Editing","Save Temporary Report as Draft","Verify functionality for saving unfinished report as a draft.","User is logged in as Student.
+Currently on report creation interface.","StartDate=""2026-08-03""; Task1=""Research documentation""","1. Enter Start Date as ""2026-08-03"";
+2. Enter task details;
+3. Click Save Draft button.","Report is saved with status Draft.
+Success message ""Draft saved successfully"" appears.
+Data is saved to database without triggering submit validation.","High","Related Requirement: M06-F02, Business Rules 6.2"
+"TC-M06-006","Module 06 - Bi-Weekly Internship Reports","M06-F02","Draft Saving & Editing","Edit Draft Report Unlimited Number of Times","Verify student can reopen and edit draft report multiple times before submitting.","User is logged in as Student.
+Existing report with status Draft.","UpdatedTask=""Updated task documentation""","1. Open draft report;
+2. Update task details;
+3. Click Save Draft button;
+4. Repeat process multiple times.","Draft report updates successfully every time without restriction.
+Report status remains Draft.","High","Related Requirement: M06-F02, Business Rules 6.2"
+"TC-M06-007","Module 06 - Bi-Weekly Internship Reports","M06-F02","Draft Saving & Editing","Draft Report Does Not Send Emails and Is Hidden from Staff","Verify saving a draft does not send email notifications and draft is not visible to Staff.","User is logged in as Student.
+Draft report saved.","ReportStatus=""Draft""","1. Save report as Draft;
+2. Log in as Staff and check student report list;
+3. Check email inbox of PNV and Company supervisors.","No email notification is sent.
+Draft report is hidden from Staff view.","High","Related Requirement: M06-F02, Business Rules 6.2"
+"TC-M06-008","Module 06 - Bi-Weekly Internship Reports","M06-F03","Automatic Date Calculation","Auto-calculate End Date When Valid Start Date Is Entered","Verify system automatically calculates End Date as Sunday 13 days after Start Date (Monday).","User is logged in as Student.
+Currently on report creation interface.","StartDate=""2026-08-03"" (Monday)","1. Select Start Date as ""2026-08-03"";
+2. Observe End Date field.","End Date field automatically fills with ""2026-08-16"" (Sunday, +13 days).
+End Date field is read-only.","High","Related Requirement: M06-F03, Business Rules 6.3"
+"TC-M06-009","Module 06 - Bi-Weekly Internship Reports","M06-F03","Automatic Date Calculation","Prevent Submitting Report if Start Date Is Not a Monday","Verify system displays error if selected Start Date is not a Monday.","User is logged in as Student.
+Currently on report creation interface.","StartDate=""2026-08-04"" (Tuesday)","1. Select Start Date as ""2026-08-04"";
+2. Attempt to save or submit report.","System displays error: ""Start Date must be a Monday.""
+Action is blocked.","High","Related Requirement: M06-F03, Business Rules 6.3, Validation Rules (Section 8)"
+"TC-M06-010","Module 06 - Bi-Weekly Internship Reports","M06-F03","Automatic Date Calculation","Prevent Submitting Report if Start Date Is Outside Internship Period","Verify system displays error if Start Date is outside group start/end dates.","User is logged in as Student.
+Group internship period is 2026-06-01 to 2026-08-31.","StartDate=""2026-05-25"" (Monday before group start)","1. Select Start Date as ""2026-05-25"";
+2. Attempt to save or submit report.","System displays error: ""Start Date must fall within the internship group period.""
+Action is blocked.","High","Related Requirement: M06-F03, Business Rules 6.3, Validation Rules (Section 8)"
+"TC-M06-011","Module 06 - Bi-Weekly Internship Reports","M06-F04","Dynamic Task Table Management","Add and Remove Task Rows in Dynamic Task Table","Verify functionality for adding new task rows and removing task rows in the report form.","User is logged in as Student.
+Currently on report creation interface.","Task1=""Frontend UI""; Task2=""Backend API""","1. Click Add Task Row button;
+2. Enter task details in row 2;
+3. Click Remove icon on row 2.","Clicking Add Task Row appends a new empty task row.
+Clicking Remove deletes row 2 cleanly.","High","Related Requirement: M06-F04, UI Standards"
+"TC-M06-012","Module 06 - Bi-Weekly Internship Reports","M06-F04","Dynamic Task Table Management","Prevent Submitting Report when Task List Is Empty","Verify system blocks submission when report has 0 task rows.","User is logged in as Student.
+Report has all task rows removed.","Tasks=[]","1. Remove all task rows;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""At least one task is required.""","High","Related Requirement: M06-F04, Validation Rules (Section 8)"
+"TC-M06-013","Module 06 - Bi-Weekly Internship Reports","M06-F04","Dynamic Task Table Management","Prevent Submitting Report when Task Row Has Incomplete Details","Verify system blocks submission if any task row has empty mandatory fields (Task Description, Hours, etc.).","User is logged in as Student.
+Task row added with blank Task Description.","TaskDescription=""""; Hours=8","1. Add task row;
+2. Enter hours but leave description empty;
+3. Click Submit Report button.","System blocks submission.
+Validation error message appears highlighting required fields in task table.","High","Related Requirement: M06-F04, Validation Rules (Section 8)"
+"TC-M06-014","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Auto-calculate Daily Working Hours and Total Working Hours","Verify system automatically calculates daily working hours and total bi-weekly hours.","User is logged in as Student.
+Currently on report task table.","Week1Hours=[8,8,8,8,8,0,0]; Week2Hours=[8,8,8,8,8,0,0]","1. Enter 8 hours per day for Monday to Friday in both weeks;
+2. Observe Total Hours summary.","Daily totals sum correctly.
+Total Bi-Weekly Hours automatically calculates to 80 hours.","High","Related Requirement: M06-F05, Business Rules 6.4"
+"TC-M06-015","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Prevent Entering Negative Working Hours","Verify system blocks negative numbers in working hours inputs.","User is logged in as Student.","Hours=-5","1. Enter -5 into working hours field;
+2. Click Submit or blur field.","System blocks negative value.
+Error appears: ""Working hours cannot be negative.""","High","Related Requirement: M06-F05, Validation Rules (Section 8)"
+"TC-M06-016","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Prevent Entering Working Hours Exceeding 24 Hours a Day","Verify system blocks daily working hours greater than 24.","User is logged in as Student.","Hours=25","1. Enter 25 into working hours field for a single day;
+2. Click Submit or blur field.","System blocks input.
+Error appears: ""Daily working hours cannot exceed 24 hours.""","High","Related Requirement: M06-F05, Validation Rules (Section 8)"
+"TC-M06-017","Module 06 - Bi-Weekly Internship Reports","M06-F05","Working Hours Calculation","Prevent Entering Non-numeric Characters into Working Hours Field","Verify system restricts working hours inputs to valid numeric values.","User is logged in as Student.","Hours=""abc""","1. Attempt to type non-numeric text ""abc"" into working hours field.","Non-numeric input is prevented or validation error appears: ""Please enter a valid number.""","Medium","Related Requirement: M06-F05, Validation Rules (Section 8)"
+"TC-M06-018","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Successfully with Complete Valid Data","Verify functionality for submitting a bi-weekly internship report with complete valid information.","User is logged in as Student.
+Currently on report creation form.","StartDate=""2026-08-03""; CompanySupervisorName=""John Doe""; CompanySupervisorEmail=""john@company.com""; PnvSupervisorEmail=""mentor@passerellesnumeriques.org""; Challenges=""None""; SupportNeeded=""None""","1. Enter valid Start Date ""2026-08-03"";
+2. Complete task table details;
+3. Enter valid Company Supervisor Name and Email;
+4. Enter valid PNV Supervisor Email;
+5. Enter Challenges and Support Needed;
+6. Click Submit Report button;
+7. Confirm submission in popup dialog.","Report is submitted successfully.
+Report status changes to Submitted.
+Success notification appears and page transitions to View mode.","High","Related Requirement: M06-F06, Business Rules 6.5"
+"TC-M06-019","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Empty Company Supervisor Name","Verify system blocks report submission when Company Supervisor Name is empty.","User is logged in as Student.","CompanySupervisorName=""""","1. Fill report details but leave Company Supervisor Name blank;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""Company Supervisor Name is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+"TC-M06-020","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank PNV Supervisor Email","Verify system blocks report submission when PNV Supervisor Email is empty.","User is logged in as Student.","PnvSupervisorEmail=""""","1. Fill report details but leave PNV Supervisor Email blank;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""PNV Supervisor Email is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+"TC-M06-021","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Invalid PNV Supervisor Email Format","Verify system blocks submission when PNV Supervisor Email has invalid format.","User is logged in as Student.","PnvSupervisorEmail=""invalid-email""","1. Enter invalid email format ""invalid-email"" for PNV Supervisor Email;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""Invalid email address format.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+"TC-M06-022","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank Company Supervisor Email","Verify system blocks report submission when Company Supervisor Email is empty.","User is logged in as Student.","CompanySupervisorEmail=""""","1. Fill report details but leave Company Supervisor Email blank;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""Company Supervisor Email is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+"TC-M06-023","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Invalid Company Supervisor Email Format","Verify system blocks submission when Company Supervisor Email has invalid format.","User is logged in as Student.","CompanySupervisorEmail=""invalid-email""","1. Enter invalid email format ""invalid-email"" for Company Supervisor Email;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""Invalid email address format.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+"TC-M06-024","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank Challenges Section","Verify system blocks report submission when Challenges field is empty.","User is logged in as Student.","Challenges=""""","1. Leave Challenges field blank;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""Challenges field is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+"TC-M06-025","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Submit Report Fails Due to Blank Support Needed Section","Verify system blocks report submission when Support Needed field is empty.","User is logged in as Student.","SupportNeeded=""""","1. Leave Support Needed field blank;
+2. Click Submit Report button.","System blocks submission.
+Validation error message appears: ""Support Needed field is required.""","High","Related Requirement: M06-F06, Validation Rules (Section 8)"
+"TC-M06-026","Module 06 - Bi-Weekly Internship Reports","M06-F06","Report Submission","Cancel Report Submission Confirmation","Verify clicking Cancel in submission confirmation popup returns to edit form without submitting.","User is logged in as Student.
+Form filled with complete valid data.","Action=""Cancel Confirmation""","1. Click Submit Report button;
+2. When confirmation popup appears, click Cancel button.","Confirmation popup closes.
+Report is not submitted and remains in edit form.","Medium","Related Requirement: M06-F06, UI Standards"
+"TC-M06-027","Module 06 - Bi-Weekly Internship Reports","M06-F07","Read-only Submitted Reports","Submitted Report Permanently Switches to Read-Only Status","Verify student cannot edit or resubmit a report once it has been submitted.","User is logged in as Student.
+Report status is Submitted.","ReportStatus=""Submitted""","1. Open submitted report;
+2. Observe UI for edit/save buttons.","Report displays in Read-Only mode.
+Edit and Save buttons are hidden or disabled.
+Student cannot modify content.","High","Related Requirement: M06-F07, Business Rules 6.6"
+"TC-M06-028","Module 06 - Bi-Weekly Internship Reports","M06-F08","Automated Email Notifications","Send Automatic Email Notification Upon Successful Report Submission","Verify system triggers email notifications to PNV supervisor and Company supervisor after successful submission.","User is logged in as Student.
+Email notification service enabled.","PnvSupervisorEmail=""mentor@passerellesnumeriques.org""; CompanySupervisorEmail=""john@company.com""","1. Submit bi-weekly internship report successfully;
+2. Check email inbox of PNV supervisor and Company supervisor.","Automated email notification is delivered to both supervisor email addresses containing report summary.","High","Related Requirement: M06-F08, Business Rules 6.7"
+"TC-M06-029","Module 06 - Bi-Weekly Internship Reports","M06-F08","Automated Email Notifications","Handle Error When Email Notification Sending Fails","Verify report submission still succeeds and logs error gracefully if email service fails.","User is logged in as Student.
+Email notification service is temporarily unavailable.","EmailServiceStatus=""Offline""","1. Submit report when email service is offline;
+2. Observe system response.","Report submission succeeds and saves to database.
+Warning message appears notifying student that email delivery failed, and error is logged.","Medium","Related Requirement: M06-F08, Error Handling (Section 8)"
+"TC-M06-030","Module 06 - Bi-Weekly Internship Reports","M06-F09","Staff Report Viewing","Staff View Student Internship Report","Verify Staff can view submitted bi-weekly internship reports of students.","User is logged in as Staff.
+Student has submitted a bi-weekly report.","StaffEmail=""staff@passerellesnumeriques.org""","1. Access Internship Management interface;
+2. Select student report list;
+3. Click View on student's submitted report.","Staff can view complete report content (tasks, hours, challenges, supervisor info) in Read-Only mode.","High","Related Requirement: M06-F09, Business Rules 6.8"
+"TC-M06-031","Module 06 - Bi-Weekly Internship Reports","M06-F09","Staff Report Viewing","Staff Cannot Edit or Delete Student Report","Verify Staff users cannot modify or delete submitted student reports.","User is logged in as Staff.
+Viewing submitted student report.","StaffEmail=""staff@passerellesnumeriques.org""","1. Open student submitted report;
+2. Check for edit/delete controls.","No edit or delete buttons are available for Staff.
+Report content is strictly Read-Only.","High","Related Requirement: M06-F09, Business Rules 6.8"

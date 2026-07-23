@@ -1,205 +1,140 @@
 ﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
-"TC-M07-001","Module 07 – Training Materials","M07-F02","Category Management","Rename Category with a valid name","Verify functionality for doi ten category (Category) khi enter ten moi hop le.","User is logged in as Staff.
-Currently on Training Materials Management interface.","CategoryOldName=""IT""; CategoryNewName=""Information Technology""","1. Nhap select category ""IT"".
-2. Nhap nut ""Rename"" (Rename).
-3. Enter ten moi la ""Information Technology"".
-4. Nhap ""Save"" (Save).","System display notification cap nhat successfully.
-Ten category duoc thay doi thanh ""Information Technology"" tren interface.
-Cac course ben trong category van giu nguyen.","High","Related to M07-F02, Rule 5.1"
-"TC-M07-002","Module 07 – Training Materials","M07-F02","Category Management","Category rename fails due to empty name","Verify system bao error va ngan chan viec doi ten category thanh rong.","User is logged in as Staff.
-Currently on Rename Category interface.","CategoryNewName=""""","1. Delete toan bo noi dung trong o enter ten category.
-2. Nhap nut ""Save"" (Save).","System display notification error requires enter ten category (e.g.: ""Category Name is required."").
-Ten category cu khong bi thay doi.","High","Related to Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-003","Module 07 – Training Materials","M07-F02","Category Management","Verify Archive and Delete functions are not supported for Category","Verify system not displayed cac chuc nang Archive (Archive) va Delete (Delete) for category.","User is logged in as Staff.
-Currently on Training Materials Management interface.","CategoryName=""English""","1. Nhap select category ""English"".
-2. Observe cac nut chuc nang va menu ngu cphoto lien quan den category.","Khong display nut hoac tuy select ""Delete"" (Delete) hoac ""Archive"" (Archive) for category.","Medium","Related to M07-F02, Rule 5.1, Out of Scope (Section 13)"
-"TC-M07-004","Module 07 – Training Materials","M07-F01","Three-tier Hierarchy","Verify default Categories exist in system","Verify 5 category mac dinh duoc create san khi system hoat dong.","User is logged in as Staff.
-Currently on Training Materials Management interface.","None","1. Observe danh sach cac category display tren man hinh.","System display day du 5 category mac dinh: ""IT"", ""English"", ""PLT"", ""DA"", va ""Workshops"".","High","Related to M07-F01, Section 3 (Default Categories)"
-"TC-M07-005","Module 07 – Training Materials","M07-F01","Three-tier Hierarchy","Create new course with valid information","Verify functionality for create new course duoi mot category khi enter day du thong tin hop le.","User is logged in as Staff.
-Currently on Training Materials Management interface.","Category=""IT""; CourseName=""Java Programming""","1. Select category ""IT"".
-2. Nhap nut ""Create course"" (Create Course).
-3. Enter ten course la ""Java Programming"".
-4. Nhap ""Save"" (Save).","System display notification create successfully.
-Khoa hoc ""Java Programming"" display duoi category ""IT"".","High","Related to M07-F01, Rule 5.2"
-"TC-M07-006","Module 07 – Training Materials","M07-F03","Course Archiving / Restoring","New course creation fails due to empty name","Verify system bao error va ngan chan create course neu ten course trong.","User is logged in as Staff.
-Currently on Create New Course interface.","Category=""IT""; CourseName=""""","1. De trong truong Ten course.
-2. Nhap ""Save"" (Save).","System display error requires enter ten course (e.g.: ""Course Name is required."").
-Khoa hoc moi khong duoc create.","High","Related to Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-007","Module 07 – Training Materials","M07-F01","Three-tier Hierarchy","Edit course name with valid information","Verify functionality for edit ten course successfully.","User is logged in as Staff.
-Currently on Training Materials Management interface. Khoa hoc ""Java Programming"" da ton tai.","CourseOldName=""Java Programming""; CourseNewName=""Advanced Java Programming""","1. Select course ""Java Programming"".
-2. Nhap select ""Edit"" (Edit).
-3. Thay doi ten course thanh ""Advanced Java Programming"".
-4. Nhap ""Save"" (Save).","System display notification save successfully.
-Ten course cap nhat thanh ""Advanced Java Programming"" tren man hinh.","High","Related to M07-F01, Rule 5.2"
-"TC-M07-008","Module 07 – Training Materials","M07-F03","Course Archiving / Restoring","Archive course (Archive Course)","Verify functionality for archive course.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" dang o status Hoat dong (Active) va co cac session/exam ben duoi.","CourseName=""Java Programming""","1. Nhap select course ""Java Programming"".
-2. Nhap select nut ""Archive"" (Archive).
-3. Xac nhan archive neu system requires.","System display notification archive successfully.
-Khoa hoc thay doi status sang da archive (Archived) va bi an di hoac display as archive tren man hinh quan ly.","High","Related to M07-F03, Rule 5.2, Rule 5.3"
-"TC-M07-009","Module 07 – Training Materials","M07-F03","Course Archiving / Restoring","Khoi phuc course da archive (Restore Course)","Verify functionality for khoi phuc mot course da bi archive.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" dang o status Archive (Archived).","CourseName=""Java Programming""","1. Tim va select course ""Java Programming"" trong danh sach archive.
-2. Nhap select nut ""Khoi phuc"" (Restore).
-3. Xac nhan khoi phuc neu system requires.","System display notification khoi phuc successfully.
-Khoa hoc tro lai status hoat dong binh thuong.","High","Related to M07-F03, Rule 5.2, Rule 5.3"
-"TC-M07-010","Module 07 – Training Materials","M07-F03","Course Archiving / Restoring","Verify khong ho tro permanently deleted course","Verify system khong allows permanently deleted course khoi co so du lieu.","User is logged in as Staff.
-Currently on Training Materials Management interface.","CourseName=""Java Programming""","1. Select course ""Java Programming"".
-2. Verify cac nut chuc nang va menu hanh dong lien quan den course.","Khong co tuy select ""Delete vinh vien"" hoac ""Delete"" cho course, chi co tuy select ""Archive"" (Archive).","Medium","Related to Rule 5.2 (Permanent deletion is not allowed), Out of Scope (Section 13)"
-"TC-M07-011","Module 07 – Training Materials","M07-F01","Three-tier Hierarchy","Create session (Session) moi voi thong tin hop le","Verify functionality for create session moi duoi mot course hoat dong.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" dang hoat dong.","CourseName=""Java Programming""; SessionName=""Session 01: OOP Basics""; LessonNumber=1; Description=""Gioi thieu ve lap trinh huong doi tuong""","1. Select course ""Java Programming"".
-2. Nhap nut ""Add session"" (Add Session).
-3. Enter Ten session la ""Session 01: OOP Basics"", so session la ""1"", mo ta la ""Gioi thieu ve lap trinh huong doi tuong"".
-4. Nhap ""Save"" (Save).","System display notification create successfully.
-Session moi display duoi course ""Java Programming"".","High","Related to M07-F01, Rule 5.4"
-"TC-M07-012","Module 07 – Training Materials","M07-F04","Session Deletion","Create session moi failed due to empty name session","Verify system bao error va ngan chan create session neu ten session trong.","User is logged in as Staff.
-Dang o interface Add session moi.","CourseName=""Java Programming""; SessionName=""""; LessonNumber=1","1. De trong truong Ten session.
-2. Enter cac truong thong tin khac hop le.
-3. Nhap ""Save"" (Save).","System display notification error requires enter Ten session (e.g.: ""Session Name is required."").
-Bai hoc moi khong duoc create.","High","Related to Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-013","Module 07 – Training Materials","M07-F01","Three-tier Hierarchy","Edit chi tiet session (Edit Session)","Verify functionality for sua thong tin session successfully.","User is logged in as Staff.
-Bai hoc ""Session 01: OOP Basics"" da ton tai duoi course ""Java Programming"".","SessionOldName=""Session 01: OOP Basics""; SessionNewName=""Session 01: Advanced OOP Basics""; LessonNumber=2; Description=""Mo ta moi""","1. Select session ""Session 01: OOP Basics"".
-2. Nhap select ""Edit"" (Edit).
-3. Sua Ten session thanh ""Session 01: Advanced OOP Basics"", Lesson Number thanh ""2"", Description thanh ""Mo ta moi"".
-4. Nhap ""Save"" (Save).","System display notification save successfully.
-Thong tin session display thay doi moi tuong ung tren interface.","High","Related to M07-F01, Rule 5.4"
-"TC-M07-014","Module 07 – Training Materials","M07-F04","Session Deletion","Delete vinh vien session (Delete Session)","Verify functionality for permanently deleted mot session va cac tai lieu dinh kem ben duoi no.","User is logged in as Staff.
-Bai hoc ""Session 01: OOP Basics"" dang ton tai va co tai lieu dinh kem.","SessionName=""Session 01: OOP Basics""","1. Select session ""Session 01: OOP Basics"".
-2. Nhap select nut ""Delete"" (Delete).
-3. System display hop thoai requires xac nhan permanently deleted.
-4. Nhap ""Dong y"" (Confirm).","System display notification delete successfully.
-Bai hoc va cac tai lieu dinh kem bi permanently deleted khoi system.
-Hanh dong cannot hoan tac.","High","Related to M07-F04, Rule 5.4, Error Handling (Section 9)"
-"TC-M07-015","Module 07 – Training Materials","M07-F04","Session Deletion","Huy bo thao tac delete session","Verify whether khi huy xac nhan delete, session van duoc giu lai.","User is logged in as Staff.
-Bai hoc ""Session 01: OOP Basics"" dang ton tai.","SessionName=""Session 01: OOP Basics""","1. Select session ""Session 01: OOP Basics"".
-2. Nhap select nut ""Delete"" (Delete).
-3. System display hop thoai xac nhan.
-4. Nhap select ""Huy"" (Cancel).","Hop thoai xac nhan dong lai.
-Bai hoc ""Session 01: OOP Basics"" van ton tai trong danh sach va khong bi delete.","Medium","Related to Rule 5.4, Error Handling (Section 9)"
-"TC-M07-016","Module 07 – Training Materials","M07-F04","Session Deletion","Verify khong ho tro archive session","Verify system khong allows archive session, chi can permanently deleted.","User is logged in as Staff.
-Dang o interface Quan ly Bai hoc.","SessionName=""Session 01: OOP Basics""","1. Select session ""Session 01: OOP Basics"".
-2. Verify cac nut chuc nang hanh dong tren session.","Khong xuat hien tuy select ""Archive"" (Archive) for session. Chi ho tro create, sua va permanently deleted.","Medium","Related to Rule 5.4, Out of Scope (Section 13)"
-"TC-M07-017","Module 07 – Training Materials","M07-F01","Three-tier Hierarchy","Create exam (Exam) moi voi thong tin hop le","Verify functionality for create exam moi duoi mot course dang hoat dong.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" dang hoat dong.","CourseName=""Java Programming""; ExamName=""Midterm Exam""","1. Select course ""Java Programming"".
-2. Nhap nut ""Add exam"" (Add Exam).
-3. Enter Ten exam la ""Midterm Exam"".
-4. Nhap ""Save"" (Save).","System display notification create successfully.
-Bai kiem tra ""Midterm Exam"" display duoi course ""Java Programming"".","High","Related to M07-F01, Rule 5.5"
-"TC-M07-018","Module 07 – Training Materials","M07-F05","Exam Deletion","Create exam moi failed due to empty name","Verify system ngan chan va bao error neu ten exam trong.","User is logged in as Staff.
-Dang o interface Add exam moi.","CourseName=""Java Programming""; ExamName=""""","1. De trong truong Ten exam.
-2. Nhap ""Save"" (Save).","System display notification error requires enter Ten exam (e.g.: ""Exam Name is required."").
-Bai kiem tra khong duoc create.","High","Related to Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-019","Module 07 – Training Materials","M07-F01","Three-tier Hierarchy","Edit chi tiet exam (Edit Exam)","Verify functionality for thay doi ten exam successfully.","User is logged in as Staff.
-Bai kiem tra ""Midterm Exam"" da ton tai duoi course ""Java Programming"".","ExamOldName=""Midterm Exam""; ExamNewName=""Midterm Practical Exam""","1. Select exam ""Midterm Exam"".
-2. Nhap select ""Edit"" (Edit).
-3. Thay doi ten thanh ""Midterm Practical Exam"".
-4. Nhap ""Save"" (Save).","System display notification save successfully.
-Ten exam duoc cap nhat thanh ""Midterm Practical Exam"" tren interface.","High","Related to M07-F01, Rule 5.5"
-"TC-M07-020","Module 07 – Training Materials","M07-F05","Exam Deletion","Delete vinh vien exam (Delete Exam)","Verify functionality for permanently deleted mot exam va cac tai lieu dinh kem ben duoi no.","User is logged in as Staff.
-Bai kiem tra ""Midterm Exam"" dang ton tai va co tai lieu dinh kem.","ExamName=""Midterm Exam""","1. Select exam ""Midterm Exam"".
-2. Nhap nut ""Delete"" (Delete).
-3. Xac nhan tren hop thoai display bang cach select ""Dong y"" (Confirm).","System display notification delete successfully.
-Bai kiem tra va cac tai lieu dinh kem bi permanently deleted khoi system.
-Hanh dong cannot hoan tac.","High","Related to M07-F05, Rule 5.5, Error Handling (Section 9)"
-"TC-M07-021","Module 07 – Training Materials","M07-F05","Exam Deletion","Huy bo thao tac delete exam","Verify whether exam khong bi delete khi huy xac nhan.","User is logged in as Staff.
-Bai kiem tra ""Midterm Exam"" dang ton tai.","ExamName=""Midterm Exam""","1. Select exam ""Midterm Exam"".
-2. Nhap nut ""Delete"" (Delete).
-3. Tren hop thoai xac nhan, select ""Huy"" (Cancel).","Hop thoai dong lai.
-Bai kiem tra ""Midterm Exam"" van ton tai binh thuong.","Medium","Related to Rule 5.5, Error Handling (Section 9)"
-"TC-M07-022","Module 07 – Training Materials","M07-F05","Exam Deletion","Verify khong ho tro archive exam","Verify system khong allows archive exam, chi can permanently deleted.","User is logged in as Staff.
-Dang o interface Quan ly Bai kiem tra.","ExamName=""Midterm Exam""","1. Select exam ""Midterm Exam"".
-2. Verify cac nut hanh dong tren exam.","Khong xuat hien tuy select ""Archive"" (Archive) for exam.","Medium","Related to Rule 5.5, Out of Scope (Section 13)"
-"TC-M07-023","Module 07 – Training Materials","M07-F06","Material Attachment","Dinh kem mot tai lieu hop le vao Session/Exam","Verify functionality for dinh kem tai lieu successfully khi enter du nhan va link Google Drive dung format.","User is logged in as Staff.
-Dang create hoac sua mot Session hoac Exam.","Label=""Slides""; URL=""https://drive.google.com/file/d/1A2B3C4D5E/view""","1. O phan dinh kem tai lieu (Material Attachments), enter Nhan (Label) la ""Slides"".
-2. Enter URL la ""https://drive.google.com/file/d/1A2B3C4D5E/view"".
-3. Nhan ""Save"" (Save).","Tai lieu duoc save successfully.
-Thong tin dinh kem display chinh xac duoi Session/Exam.","High","Related to M07-F06, Section 6 (Material Attachments)"
-"TC-M07-024","Module 07 – Training Materials","M07-F06","Material Attachment","Dinh kem nhieu tai lieu hop le vao Session/Exam","Verify viec dinh kem dong thoi nhieu tai lieu hop le vao cung mot session hoac exam.","User is logged in as Staff.
-Dang create hoac sua mot Session hoac Exam.","Attachment1: Label=""Slides"", URL=""https://drive.google.com/file/d/111/view""; Attachment2: Label=""Homework"", URL=""https://drive.google.com/file/d/222/view""","1. O dong tai lieu thu nhat, enter Nhan ""Slides"" and URL ""https://drive.google.com/file/d/111/view"".
-2. Nhap add dong moi.
-3. O dong tai lieu Monday, enter Nhan ""Homework"" and URL ""https://drive.google.com/file/d/222/view"".
-4. Nhan ""Save"" (Save).","Ca hai tai lieu dinh kem deu duoc save successfully va display day du tren interface.","High","Related to M07-F06, Section 6"
-"TC-M07-025","Module 07 – Training Materials","M07-F06","Material Attachment","Dinh kem tai lieu voi dong hoan toan trong (bo qua dong)","Verify whether system tu dong bo qua va khong bao error khi co dong tai lieu trong (ca Label va URL deu rong).","User is logged in as Staff.
-Dang edit hoac create moi Session/Exam.","Label=""""; URL=""""","1. Add mot dong dinh kem tai lieu moi.
-2. De trong ca hai truong Nhan (Label) va URL.
-3. Nhan ""Save"" (Save).","System archive successfully cac thong tin khac.
-Dong trong tu dong bi bo qua (skipped) ma not displayed bat ky notification error nao.","Medium","Related to M07-F06, Rule 6 (Empty Attachment Rows), Error Handling (Section 9)"
-"TC-M07-026","Module 07 – Training Materials","M07-F06","Material Attachment","Dinh kem failed do co Nhan (Label) nhung blank URL","Verify system ngan chan save va bao error khi enter nhan tai lieu nhung khong co link.","User is logged in as Staff.
-Dang edit hoac create moi Session/Exam.","Label=""Sach tham khao""; URL=""""","1. Enter Nhan (Label) la ""Sach tham khao"".
-2. De trong truong URL.
-3. Nhan ""Save"" (Save).","System bao error requires enter URL cho tai lieu (e.g.: ""URL is required when Label is provided."").
-Tai lieu khong duoc save.","High","Related to M07-F06, Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-027","Module 07 – Training Materials","M07-F06","Material Attachment","Dinh kem failed do co URL nhung blank Nhan (Label)","Verify system ngan chan save va bao error khi enter link tai lieu nhung blank nhan.","User is logged in as Staff.
-Dang edit hoac create moi Session/Exam.","Label=""""; URL=""https://drive.google.com/file/d/1A2B3/view""","1. De trong truong Nhan (Label).
-2. Enter URL la ""https://drive.google.com/file/d/1A2B3/view"".
-3. Nhan ""Save"" (Save).","System bao error requires enter Nhan cho tai lieu (e.g.: ""Label is required when URL is provided."").
-Tai lieu khong duoc save.","High","Related to M07-F06, Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-028","Module 07 – Training Materials","M07-F06","Material Attachment","Dinh kem failed do link not Google Drive","Verify system ngan chan save va bao error format khi enter link tu dich vu archive khac.","User is logged in as Staff.
-Dang edit hoac create moi Session/Exam.","Label=""Tai lieu""; URL=""https://dropbox.com/s/abcdef""","1. Enter Nhan ""Tai lieu"".
-2. Enter URL la ""https://dropbox.com/s/abcdef"".
-3. Nhan ""Save"" (Save).","System display error kiem tra format URL (e.g.: ""Must start with https://drive.google.com/"").
-Tai lieu khong duoc save.","High","Related to M07-F06, Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-029","Module 07 – Training Materials","M07-F07","CSV Export / Import","Xuat danh sach Session ra file CSV (Export CSV)","Verify functionality for tai file CSV chua thong tin cac session cua course hien tai.","User is logged in as Staff.
-Dang o interface danh sach Session cua course ""Java Programming"" chua cac session va tai lieu.","None","1. Nhap nut ""Xuat CSV"" (Export CSV).","System tai ve mot file CSV successfully.
-File CSV co cac cot: Session ID, Session Name, Lesson Number, Description.
-Thong tin cac session khop voi danh sach display tren system.
-Tai lieu dinh kem (Google Drive link) KHONG duoc xuat hien trong file.","High","Related to M07-F07, Rule 7 (Export)"
-"TC-M07-030","Module 07 – Training Materials","M07-F07","CSV Export / Import","Enter CSV - Cap nhat thong tin Session da ton tai","Verify system cap nhat chinh xac ten, so bai va mo ta cua session khi Session ID trong file CSV trung khop voi session co san.","User is logged in as Staff.
-Bai hoc voi ID ""S001"" da ton tai duoi course ""Java Programming"" co ten cu la ""OOP Intro"".","File CSV chua dong: Session ID=""S001""; Session Name=""OOP Basics""; Lesson Number=""1""; Description=""Gioi thieu huong doi tuong""","1. Select course ""Java Programming"".
-2. Nhap select ""Enter CSV"" (Import CSV).
-3. Upload file CSV chua du lieu cap nhat cho ID ""S001"".
-4. Nhap ""Xac nhan"".","System display notification enter du lieu successfully.
-Bai hoc co ID ""S001"" duoc cap nhat successfully voi ten ""OOP Basics"", so bai ""1"", mo ta ""Gioi thieu huong doi tuong"".
-Cac tai lieu dinh kem truoc do cua session nay van duoc giu nguyen.","High","Related to M07-F07, Rule 7.1 (Existing Session)"
-"TC-M07-031","Module 07 – Training Materials","M07-F07","CSV Export / Import","Enter CSV - Create session moi khi blank Session ID","Verify system tu dong create moi mot session neu cot Session ID trong dong CSV bi bo trong.","User is logged in as Staff.
-Dang select course ""Java Programming"".","File CSV chua dong: Session ID=""""; Session Name=""OOP Polymorphism""; Lesson Number=""3""; Description=""Tinh da hinh""","1. Select course ""Java Programming"".
-2. Nhap select ""Enter CSV"" (Import CSV).
-3. Upload file CSV co cot ID blank.
-4. Nhap ""Xac nhan"".","System display notification enter du lieu successfully.
-Mot session moi duoc create ra duoi course ""Java Programming"" voi ten ""OOP Polymorphism"", so session ""3"" va mo ta ""Tinh da hinh"".
-System tu dong cap phat mot ID moi cho session nay.","High","Related to M07-F07, Rule 7.2 (New Session)"
-"TC-M07-032","Module 07 – Training Materials","M07-F07","CSV Export / Import","Enter CSV - Create session moi khi Session ID khong ton tai tren system","Verify system tu dong create moi session neu Session ID trong CSV khong trung khop voi bat ky session hien co nao.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" khong co session nao mang ID ""S999"".","File CSV chua dong: Session ID=""S999""; Session Name=""Exception Handling""; Lesson Number=""4""; Description=""Xu ly ngoai le""","1. Select course ""Java Programming"".
-2. Nhap select ""Enter CSV"" (Import CSV).
-3. Upload file CSV chua dong co ID la ""S999"".
-4. Nhap ""Xac nhan"".","System display notification enter du lieu successfully.
-Mot session moi duoc create ra voi ID moi duoc create hoac cap nhat theo system, ten ""Exception Handling"" duoc gan duoi course.","High","Related to M07-F07, Rule 7.2 (New Session)"
-"TC-M07-033","Module 07 – Training Materials","M07-F07","CSV Export / Import","Enter CSV - Cac session hien tai khong co trong CSV se giu nguyen","Verify whether system co bao toan cac session san co cua course neu chung khong duoc liet ke trong file CSV tai len.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" dang co 2 session san co: ""S001"" va ""S002"".","File CSV chi chua thong tin cap nhat cho session ""S001"". Bai hoc ""S002"" hoan toan khong co trong file.","1. Nhap select ""Enter CSV"" (Import CSV).
-2. Upload file CSV chi co thong tin cho session ""S001"".
-3. Nhap ""Xac nhan"".","System notification enter successfully.
-Bai hoc ""S001"" duoc cap nhat.
-Bai hoc ""S002"" van ton tai nguyen ven duoi course ""Java Programming"" ma khong bi delete di.","High","Related to M07-F07, Rule 7.3 (Missing Sessions)"
-"TC-M07-034","Module 07 – Training Materials","M07-F07","CSV Export / Import","Enter CSV - Bo qua cot Materials trong file CSV tai len","Verify whether system co bo qua cot Materials va khong ghi de hoac gay error neu file CSV chua cot nay.","User is logged in as Staff.
-Bai hoc ""S001"" dang co san mot tai lieu dinh kem la ""Slides"".","File CSV chua cac cot: Session ID, Session Name, Lesson Number, Description, Materials. Dong du lieu: S001, OOP Basics, 1, Gioi thieu huong doi tuong, https://drive.google.com/some-link-to-ignore","1. Select course.
-2. Nhap select ""Enter CSV"" (Import CSV).
-3. Upload file CSV co chua cot Materials voi gia tri link bat ky.
-4. Nhap ""Xac nhan"".","System display notification enter successfully.
-Thong tin Session duoc cap nhat.
-Tai lieu dinh kem ""Slides"" ban dau cua Session ""S001"" van duoc giu nguyen. Link trong cot Materials cua file CSV hoan toan bi bo qua.","High","Related to M07-F07, Rule 7.4 (Materials Column)"
-"TC-M07-035","Module 07 – Training Materials","M07-F07","CSV Export / Import","Enter CSV failed do select sai format tep (not CSV)","Verify system denies tai len va notification error khi user select tep not duoi .csv.","User is logged in as Staff.
-Dang o interface Enter CSV cua course.","Tep tin: document.docx hoac image.png","1. Nhap select nut ""Enter CSV"".
-2. Select tai len tep tin ""document.docx"".
-3. Nhap nut ""Xac nhan"" hoac system chan ngay khi select tep.","System denies tep tin va display notification error format tep khong hop le (e.g.: ""Invalid file format. Please upload a CSV file."").
-Khong co hanh dong enter du lieu nao duoc thuc hien.","High","Related to Error Handling (Section 9)"
-"TC-M07-036","Module 07 – Training Materials","M07-F07","CSV Export / Import","Enter CSV failed for dong thieu thong tin Ten session","Verify system ngan chan viec create session moi qua CSV neu dong do thieu Ten session.","User is logged in as Staff.
-Dang select course ""Java Programming"".","File CSV chua dong: Session ID=""""; Session Name=""""; Lesson Number=""5""; Description=""Bai hoc thieu ten""","1. Nhap select ""Enter CSV"" (Import CSV).
-2. Upload file CSV chua dong du lieu error noi tren.
-3. Nhan ""Xac nhan"".","System bao error kiem tra du lieu o dong tuong ung (e.g.: ""Row X: Session Name is required."").
-Dong error do khong duoc import vao system.","High","Related to Validation Rules (Section 8), Error Handling (Section 9)"
-"TC-M07-037","Module 07 – Training Materials","M07-SEC","Access Control & Security","Quyen access - Staff access va thao tac day du tinh nang","Verify account co email domain @passerellesnumeriques.org duoc cap toan quyen quan tri module.","Nguoi dung da log in bang Google OAuth voi account staff@passerellesnumeriques.org.","Role=""Staff""","1. Truy cap vao trang Quan ly Tai lieu hoc tap.
-2. Thuc hien cac thao tac: Rename Category, Add course, Delete session, Enter/Xuat CSV.","Nguoi dung access successfully.
-Tat ca cac nut chuc nang hoat dong binh thuong ma khong bi chan quyen.","High","Related to Docs/docs.md Section 4 (User Roles)"
-"TC-M07-038","Module 07 – Training Materials","M07-SEC","Access Control & Security","Quyen access - Hoc vien (Student) bi han che cac quyen quan ly","Verify account student co email domain @student.passerellesnumeriques.org cannot thuc hien cac thao tac quan ly (Add/Sua/Delete/Archive/Import/Export) tren module.","Nguoi dung da log in bang Google OAuth voi account student@student.passerellesnumeriques.org.","Role=""Student""","1. Co gang access truc tiep vao duong dan Quan ly Tai lieu hoc tap (neu co), hoac kiem tra interface Student Portal.
-2. Observe su ton tai cua cac nut chuc nang doi ten, add course, delete session, import CSV.","Hoc vien khong co quyen access trang quan tri Staff.
-Khong display cac nut chuc nang quan ly tai lieu hoc tap tren man hinh danh cho student.
-System display notification error hoac denies access (Access Denied) neu co access qua URL truc tiep.","High","Related to Docs/docs.md Section 4 (User Roles)"
-"TC-M07-039","Module 07 – Training Materials","M07-SEC","Access Control & Security","Quyen access - Domain la bi denies access system","Verify system denies access ngay lap tuc for email khong thuoc 2 domain duoc cau hinh.","Nguoi dung da log in bang Google OAuth voi account user@gmail.com.","Role=""Unknown""","1. Co gang access system Academic Portal.","System display trang denies access (Access Denied).
-Khong display bat ky thong tin nao ve cac category tai lieu hoac course.","High","Related to Docs/docs.md Section 4 & Section 6 (Authentication Flow)"
-"TC-M07-040","Module 07 – Training Materials","M07-F03","Course Archiving / Restoring","Verify an tu dong tat ca Session/Exam con khi Archive course","Verify rang khi archive mot course, tat ca cac session (session) va exam (exam) thuoc course do tu dong bien mat khoi interface chung cua user, nhung du lieu van ton tai trong co so du lieu.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" dang hoat dong va co session ""Session 01"" cung exam ""Midterm Exam"" dang display.","CourseName=""Java Programming""","1. Thuc hien archive course ""Java Programming"".
-2. Truy cap hoac kiem tra danh sach session va exam tren interface display tai lieu chung.","Khoa hoc chuyen sang status da archive.
-Bai hoc ""Session 01"" va exam ""Midterm Exam"" khong con xuat hien tren interface display tai lieu hoc tap chung.
-Verify co so du lieu de dam bao cac ban ghi nay van ton tai.","High","Related to M07-F03, Rule 5.3"
-"TC-M07-041","Module 07 – Training Materials","M07-F03","Course Archiving / Restoring","Verify khoi phuc display tat ca Session/Exam con khi Khoi phuc course","Verify rang khi khoi phuc mot course da archive, tat ca cac session (session) va exam (exam) thuoc course do tu dong display tro lai tren interface.","User is logged in as Staff.
-Khoa hoc ""Java Programming"" dang o status Archive (Archived), cac session va exam con dang bi an display.","CourseName=""Java Programming""","1. Thuc hien khoi phuc course ""Java Programming"".
-2. Truy cap vao interface display session va exam cua course nay.","Khoa hoc chuyen sang status Hoat dong (Active).
-Bai hoc ""Session 01"" va exam ""Midterm Exam"" tu dong xuat hien tro lai tren interface display va can xem/edit binh thuong.","High","Related to M07-F03, Rule 5.3"
+"TC-M07-001","Module 07 - Training Materials","M07-F02","Category Management","Rename Category with a Valid Name","Verify functionality for renaming a category when entering a valid new name.","User is logged in as Staff.
+Currently on Training Materials Management interface.","OldCategoryName=""General""; NewCategoryName=""Foundations""","1. Select Category ""General"";
+2. Click Rename Category button;
+3. Enter new name as ""Foundations"";
+4. Click Save button.","Category renamed successfully.
+New category name ""Foundations"" is updated and displayed on UI.","High","Related Requirement: M07-F02, Rule 6.2"
+"TC-M07-002","Module 07 - Training Materials","M07-F02","Category Management","Category Rename Fails Due to Empty Name","Verify system displays error and prevents renaming category when new name is empty.","User is logged in as Staff.
+Currently on Rename Category dialog.","NewCategoryName=""""","1. Leave new Category Name field empty;
+2. Click Save button.","System blocks action.
+Validation error message appears: ""Category Name cannot be empty.""","High","Related Requirement: M07-F02, Validation Rules (Section 8)"
+"TC-M07-003","Module 07 - Training Materials","M07-F02","Category Management","Verify Archive and Delete Functions Are Not Supported for Category","Verify system does not support archive or delete operations on categories.","User is logged in as Staff.
+Viewing Category menu.","CategoryName=""Foundations""","1. Open options menu for Category ""Foundations"";
+2. Check for Archive or Delete options.","Archive and Delete buttons are not present in Category context menu.","Medium","Related Requirement: M07-F02, Business Rules 6.2"
+"TC-M07-004","Module 07 - Training Materials","M07-F02","Category Management","Verify Default Categories Exist in System","Verify system contains default fixed categories upon initialization.","User is logged in as Staff.","DefaultCategories=[""IT"", ""English"", ""Professional Skills""]","1. Access Training Materials page;
+2. Check category sidebar/tabs.","Default categories ""IT"", ""English"", and ""Professional Skills"" are present in system.","High","Related Requirement: M07-F02, Business Rules 6.2"
+"TC-M07-005","Module 07 - Training Materials","M07-F03","Course Management","Create New Course with Valid Information","Verify functionality for creating a new course within a category.","User is logged in as Staff.
+Category ""IT"" exists.","Category=""IT""; CourseName=""Web Development""","1. Select Category ""IT"";
+2. Click Create New Course button;
+3. Enter Course Name as ""Web Development"";
+4. Click Save button.","Course created successfully.
+New course ""Web Development"" appears under category ""IT"".","High","Related Requirement: M07-F03, Business Rules 6.3"
+"TC-M07-006","Module 07 - Training Materials","M07-F03","Course Management","New Course Creation Fails Due to Empty Name","Verify system displays error when course name is empty.","User is logged in as Staff.","CourseName=""""","1. Leave Course Name field empty;
+2. Click Save button.","System blocks action.
+Validation error appears: ""Course Name is required.""","High","Related Requirement: M07-F03, Validation Rules (Section 8)"
+"TC-M07-007","Module 07 - Training Materials","M07-F03","Course Management","Edit Course Name with Valid Information","Verify functionality for updating course name.","User is logged in as Staff.
+Course ""Web Development"" exists.","OldCourseName=""Web Development""; NewCourseName=""Frontend Development""","1. Select Course ""Web Development"";
+2. Click Edit Course button;
+3. Change name to ""Frontend Development"";
+4. Click Save button.","Course name updated successfully to ""Frontend Development"".","High","Related Requirement: M07-F03, Business Rules 6.3"
+"TC-M07-008","Module 07 - Training Materials","M07-F03","Course Management","Archive Active Course","Verify functionality for archiving an active course.","User is logged in as Staff.
+Course ""Frontend Development"" is Active.","CourseName=""Frontend Development""","1. Click Archive button for course ""Frontend Development"";
+2. Confirm archiving in popup dialog.","Course status changes to Archived.
+Course is hidden from Active list and moved to Archived tab.","High","Related Requirement: M07-F03, Business Rules 6.3"
+"TC-M07-009","Module 07 - Training Materials","M07-F03","Course Management","Restore Archived Course","Verify functionality for restoring a previously archived course.","User is logged in as Staff.
+Course ""Frontend Development"" is Archived.","CourseName=""Frontend Development""","1. Navigate to Archived Courses tab;
+2. Click Restore button for course ""Frontend Development"";
+3. Confirm restoration.","Course status changes back to Active.
+Course reappears in active course list.","High","Related Requirement: M07-F03, Business Rules 6.3"
+"TC-M07-010","Module 07 - Training Materials","M07-F03","Course Management","Verify Permanent Deletion Is Not Supported for Course","Verify system does not provide permanent deletion for courses.","User is logged in as Staff.
+Viewing course options menu.","CourseName=""Frontend Development""","1. Open course action menu;
+2. Check available options.","Permanent Delete button is not present for courses (only Archive is supported).","Medium","Related Requirement: M07-F03, Business Rules 6.3"
+"TC-M07-011","Module 07 - Training Materials","M07-F04","Session Management","Create New Session with Valid Information","Verify functionality for creating a new learning session inside a course.","User is logged in as Staff.
+Course ""Web Development"" exists.","CourseName=""Web Development""; SessionName=""Session 1: HTML Basics""","1. Open Course ""Web Development"";
+2. Click Add Session button;
+3. Enter Session Name as ""Session 1: HTML Basics"";
+4. Click Save button.","Session created successfully.
+""Session 1: HTML Basics"" appears inside course.","High","Related Requirement: M07-F04, Business Rules 6.4"
+"TC-M07-012","Module 07 - Training Materials","M07-F04","Session Management","New Session Creation Fails Due to Empty Session Name","Verify system displays error when session name is empty.","User is logged in as Staff.","SessionName=""""","1. Leave Session Name field empty;
+2. Click Save button.","System blocks action.
+Validation error appears: ""Session Name is required.""","High","Related Requirement: M07-F04, Validation Rules (Section 8)"
+"TC-M07-013","Module 07 - Training Materials","M07-F04","Session Management","Edit Session Details","Verify functionality for updating session title/details.","User is logged in as Staff.
+Session ""Session 1: HTML Basics"" exists.","OldSessionName=""Session 1: HTML Basics""; NewSessionName=""Session 1: HTML & CSS Fundamentals""","1. Click Edit icon on session;
+2. Update Session Name to ""Session 1: HTML & CSS Fundamentals"";
+3. Click Save button.","Session details updated successfully.","High","Related Requirement: M07-F04, Business Rules 6.4"
+"TC-M07-014","Module 07 - Training Materials","M07-F04","Session Management","Permanently Delete Session","Verify functionality for permanently deleting a session.","User is logged in as Staff.
+Session ""Session 1"" exists.","SessionName=""Session 1""","1. Click Delete icon on session;
+2. Confirm permanent deletion in confirmation dialog.","Session and all attached materials are permanently deleted from system.","High","Related Requirement: M07-F04, Business Rules 6.4"
+"TC-M07-015","Module 07 - Training Materials","M07-F04","Session Management","Cancel Session Deletion Operation","Verify clicking Cancel in session deletion dialog preserves session without deleting.","User is logged in as Staff.
+Session deletion modal open.","Action=""Cancel Deletion""","1. Click Delete icon on session;
+2. In confirmation dialog, click Cancel button.","Dialog closes.
+Session remains intact in course.","Medium","Related Requirement: M07-F04, UI Standards"
+"TC-M07-016","Module 07 - Training Materials","M07-F04","Session Management","Verify Archive Operation Is Not Supported for Session","Verify system does not support archiving individual sessions.","User is logged in as Staff.","SessionName=""Session 1""","1. Check available actions on session.","Archive button is not available for sessions (only Delete is supported).","Medium","Related Requirement: M07-F04, Business Rules 6.4"
+"TC-M07-017","Module 07 - Training Materials","M07-F05","Exam Management","Create New Exam with Valid Information","Verify functionality for creating a new exam item inside a course.","User is logged in as Staff.
+Course ""Web Development"" exists.","CourseName=""Web Development""; ExamName=""Midterm Exam""","1. Open Course ""Web Development"";
+2. Click Add Exam button;
+3. Enter Exam Name as ""Midterm Exam"";
+4. Click Save button.","Exam created successfully.
+""Midterm Exam"" displays in exam section of course.","High","Related Requirement: M07-F05, Business Rules 6.5"
+"TC-M07-018","Module 07 - Training Materials","M07-F05","Exam Management","New Exam Creation Fails Due to Empty Name","Verify system displays error when exam name is empty.","User is logged in as Staff.","ExamName=""""","1. Leave Exam Name field empty;
+2. Click Save button.","System blocks action.
+Validation error appears: ""Exam Name is required.""","High","Related Requirement: M07-F05, Validation Rules (Section 8)"
+"TC-M07-019","Module 07 - Training Materials","M07-F05","Exam Management","Edit Exam Details","Verify functionality for updating exam title/details.","User is logged in as Staff.
+Exam ""Midterm Exam"" exists.","OldExamName=""Midterm Exam""; NewExamName=""Midterm Practical Exam""","1. Click Edit icon on exam;
+2. Update Exam Name to ""Midterm Practical Exam"";
+3. Click Save button.","Exam details updated successfully.","High","Related Requirement: M07-F05, Business Rules 6.5"
+"TC-M07-020","Module 07 - Training Materials","M07-F05","Exam Management","Permanently Delete Exam","Verify functionality for permanently deleting an exam.","User is logged in as Staff.
+Exam ""Midterm Exam"" exists.","ExamName=""Midterm Exam""","1. Click Delete icon on exam;
+2. Confirm permanent deletion in confirmation dialog.","Exam and all attached exam materials are permanently deleted from system.","High","Related Requirement: M07-F05, Business Rules 6.5"
+"TC-M07-021","Module 07 - Training Materials","M07-F05","Exam Management","Cancel Exam Deletion Operation","Verify clicking Cancel in exam deletion dialog preserves exam without deleting.","User is logged in as Staff.
+Exam deletion modal open.","Action=""Cancel Deletion""","1. Click Delete icon on exam;
+2. In confirmation dialog, click Cancel button.","Dialog closes.
+Exam remains intact in course.","Medium","Related Requirement: M07-F05, UI Standards"
+"TC-M07-022","Module 07 - Training Materials","M07-F05","Exam Management","Verify Archive Operation Is Not Supported for Exam","Verify system does not support archiving individual exams.","User is logged in as Staff.","ExamName=""Midterm Exam""","1. Check available actions on exam.","Archive button is not available for exams (only Delete is supported).","Medium","Related Requirement: M07-F05, Business Rules 6.5"
+"TC-M07-023","Module 07 - Training Materials","M07-F06","Material Link Attachment","Attach a Valid Document Link to Session/Exam","Verify functionality for attaching a valid Google Drive material link with a label.","User is logged in as Staff.
+Session or Exam exists.","Label=""Lecture Slides""; Url=""https://drive.google.com/file/d/123/view""","1. Open Attach Material dialog for Session/Exam;
+2. Enter Label as ""Lecture Slides"";
+3. Enter URL as ""https://drive.google.com/file/d/123/view"";
+4. Click Save button.","Material link is attached successfully and clickable on UI.","High","Related Requirement: M07-F06, Business Rules 6.6"
+"TC-M07-024","Module 07 - Training Materials","M07-F06","Material Link Attachment","Attach Multiple Valid Document Links to Session/Exam","Verify functionality for attaching multiple document links simultaneously.","User is logged in as Staff.","Materials=[{Label: ""Slides"", Url: ""https://drive.google.com/file/1""}, {Label: ""Exercise"", Url: ""https://drive.google.com/file/2""}]","1. Add multiple material rows;
+2. Enter valid Labels and Google Drive URLs;
+3. Click Save button.","All material links are attached and displayed under session/exam.","High","Related Requirement: M07-F06, Business Rules 6.6"
+"TC-M07-025","Module 07 - Training Materials","M07-F06","Material Link Attachment","Attach Material with Completely Empty Row (Ignore Blank Rows)","Verify system ignores completely blank material rows without raising error.","User is logged in as Staff.","Row1={Label: ""Slides"", Url: ""https://drive.google.com/...""}; Row2={Label: """", Url: """"}","1. Fill Row 1 with valid label and URL;
+2. Leave Row 2 completely empty;
+3. Click Save button.","System saves Row 1 successfully and ignores blank Row 2 without error.","Medium","Related Requirement: M07-F06, Business Rules 6.6"
+"TC-M07-026","Module 07 - Training Materials","M07-F06","Material Link Attachment","Attach Material Fails Due to Label Provided with Empty URL","Verify system displays error when Label is filled but URL is empty.","User is logged in as Staff.","Label=""Lecture Slides""; Url=""""","1. Enter Label as ""Lecture Slides"";
+2. Leave URL field empty;
+3. Click Save button.","System blocks action.
+Validation error appears: ""URL is required when Label is specified.""","High","Related Requirement: M07-F06, Validation Rules (Section 8)"
+"TC-M07-027","Module 07 - Training Materials","M07-F06","Material Link Attachment","Attach Material Fails Due to URL Provided with Empty Label","Verify system displays error when URL is filled but Label is empty.","User is logged in as Staff.","Label=""""; Url=""https://drive.google.com/file/d/123/view""","1. Leave Label field empty;
+2. Enter valid Google Drive URL;
+3. Click Save button.","System blocks action.
+Validation error appears: ""Label is required when URL is specified.""","High","Related Requirement: M07-F06, Validation Rules (Section 8)"
+"TC-M07-028","Module 07 - Training Materials","M07-F06","Material Link Attachment","Attach Material Fails Due to Non-Google Drive Link Domain","Verify system restricts material links to Google Drive domain.","User is logged in as Staff.","Label=""External Site""; Url=""https://example.com/file.pdf""","1. Enter Label as ""External Site"";
+2. Enter non-Google Drive URL ""https://example.com/file.pdf"";
+3. Click Save button.","System blocks action.
+Validation error appears: ""Material link must be a valid Google Drive URL.""","High","Related Requirement: M07-F06, Validation Rules (Section 8)"
+"TC-M07-029","Module 07 - Training Materials","M07-F07","CSV Export & Import","Export Session List to CSV File (Export CSV)","Verify functionality for exporting course session list to a downloadable CSV file.","User is logged in as Staff.
+Course contains sessions.","CourseName=""Web Development""","1. Open Course ""Web Development"";
+2. Click Export CSV button.","CSV file downloads successfully containing Session ID, Session Name, and Material details.","High","Related Requirement: M07-F07, Business Rules 6.7"
+"TC-M07-030","Module 07 - Training Materials","M07-F07","CSV Export & Import","Import CSV - Update Information of Existing Session","Verify importing CSV with matching Session ID updates existing session details.","User is logged in as Staff.
+Session ID ""SES-001"" exists in system.","CsvFile=""SessionID=SES-001, SessionName=Updated HTML Basics""","1. Upload CSV containing updated name for SES-001;
+2. Click Import CSV button.","Session SES-001 is updated with new name ""Updated HTML Basics"".","High","Related Requirement: M07-F07, Business Rules 6.7"
+"TC-M07-031","Module 07 - Training Materials","M07-F07","CSV Export & Import","Import CSV - Create New Session when Session ID Is Blank","Verify importing CSV row with empty Session ID creates a brand new session.","User is logged in as Staff.","CsvFile=""SessionID=, SessionName=New CSS Grid Session""","1. Upload CSV containing blank Session ID row;
+2. Click Import CSV button.","New session ""New CSS Grid Session"" is created with auto-generated Session ID.","High","Related Requirement: M07-F07, Business Rules 6.7"
+"TC-M07-032","Module 07 - Training Materials","M07-F07","CSV Export & Import","Import CSV - Create New Session when Session ID Does Not Exist in System","Verify importing CSV row with non-existent Session ID creates a new session.","User is logged in as Staff.
+Session ID ""SES-999"" does not exist.","CsvFile=""SessionID=SES-999, SessionName=Flexbox Guide""","1. Upload CSV containing non-existent Session ID;
+2. Click Import CSV button.","New session ""Flexbox Guide"" is created in system.","Medium","Related Requirement: M07-F07, Business Rules 6.7"
+"TC-M07-033","Module 07 - Training Materials","M07-F07","CSV Export & Import","Import CSV - Existing Sessions Omitted from CSV Are Retained","Verify importing CSV does not delete existing sessions that are absent from the CSV file.","User is logged in as Staff.
+Sessions SES-001 and SES-002 exist.","CsvFile=""SessionID=SES-001, SessionName=HTML Basics""","1. Upload CSV containing only SES-001;
+2. Perform CSV import.","SES-001 is processed, and omitted session SES-002 remains unchanged in system without being deleted.","High","Related Requirement: M07-F07, Business Rules 6.7"
+"TC-M07-034","Module 07 - Training Materials","M07-F07","CSV Export & Import","Import CSV - Skip Materials Column in Uploaded CSV File","Verify system ignores Materials column when importing session CSV file.","User is logged in as Staff.","CsvFile=""SessionID=SES-001, SessionName=HTML, Materials=http://...""","1. Upload CSV containing Materials column;
+2. Click Import CSV button.","Sessions are updated/created, and Materials column is safely ignored per business rule.","Medium","Related Requirement: M07-F07, Business Rules 6.7"
+"TC-M07-035","Module 07 - Training Materials","M07-F07","CSV Export & Import","Import CSV Fails Due to Incorrect File Format (Non-CSV File)","Verify system rejects non-CSV file formats during import.","User is logged in as Staff.","FileName=""materials.pdf""","1. Select non-CSV file ""materials.pdf"" in import dialog;
+2. Click Import CSV button.","System blocks import.
+Error message appears: ""Invalid file format. Please upload a CSV file.""","High","Related Requirement: M07-F07, Validation Rules (Section 8)"
+"TC-M07-036","Module 07 - Training Materials","M07-F07","CSV Export & Import","Import CSV Fails for Rows Missing Session Name","Verify system skips or flags error for CSV rows missing mandatory Session Name.","User is logged in as Staff.","CsvFile=""SessionID=SES-003, SessionName=""","1. Upload CSV containing row with empty Session Name;
+2. Click Import CSV button.","System flags error for row or skips invalid row with warning message: ""Session Name is required.""","High","Related Requirement: M07-F07, Validation Rules (Section 8)"
+"TC-M07-037","Module 07 - Training Materials","M07-F08","Role Permissions & Access Control","Access Control - Staff Role Has Full Management Access","Verify Staff users have full CRUD permissions for categories, courses, sessions, exams, and materials.","User is logged in as Staff.","StaffEmail=""staff@passerellesnumeriques.org""","1. Access Training Materials module;
+2. Verify presence of Create, Edit, Archive, and Delete buttons.","Staff user can perform all management operations cleanly.","High","Related Requirement: M07-F08, User Roles"
+"TC-M07-038","Module 07 - Training Materials","M07-F08","Role Permissions & Access Control","Access Control - Student Role Has Read-Only Access","Verify Student users can view training materials but cannot create, edit, or delete items.","User is logged in as Student.","StudentEmail=""student@student.passerellesnumeriques.org""","1. Access Training Materials module as Student;
+2. Check for management buttons.","Create, Edit, Archive, Delete, and CSV Import buttons are completely hidden.
+Student can view and open material links in Read-Only mode.","High","Related Requirement: M07-F08, User Roles"
+"TC-M07-039","Module 07 - Training Materials","M07-F08","Role Permissions & Access Control","Access Control - External Domain Accounts Are Denied Access","Verify accounts outside organizational domains are denied access.","User attempts access with external personal account.","UserEmail=""user@gmail.com""","1. Attempt to access Training Materials URL with external email.","Access denied page or login redirect is displayed.","High","Related Requirement: M07-F08, User Roles"
+"TC-M07-040","Module 07 - Training Materials","M07-F03","Course Management","Verify Auto-hiding All Child Sessions/Exams When Course Is Archived","Verify archiving a course automatically hides all nested sessions and exams.","User is logged in as Staff.
+Course ""Web Development"" contains 3 sessions and 1 exam.","CourseName=""Web Development""","1. Archive course ""Web Development"";
+2. View course list as Student.","Course and all its child sessions and exams are hidden from active view.","High","Related Requirement: M07-F03, Business Rules 6.3"
+"TC-M07-041","Module 07 - Training Materials","M07-F03","Course Management","Verify Restoring All Child Sessions/Exams When Course Is Restored","Verify restoring an archived course restores visibility of all nested sessions and exams.","User is logged in as Staff.
+Course ""Web Development"" is Archived.","CourseName=""Web Development""","1. Restore course ""Web Development"";
+2. View active course list.","Course and all child sessions and exams reappear in active view.","High","Related Requirement: M07-F03, Business Rules 6.3"

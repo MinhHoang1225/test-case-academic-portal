@@ -1,118 +1,61 @@
 ﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
-"TC-M08-001","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload valid profile photo in JPG format","Verify functionality for tai len profile photo format JPG successfully va cap nhat vao thong tin student.","User is logged in as Staff.
-Currently on Student Detail page of a student without profile photo (displaying default photo).","StudentCode=PNV26001; ImageFile=student_avatar.jpg (kich thuoc < 2MB)","1. Select student PNV26001 va mo trang Chi tiet Hoc sinh.
-2. Nhap select bieu tuong tai profile photo.
-3. Select file student_avatar.jpg tu thiet bi.
-4. Observe preview photo display tren man hinh.
-5. Nhan nut ""Save"" (Save).","System display notification tai len successfully.
-Anh xem truoc display tuc thi tren interface truoc khi save.
-Sau khi save, thong tin student duoc cap nhat: profile photo display kieu hinh tron tai Sidebar chi tiet (200x200 px) va danh sach student (52x52 px).
-File photo duoc save tren Google Drive duoi ten ""Nguyen_Van_A_{Timestamp}.jpg"" voi quyen xem ""Anyone with the link"".","High","Related to M08-F01, Rule 5.2, Google Drive Integration (Section 7)"
-"TC-M08-002","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload valid profile photo in PNG format","Verify functionality for tai len profile photo format PNG successfully va cap nhat vao thong tin student.","User is logged in as Staff.
-Currently on Student Detail page of a student without profile photo.","StudentCode=PNV26002; ImageFile=student_avatar2.png","1. Select student PNV26002 va mo trang Chi tiet Hoc sinh.
-2. Nhap select bieu tuong tai profile photo.
-3. Select file student_avatar2.png.
-4. Nhan nut ""Save"" (Save).","System display notification tai len successfully.
-Anh dai dien PNG display chinh xac kieu hinh tron o tat ca cac vi tri.
-File photo duoc tai len Google Drive va duoc dat ten theo format {StudentName}_{Timestamp}.jpg.","High","Related to M08-F01, Rule 5.2"
-"TC-M08-003","Module 08 – Profile Photo Management","M08-F02","Photo Replacement","Replace current profile photo","Verify khi tai len new profile photo, system tu dong cap nhat thong tin student va delete file old photo tren Google Drive.","User is logged in as Staff.
-Hoc sinh PNV26001 da co san old profile photo tren system va Google Drive.","StudentCode=PNV26001; ImageFile=new_avatar.jpg","1. Select student PNV26001 va mo trang Chi tiet Hoc sinh.
-2. Nhap select tai new profile photo.
-3. Select file new_avatar.jpg.
-4. Nhan nut ""Save"" (Save).
-5. Verify thu muc archive tren Google Drive.","System display notification replace successfully.
-Anh dai dien moi display tren system.
-File old photo cua student PNV26001 tren Google Drive bi delete hoan toan khoi thu muc archive (khong giu lai file cu).
-Chi con lai file new photo tren Google Drive.","High","Related to M08-F02, Rule 5.3"
-"TC-M08-004","Module 08 – Profile Photo Management","M08-F03","Photo Removal","Delete current profile photo (Soft Delete)","Verify functionality for delete profile photo cua student, chuyen file cu vao Google Drive Trash va display avatar mac dinh.","User is logged in as Staff.
-Hoc sinh PNV26001 da co san profile photo tren system.","StudentCode=PNV26001","1. Select student PNV26001 va mo trang Chi tiet Hoc sinh.
-2. Nhap select nut ""Delete photo"" (Remove Photo).
-3. Xac nhan delete khi system display hop thoai xac nhan.
-4. Nhan nut ""Save"" (Save).
-5. Verify Google Drive Trash.","Anh dai dien cu cua student bi delete khoi interface.
-System display profile photo mac dinh (initials ten student).
-Tren Google Drive, file old photo cua student duoc di chuyen vao trash (Drive Trash) chu khong bi permanently deleted ngay lap tuc.","High","Related to M08-F03, Rule 5.4"
-"TC-M08-005","Module 08 – Profile Photo Management","M08-F04","Fallback Avatar","Hien thi avatar mac dinh khi student chua co profile photo","Verify system display profile photo mac dinh la 2 initials cua ten student khi khong co photo.","User is logged in as Staff.
-Hoc sinh ""Nguyen Van A"" chua tai profile photo len system.","StudentName=""Nguyen Van A""","1. Vao danh sach student.
-2. Tim student ""Nguyen Van A"".
-3. Observe profile photo display ben canh ten student.
-4. Verify tai trang Chi tiet student va man hinh Home Dashboard.","System tu dong display profile photo dang hinh tron chua 2 initials la ""NA"" (initials cua Ten va Ho).
-Anh mac dinh nay display dong bo o ca danh sach student va chi tiet student.","High","Related to M08-F04, Rule 5.6"
-"TC-M08-006","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Verify kich thuoc display profile photo o cac vi tri khac nhau","Verify profile photo display dung kich thuoc cau hinh va dung format hinh tron o moi man hinh.","User is logged in as Staff.
-Hoc sinh PNV26001 da co profile photo hop le.","StudentCode=PNV26001","1. Xem photo student tai danh sach student.
-2. Nhap xem chi tiet student PNV26001 va observe Sidebar.
-3. Mo Dialog edit thong tin student.
-4. Ve man hinh Home Dashboard va tim profile photo student do.","Anh dai dien display as hinh tron voi kich thuoc chuan:
-- Danh sach student: 52 x 52 px
-- Dialog edit student: 120 x 120 px
-- Sidebar chi tiet student: 200 x 200 px
-- Home Dashboard: 52 x 52 px","Medium","Related to Display Locations (Section 6)"
-"TC-M08-007","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Nhan Save profile photo khi chua select file photo","Verify system bao error khi user co tinh save photo ma chua select tep tin nao.","Nguoi dung log in quyen Staff.
-Dang mo trang Chi tiet Hoc sinh cua mot student chua co photo.","StudentCode=PNV26001","1. Select student PNV26001.
-2. Kich hoat che do tai profile photo.
-3. Khong select bat ky file nao tu thiet bi.
-4. Nhan nut ""Save"" (Save) hoac nut xac nhan tai len.","System display cphoto bao error requires select tep tin hinh photo (e.g.: ""Image file is required"" hoac tuong duong).
-Khong co bat ky thay doi nao duoc thuc hien.","High","Related to Validation Rules (Section 8)"
-"TC-M08-008","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload file not format hinh photo","Verify system chan tai len cac tep tin co format is not a photo (nhu .pdf, .docx, .txt).","User is logged in as Staff.
-Dang mo trang Chi tiet Hoc sinh.","StudentCode=PNV26001; FilePath=document.pdf","1. Select student PNV26001.
-2. Nhap tai profile photo va select file document.pdf.
-3. Nhan nut ""Save"" (Save) hoac nut xac nhan tai len.","System khong chap nhan file PDF.
-Hien thi notification error requires tep tin hinh photo hop le (e.g.: ""Invalid file format. Please upload JPG or PNG image"").
-Khong allows save tep tin nay lam profile photo.","High","Related to Validation Rules (Section 8)"
-"TC-M08-009","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Verify cau truc ten file save tren Google Drive","Dam bao file photo tai len duoc doi ten theo dung format {StudentName}_{Timestamp}.jpg.","Nguoi dung log in quyen Staff.
-Hoc sinh ten ""John Smith"" chua co photo.","StudentName=""John Smith""; ImageFile=avatar.jpg","1. Select student ""John Smith"" va tai len photo avatar.jpg.
-2. Nhan ""Save"" (Save).
-3. Log in vao account Google Drive quan tri, mo thu muc archive cau hinh.
-4. Tim kiem file new photo tai len va kiem tra ten file.","File photo duoc archive tren Google Drive co ten chinh xac la ""John_Smith_YYYYMMDDHHMMSS.jpg"" (trong do YYYYMMDDHHMMSS la period luc tai len).
-Dinh dang file duoc chuan hoa thanh duoi mo rong .jpg.","High","Related to Storage Information (Section 3), Google Drive Integration (Section 7)"
-"TC-M08-010","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload photo cho student co ten chua ky tu tieng Viet co dau","Verify whether ten file tren Google Drive co duoc xu ly chuan hoa ky tu tieng Viet co dau va khoang trang hay khong.","Nguoi dung log in quyen Staff.
-Co student ten ""Nguyen Hoang Nam"".","StudentName=""Nguyen Hoang Nam""; ImageFile=avatar.jpg","1. Mo trang chi tiet student ""Nguyen Hoang Nam"" va tai len profile photo.
-2. Nhan ""Save"".
-3. Mo Google Drive kiem tra ten file photo vua create.","File photo duoc tai len successfully.
-Ten file tren Google Drive duoc chuan hoa (e.g. chuyen thanh ""Nguyen_Hoang_Nam_{Timestamp}.jpg"" hoac giu nguyen ky tu tieng Viet co dau nhung khoang trang thay bang gach duoi va khong bi error display/ma hoa ky tu).","Medium","Related to Storage Information (Section 3), Google Drive Integration (Section 7)"
-"TC-M08-011","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Verify quyen access tep tin (File Permission) tren Google Drive","Dam bao tep tin photo tai len duoc cau hinh quyen chia se cong khai o che do chi xem de system display duoc.","Nguoi dung log in quyen Staff.
-Tai photo len cho student PNV26001 successfully.","StudentCode=PNV26001","1. Mo account Google Drive quan tri, tim file photo cua student PNV26001 vua tai len.
-2. Nhap chuot phai select ""Chia se"" (Share) -> ""Nhan lien ket"" (Get link).
-3. Verify cai dat quyen access chung.","Quyen access chung cua file duoc thiet lap la ""Bat ky ai co lien ket nay"" (Anyone with the link) va vai tro duoc gan la ""Nguoi xem"" (Viewer / View only).","High","Related to Storage Information (Section 3), Google Drive Integration (Section 7)"
-"TC-M08-012","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload photo co size lon","Verify phan hoi cua system khi co gang tai len mot hinh photo co kich thuoc tep tin lon.","Nguoi dung log in quyen Staff.
-Dang mo interface tai profile photo.","StudentCode=PNV26001; ImageFile=large_photo.jpg (size 15MB)","1. Upload tep tin large_photo.jpg size 15MB.
-2. Nhan nut ""Save"" (Save).","System tai len successfully neu khong cau hinh gioi han kich thuoc, HOAC neu system co gioi han size: display notification error requires photo nho hon muc quy dinh (e.g.: ""File size exceeds limit"") va ngan khong cho tai len.","Medium","Related to Test Data Preparation (Section 11 - Large image)"
-"TC-M08-013","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload hinh photo co phan mo rong viet hoa (.JPG / .PNG)","Verify system nhan dien va chap nhan cac duoi mo rong viet hoa nhu .JPG, .PNG ma khong bao error format.","Nguoi dung log in quyen Staff.
-Dang mo interface tai profile photo.","StudentCode=PNV26001; ImageFile=avatar.JPG","1. Upload tep tin avatar.JPG (duoi JPG viet hoa).
-2. Nhan nut ""Save"" (Save).","System nhan dien .JPG la format hinh photo hop le.
-Tai photo successfully, cap nhat thong tin student binh thuong.","Medium","Related to Validation Rules (Section 8 - Image File)"
-"TC-M08-014","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload failed do error ket noi Google Drive","Verify system khong save link photo error va giu nguyen thong tin student neu qua trinh tai len Google Drive failed.","User is logged in as Staff.
-Hoc sinh PNV26003 chua co profile photo.
-Duong truyen Google Drive bi ngat ket noi hoac error dich vu trong luc tai.","StudentCode=PNV26003; ImageFile=student_avatar3.jpg","1. Select student PNV26003 va mo trang Chi tiet Hoc sinh.
-2. Select tai len file student_avatar3.jpg.
-3. Nhan ""Save"" (Save).
-4. Observe notification error va kiem tra thong tin student.","System display notification error tai len (e.g.: ""Upload failed"" hoac ""Google Drive unavailable"").
-Thong tin student khong bi thay doi, khong save duong dan hong (broken link) vao ho so.
-Hoc sinh van tiep tuc display avatar mac dinh.","High","Related to Rule 5.5, Error Handling (Section 9)"
-"TC-M08-015","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Upload failed do thu muc Google Drive chua cau hinh","Verify hanh vi cua system khi co gang tai photo len trong khi thu muc Google Drive chua duoc thiet lap.","Nguoi dung log in quyen Staff.
-Thu muc archive Google Drive chua duoc cau hinh trong system.","StudentCode=PNV26001; ImageFile=student_avatar.jpg","1. Mo trang Chi tiet Hoc sinh PNV26001.
-2. Select tai len file student_avatar.jpg.
-3. Nhan nut ""Save"" (Save).","System display notification error cau hinh (e.g.: ""Google Drive folder not configured or unavailable"" hoac ""Upload error"").
-Qua trinh tai len bi huy bo, thong tin student khong bi thay doi.","Medium","Related to Error Handling (Section 9)"
-"TC-M08-016","Module 08 – Profile Photo Management","M08-F04","Fallback Avatar","Hien thi avatar mac dinh khi URL photo bi error (HTTP 404)","Verify system tu dong phat hien URL photo bi hong va chuyen sang display avatar mac dinh.","Hoc sinh ""Le Thi B"" co URL photo trong ho so student, nhung file goc tren Google Drive da bi delete hoac khong access duoc (error 404).","StudentName=""Le Thi B""","1. Log in system bang quyen Staff.
-2. Truy cap danh sach student hoac chi tiet student ""Le Thi B"".
-3. Observe profile photo display.","System phat hien khong tai duoc photo tu URL cu, tu dong display avatar mac format hinh tron chua hai initials la ""LB"" ma khong can bat ky can thiep thu cong nao tu user.","High","Related to M08-F04, Rule 5.6, Error Handling (Section 9)"
-"TC-M08-017","Module 08 – Profile Photo Management","M08-F05","Restricted Access","Verify quyen han cua Student for profile photo","Verify account Student chi co quyen xem profile photo cua minh va khong co quyen tai len, edit hoac delete photo.","Nguoi dung log in voi quyen Student (email domain @student.passerellesnumeriques.org).","StudentAccount=student01@student.passerellesnumeriques.org","1. Log in vao Student Portal.
-2. Truy cap trang thong tin personal.
-3. Verify su ton tai cua cac nut ""Tai photo len"" (Upload), ""Thay the"" (Replace) hoac ""Delete photo"" (Remove).
-4. Thu tim cach tuong tac edit profile photo.","Hoc sinh can nhin thay profile photo cua minh display o goc man hinh hoac trang thong tin.
-Khong co nut hoac tuy select nao de tai len, replace hoac delete photo tren interface.
-Status access hoan toan la Chi xem (Read-only).","High","Related to M08-F05, Rule 5.1"
-"TC-M08-018","Module 08 – Profile Photo Management","M08-F05","Restricted Access","Verify chan goi truc tiep API upload tu account Student","Verify co che bao mat phia backend denies requires upload/replace/delete profile photo gui tu account Student.","Nguoi dung log in quyen Student.
-Su dung DevTools hoac cong cu ben Tuesday gui request truc tiep den ham upload/replace/remove photo cua backend.","StudentAccount=student01@student.passerellesnumeriques.org","1. Thuc hien gui request truc tiep den API upload/replace/remove photo su dung token/session cua Student.
-2. Observe phan hoi tra ve tu backend.","Backend denies requires, tra ve ma error denies quyen access (Access Denied / Unauthorized).
-Thong tin profile photo student khong bi photo huong.","High","Related to Rule 5.1, Error Handling (Section 9)"
-"TC-M08-019","Module 08 – Profile Photo Management","M08-F05","Restricted Access","Tu choi access for account external organization","Dam bao user voi email khong thuoc organization (e.g.: @gmail.com) cannot access system va xem profile photo.","Nguoi dung su dung account email personal not domain @passerellesnumeriques.org hay @student.passerellesnumeriques.org.","UserEmail=guest_user@gmail.com","1. Mo trinh duyet an danh.
-2. Truy cap URL cua system.
-3. Log in bang account guest_user@gmail.com.","System denies log in va redirect user den trang ""Access Denied"" (Tu choi access).
-Khong xem duoc bat cu thong tin student nao bao gom ca profile photo.","High","Related to Docs - Section 4 (User Roles) & Section 6 (Authentication Flow)"
-"TC-M08-020","Module 08 – Profile Photo Management","M08-F01","Photo Upload","Verify khong tich hop tinh nang edit/cat photo","Verify system khong tich hop cac chuc nang edit photo, cat photo hoac xem lich su cac old profile photo.","Nguoi dung log in quyen Staff.
-Dang trong tien trinh select va chuan bi tai photo len.","StudentCode=PNV26001; ImageFile=avatar.jpg","1. Select tai len file avatar.jpg.
-2. Observe cac nut va tuy select thao tac display tren interface xem truoc photo.
-3. Verify whether co chuc nang xoay, cat (crop) hoac xem danh sach old photo da tai len khong.","Interface chi display preview photo don gian de user kiem tra truc quan.
-Khong co cong cu edit, cat ghep hoac xem lai phien ban old photo nao tren system.","Low","Related to Out of Scope (Section 13)"
+"TC-M08-001","Module 08 - Profile Photo Management","M08-F01","Photo Upload","Upload Valid Profile Photo in JPG Format","Verify functionality for uploading a profile photo in JPG format successfully and updating student details.","User is logged in as Staff.
+Currently on Student Detail page of a student without profile photo (displaying default avatar).","FileName=""photo.jpg""; FileType=""image/jpeg""; FileSize=""1.5MB""","1. Click Upload Photo button;
+2. Select file ""photo.jpg"";
+3. Click Save Photo button.","Photo uploaded successfully.
+Success notification appears and default avatar is replaced by uploaded JPG photo.","High","Related Requirement: M08-F01, Business Rules 6.1"
+"TC-M08-002","Module 08 - Profile Photo Management","M08-F01","Photo Upload","Upload Valid Profile Photo in PNG Format","Verify functionality for uploading a profile photo in PNG format successfully and updating student details.","User is logged in as Staff.
+Currently on Student Detail page of a student without profile photo.","FileName=""avatar.png""; FileType=""image/png""; FileSize=""2.0MB""","1. Click Upload Photo button;
+2. Select file ""avatar.png"";
+3. Click Save Photo button.","Photo uploaded successfully.
+Default avatar is replaced by uploaded PNG photo.","High","Related Requirement: M08-F01, Business Rules 6.1"
+"TC-M08-003","Module 08 - Profile Photo Management","M08-F01","Photo Upload","Replace Current Profile Photo","Verify system overwrites existing photo when uploading a new photo for a student.","User is logged in as Staff.
+Student currently has an existing profile photo.","NewFileName=""new_photo.jpg""","1. Click Change Photo button;
+2. Select file ""new_photo.jpg"";
+3. Click Save Photo button.","New photo overwrites old photo successfully on UI and in storage.","High","Related Requirement: M08-F01, Business Rules 6.1"
+"TC-M08-004","Module 08 - Profile Photo Management","M08-F02","Photo Deletion","Delete Current Profile Photo (Soft Delete)","Verify functionality for deleting current photo and reverting student profile to default avatar.","User is logged in as Staff.
+Student has an existing profile photo.","StudentID=""ST001""","1. Click Delete Photo button;
+2. Confirm deletion in dialog modal.","Photo reference is cleared and student avatar reverts to default placeholder avatar.","High","Related Requirement: M08-F02, Business Rules 6.2"
+"TC-M08-005","Module 08 - Profile Photo Management","M08-F03","Default Avatar Display","Display Default Avatar When Student Has No Profile Photo","Verify system renders default fallback avatar for students without profile photos.","User is logged in as Staff or Student.
+Student profile has no photo URL.","PhotoUrl=None","1. Open Student Detail page;
+2. Observe avatar image element.","Default SVG/PNG placeholder avatar is rendered cleanly without broken image icon.","High","Related Requirement: M08-F03, Business Rules 6.3"
+"TC-M08-006","Module 08 - Profile Photo Management","M08-F04","Avatar Display Sizing","Verify Profile Photo Rendering Sizes Across Different UI Components","Verify profile photos render with correct circular crop and appropriate dimensions across student list, detail view, and header.","User is logged in as Staff.
+Student has uploaded profile photo.","StudentID=""ST001""","1. View student photo in Student List table;
+2. View student photo on Student Detail page;
+3. View student avatar in Student Portal header.","Photo scales properly with object-fit: cover, maintains aspect ratio, and clips cleanly to circle without distorting.","Medium","Related Requirement: M08-F04, UI Standards"
+"TC-M08-007","Module 08 - Profile Photo Management","M08-F01","Photo Upload","Click Save Photo Without Selecting Image File","Verify system blocks submission when Save is clicked without picking an image file.","User is logged in as Staff.
+Upload modal open.","SelectedFile=None","1. Open Upload Photo modal;
+2. Click Save Photo button without selecting any file.","System blocks action.
+Validation error appears: ""Please select an image file to upload.""","High","Related Requirement: M08-F01, Validation Rules (Section 8)"
+"TC-M08-008","Module 08 - Profile Photo Management","M08-F01","Photo Upload","Upload Non-image Format File","Verify system rejects non-image files (PDF, DOCX, TXT, EXE).","User is logged in as Staff.","FileName=""document.pdf""","1. Click Upload Photo button;
+2. Select file ""document.pdf"";
+3. Click Save Photo button.","System blocks upload.
+Validation error appears: ""Invalid file format. Only JPG and PNG image files are allowed.""","High","Related Requirement: M08-F01, Validation Rules (Section 8)"
+"TC-M08-009","Module 08 - Profile Photo Management","M08-F05","Google Drive Storage Naming","Verify File Naming Structure on Google Drive Storage","Verify system renames uploaded photo files matching student ID format on Google Drive.","User is logged in as Staff.
+Student ID is ""ST001"".","OriginalFile=""my_avatar_2026.jpg""; ExpectedStoredFile=""ST001.jpg""","1. Upload photo ""my_avatar_2026.jpg"" for student ST001;
+2. Inspect saved file name in Google Drive directory.","File is saved to Google Drive with standardized filename format ""ST001.jpg"".","Medium","Related Requirement: M08-F05, Business Rules 6.5"
+"TC-M08-010","Module 08 - Profile Photo Management","M08-F05","Google Drive Storage Naming","Upload Photo for Student with Special Characters in Original Filename","Verify uploading files with non-ASCII or special characters in filename renames safely during storage.","User is logged in as Staff.
+Student ID is ""ST002"".","OriginalFile=""avatar_special_char_2026.png""; ExpectedStoredFile=""ST002.png""","1. Select file with Unicode filename ""avatar_special_char_2026.png"";
+2. Click Save Photo button.","File uploads cleanly and renames to ""ST002.png"" without encoding errors.","Medium","Related Requirement: M08-F05, Business Rules 6.5"
+"TC-M08-011","Module 08 - Profile Photo Management","M08-F05","Google Drive Storage Naming","Verify File Permissions on Google Drive Storage","Verify uploaded photo files on Google Drive are configured with public read permission for rendering.","Photo uploaded to Google Drive.","FileId=""1A2B3C""","1. Upload photo for student;
+2. Verify direct view URL accessibility.","Image URL resolves and renders image in web browser without authentication wall.","High","Related Requirement: M08-F05, Business Rules 6.5"
+"TC-M08-012","Module 08 - Profile Photo Management","M08-F01","Photo Upload","Upload Oversized Image File Exceeding Maximum Limit","Verify system blocks uploading files exceeding file size limit (e.g., > 5MB).","User is logged in as Staff.","FileName=""large_photo.jpg""; FileSize=""12MB""","1. Select oversized file ""large_photo.jpg"" (12MB);
+2. Click Save Photo button.","System blocks upload.
+Validation error appears: ""File size exceeds maximum limit of 5MB.""","High","Related Requirement: M08-F01, Validation Rules (Section 8)"
+"TC-M08-013","Module 08 - Profile Photo Management","M08-F01","Photo Upload","Upload Image File with Uppercase Extension (.JPG / .PNG)","Verify system handles uppercase file extensions (.JPG, .PNG) correctly.","User is logged in as Staff.","FileName=""PHOTO.JPG""","1. Select file ""PHOTO.JPG"";
+2. Click Save Photo button.","System accepts upload successfully regardless of extension case.","Medium","Related Requirement: M08-F01, Business Rules 6.1"
+"TC-M08-014","Module 08 - Profile Photo Management","M08-F06","Drive Integration Error Handling","Upload Fails Due to Google Drive Connection Error","Verify graceful error handling when Google Drive API connection fails.","User is logged in as Staff.
+Google Drive service is disconnected or unreachable.","DriveApiStatus=""Disconnected""","1. Attempt to upload profile photo when Drive API is offline.","System catches exception.
+Error message displays: ""Unable to connect to storage service. Please try again later.""","Medium","Related Requirement: M08-F06, Error Handling (Section 8)"
+"TC-M08-015","Module 08 - Profile Photo Management","M08-F06","Drive Integration Error Handling","Upload Fails Due to Unconfigured Google Drive Target Folder","Verify error notification when Drive folder ID is missing or invalid in system settings.","User is logged in as Staff.
+Target folder ID in config is invalid.","DriveFolderId=""INVALID_ID""","1. Attempt to upload profile photo.","System blocks upload and logs configuration error message for administrator.","Medium","Related Requirement: M08-F06, Error Handling (Section 8)"
+"TC-M08-016","Module 08 - Profile Photo Management","M08-F03","Default Avatar Display","Display Default Avatar When Photo URL Returns HTTP 404 Error","Verify system gracefully falls back to default avatar if image URL fails to load (404 error).","User is logged in.
+Student photo URL in database points to non-existent image resource.","PhotoUrl=""https://drive.google.com/non_existent.jpg""","1. Open Student Detail page;
+2. Observe image element on error event.","Image onError handler triggers and smoothly replaces broken image link with default placeholder avatar.","Medium","Related Requirement: M08-F03, Error Handling (Section 8)"
+"TC-M08-017","Module 08 - Profile Photo Management","M08-F07","Role Permissions & Access Control","Verify Student Role Cannot Upload or Delete Profile Photo","Verify Student role has read-only photo permissions and cannot upload or delete photos.","User is logged in as Student.","StudentEmail=""student@student.passerellesnumeriques.org""","1. Navigate to Student Detail / Profile page as Student;
+2. Inspect photo options.","Upload Photo and Delete Photo buttons are absent from UI.","High","Related Requirement: M08-F07, User Roles"
+"TC-M08-018","Module 08 - Profile Photo Management","M08-F07","Role Permissions & Access Control","Block Direct API Calls for Photo Upload from Student Account","Verify backend API blocks photo upload requests submitted with Student JWT authorization token.","Student authorization token.","ApiEndpoint=""POST /api/students/st001/photo""","1. Submit direct HTTP POST upload request using Student auth token.","Backend rejects request with HTTP 403 Forbidden status.","High","Related Requirement: M08-F07, User Roles"
+"TC-M08-019","Module 08 - Profile Photo Management","M08-F07","Role Permissions & Access Control","Deny Access to External Organization Accounts","Verify users from external email domains cannot access profile photo API or management UI.","External domain account.","UserEmail=""external@gmail.com""","1. Attempt access with external account.","System denies access with HTTP 403 Forbidden.","High","Related Requirement: M08-F07, User Roles"
+"TC-M08-020","Module 08 - Profile Photo Management","M08-F08","Feature Scope Verification","Verify Image Editing and Cropping Features Are Not Present","Verify profile photo management upload directly stores selected file without client-side image cropping tools.","User is logged in as Staff.
+Uploading photo.","FileName=""photo.jpg""","1. Select image file in upload modal;
+2. Observe upload workflow.","File uploads directly without displaying cropping modal, maintaining simple out-of-scope workflow.","Low","Related Requirement: M08-F08, Out of Scope (Section 12)"
