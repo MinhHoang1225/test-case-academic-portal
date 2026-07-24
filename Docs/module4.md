@@ -440,24 +440,23 @@ Verify:
 
 # 11. UAT Test Scenarios
 
-Detailed UAT scenarios are documented separately.
+All UAT test scenarios for this module are documented in [module04_test_cases.csv](file:///F:/code/Test/test-case-academic-portal/Tests/csv/module04_test_cases.csv) and [module04_test_cases.xlsx](file:///F:/code/Test/test-case-academic-portal/Tests/excel/module04_test_cases.xlsx):
 
-Covered scenarios include:
+- **Test Cases:** TC-M04-001 → TC-M04-034 (34 Total Test Cases)
 
-- CC-01 → CC-11
+### Test Case Breakdown by Feature
 
-These scenarios validate:
-
-- Record creation
-- Duplicate prevention
-- Badge updates
-- Academic warnings
-- Draft auto-save
-- Draft recovery
-- Batch feedback
-- Concurrent editing
-- PDF export
-- Trend chart generation
+| Feature ID | Feature Name | Test Cases | Priority | Description / Scenarios Covered |
+|------------|--------------|------------|----------|--------------------------------|
+| M04-F01 | Council Feedback Record | TC-M04-001, TC-M04-002, TC-M04-022, TC-M04-023, TC-M04-024, TC-M04-031 | High / Medium | Create record, empty optional fields, update comments, required validations (Student/Semester), multiline/special characters |
+| M04-F02 | Academic Warning Flag | TC-M04-003, TC-M04-004, TC-M04-013, TC-M04-014, TC-M04-021 | High / Medium | Set warning flag & reason, empty reason, badge display activation (G, IT, EN, PLT, ED, ⚠), badge deactivation on content removal, clear warning flag |
+| M04-F03 | Duplicate Record Prevention | TC-M04-017, TC-M04-018 | High | Block duplicate record for same student in same semester, allow record for same student in different semester |
+| M04-F04 | Auto Draft Saving | TC-M04-005, TC-M04-016, TC-M04-028, TC-M04-033 | High / Medium / Low | Local storage draft saving, device-specific draft isolation, draft purge on successful save, offline draft retention |
+| M04-F05 | Draft Recovery / Discard | TC-M04-006, TC-M04-007, TC-M04-032 | High / Medium | Draft recovery prompt after browser crash, discard draft to restore DB data, manual form discard button |
+| M04-F06 | Batch Feedback Entry | TC-M04-008, TC-M04-009, TC-M04-025, TC-M04-026 | High / Medium / Low | Batch comment entry by feedback type, preservation of unedited comment fields, clearing comments in batch mode, no-op batch save |
+| M04-F07 | Concurrent Edit Conflict Handling | TC-M04-010, TC-M04-011, TC-M04-027 | High / Medium | 3-way merge non-conflicting edits, flag conflict on same field edit, identical concurrent edit handling |
+| M04-F08 | PDF Report Export | TC-M04-012, TC-M04-019, TC-M04-020, TC-M04-030, TC-M04-034 | High / Medium | PDF report generation, Semester 1 trend chart omission, Semester 2 trend chart generation, batch report PDF export, partial comment PDF export |
+| M04-SEC | Access Control & Security | TC-M04-015, TC-M04-029 | High | Block unauthorized email domain login, block Student role access to council edit forms |
 
 ---
 
