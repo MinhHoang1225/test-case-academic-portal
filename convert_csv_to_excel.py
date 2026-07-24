@@ -52,6 +52,7 @@ COLUMN_WIDTH_MAP = {
     "ExpectedResult": 48,
     "Actual Result": 36,
     "Status": 16,
+    "Evidence": 25,
     "Priority": 14,
     "Notes": 32
 }
@@ -109,7 +110,7 @@ def format_worksheet(ws, headers, rows):
             cell.border = cell_border
 
             h_align = "left"
-            if h_name in ["ID", "Module", "Feature ID", "Priority", "Status"]:
+            if h_name in ["ID", "Module", "Feature ID", "Priority", "Status", "Evidence"]:
                 h_align = "center"
 
             cell.alignment = Alignment(horizontal=h_align, vertical="top", wrap_text=True)
@@ -185,7 +186,7 @@ def read_csv_file(csv_path, xlsx_path=None):
             else:
                 rows.append(row)
 
-    # Load existing Excel data if available to preserve Actual Result & Status
+    # Load existing Excel data if available to preserve Actual Result & Status & Evidence
     existing_data = {}
     if xlsx_path and os.path.exists(xlsx_path):
         try:
@@ -198,20 +199,22 @@ def read_csv_file(csv_path, xlsx_path=None):
                         id_i = ex_headers.index("ID") if "ID" in ex_headers else 0
                         act_i = ex_headers.index("Actual Result") if "Actual Result" in ex_headers else -1
                         st_i = ex_headers.index("Status") if "Status" in ex_headers else -1
+                        ev_i = ex_headers.index("Evidence") if "Evidence" in ex_headers else -1
 
                         for r_cells in ws_ex.iter_rows(min_row=2, values_only=True):
                             if r_cells and r_cells[id_i]:
                                 t_id = str(r_cells[id_i]).strip()
                                 act_val = r_cells[act_i] if act_i != -1 and act_i < len(r_cells) else None
                                 st_val = r_cells[st_i] if st_i != -1 and st_i < len(r_cells) else None
-                                existing_data[t_id] = (act_val, st_val)
+                                ev_val = r_cells[ev_i] if ev_i != -1 and ev_i < len(r_cells) else None
+                                existing_data[t_id] = (act_val, st_val, ev_val)
                         break
                 wb_ex.close()
         except Exception as e:
             print(f"  Note: Could not read existing excel {xlsx_path}: {e}")
 
-    # Ensure Actual Result and Status fields are added to headers if missing
-    if "Actual Result" not in headers or "Status" not in headers:
+    # Ensure Actual Result, Status, and Evidence fields are added to headers if missing
+    if "Actual Result" not in headers or "Status" not in headers or "Evidence" not in headers:
         new_headers = []
         for h in headers:
             new_headers.append(h)
@@ -220,26 +223,30 @@ def read_csv_file(csv_path, xlsx_path=None):
                     new_headers.append("Actual Result")
                 if "Status" not in headers:
                     new_headers.append("Status")
-
-        exp_idx = headers.index("ExpectedResult") if "ExpectedResult" in headers else -1
-        id_idx = headers.index("ID") if "ID" in headers else 0
+                if "Evidence" not in headers:
+                    new_headers.append("Evidence")
+            elif h == "Status" and "Status" in headers and "Evidence" not in headers:
+                new_headers.append("Evidence")
 
         new_rows = []
         for r in rows:
-            r_new = list(r)
-            tc_id = r[id_idx].strip() if id_idx < len(r) and r[id_idx] else ""
-            ex_act, ex_st = existing_data.get(tc_id, (None, None))
+            val_map = {}
+            for idx_h, h_name in enumerate(headers):
+                if idx_h < len(r):
+                    val_map[h_name] = r[idx_h]
+            
+            tc_id = val_map.get("ID", "").strip()
+            ex_act, ex_st, ex_ev = existing_data.get(tc_id, (None, None, None))
 
-            if exp_idx != -1 and exp_idx < len(r_new):
-                insert_idx = exp_idx + 1
-                if "Actual Result" not in headers:
-                    act_to_insert = ex_act if ex_act is not None else ""
-                    r_new.insert(insert_idx, act_to_insert)
-                    insert_idx += 1
-                if "Status" not in headers:
-                    st_to_insert = ex_st if ex_st is not None else "Not Run"
-                    r_new.insert(insert_idx, st_to_insert)
-            new_rows.append(r_new)
+            if "Actual Result" not in val_map or val_map["Actual Result"] is None:
+                val_map["Actual Result"] = ex_act if ex_act is not None else ""
+            if "Status" not in val_map or val_map["Status"] is None:
+                val_map["Status"] = ex_st if ex_st is not None else "Not Run"
+            if "Evidence" not in val_map or val_map["Evidence"] is None:
+                val_map["Evidence"] = ex_ev if ex_ev is not None else ""
+
+            row_constructed = [val_map.get(h, "") for h in new_headers]
+            new_rows.append(row_constructed)
 
         headers = new_headers
         rows = new_rows
