@@ -1,5 +1,5 @@
-﻿"ID","Module","Feature ID","Feature Name","Title","Objective","Preconditions","TestData","Steps","ExpectedResult","Priority","Notes"
-"TC-M05-001","Module 05 - Internship Management","M05-F01","Internship Group Creation","Create New Internship Group with Valid Information","Verify functionality for creating a new internship group when entering all required and valid information.","User is logged in as Staff.
+"ID",Module,Feature ID,Feature Name,Title,Objective,Preconditions,TestData,Steps,ExpectedResult,Priority,Notes
+TC-M05-001,Module 05 - Internship Management,M05-F01,Internship Group Creation,Create New Internship Group with Valid Information,Verify functionality for creating a new internship group when entering all required and valid information.,"User is logged in as Staff.
 Currently on Internship Management interface.
 Classes ""PNV26A"" and ""PNV26B"" exist in system and are not assigned to any internship group in the same academic year.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=""PNV26A, PNV26B""; StartDate=""2026-06-01""","1. Click Create New Internship Group button;
 2. Enter Group Name as ""Internship Group 2026"";
@@ -7,8 +7,8 @@ Classes ""PNV26A"" and ""PNV26B"" exist in system and are not assigned to any in
 4. Select classes ""PNV26A"" and ""PNV26B"";
 5. Select Start Date as ""2026-06-01"";
 6. Click Save button.","Internship group is created successfully.
-Success notification appears and ""Internship Group 2026"" is displayed in the active internship group list with 2 assigned classes.","High","Related Requirement: M05-F01, Rule 6.1"
-"TC-M05-002","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Empty Group Name","Verify system displays error and prevents creating internship group when group name is blank.","User is logged in as Staff.
+Success notification appears and ""Internship Group 2026"" is displayed in the active internship group list with 2 assigned classes.",High,"Related Requirement: M05-F01, Rule 6.1"
+TC-M05-002,Module 05 - Internship Management,M05-F01,Internship Group Creation,Internship Group Creation Fails Due to Empty Group Name,Verify system displays error and prevents creating internship group when group name is blank.,"User is logged in as Staff.
 Currently on Create New Internship Group interface.
 Class ""PNV26A"" is not assigned to any internship group in the academic year.","GroupName=""""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Leave Group Name blank;
 2. Select Academic Year as ""2026"";
@@ -16,167 +16,224 @@ Class ""PNV26A"" is not assigned to any internship group in the academic year.",
 4. Select Start Date as ""2026-06-01"";
 5. Click Save button.","System blocks creation.
 Validation error message appears: ""Group Name is required.""
-Form remains open and no new record is created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
-"TC-M05-003","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Unselected Classes","Verify system displays error and prevents creating internship group when no classes are selected.","User is logged in as Staff.
+Form remains open and no new record is created.",High,"Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+TC-M05-003,Module 05 - Internship Management,M05-F01,Internship Group Creation,Internship Group Creation Fails Due to Unselected Classes,Verify system displays error and prevents creating internship group when no classes are selected.,"User is logged in as Staff.
 Currently on Create New Internship Group interface.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=None; StartDate=""2026-06-01""","1. Enter Group Name as ""Internship Group 2026"";
 2. Select Academic Year as ""2026"";
 3. Do not select any class checkbox;
 4. Select Start Date as ""2026-06-01"";
 5. Click Save button.","System blocks creation.
 Validation error message appears: ""At least one class must be selected.""
-Group is not created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
-"TC-M05-004","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Missing Start Date","Verify system displays error and prevents creating internship group when Start Date is empty.","User is logged in as Staff.
+Group is not created.",High,"Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+TC-M05-004,Module 05 - Internship Management,M05-F01,Internship Group Creation,Internship Group Creation Fails Due to Missing Start Date,Verify system displays error and prevents creating internship group when Start Date is empty.,"User is logged in as Staff.
 Currently on Create New Internship Group interface.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""""","1. Enter Group Name as ""Internship Group 2026"";
 2. Select Academic Year as ""2026"";
 3. Select class ""PNV26A"";
 4. Leave Start Date blank;
 5. Click Save button.","System blocks creation.
 Validation error message appears: ""Start Date is required.""
-Group is not created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
-"TC-M05-005","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Missing Academic Year","Verify system displays error and prevents creating internship group when Academic Year is empty.","User is logged in as Staff.
+Group is not created.",High,"Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+TC-M05-005,Module 05 - Internship Management,M05-F01,Internship Group Creation,Internship Group Creation Fails Due to Missing Academic Year,Verify system displays error and prevents creating internship group when Academic Year is empty.,"User is logged in as Staff.
 Currently on Create New Internship Group interface.","GroupName=""Internship Group 2026""; AcademicYear=""""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Enter Group Name as ""Internship Group 2026"";
 2. Leave Academic Year dropdown unselected/empty;
 3. Select class ""PNV26A"";
 4. Select Start Date as ""2026-06-01"";
 5. Click Save button.","System blocks creation.
 Validation error message appears: ""Academic Year is required.""
-Group is not created.","High","Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
-"TC-M05-006","Module 05 - Internship Management","M05-F01","Internship Group Creation","Internship Group Creation Fails Due to Class Already Assigned in Same Year","Verify system prevents selecting or saving a class that is already assigned to another active internship group in the same academic year.","User is logged in as Staff.
-Class ""PNV26A"" has been assigned to group ""Group 1"" in academic year 2026.
-Currently on Create New Internship Group interface.","GroupName=""Group 2""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Enter Group Name as ""Group 2"";
-2. Select Academic Year as ""2026"";
-3. Attempt to select class ""PNV26A"";
-4. Click Save button.","Class ""PNV26A"" is either disabled in the dropdown/list or system displays error upon saving: ""Class PNV26A is already assigned to another internship group in academic year 2026.""
-Creation fails.","High","Related Requirement: M05-F01, Rule 6.1"
-"TC-M05-007","Module 05 - Internship Management","M05-F01","Internship Group Creation","Create Internship Group Successfully When Assigning Same Class across Different Academic Years","Verify system allows assigning the same class to another internship group if the academic years are different.","User is logged in as Staff.
+Group is not created.",High,"Related Requirement: M05-F01, Rule 6.1, Validation Rules (Section 8)"
+TC-M05-006,Module 05 - Internship Management,M05-F01,Internship Group Creation,Create Internship Group Successfully When Assigning Same Class across Different Academic Years,Verify system allows assigning the same class to another internship group if the academic years are different.,"User is logged in as Staff.
+
 Class ""PNV26A"" was assigned to an internship group in academic year 2025.","GroupName=""Internship Group 2026""; AcademicYear=""2026""; Classes=""PNV26A""; StartDate=""2026-06-01""","1. Create new group with Academic Year ""2026"";
+
 2. Select class ""PNV26A"";
-3. Click Save button.","System allows creation successfully without duplicate class error because academic years differ (2025 vs 2026).","Medium","Related Requirement: M05-F01, Rule 6.1"
-"TC-M05-008","Module 05 - Internship Management","M05-F02","Internship Group Archiving & Reactivation","Archive Active Internship Group","Verify functionality for archiving an active internship group.","User is logged in as Staff.
-Internship group ""Internship Group 2025"" is in Active status.","GroupName=""Internship Group 2025""","1. Navigate to Internship Group list;
-2. Locate group ""Internship Group 2025"";
-3. Click Action menu and select Archive;
-4. Confirm archiving in confirmation dialog.","Status of ""Internship Group 2025"" changes from Active to Archived.
-Group is moved to Archived tab or hidden from Active list.","High","Related Requirement: M05-F02, Rule 6.2"
-"TC-M05-009","Module 05 - Internship Management","M05-F02","Internship Group Archiving & Reactivation","Reactivate Archived Internship Group","Verify functionality for reactivating a previously archived internship group.","User is logged in as Staff.
-Internship group ""Internship Group 2025"" is in Archived status.","GroupName=""Internship Group 2025""","1. Navigate to Archived Internship Groups tab;
-2. Locate group ""Internship Group 2025"";
-3. Click Action menu and select Reactivate;
-4. Confirm reactivation in confirmation dialog.","Status of ""Internship Group 2025"" changes back to Active.
-Group reappears in the Active internship group list.","High","Related Requirement: M05-F02, Rule 6.2"
-"TC-M05-010","Module 05 - Internship Management","M05-F03","Partner Company Management","Add New Partner Company with Valid Name","Verify functionality for adding a new partner company with a valid name.","User is logged in as Staff.
+
+3. Click Save button.",System allows creation successfully without duplicate class error because academic years differ (2025 vs 2026).,Medium,"Related Requirement: M05-F01, Rule 6.1"
+TC-M05-007,Module 05 - Internship Management,M05-F03,Partner Company Management,Add New Partner Company with Valid Name,Verify functionality for adding a new partner company with a valid name.,"User is logged in as Staff.
+
 Currently on Company Management interface.
+
 Company ""ABC Technology"" does not exist in system.","CompanyName=""ABC Technology""","1. Click Add Company button;
+
 2. Enter Company Name as ""ABC Technology"";
+
 3. Click Save button.","Company is added successfully.
-Success notification appears and ""ABC Technology"" is displayed in company list with status Active.","High","Related Requirement: M05-F03, Rule 6.3"
-"TC-M05-011","Module 05 - Internship Management","M05-F03","Partner Company Management","Add Company Fails Due to Empty Company Name","Verify system displays error and prevents adding company when company name is empty.","User is logged in as Staff.
+
+Success notification appears and ""ABC Technology"" is displayed in company list with status Active.",High,"Related Requirement: M05-F03, Rule 6.3"
+TC-M05-008,Module 05 - Internship Management,M05-F03,Partner Company Management,Add Company Fails Due to Empty Company Name,Verify system displays error and prevents adding company when company name is empty.,"User is logged in as Staff.
+
 Currently on Add Company dialog.","CompanyName=""""","1. Leave Company Name field empty;
+
 2. Click Save button.","System blocks action.
+
 Validation error message appears: ""Company Name is required.""
-No new company is saved.","High","Related Requirement: M05-F03, Rule 6.3, Validation Rules (Section 8)"
-"TC-M05-012","Module 05 - Internship Management","M05-F03","Partner Company Management","Add Company Fails Due to Duplicate Name (Case Insensitive)","Verify system detects duplicate company names regardless of uppercase/lowercase letters.","User is logged in as Staff.
+
+No new company is saved.",High,"Related Requirement: M05-F03, Rule 6.3, Validation Rules (Section 8)"
+TC-M05-009,Module 05 - Internship Management,M05-F03,Partner Company Management,Add Company Fails Due to Duplicate Name (Case Insensitive),Verify system detects duplicate company names regardless of uppercase/lowercase letters.,"User is logged in as Staff.
+
 Company ""ABC Technology"" already exists in system.","CompanyName=""abc technology""","1. Click Add Company button;
+
 2. Enter Company Name as ""abc technology"";
+
 3. Click Save button.","System blocks action.
+
 Error message appears: ""Company name already exists.""
-Duplicate company is not created.","High","Related Requirement: M05-F03, Rule 6.3"
-"TC-M05-013","Module 05 - Internship Management","M05-F03","Partner Company Management","Add Company Fails Due to Duplicate Name with Leading/Trailing Whitespace","Verify system trims leading and trailing spaces before checking for duplicate company names.","User is logged in as Staff.
+
+Duplicate company is not created.",High,"Related Requirement: M05-F03, Rule 6.3"
+TC-M05-010,Module 05 - Internship Management,M05-F03,Partner Company Management,Add Company Fails Due to Duplicate Name with Leading/Trailing Whitespace,Verify system trims leading and trailing spaces before checking for duplicate company names.,"User is logged in as Staff.
+
 Company ""ABC Technology"" already exists in system.","CompanyName=""  ABC Technology  ""","1. Click Add Company button;
+
 2. Enter Company Name as ""  ABC Technology  "";
+
 3. Click Save button.","System trims spaces, detects duplicate ""ABC Technology"", and displays error: ""Company name already exists.""
-Save is rejected.","Medium","Related Requirement: M05-F03, Rule 6.3"
-"TC-M05-014","Module 05 - Internship Management","M05-F04","Single Student Internship Assignment","Assign Internship to Individual Student","Verify functionality for assigning an internship company to a single student.","User is logged in as Staff.
+
+Save is rejected.",Medium,"Related Requirement: M05-F03, Rule 6.3"
+TC-M05-011,Module 05 - Internship Management,M05-F04,Single Student Internship Assignment,Assign Internship to Individual Student,Verify functionality for assigning an internship company to a single student.,"User is logged in as Staff.
+
 Currently on Student List in Internship Group.
+
 Student ""Nguyen Van A"" has no assigned company.
+
 Company ""ABC Technology"" exists in system.","StudentName=""Nguyen Van A""; AssignedCompany=""ABC Technology""","1. Find student ""Nguyen Van A"" in list;
+
 2. Click Company assignment dropdown for this student;
+
 3. Select company ""ABC Technology"";
+
 4. Click Save button.","Assignment saved successfully.
-Student ""Nguyen Van A"" displays company ""ABC Technology"" in the table list.","High","Related Requirement: M05-F04, Rule 6.4"
-"TC-M05-015","Module 05 - Internship Management","M05-F05","Batch Student Internship Assignment","Batch Assign Internship to Multiple Students","Verify functionality for assigning an internship company to multiple selected students simultaneously.","User is logged in as Staff.
+
+Student ""Nguyen Van A"" displays company ""ABC Technology"" in the table list.",High,"Related Requirement: M05-F04, Rule 6.4"
+TC-M05-012,Module 05 - Internship Management,M05-F05,Batch Student Internship Assignment,Batch Assign Internship to Multiple Students,Verify functionality for assigning an internship company to multiple selected students simultaneously.,"User is logged in as Staff.
+
 Currently on Student List in Internship Group.
+
 Students ""Nguyen Van A"" and ""Tran Thi B"" have no assigned company.","SelectedStudents=[""Nguyen Van A"", ""Tran Thi B""]; AssignedCompany=""ABC Technology""","1. Check selection boxes for ""Nguyen Van A"" and ""Tran Thi B"";
+
 2. Click Batch Assign Company button;
+
 3. Select company ""ABC Technology"" in modal dialog;
+
 4. Click Apply and Save.","Batch assignment saved successfully.
-Both students ""Nguyen Van A"" and ""Tran Thi B"" display company ""ABC Technology"" in the list.","High","Related Requirement: M05-F05, Rule 6.4"
-"TC-M05-016","Module 05 - Internship Management","M05-F04","Single Student Internship Assignment","Change Student Assigned Company","Verify functionality for updating the assigned internship company for a student.","User is logged in as Staff.
+
+Both students ""Nguyen Van A"" and ""Tran Thi B"" display company ""ABC Technology"" in the list.",High,"Related Requirement: M05-F05, Rule 6.4"
+TC-M05-013,Module 05 - Internship Management,M05-F04,Single Student Internship Assignment,Change Student Assigned Company,Verify functionality for updating the assigned internship company for a student.,"User is logged in as Staff.
+
 Student ""Nguyen Van A"" is currently assigned to ""ABC Technology"".","StudentName=""Nguyen Van A""; NewCompany=""XYZ Global""","1. Locate student ""Nguyen Van A"";
+
 2. Change company dropdown selection from ""ABC Technology"" to ""XYZ Global"";
+
 3. Click Save button.","Assignment updated successfully.
-Student ""Nguyen Van A"" displays new company ""XYZ Global"".","High","Related Requirement: M05-F04, Rule 6.4"
-"TC-M05-017","Module 05 - Internship Management","M05-F04","Single Student Internship Assignment","Unassign Company from Student by Selecting No Company","Verify functionality for removing an assigned company from a student by selecting ""No Company"".","User is logged in as Staff.
+
+Student ""Nguyen Van A"" displays new company ""XYZ Global"".",High,"Related Requirement: M05-F04, Rule 6.4"
+TC-M05-014,Module 05 - Internship Management,M05-F04,Single Student Internship Assignment,Unassign Company from Student by Selecting No Company,"Verify functionality for removing an assigned company from a student by selecting ""No Company"".","User is logged in as Staff.
+
 Student ""Nguyen Van A"" is currently assigned to ""ABC Technology"".","StudentName=""Nguyen Van A""; AssignedCompany=""No Company""","1. Locate student ""Nguyen Van A"";
+
 2. Select ""No Company"" (or empty option) in company dropdown;
+
 3. Click Save button.","Company assignment cleared successfully.
-Student ""Nguyen Van A"" displays ""Unassigned"" or ""No Company"" in student list.","Medium","Related Requirement: M05-F04, Rule 6.4"
-"TC-M05-018","Module 05 - Internship Management","M05-F06","Company Hiding & Deletion Safety","Hide Company and Verify Exclusion from New Assignment Options","Verify system hides company from assignment dropdowns when company status is set to Hidden/Inactive.","User is logged in as Staff.
+
+Student ""Nguyen Van A"" displays ""Unassigned"" or ""No Company"" in student list.",Medium,"Related Requirement: M05-F04, Rule 6.4"
+TC-M05-015,Module 05 - Internship Management,M05-F06,Company Hiding & Deletion Safety,Hide Company and Verify Exclusion from New Assignment Options,Verify system hides company from assignment dropdowns when company status is set to Hidden/Inactive.,"User is logged in as Staff.
+
 Company ""Defunct Corp"" exists in system.","CompanyName=""Defunct Corp""","1. Go to Company Management;
+
 2. Change status of ""Defunct Corp"" to Hidden/Inactive;
-3. Go to Student List assignment dropdown.","Company ""Defunct Corp"" no longer appears in dropdown list for new student assignments.","High","Related Requirement: M05-F06, Rule 6.6"
-"TC-M05-019","Module 05 - Internship Management","M05-F06","Company Hiding & Deletion Safety","Ensure Existing Student Assignment Remains Unaffected When Company Is Hidden","Verify hiding a company does not remove or distort historical/existing student assignments associated with that company.","User is logged in as Staff.
+
+3. Go to Student List assignment dropdown.","Company ""Defunct Corp"" no longer appears in dropdown list for new student assignments.",High,"Related Requirement: M05-F06, Rule 6.6"
+TC-M05-016,Module 05 - Internship Management,M05-F06,Company Hiding & Deletion Safety,Ensure Existing Student Assignment Remains Unaffected When Company Is Hidden,Verify hiding a company does not remove or distort historical/existing student assignments associated with that company.,"User is logged in as Staff.
+
 Student ""Tran Thi B"" is assigned to company ""ABC Technology"".","CompanyName=""ABC Technology""; StudentName=""Tran Thi B""","1. Change status of company ""ABC Technology"" to Hidden in Company Management;
+
 2. View Student List in Internship Group.","Assignment of student ""Tran Thi B"" still displays ""ABC Technology"" normally in student list.
-No error notification appears and existing assignment is preserved.","High","Related Requirement: M05-F06, Rule 6.6"
-"TC-M05-020","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Record Internship Feedback Successfully for Student by Training Team","Verify functionality for recording internship feedback for a student by Training team.","User is logged in as Staff.
+
+No error notification appears and existing assignment is preserved.",High,"Related Requirement: M05-F06, Rule 6.6"
+TC-M05-017,Module 05 - Internship Management,M05-F07,Feedback Recording by Team,Record Internship Feedback Successfully for Student by Training Team,Verify functionality for recording internship feedback for a student by Training team.,"User is logged in as Staff.
+
 Currently on Student List in Internship Group.
+
 Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""Training""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Good progress, proactive in assigned tasks.""","1. Locate student ""Nguyen Van A"" in list;
+
 2. Click Add Feedback button for this student;
+
 3. Select Feedback Team as ""Training"";
+
 4. Enter Feedback Date as ""2026-08-15"";
+
 5. Enter Feedback Notes as ""Good progress, proactive in assigned tasks."";
+
 6. Click Save Feedback button.","Feedback saved successfully.
-New feedback entry appears under student name with Team ""Training"", date, and entered notes.","High","Related Requirement: M05-F07, Rule 6.7"
-"TC-M05-021","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Record Internship Feedback Successfully for Student by ERO Team","Verify functionality for recording internship feedback for a student by ERO team.","User is logged in as Staff.
+
+New feedback entry appears under student name with Team ""Training"", date, and entered notes.",High,"Related Requirement: M05-F07, Rule 6.7"
+TC-M05-018,Module 05 - Internship Management,M05-F07,Feedback Recording by Team,Record Internship Feedback Successfully for Student by ERO Team,Verify functionality for recording internship feedback for a student by ERO team.,"User is logged in as Staff.
+
 Currently on Student List in Internship Group.
-Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Strong technical skills and professional attitude.""","1. Locate student ""Nguyen Van A"" in list;
-2. Click Add Feedback button for this student;
-3. Select Feedback Team as ""ERO"";
-4. Enter Feedback Date as ""2026-08-15"";
-5. Enter Feedback Notes as ""Strong technical skills and professional attitude."";
-6. Click Save Feedback button.","Feedback saved successfully.
-New feedback entry appears under student name with Team ""ERO"", date, and entered notes.","High","Related Requirement: M05-F07, Rule 6.7"
-"TC-M05-022","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Record Internship Feedback Successfully for Student by Educators Team","Verify functionality for recording internship feedback for a student by Educators team.","User is logged in as Staff.
+
+Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""ERO""; FeedbackNotes=""Strong technical skills and professional attitude.""","1. Locate student ""Nguyen Van A"" in list;
+
+2. Select Feedback Team as ""ERO"";
+
+3. Enter Feedback Notes as ""Strong technical skills and professional attitude."";
+
+4. Click Save Feedback button.","Feedback saved successfully.
+
+New feedback entry appears under student name with Team ""ERO"", and entered notes.",High,"Related Requirement: M05-F07, Rule 6.7"
+TC-M05-019,Module 05 - Internship Management,M05-F07,Feedback Recording by Team,Record Internship Feedback Successfully for Student by Educators Team,Verify functionality for recording internship feedback for a student by Educators team.,"User is logged in as Staff.
+
 Currently on Student List in Internship Group.
-Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Actively contributes constructive ideas to group.""","1. Locate student ""Nguyen Van A"" in list;
+
+Student ""Nguyen Van A"" has assigned internship.","StudentName=""Nguyen Van A""; FeedbackTeam=""Educators"";  FeedbackNotes=""Actively contributes constructive ideas to group.""","1. Locate student ""Nguyen Van A"" in list;
+
 2. Click Add Feedback button for this student;
+
 3. Select Feedback Team as ""Educators"";
-4. Enter Feedback Date as ""2026-08-15"";
-5. Enter Feedback Notes as ""Actively contributes constructive ideas to group."";
-6. Click Save Feedback button.","Feedback saved successfully.
-New feedback entry appears under student name with Team ""Educators"", date, and entered notes.","High","Related Requirement: M05-F07, Rule 6.7"
-"TC-M05-023","Module 05 - Internship Management","M05-F07","Feedback Recording by Team","Ignore Blank Feedback Entries Without Saving","Verify system ignores and does not save feedback entries when feedback notes field is empty.","User is logged in as Staff.
-Currently on Add Feedback dialog for student.","FeedbackTeam=""ERO""; FeedbackDate=""2026-08-15""; FeedbackNotes=""""","1. Open Add Feedback dialog;
-2. Select Team as ""ERO"" and select date;
+
+4. Enter Feedback Notes as ""Actively contributes constructive ideas to group."";
+
+5. Click Save Feedback button.","Feedback saved successfully.
+
+New feedback entry appears under student name with Team ""Educators"", and entered notes.",High,"Related Requirement: M05-F07, Rule 6.7"
+TC-M05-020,Module 05 - Internship Management,M05-F07,Feedback Recording by Team,Ignore Blank Feedback Entries Without Saving,Verify system ignores and does not save feedback entries when feedback notes field is empty.,"User is logged in as Staff.
+
+Currently on Add Feedback dialog for student.","FeedbackTeam=""ERO""; FeedbackNotes=""""","1. Open Add Feedback dialog;
+
+2. Select Team as ""ERO"";
+
 3. Leave Feedback Notes empty;
+
 4. Click Save button.","System ignores blank feedback entry without saving new database record.
-No error appears and no empty feedback row is displayed on UI.","Medium","Related Requirement: Rule 6.8, Error Handling (Section 8)"
-"TC-M05-024","Module 05 - Internship Management","M05-F08","Same for All Feedback","Record Batch Feedback for Multiple Students Simultaneously (Same for All)","Verify batch feedback feature applies identical feedback content to multiple selected students.","User is logged in as Staff.
+
+No error appears and no empty feedback row is displayed on UI.",Medium,"Related Requirement: Rule 6.8, Error Handling (Section 8)"
+TC-M05-021,Module 05 - Internship Management,M05-F08,Same for All Feedback,Record Batch Feedback for Multiple Students Simultaneously (Same for All),Verify batch feedback feature applies identical feedback content to multiple selected students.,"User is logged in as Staff.
+
 Currently on Student List in Internship Group.
-At least 2 students selected (e.g., Nguyen Van A, Tran Thi B).","SelectedStudents=[""Nguyen Van A"", ""Tran Thi B""]; FeedbackTeam=""Educators""; FeedbackDate=""2026-08-15""; FeedbackNotes=""Excellent communication skills.""","1. Select checkboxes for students ""Nguyen Van A"" and ""Tran Thi B"";
+
+At least 2 students selected (e.g., Nguyen Van A, Tran Thi B).","SelectedStudents=[""Nguyen Van A"", ""Tran Thi B""]; FeedbackTeam=""Educators""; FeedbackNotes=""Excellent communication skills.""","1. Select checkboxes for students ""Nguyen Van A"" and ""Tran Thi B"";
+
 2. Click Batch Feedback (Same for All) button;
-3. Select Team as ""Educators"", Feedback Date as ""2026-08-15"", enter Notes as ""Excellent communication skills."";
+
+3. Select Team as ""Educators"", enter Notes as ""Excellent communication skills."";
+
 4. Click Apply and Save button.","Feedback saved successfully for both students.
-Both ""Nguyen Van A"" and ""Tran Thi B"" display Educators feedback entry with content ""Excellent communication skills."" dated 2026-08-15.","High","Related Requirement: M05-F08, Rule 6.9"
-"TC-M05-025","Module 05 - Internship Management","M05-F09","Feedback Editing","Edit Saved Internship Feedback Content","Verify functionality for editing and saving existing feedback content.","User is logged in as Staff.
+
+Both ""Nguyen Van A"" and ""Tran Thi B"" display Educators feedback.",High,"Related Requirement: M05-F08, Rule 6.9"
+TC-M05-022,Module 05 - Internship Management,M05-F09,Feedback Editing,Edit Saved Internship Feedback Content,Verify functionality for editing and saving existing feedback content.,"User is logged in as Staff.
+
 Student ""Nguyen Van A"" has feedback: Team = ""Training"", content = ""Good progress"", date = ""2026-08-15"".","StudentName=""Nguyen Van A""; NewFeedbackNotes=""Outstanding progress and excellent teamwork.""","1. Locate student ""Nguyen Van A"" and expand feedback list;
+
 2. Select feedback entry ""Good progress"" and click Edit button;
+
 3. Update feedback notes to ""Outstanding progress and excellent teamwork."";
+
 4. Click Save button.","Feedback updated successfully.
-New content overwrites previous notes and displays correctly on UI: ""Outstanding progress and excellent teamwork."".","High","Related Requirement: M05-F09, Rule 6.10"
-"TC-M05-026","Module 05 - Internship Management","M05-F09","Feedback Editing","Edit Saved Internship Feedback Team and Date","Verify functionality for editing and saving existing feedback team and date.","User is logged in as Staff.
-Student ""Nguyen Van A"" has feedback: Team = ""Training"", content = ""Good progress"", date = ""2026-08-15"".","StudentName=""Nguyen Van A""; NewFeedbackTeam=""ERO""; NewFeedbackDate=""2026-08-20""","1. Locate student ""Nguyen Van A"" and expand feedback list;
-2. Select feedback entry ""Good progress"" and click Edit button;
-3. Change Feedback Team to ""ERO"";
-4. Change Feedback Date to ""2026-08-20"";
-5. Click Save button.","Feedback updated successfully.
-Feedback details update on UI to display new Team ""ERO"" and new date ""2026-08-20"".","High","Related Requirement: M05-F09, Rule 6.10"
-"TC-M05-027","Module 05 - Internship Management","M05-F10","Group List Display","Expand/Collapse Student List and Display Warning Badges in Internship Group List","Verify functionality for expanding/collapsing each internship group and correctly displaying warning badges for unassigned students.","User is logged in as Staff.
-Currently on Internship Group List page.
-Group ""Internship Group 2026"" contains 2 students without assigned company.","GroupName=""Internship Group 2026""","1. Observe group row for ""Internship Group 2026"";
-2. Verify warning badge for unassigned students (e.g., ""2 Unassigned"");
-3. Click Expand arrow icon on group row;
-4. Click Collapse arrow icon on group row.","Warning badge ""2 Unassigned"" displays accurately on group row.
-Clicking Expand expands student list cleanly.
-Clicking Collapse hides student list cleanly.","Medium","Related Requirement: M05-F10, UI Standards"
+
+New content overwrites previous notes and displays correctly on UI: ""Outstanding progress and excellent teamwork."".",High,"Related Requirement: M05-F09, Rule 6.10"
+TC-M05-023,Module 05 - Internship Management,M05-F09,Feedback Editing,Edit Saved Internship Feedback Team and Date,Verify functionality for editing and saving existing feedback team and date.,"User is logged in as Staff.
+
+Student ""Nguyen Van A"" has feedback: Team = ""Training"", content = ""Good progress"", date = ""2026-08-15"".","StudentName=""Nguyen Van A""; NewFeedbackTeam=""ERO""; ","1. Locate student ""Nguyen Van A"" and expand feedback list;
+
+2. Change Feedback Team to ""ERO"";
+
+3. Click Save button.","Feedback updated successfully.
+
+Feedback details update on UI to display new Team ""ERO"".",High,"Related Requirement: M05-F09, Rule 6.10"
